@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="fuya" />
+        <module name="fuya-base" />
+        <module name="fuya-dao" />
+        <module name="fuya-service" />
+        <module name="fuya-util" />
+        <module name="fuya-web" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="fuya" target="1.8" />
+      <module name="fuya-base" target="1.8" />
+      <module name="fuya-dao" target="1.8" />
+      <module name="fuya-service" target="1.8" />
+      <module name="fuya-shiro" target="1.8" />
+      <module name="fuya-util" target="1.8" />
+      <module name="fuya-web" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

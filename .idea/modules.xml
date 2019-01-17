@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/fuya.iml" filepath="$PROJECT_DIR$/fuya.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fuya-base/fuya-base.iml" filepath="$PROJECT_DIR$/fuya-base/fuya-base.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fuya-dao/fuya-dao.iml" filepath="$PROJECT_DIR$/fuya-dao/fuya-dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fuya-service/fuya-service.iml" filepath="$PROJECT_DIR$/fuya-service/fuya-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fuya-util/fuya-util.iml" filepath="$PROJECT_DIR$/fuya-util/fuya-util.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fuya-web/fuya-web.iml" filepath="$PROJECT_DIR$/fuya-web/fuya-web.iml" />
+    </modules>
+  </component>
+</project>

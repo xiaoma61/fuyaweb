@@ -1,0 +1,32 @@
+spring:
+  datasource:
+    url: jdbc:oracle:thin:@localhost:1521:orcl
+    username: FUYAWEB
+    password: 1314
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+  jpa:
+    hibernate:
+      ddl-auto: none
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML
+    encoding: UTF-8
+    servlet:
+      content-type: text/html
+    cache: false
+  devtools:
+    restart:
+      enabled: true
+     # additional-paths: src/main/java
+      exclude: WEB-INF/**
+
+
+server:
+  port: 8063
+
+
+
+
+
+
