@@ -5,8 +5,8 @@ import javax.persistence.*;
 @Entity
 public class USERS {
     @Id
-    @SequenceGenerator(name = "USERS_SEQUENCE",sequenceName = "USERS_SEQUENCE",allocationSize = 1)
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @SequenceGenerator(name = "USERS_SEQUENCEid",sequenceName = "USERS_SEQUENCE",initialValue=1,allocationSize=1 )
+    @GeneratedValue(strategy=GenerationType.SEQUENCE,generator="USERS_SEQUENCE")
     @Column(name="ID")
     private int ID;
     private String IMAGE;

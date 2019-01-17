@@ -2,6 +2,7 @@ package com.fuya.shiro;
 
 
 
+import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
@@ -20,6 +21,7 @@ public class ShiroConfiguration {
     @Bean
     public MyShiroRealm myShiroRealm() {
         MyShiroRealm myShiroRealm = new MyShiroRealm();
+      //  myShiroRealm.setCredentialsMatcher(hashedCredentialsMatcher());
         return myShiroRealm;
     }
 
@@ -40,7 +42,7 @@ public class ShiroConfiguration {
         //登出
         map.put("/logout","logout");
         //对所有用户认证
-        map.put("/**","anon");
+        map.put("/login","anon");
         //登录
         shiroFilterFactoryBean.setLoginUrl("/Login");
         //首页
@@ -59,5 +61,12 @@ public class ShiroConfiguration {
         return authorizationAttributeSourceAdvisor;
     }
 
+    @Bean
+    public HashedCredentialsMatcher hashedCredentialsMatcher(){
+        HashedCredentialsMatcher hashedCredentialsMatcher = new HashedCredentialsMatcher();
+        hashedCredentialsMatcher.setHashAlgorithmName("md5");//散列算法:这里使用md5算法;
+        hashedCredentialsMatcher.setHashIterations(2);//散列的次数，比如散列两次，相当于 md5( md5(""));
+        return hashedCredentialsMatcher;
+    }
 
 }

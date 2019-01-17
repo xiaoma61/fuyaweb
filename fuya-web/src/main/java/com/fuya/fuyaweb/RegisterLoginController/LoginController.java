@@ -6,9 +6,11 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class LoginController {
@@ -19,7 +21,7 @@ public class LoginController {
     }
 
     @RequestMapping("/CheckLogin")
-    public  String CheckLogin(String name , String password, Model model){
+    public  String CheckLogin(String name , String password, Model model, HttpServletRequest request){
         //获取subject
         Subject subject= SecurityUtils.getSubject();
         //获取token
@@ -35,13 +37,21 @@ public class LoginController {
             model.addAttribute("Msg","密码或者用户名错误");
             return "redirect:Login";
         }
+        //将用户名
+        HttpSession session=request.getSession();
+        session.setAttribute("username",name);
+
         return "index";
 
     }
     //登出
     @RequestMapping(value = "/logout")
-    public String logout(){
-        return "logout";
+    public String logout(HttpServletRequest request){
+        //清除session
+        HttpSession session=request.getSession();
+        session.removeAttribute("username");
+
+        return "index";
     }
 
     //错误页面展示
@@ -49,12 +59,6 @@ public class LoginController {
     public String error(){
         return "error ok!";
     }
-
-
-//    @RequestMapping(value = "/index")
-//    public String index(){
-//        return "index";
-//    }
 
 
 }

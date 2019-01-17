@@ -18,4 +18,10 @@ public class USERServiceImpl implements USERService {
         USERS users=usersRepository.findUSERSByNAME(NAME);
         return users;
     }
+
+    @Override
+    public void save(USERS users) {
+
+        USERS user=usersRepository.save(users);
+    }
 }
