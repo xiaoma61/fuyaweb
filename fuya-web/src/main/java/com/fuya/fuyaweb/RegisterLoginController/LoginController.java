@@ -20,6 +20,7 @@ public class LoginController {
         return "login";
     }
 
+
     @RequestMapping("/CheckLogin")
     public  String CheckLogin(String name , String password, Model model, HttpServletRequest request){
         //获取subject
@@ -50,7 +51,8 @@ public class LoginController {
         //清除session
         HttpSession session=request.getSession();
         session.removeAttribute("username");
-
+        Subject subject = SecurityUtils.getSubject();
+        subject.logout();
         return "index";
     }
 

@@ -17,6 +17,7 @@ import java.util.Map;
 
 public class ShiroConfiguration {
 
+   
     //将自己的验证方式加入容器
     @Bean
     public MyShiroRealm myShiroRealm() {
