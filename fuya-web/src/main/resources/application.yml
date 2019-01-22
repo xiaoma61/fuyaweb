@@ -22,15 +22,15 @@ spring:
       exclude: WEB-INF/**
   redis:
     expireSeconds: 120
-    cluster:
-      nodes: 192.168.80.128:6661,192.168.80.128:6662,192.168.80.128:6663,192.168.80.128:6664,192.168.80.128:6665,192.168.80.128:6666
+    clusterNodes: 192.168.80.128:6661,192.168.80.128:6662,192.168.80.128:6663,192.168.80.128:6664,192.168.80.128:6665,192.168.80.128:6666
     jedis:
       pool:
         max-active: 300
-        maxwait: 100
+       # maxwait: 100
         min-idle: 100
     database: 0
     commandTimeout: 10000
+    password: 1314
 
 server:
   port: 8063

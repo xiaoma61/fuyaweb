@@ -20,7 +20,6 @@
         <module>fuya-dao</module>
         <module>fuya-service</module>
         <module>fuya-web</module>
-
     </modules>
 
 
@@ -40,6 +39,7 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
     </dependencies>
 
     <build>

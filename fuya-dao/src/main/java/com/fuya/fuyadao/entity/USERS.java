@@ -4,10 +4,7 @@ import javax.persistence.*;
 @Table(name="USERS")
 @Entity
 public class USERS {
-    @Id
-    @SequenceGenerator(name = "USERS_SEQUENCEid",sequenceName = "USERS_SEQUENCE",initialValue=1,allocationSize=1 )
-    @GeneratedValue(strategy=GenerationType.SEQUENCE,generator="USERS_SEQUENCE")
-    @Column(name="ID")
+
     private int ID;
     private String IMAGE;
     private String NAME;
@@ -15,6 +12,10 @@ public class USERS {
     private String PASSWORD;
     private int TYPE;
 
+    @Id
+    @SequenceGenerator(name = "USERS_SEQUENCEid",sequenceName = "USERS_SEQUENCE",initialValue=1,allocationSize=1 )
+    @GeneratedValue(strategy=GenerationType.SEQUENCE,generator="USERS_SEQUENCEid")
+    @Column(name="ID")
     public int getID() {
         return ID;
     }

@@ -1,4 +1,4 @@
-package com.fuya.Redis;
+package com.fuya.Redis.Util;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -26,12 +26,4 @@ public class RedisUtil {
     public void delete(String key) {
         jedisCluster.del(key);
     }
-
-
-
-
-
-
-
-
 }

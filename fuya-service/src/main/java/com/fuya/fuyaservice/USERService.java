@@ -2,6 +2,7 @@ package com.fuya.fuyaservice;
 
 
 import com.fuya.fuyadao.entity.USERS;
+import org.springframework.stereotype.Service;
 
 
 
