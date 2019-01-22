@@ -10,6 +10,7 @@
         <module name="fuya-base" />
         <module name="fuya-dao" />
         <module name="fuya-service" />
+        <module name="fuya-solr" />
         <module name="fuya-util" />
         <module name="fuya-web" />
       </profile>
@@ -20,6 +21,7 @@
       <module name="fuya-dao" target="1.8" />
       <module name="fuya-service" target="1.8" />
       <module name="fuya-shiro" target="1.8" />
+      <module name="fuya-solr" target="1.8" />
       <module name="fuya-util" target="1.8" />
       <module name="fuya-web" target="1.8" />
     </bytecodeTargetLevel>

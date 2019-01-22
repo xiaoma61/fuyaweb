@@ -69,6 +69,7 @@ public class IndexController {
             List<Map<String,Object>>companybasicinfoListmap=new ArrayList<>();
             for (COMPANYBASICINFO companybasicinfo:companybasicinfoList){
                 Map<String,Object>map=new HashMap<>();
+                //跳转到公司页面
                 map.put("ID",companybasicinfo.getID());
                 map.put("ADDRESS",companybasicinfo.getADDRESS());
                 map.put("CORPORATENAME",companybasicinfo.getCORPORATENAME());
@@ -98,6 +99,7 @@ public class IndexController {
            List<Map<String,Object>>yuesobasicinfoListmap=new ArrayList<>();
 
            for (YUESOBASICINFO yuesobasicinfo : yuesobasicinfoList){
+               //封装连接---跳转到月嫂的页面
                int id=yuesobasicinfo.getID();
                COMMENTS comments=commentsService.findByUSERID(id);
                Map<String,Object>map=new HashMap<>();
@@ -135,6 +137,7 @@ public class IndexController {
             for (ARTICLE article : articleList ){
                 Map<String,Object>map=new HashMap<>();
                 //封装连接
+                //跳转到文章页面
                 map.put("ID",article.getID());
                 map.put("TITLE",article.getTITLE());
                 String content=BodyContentUtil.GetContent(article.getCONTENT());

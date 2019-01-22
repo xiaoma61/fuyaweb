@@ -9,6 +9,7 @@
         <option value="$PROJECT_DIR$/fuya-web/pom.xml" />
         <option value="$PROJECT_DIR$/fuya-service/pom.xml" />
         <option value="$PROJECT_DIR$/fuya-util/pom.xml" />
+        <option value="$PROJECT_DIR$/fuya-solr/pom.xml" />
       </list>
     </option>
   </component>

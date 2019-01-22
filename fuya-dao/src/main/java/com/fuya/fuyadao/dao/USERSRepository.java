@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 
 
 public interface USERSRepository extends JpaRepository<USERS,Integer> {
+    //登录
     @Query("select u from USERS u where u.NAME=?1 ")
     USERS findUSERSByNAME(String NAME);
 
