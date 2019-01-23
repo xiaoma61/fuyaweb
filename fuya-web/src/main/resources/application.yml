@@ -31,7 +31,11 @@ spring:
     database: 0
     commandTimeout: 10000
     password: 1314
-
+  activemq:
+    broker-url: http//192.168.80.128:8161
+    ##默认情况下activemq提供的是queue模式，若要使用topic模式需要配置下面配置
+  jms:
+    pub-sub-domain: true
 server:
   port: 8063
 
