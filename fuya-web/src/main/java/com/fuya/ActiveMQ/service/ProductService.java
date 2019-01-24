@@ -1,7 +1,8 @@
 package com.fuya.ActiveMQ.service;
 
-import javax.print.attribute.standard.Destination;
+
+import javax.jms.Destination;
 
 public interface ProductService {
-    void sendMessage(Destination destination,String Msg);
+    void sendMessage(Destination destination, String Msg);
 }

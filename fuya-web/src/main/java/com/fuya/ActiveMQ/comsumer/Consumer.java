@@ -5,12 +5,13 @@ import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Service;
 
 @Service
-public class comsumer {
+public class Consumer {
     @JmsListener(destination = "zh-topic")
     @SendTo("return-queue")
     public String receiveQueue(String text) {
         System.out.println("Consumer2收到:"+text);
         return "Consumer2收到!";
     }
+
 
 }

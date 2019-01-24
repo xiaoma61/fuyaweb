@@ -18,7 +18,7 @@ public class MsgListeners {
      *
      */
     @Bean
-    public Queue queue() throws Exception {
+    public Queue queue(){
         return new ActiveMQQueue("zh-queue");
     }
 

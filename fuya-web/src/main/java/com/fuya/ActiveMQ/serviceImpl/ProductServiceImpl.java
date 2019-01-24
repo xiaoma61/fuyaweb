@@ -6,7 +6,8 @@ import org.springframework.jms.annotation.JmsListener;
 import org.springframework.jms.core.JmsMessagingTemplate;
 import org.springframework.stereotype.Service;
 
-import javax.print.attribute.standard.Destination;
+import javax.jms.Destination;
+
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -14,11 +15,11 @@ public class ProductServiceImpl implements ProductService {
     private JmsMessagingTemplate jmsMessagingTemplate;
     @Override
     public void sendMessage(Destination destination, String Msg) {
-        jmsMessagingTemplate.convertAndSend(String.valueOf(destination),Msg);
+        jmsMessagingTemplate.convertAndSend(destination,Msg);
 
     }
     @JmsListener(destination = "return-queue")
     public void Message(String Msg){
-
+        System.out.println("Product收到:"+Msg);
     }
 }

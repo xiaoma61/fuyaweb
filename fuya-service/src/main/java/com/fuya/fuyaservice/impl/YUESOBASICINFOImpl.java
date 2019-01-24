@@ -20,4 +20,10 @@ public class YUESOBASICINFOImpl implements YUESOBASICINFOService {
 
         return yuesobasicinfoList;
     }
+
+    @Override
+    public List<YUESOBASICINFO> findAll() {
+        List<YUESOBASICINFO>yuesobasicinfoList=yuesobasicinfoRepository.findAll();
+        return yuesobasicinfoList;
+    }
 }

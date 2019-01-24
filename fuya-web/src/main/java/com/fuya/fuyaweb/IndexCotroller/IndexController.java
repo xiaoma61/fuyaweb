@@ -1,8 +1,8 @@
-package com.fuya.fuyaweb.companyController;
+package com.fuya.fuyaweb.IndexCotroller;
 
 import com.alibaba.druid.support.json.JSONUtils;
 import com.fuya.Redis.Util.RedisUtil;
-import com.fuya.fuyadao.dao.ARTICLERepository;
+
 import com.fuya.fuyadao.entity.ARTICLE;
 import com.fuya.fuyadao.entity.COMMENTS;
 import com.fuya.fuyadao.entity.COMPANYBASICINFO;
