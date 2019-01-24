@@ -17,7 +17,7 @@ public class PROVEINFO {
 
     private String REPORT;
     private String SCORE;
-    private String TYPE;
+
 
     public int getID() {
         return ID;
@@ -77,11 +77,5 @@ public class PROVEINFO {
         this.SCORE = SCORE;
     }
 
-    public String getTYPE() {
-        return TYPE;
-    }
 
-    public void setTYPE(String TYPE) {
-        this.TYPE = TYPE;
-    }
 }

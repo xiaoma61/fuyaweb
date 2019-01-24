@@ -76,6 +76,7 @@ public class IndexController {
                 map.put("INTRODUCE",companybasicinfo.getINTRODUCE());
                 map.put("LEVELS",companybasicinfo.getLEVELS());
                 map.put("USERID",companybasicinfo.getUSERID());
+
                 companybasicinfoListmap.add(map);
             }
             String companybasicinfo = JSONUtils.toJSONString(companybasicinfoListmap);
@@ -110,6 +111,7 @@ public class IndexController {
                map.put("WAGES",yuesobasicinfo.getWAGES());//工资
                map.put("LEVELS",yuesobasicinfo.getLEVELS());//星级
                map.put("AGE",yuesobasicinfo.getAGE());
+               map.put("WORKAREA",yuesobasicinfo.getWORKAREA());
                yuesobasicinfoListmap.add(map);
 
            }

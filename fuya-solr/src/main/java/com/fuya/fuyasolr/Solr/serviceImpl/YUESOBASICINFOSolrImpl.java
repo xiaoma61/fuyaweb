@@ -21,10 +21,25 @@ public class YUESOBASICINFOSolrImpl implements YUESOBASICINFOSolrservice {
     }
 
     @Override
-    public SearchResult search(String keyword, int page, int rows) throws IOException, SolrServerException {
+    public SearchResult search(String keyword,String workarea,String type,String minwages,String maxwages,String nativeplace,String age, int page, int rows) throws IOException, SolrServerException {
         //创建查询对象
         SolrQuery solrQuery=new SolrQuery();
-        solrQuery.setQuery(keyword);
+        StringBuffer stringBuffer=new StringBuffer();
+        if (!workarea.equals("null")){
+            stringBuffer.append("yuesaoWORKAREA:"+workarea);
+        }
+        if (!type.equals("null")){
+            stringBuffer.append("AND yusaoTYPE:"+type);
+        }
+        if (!minwages.equals("null")&&maxwages.equals("null")){
+            stringBuffer.append("AND yusaoWAGES:[ "+minwages +"TO " +maxwages+"]");//工资
+        }
+        if (!nativeplace.equals("null")){
+            stringBuffer.append("AND　yuesaoNATIVEPLACE:"+nativeplace);
+
+        }
+
+        solrQuery.setQuery(stringBuffer.toString());
         if (page<=0){
             page=1;
         }

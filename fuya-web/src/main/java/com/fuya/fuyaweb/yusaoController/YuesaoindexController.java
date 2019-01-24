@@ -63,8 +63,15 @@ public class YuesaoindexController {
 
     }
     @RequestMapping("/search/name")//名字
-    public String Searchname (@RequestParam(name="name")String name,@RequestParam(name="page",defaultValue = "0")int page,@RequestParam(name = "rows",defaultValue = "10") int rows) throws IOException, SolrServerException {
-        SearchResult result=yuesobasicinfoSolrservice.search(name,page,rows);
+    public String Searchname (@RequestParam(name="name")String name,@RequestParam(name="page",defaultValue = "0")int page,
+                              @RequestParam(name = "workarea",defaultValue = "null")String workarea,
+                              @RequestParam(name = "type",defaultValue = "null")String type,
+                              @RequestParam(name = "wages",defaultValue = "null")String minwages,
+                              @RequestParam(name = "wages",defaultValue = "null")String maxwages,
+                              @RequestParam(name = "nativeplace",defaultValue = "null")String nativeplace,
+                              @RequestParam(name = " age" ,defaultValue = "null")String  age,
+                              @RequestParam(name = "rows",defaultValue = "10") int rows) throws IOException, SolrServerException {
+        SearchResult result=yuesobasicinfoSolrservice.search(name,workarea,type,minwages,maxwages,nativeplace,age,page,rows);
         JSONObject jsonResult = JSONObject.fromObject(result);
         System.out.println(jsonResult);
         return null;
@@ -77,28 +84,8 @@ public class YuesaoindexController {
         return null;
 
     }
-    @RequestMapping("/search/type")//类型
-    public String Searchtype (String  type){
-        return null;
-
-    }
-    @RequestMapping("/search/wages")//工资
-    public String Searchwages (String  wages){
-        return null;
-
-    }
-    @RequestMapping("/search/nativeplace")//籍贯
-    public String Searchnativeplace (String  nativeplace){
 
 
-        return null;
-
-    }
-    @RequestMapping("/search/age")//年龄
-    public String Searchage (String  age){
-        return null;
-
-    }
 
 
 

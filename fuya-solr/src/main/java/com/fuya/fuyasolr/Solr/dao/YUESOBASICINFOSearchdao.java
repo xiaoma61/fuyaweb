@@ -51,7 +51,7 @@ public class YUESOBASICINFOSearchdao {
             solrInputDocument.addField("yuesaoPHONE",yuesobasicinfo.getPHONE());
             solrInputDocument.addField("yuesaoPHOTO",yuesobasicinfo.getPHOTO());
             solrInputDocument.addField("yuesaoWEIGHT",yuesobasicinfo.getWEIGHT());
-
+            solrInputDocument.addField("yuesaoWORKAREA",yuesobasicinfo.getWORKAREA());
 
                 client.add(solrInputDocument);
             }
@@ -90,6 +90,7 @@ public class YUESOBASICINFOSearchdao {
             yuesobasicinfo.setEDUCATION((String) solrDocument.get("yuesaoEDUCATION"));
             yuesobasicinfo.setCOMPANYID((String) solrDocument.get("yuesaoCOMPANYID"));
             yuesobasicinfo.setPHONE((String) solrDocument.get("yuesaoPHONE"));
+            yuesobasicinfo.setWORKAREA((String) solrDocument.get("yuasaoWORKAREA"));
 
             List<String>list=highlight.get(solrDocument.get("yuesaoID")).get("yuesaoNAME");
             String name=null;

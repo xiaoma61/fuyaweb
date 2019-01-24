@@ -25,6 +25,24 @@ public class YUESOBASICINFO {
     private String COMPANYID;
     private int LEVELS;
     private String WAGES;
+    private String TYPE;
+    private String WORKAREA;
+
+    public String getWORKAREA() {
+        return WORKAREA;
+    }
+
+    public void setWORKAREA(String WORKAREA) {
+        this.WORKAREA = WORKAREA;
+    }
+
+    public String getTYPE() {
+        return TYPE;
+    }
+
+    public void setTYPE(String TYPE) {
+        this.TYPE = TYPE;
+    }
 
     public int getID() {
         return ID;
