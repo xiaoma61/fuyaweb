@@ -35,17 +35,17 @@ public class YuesaoindexController {
 
 
 
-    @GetMapping("/yusao/queue/{msg}")
-    public String sendQueue(@PathVariable("msg") String msg){
-        productService.sendMessage(this.queue,msg);
-        return "/index";
-    }
-
-    @GetMapping("/topic/{msg}")
-    public String sendTopic(@PathVariable("msg")String msg){
-        productService.sendMessage(this.topic,msg);
-        return "/index";
-    }
+//    @GetMapping("/yusao/queue/{msg}")
+//    public String sendQueue(@PathVariable("msg") String msg){
+//        productService.sendMessage(this.queue,msg);
+//        return "/index";
+//    }
+//
+//    @GetMapping("/topic/{msg}")
+//    public String sendTopic(@PathVariable("msg")String msg){
+//        productService.sendMessage(this.topic,msg);
+//        return "/index";
+//    }
 
 
 

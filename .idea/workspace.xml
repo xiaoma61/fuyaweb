@@ -40,48 +40,49 @@
           <entry key="project.open.time.30" value="1" />
           <entry key="project.open.time.31" value="1" />
           <entry key="project.open.time.4" value="1" />
+          <entry key="project.open.time.44" value="1" />
           <entry key="project.open.time.53" value="1" />
-          <entry key="project.opened" value="7" />
+          <entry key="project.opened" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="class" value="2" />
           <entry key="html" value="5" />
-          <entry key="java" value="193" />
-          <entry key="properties" value="10" />
-          <entry key="xml" value="27" />
-          <entry key="yml" value="9" />
+          <entry key="java" value="222" />
+          <entry key="properties" value="11" />
+          <entry key="xml" value="28" />
+          <entry key="yml" value="11" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CLASS" value="2" />
           <entry key="HTML" value="5" />
-          <entry key="JAVA" value="193" />
-          <entry key="Properties" value="10" />
-          <entry key="XML" value="27" />
-          <entry key="YAML" value="9" />
+          <entry key="JAVA" value="222" />
+          <entry key="Properties" value="11" />
+          <entry key="XML" value="28" />
+          <entry key="YAML" value="11" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="54" />
           <entry key="html" value="11" />
-          <entry key="java" value="11744" />
-          <entry key="properties" value="143" />
+          <entry key="java" value="12693" />
+          <entry key="properties" value="168" />
           <entry key="xml" value="146" />
-          <entry key="yml" value="549" />
+          <entry key="yml" value="586" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="11" />
-          <entry key="JAVA" value="11744" />
+          <entry key="JAVA" value="12693" />
           <entry key="PLAIN_TEXT" value="54" />
-          <entry key="Properties" value="143" />
+          <entry key="Properties" value="168" />
           <entry key="XML" value="146" />
-          <entry key="YAML" value="549" />
+          <entry key="YAML" value="586" />
         </counts>
       </usages-collector>
     </session>
@@ -89,128 +90,101 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/fuya-web/src/main/java/com/fuya/fuyaweb/yusaoController/YuesaoindexController.java">
+        <entry file="file://$PROJECT_DIR$/fuya-web/src/main/resources/application.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="269">
-              <caret line="73" column="89" selection-start-line="73" selection-start-column="89" selection-end-line="73" selection-end-column="98" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="75">
+              <caret line="12" column="12" lean-forward="true" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/fuya-solr/src/main/resources/application.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="22" lean-forward="true" selection-start-column="22" selection-end-column="62" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/fuya-solr/src/main/resources/application.yml">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/fuya-solr/src/main/java/com/fuya/fuyasolr/Solr/service/YUESOBASICINFOSolrservice.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="152">
+              <caret line="11" column="41" selection-start-line="11" selection-start-column="2" selection-end-line="11" selection-end-column="41" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/fuya-web/src/main/java/com/fuya/fuyaweb/RegisterLoginController/RegisterController.java">
+        <entry file="file://$PROJECT_DIR$/fuya-web/src/main/java/com/fuya/ActiveMQ/comsumer/Consumer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="269">
-              <caret line="133" column="8" selection-start-line="133" selection-start-column="8" selection-end-line="133" selection-end-column="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/fuya-dao/src/main/java/com/fuya/fuyadao/entity/COMPANYINFO.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="7" column="15" lean-forward="true" selection-start-line="7" selection-start-column="15" selection-end-line="7" selection-end-column="26" />
+            <state relative-caret-position="113">
+              <caret line="18" column="3" lean-forward="true" selection-start-line="18" selection-start-column="3" selection-end-line="18" selection-end-column="3" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#692#693#0" expanded="true" />
-                <element signature="e#722#723#0" expanded="true" />
-                <element signature="e#768#769#0" expanded="true" />
-                <element signature="e#806#807#0" expanded="true" />
-                <element signature="e#838#839#0" expanded="true" />
-                <element signature="e#866#867#0" expanded="true" />
-                <element signature="e#908#909#0" expanded="true" />
-                <element signature="e#942#943#0" expanded="true" />
-                <element signature="e#414#415#0" expanded="true" />
-                <element signature="e#439#440#0" expanded="true" />
-                <element signature="e#472#473#0" expanded="true" />
-                <element signature="e#500#501#0" expanded="true" />
-                <element signature="e#531#532#0" expanded="true" />
-                <element signature="e#561#562#0" expanded="true" />
-                <element signature="e#604#605#0" expanded="true" />
-                <element signature="e#642#643#0" expanded="true" />
-                <element signature="e#680#681#0" expanded="true" />
-                <element signature="e#714#715#0" expanded="true" />
-                <element signature="e#768#769#0" expanded="true" />
-                <element signature="e#814#815#0" expanded="true" />
-                <element signature="e#853#854#0" expanded="true" />
-                <element signature="e#888#889#0" expanded="true" />
-                <element signature="e#944#945#0" expanded="true" />
-                <element signature="e#992#993#0" expanded="true" />
-                <element signature="e#1028#1029#0" expanded="true" />
-                <element signature="e#1060#1061#0" expanded="true" />
-                <element signature="e#1110#1111#0" expanded="true" />
-                <element signature="e#1152#1153#0" expanded="true" />
-                <element signature="e#1185#1186#0" expanded="true" />
-                <element signature="e#1214#1215#0" expanded="true" />
-                <element signature="e#1258#1259#0" expanded="true" />
-                <element signature="e#1294#1295#0" expanded="true" />
-                <element signature="e#1331#1332#0" expanded="true" />
-                <element signature="e#1364#1365#0" expanded="true" />
-                <element signature="e#1416#1417#0" expanded="true" />
-                <element signature="e#1460#1461#0" expanded="true" />
-                <element signature="e#1494#1495#0" expanded="true" />
-                <element signature="e#1524#1525#0" expanded="true" />
-                <element signature="e#1570#1571#0" expanded="true" />
-                <element signature="e#1608#1609#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/fuya-dao/src/main/java/com/fuya/fuyadao/dao/COMPANYINFORepository.java">
+        <entry file="file://$PROJECT_DIR$/fuya-web/src/main/java/com/fuya/ActiveMQ/comsumer/consumer1.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="171">
+              <caret line="9" column="19" lean-forward="true" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/fuya-web/src/main/java/com/fuya/ActiveMQ/configuration/MsgListeners.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="156">
+              <caret line="24" column="7" lean-forward="true" selection-start-line="24" selection-start-column="7" selection-end-line="24" selection-end-column="7" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/fuya-web/src/main/java/com/fuya/ActiveMQ/service/ProductService.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="114">
-              <caret line="6" selection-start-line="6" selection-end-line="6" />
+              <caret line="6" column="27" selection-start-line="6" selection-start-column="27" selection-end-line="6" selection-end-column="27" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/fuya-web/src/main/java/com/fuya/ActiveMQ/serviceImpl/ProductServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="152">
+              <caret line="14" column="54" lean-forward="true" selection-start-line="14" selection-start-column="54" selection-end-line="14" selection-end-column="54" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#716#717#0" expanded="true" />
+                <element signature="e#768#769#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/fuya-service/src/main/java/com/fuya/fuyaservice/COMPANYINFOService.java">
+        <entry file="file://$PROJECT_DIR$/fuya-web/src/main/java/com/fuya/fuyaweb/yusaoController/YuesaoindexController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="95">
-              <caret line="5" column="45" lean-forward="true" selection-start-line="5" selection-start-column="45" selection-end-line="5" selection-end-column="45" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/fuya-service/src/main/java/com/fuya/fuyaservice/impl/COMPANYINFOImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="15" column="47" selection-start-line="15" selection-start-column="47" selection-end-line="15" selection-end-column="47" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/fuya-service/src/main/java/com/fuya/fuyaservice/COMPANYBASICINFOService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
-              <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/fuya-dao/src/main/java/com/fuya/fuyadao/entity/ARTICLE.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="95">
-              <caret line="5" column="7" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
+            <state relative-caret-position="589">
+              <caret line="47" column="7" selection-start-line="37" selection-start-column="5" selection-end-line="47" selection-end-column="7" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -246,31 +220,20 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/fuya-service/src/main/java/com/fuya/fuyaservice/impl/COMMENTSImpl.java" />
-        <option value="$PROJECT_DIR$/fuya-dao/src/main/java/com/fuya/fuyadao/entity/ARTICLE.java" />
-        <option value="$PROJECT_DIR$/fuya-util/pom.xml" />
-        <option value="$PROJECT_DIR$/fuya-util/src/main/java/com/fuya/fuyautil/ImageUtil.java" />
-        <option value="$PROJECT_DIR$/fuya-web/src/main/resources/Redis.properties" />
-        <option value="$PROJECT_DIR$/fuya-service/src/main/java/com/fuya/fuyaservice/ARTICLEService.java" />
         <option value="$PROJECT_DIR$/fuya-service/src/main/java/com/fuya/fuyaservice/impl/ARTICLEImpl.java" />
         <option value="$PROJECT_DIR$/fuya-util/src/main/java/com/fuya/fuyautil/BodyImageUtil.java" />
         <option value="$PROJECT_DIR$/fuya-util/src/main/java/com/fuya/fuyautil/BodyContentUtil.java" />
         <option value="$PROJECT_DIR$/fuya-dao/src/main/java/com/fuya/fuyadao/dao/ARTICLERepository.java" />
         <option value="$PROJECT_DIR$/fuya-dao/src/main/java/com/fuya/fuyadao/dao/COMPANYBASICINFORepository.java" />
-        <option value="$PROJECT_DIR$/fuya-dao/src/main/java/com/fuya/fuyadao/dao/USERSRepository.java" />
         <option value="$PROJECT_DIR$/fuya-dao/src/main/java/com/fuya/fuyadao/dao/COMMENTSRepository.java" />
         <option value="$PROJECT_DIR$/fuya-solr/src/main/java/com/fuya/fuyasolr/FuyaSolrApplication.java" />
-        <option value="$PROJECT_DIR$/fuya-solr/src/main/resources/application.properties" />
         <option value="$PROJECT_DIR$/fuya-web/src/main/java/com/fuya/ActiveMQ/comsumer/comsumer.java" />
         <option value="$PROJECT_DIR$/fuya-web/src/main/java/com/fuya/ActiveMQ/service/ProductService.java" />
         <option value="$PROJECT_DIR$/fuya-web/src/main/java/com/fuya/fuyaweb/yusaoController/indexController.java" />
         <option value="$PROJECT_DIR$/fuya-web/src/main/java/com/fuya/fuyaweb/yusaoController/yuesaoindexController.java" />
         <option value="$PROJECT_DIR$/fuya-web/src/main/java/com/fuya/ActiveMQ/configuration/MsgListeners.java" />
-        <option value="$PROJECT_DIR$/fuya-web/src/main/java/com/fuya/ActiveMQ/comsumer/consumer1.java" />
         <option value="$PROJECT_DIR$/fuya-web/src/main/java/com/fuya/fuyaweb/companyController/IndexController.java" />
-        <option value="$PROJECT_DIR$/fuya-web/src/main/resources/application.yml" />
         <option value="$PROJECT_DIR$/fuya-web/src/main/java/com/fuya/ActiveMQ/serviceImpl/ProductServiceImpl.java" />
-        <option value="$PROJECT_DIR$/fuya-web/src/main/java/com/fuya/ActiveMQ/comsumer/Consumer.java" />
         <option value="$PROJECT_DIR$/fuya-dao/src/main/java/com/fuya/fuyadao/dao/YUESOBASICINFORepository.java" />
         <option value="$PROJECT_DIR$/fuya-solr/src/main/java/com/fuya/fuyasolr/YUESOBASICINFOSolr/YUESOBASICINFOSearch.java" />
         <option value="$PROJECT_DIR$/fuya-solr/src/main/java/com/fuya/fuyasolr/YUESOBASICINFOSolr/YUESOBASICINFOSearchdao.java" />
@@ -288,15 +251,26 @@
         <option value="$PROJECT_DIR$/fuya-dao/src/main/java/com/fuya/fuyadao/entity/YUESOBASICINFO.java" />
         <option value="$PROJECT_DIR$/fuya-solr/src/main/java/com/fuya/fuyasolr/Solr/dao/YUESOBASICINFOSearchdao.java" />
         <option value="$PROJECT_DIR$/fuya-web/src/main/java/com/fuya/fuyaweb/IndexCotroller/IndexController.java" />
-        <option value="$PROJECT_DIR$/fuya-web/src/main/java/com/fuya/fuyaweb/yusaoController/YuesaoindexController.java" />
         <option value="$PROJECT_DIR$/fuya-solr/src/main/java/com/fuya/fuyasolr/Solr/service/YUESOBASICINFOSolrservice.java" />
-        <option value="$PROJECT_DIR$/fuya-solr/src/main/java/com/fuya/fuyasolr/Solr/serviceImpl/YUESOBASICINFOSolrImpl.java" />
         <option value="$PROJECT_DIR$/fuya-service/src/main/java/com/fuya/fuyaservice/impl/PROVEINFOImpl.java" />
         <option value="$PROJECT_DIR$/fuya-dao/src/main/java/com/fuya/fuyadao/entity/COMPANYINFO.java" />
         <option value="$PROJECT_DIR$/fuya-dao/src/main/java/com/fuya/fuyadao/dao/COMPANYINFORepository.java" />
         <option value="$PROJECT_DIR$/fuya-service/src/main/java/com/fuya/fuyaservice/COMPANYINFOService.java" />
         <option value="$PROJECT_DIR$/fuya-service/src/main/java/com/fuya/fuyaservice/impl/COMPANYINFOImpl.java" />
+        <option value="$PROJECT_DIR$/fuya-web/src/main/java/com/fuya/ActiveMQ/comsumer/consumer1.java" />
+        <option value="$PROJECT_DIR$/fuya-service/src/main/java/com/fuya/fuyaservice/USERService.java" />
+        <option value="$PROJECT_DIR$/fuya-solr/src/main/java/com/fuya/fuyasolr/Solr/dao/USERSearchdao.java" />
+        <option value="$PROJECT_DIR$/fuya-solr/src/main/java/com/fuya/fuyasolr/Solr/serviceImpl/YUESOBASICINFOSolrImpl.java" />
+        <option value="$PROJECT_DIR$/fuya-solr/src/main/java/com/fuya/fuyasolr/Solr/service/USERSSolrservice.java" />
+        <option value="$PROJECT_DIR$/fuya-solr/src/main/java/com/fuya/fuyasolr/Solr/serviceImpl/USERSSolrserviceImpl.java" />
+        <option value="$PROJECT_DIR$/fuya-web/src/main/java/com/fuya/fuyaweb/yusaoController/YuesaoindexController.java" />
+        <option value="$PROJECT_DIR$/fuya-dao/src/main/java/com/fuya/fuyadao/dao/USERSRepository.java" />
+        <option value="$PROJECT_DIR$/fuya-service/src/main/java/com/fuya/fuyaservice/impl/USERServiceImpl.java" />
         <option value="$PROJECT_DIR$/fuya-web/src/main/java/com/fuya/fuyaweb/RegisterLoginController/RegisterController.java" />
+        <option value="$PROJECT_DIR$/fuya-solr/src/main/resources/application.properties" />
+        <option value="$PROJECT_DIR$/fuya-solr/src/main/resources/application.yml" />
+        <option value="$PROJECT_DIR$/fuya-web/src/main/resources/application.yml" />
+        <option value="$PROJECT_DIR$/fuya-web/src/main/java/com/fuya/ActiveMQ/comsumer/Consumer.java" />
       </list>
     </option>
   </component>
@@ -307,10 +281,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="95" />
-    <option name="y" value="66" />
-    <option name="width" value="1239" />
-    <option name="height" value="751" />
+    <option name="x" value="9" />
+    <option name="y" value="15" />
+    <option name="width" value="1377" />
+    <option name="height" value="784" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -348,106 +322,6 @@
             <path>
               <item name="fuya" type="b2602c69:ProjectViewProjectNode" />
               <item name="fuya" type="462c0819:PsiDirectoryNode" />
-              <item name="fuya-dao" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="fuya" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fuya" type="462c0819:PsiDirectoryNode" />
-              <item name="fuya-dao" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="fuya" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fuya" type="462c0819:PsiDirectoryNode" />
-              <item name="fuya-dao" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="fuya" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fuya" type="462c0819:PsiDirectoryNode" />
-              <item name="fuya-dao" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="fuya" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fuya" type="462c0819:PsiDirectoryNode" />
-              <item name="fuya-dao" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="fuyadao" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="fuya" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fuya" type="462c0819:PsiDirectoryNode" />
-              <item name="fuya-dao" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="fuyadao" type="462c0819:PsiDirectoryNode" />
-              <item name="dao" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="fuya" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fuya" type="462c0819:PsiDirectoryNode" />
-              <item name="fuya-dao" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="fuyadao" type="462c0819:PsiDirectoryNode" />
-              <item name="entity" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="fuya" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fuya" type="462c0819:PsiDirectoryNode" />
-              <item name="fuya-service" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="fuya" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fuya" type="462c0819:PsiDirectoryNode" />
-              <item name="fuya-service" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="fuya" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fuya" type="462c0819:PsiDirectoryNode" />
-              <item name="fuya-service" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="fuya" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fuya" type="462c0819:PsiDirectoryNode" />
-              <item name="fuya-service" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="fuya" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fuya" type="462c0819:PsiDirectoryNode" />
-              <item name="fuya-service" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="fuyaservice" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="fuya" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fuya" type="462c0819:PsiDirectoryNode" />
-              <item name="fuya-service" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="fuyaservice" type="462c0819:PsiDirectoryNode" />
-              <item name="impl" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="fuya" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fuya" type="462c0819:PsiDirectoryNode" />
               <item name="fuya-solr" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -479,16 +353,6 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="fuyasolr" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="fuya" type="b2602c69:ProjectViewProjectNode" />
-              <item name="fuya" type="462c0819:PsiDirectoryNode" />
-              <item name="fuya-solr" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="fuyasolr" type="462c0819:PsiDirectoryNode" />
-              <item name="SearchResult" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="fuya" type="b2602c69:ProjectViewProjectNode" />
@@ -605,6 +469,39 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="fuya" type="462c0819:PsiDirectoryNode" />
+              <item name="ActiveMQ" type="462c0819:PsiDirectoryNode" />
+              <item name="configuration" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="fuya" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fuya" type="462c0819:PsiDirectoryNode" />
+              <item name="fuya-web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="fuya" type="462c0819:PsiDirectoryNode" />
+              <item name="ActiveMQ" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="fuya" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fuya" type="462c0819:PsiDirectoryNode" />
+              <item name="fuya-web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="fuya" type="462c0819:PsiDirectoryNode" />
+              <item name="ActiveMQ" type="462c0819:PsiDirectoryNode" />
+              <item name="serviceImpl" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="fuya" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fuya" type="462c0819:PsiDirectoryNode" />
+              <item name="fuya-web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="fuya" type="462c0819:PsiDirectoryNode" />
               <item name="fuyaweb" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -640,6 +537,18 @@
               <item name="fuyaweb" type="462c0819:PsiDirectoryNode" />
               <item name="yusaoController" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="fuya" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fuya" type="462c0819:PsiDirectoryNode" />
+              <item name="fuya-web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="fuya" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -656,7 +565,7 @@
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1548333173284" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1548602672870" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/java/com/fuya" />
@@ -688,6 +597,7 @@
       <recent name="com.fuya.Redis.config" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\工具\比赛\计算机设计大赛\fuya\fuya-solr\src\main\resources" />
       <recent name="F:\工具\比赛\计算机设计大赛" />
       <recent name="F:\工具\比赛\计算机设计大赛\fuya" />
       <recent name="F:\工具\比赛\计算机设计大赛\fuya\src\main\resources" />
@@ -805,18 +715,19 @@
       <workItem from="1547915900246" duration="98000" />
       <workItem from="1547975466538" duration="3003000" />
       <workItem from="1547988439813" duration="4289000" />
-      <workItem from="1548052647087" duration="95794000" />
+      <workItem from="1548052647087" duration="110908000" />
+      <workItem from="1548600250840" duration="2265000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="166199000" />
+    <option name="totallyTimeSpent" value="183578000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22767204" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22239032" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -825,8 +736,8 @@
       <window_info id="Capture Tool" order="6" />
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.07290016" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32840723" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.33004925" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.5752773" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -858,81 +769,10 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/fuya-dao/src/main/java/com/fuya/fuyadao/entity/ProveAndYuesaobasic.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fuya-dao/src/main/java/com/fuya/fuyadao/entity/COMMENTS.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="6" column="15" selection-start-line="6" selection-start-column="15" selection-end-line="6" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fuya-service/src/main/java/com/fuya/fuyaservice/impl/USERServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fuya-service/src/main/java/com/fuya/fuyaservice/ARTICLEService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="8" column="50" lean-forward="true" selection-start-line="8" selection-start-column="50" selection-end-line="8" selection-end-column="50" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fuya-service/src/main/java/com/fuya/fuyaservice/impl/ARTICLEImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="78">
-          <caret line="14" column="14" lean-forward="true" selection-start-line="14" selection-start-column="14" selection-end-line="14" selection-end-column="14" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fuya-util/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="111">
-          <caret line="12" column="3" selection-start-line="12" selection-start-column="3" selection-end-line="13" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fuya-util/src/main/java/com/fuya/fuyautil/BodyImageUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="14" column="45" lean-forward="true" selection-start-line="14" selection-start-column="45" selection-end-line="14" selection-end-column="45" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fuya-util/src/main/java/com/fuya/fuyautil/BodyContentUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="17" column="14" selection-start-line="17" selection-start-column="14" selection-end-line="17" selection-end-column="14" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/fuya-dao/src/main/java/com/fuya/fuyadao/dao/ARTICLERepository.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
           <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -940,9 +780,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
           <caret line="7" column="8" selection-start-line="7" selection-start-column="8" selection-end-line="7" selection-end-column="8" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -950,9 +787,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="114">
           <caret line="14" column="16" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="16" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -966,33 +800,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fuya-solr/src/main/java/com/fuya/fuyasolr/FuyaSolrApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="13" selection-start-line="13" selection-end-line="13" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/fuya-solr/src/main/java/com/fuya/fuyasolr/FuyaSolrApplication.java" />
     <entry file="file://$PROJECT_DIR$/fuya-web/src/main/java/com/fuya/Redis/Util/RedisUtil.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="244">
           <caret line="22" column="45" selection-start-line="22" selection-start-column="45" selection-end-line="22" selection-end-column="45" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#320#321#0" expanded="true" />
-            <element signature="e#364#365#0" expanded="true" />
-            <element signature="e#404#405#0" expanded="true" />
-            <element signature="e#451#452#0" expanded="true" />
-            <element signature="e#737#738#0" expanded="true" />
-            <element signature="e#774#775#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fuya-solr/src/main/resources/application.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="53" lean-forward="true" selection-start-column="53" selection-end-column="53" />
         </state>
       </provider>
     </entry>
@@ -1000,62 +812,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="38">
           <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fuya-web/src/main/resources/application.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="79">
-          <caret line="33" column="11" lean-forward="true" selection-start-line="33" selection-start-column="11" selection-end-line="33" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fuya-web/src/main/java/com/fuya/ActiveMQ/configuration/MsgListeners.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="21" column="42" selection-start-line="21" selection-start-column="34" selection-end-line="21" selection-end-column="42" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fuya-web/src/main/java/com/fuya/ActiveMQ/service/ProductService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="6" column="27" selection-start-line="6" selection-start-column="27" selection-end-line="6" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fuya-web/src/main/java/com/fuya/ActiveMQ/serviceImpl/ProductServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
-          <caret line="22" column="45" lean-forward="true" selection-start-line="22" selection-start-column="45" selection-end-line="22" selection-end-column="45" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#716#717#0" expanded="true" />
-            <element signature="e#768#769#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fuya-web/src/main/java/com/fuya/ActiveMQ/comsumer/consumer1.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="7" column="9" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fuya-web/src/main/java/com/fuya/ActiveMQ/comsumer/Consumer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="10" column="45" selection-start-line="10" selection-start-column="45" selection-end-line="10" selection-end-column="45" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1077,9 +833,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="93">
           <caret line="11" column="35" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="35" />
-          <folding>
-            <element signature="e#254#255#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1097,29 +850,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fuya-dao/src/main/java/com/fuya/fuyadao/dao/USERSRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="9" column="8" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fuya-dao/src/main/java/com/fuya/fuyadao/entity/USERS.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="24" column="5" lean-forward="true" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/fuya-service/src/main/java/com/fuya/fuyaservice/impl/YUESOBASICINFOImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="65">
           <caret line="11" column="34" lean-forward="true" selection-start-line="11" selection-start-column="34" selection-end-line="11" selection-end-column="34" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#885#886#0" expanded="true" />
-            <element signature="e#924#925#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1134,9 +868,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="114">
           <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1144,16 +875,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-814">
           <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
-          <folding>
-            <element signature="e#865#866#0" expanded="true" />
-            <element signature="e#896#897#0" expanded="true" />
-            <element signature="e#944#945#0" expanded="true" />
-            <element signature="e#984#985#0" expanded="true" />
-            <element signature="e#832#833#0" expanded="true" />
-            <element signature="e#859#860#0" expanded="true" />
-            <element signature="e#899#900#0" expanded="true" />
-            <element signature="e#931#932#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1161,47 +882,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
           <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fuya-solr/src/main/java/com/fuya/fuyasolr/Solr/dao/YUESOBASICINFOSearchdao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="83" column="69" lean-forward="true" selection-start-line="83" selection-start-column="69" selection-end-line="83" selection-end-column="86" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fuya-solr/src/main/java/com/fuya/fuyasolr/Solr/service/YUESOBASICINFOSolrservice.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="13" column="106" selection-start-line="13" selection-start-column="106" selection-end-line="13" selection-end-column="106" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fuya-solr/src/main/java/com/fuya/fuyasolr/Solr/serviceImpl/YUESOBASICINFOSolrImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-54">
-          <caret line="34" column="80" selection-start-line="34" selection-start-column="80" selection-end-line="34" selection-end-column="80" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fuya-web/src/main/java/com/fuya/fuyaweb/IndexCotroller/IndexController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="109" column="74" lean-forward="true" selection-start-line="109" selection-start-column="74" selection-end-line="109" selection-end-column="74" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1213#1244#1" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1209,9 +889,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="95">
           <caret line="5" column="7" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1219,9 +896,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="152">
           <caret line="8" column="8" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1229,19 +903,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="152">
           <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fuya-web/src/main/java/com/fuya/fuyaweb/yusaoController/YuesaoindexController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="73" column="89" selection-start-line="73" selection-start-column="89" selection-end-line="73" selection-end-column="98" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1249,9 +910,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
           <caret line="10" column="50" selection-start-line="10" selection-start-column="50" selection-end-line="10" selection-end-column="50" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1259,66 +917,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="114">
           <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/fuya-dao/src/main/java/com/fuya/fuyadao/entity/COMPANYINFO.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
-          <caret line="7" column="15" lean-forward="true" selection-start-line="7" selection-start-column="15" selection-end-line="7" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#692#693#0" expanded="true" />
-            <element signature="e#722#723#0" expanded="true" />
-            <element signature="e#768#769#0" expanded="true" />
-            <element signature="e#806#807#0" expanded="true" />
-            <element signature="e#838#839#0" expanded="true" />
-            <element signature="e#866#867#0" expanded="true" />
-            <element signature="e#908#909#0" expanded="true" />
-            <element signature="e#942#943#0" expanded="true" />
-            <element signature="e#414#415#0" expanded="true" />
-            <element signature="e#439#440#0" expanded="true" />
-            <element signature="e#472#473#0" expanded="true" />
-            <element signature="e#500#501#0" expanded="true" />
-            <element signature="e#531#532#0" expanded="true" />
-            <element signature="e#561#562#0" expanded="true" />
-            <element signature="e#604#605#0" expanded="true" />
-            <element signature="e#642#643#0" expanded="true" />
-            <element signature="e#680#681#0" expanded="true" />
-            <element signature="e#714#715#0" expanded="true" />
-            <element signature="e#768#769#0" expanded="true" />
-            <element signature="e#814#815#0" expanded="true" />
-            <element signature="e#853#854#0" expanded="true" />
-            <element signature="e#888#889#0" expanded="true" />
-            <element signature="e#944#945#0" expanded="true" />
-            <element signature="e#992#993#0" expanded="true" />
-            <element signature="e#1028#1029#0" expanded="true" />
-            <element signature="e#1060#1061#0" expanded="true" />
-            <element signature="e#1110#1111#0" expanded="true" />
-            <element signature="e#1152#1153#0" expanded="true" />
-            <element signature="e#1185#1186#0" expanded="true" />
-            <element signature="e#1214#1215#0" expanded="true" />
-            <element signature="e#1258#1259#0" expanded="true" />
-            <element signature="e#1294#1295#0" expanded="true" />
-            <element signature="e#1331#1332#0" expanded="true" />
-            <element signature="e#1364#1365#0" expanded="true" />
-            <element signature="e#1416#1417#0" expanded="true" />
-            <element signature="e#1460#1461#0" expanded="true" />
-            <element signature="e#1494#1495#0" expanded="true" />
-            <element signature="e#1524#1525#0" expanded="true" />
-            <element signature="e#1570#1571#0" expanded="true" />
-            <element signature="e#1608#1609#0" expanded="true" />
-          </folding>
+          <caret line="7" column="15" selection-start-line="7" selection-start-column="15" selection-end-line="7" selection-end-column="26" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/fuya-service/src/main/java/com/fuya/fuyaservice/COMPANYINFOService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="95">
-          <caret line="5" column="45" lean-forward="true" selection-start-line="5" selection-start-column="45" selection-end-line="5" selection-end-column="45" />
+          <caret line="5" column="45" selection-start-line="5" selection-start-column="45" selection-end-line="5" selection-end-column="45" />
         </state>
       </provider>
     </entry>
@@ -1326,9 +938,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="114">
           <caret line="6" selection-start-line="6" selection-end-line="6" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1336,9 +945,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="15" column="47" selection-start-line="15" selection-start-column="47" selection-end-line="15" selection-end-column="47" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1356,10 +962,189 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="36" column="20" lean-forward="true" selection-start-line="36" selection-start-column="20" selection-end-line="36" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fuya-web/src/main/java/com/fuya/fuyaweb/IndexCotroller/IndexController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1292">
+          <caret line="109" column="74" lean-forward="true" selection-start-line="109" selection-start-column="74" selection-end-line="109" selection-end-column="74" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fuya-web/src/main/java/com/fuya/fuyaweb/RegisterLoginController/LoginController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fuya-service/src/main/java/com/fuya/fuyaservice/USERService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="11" column="27" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fuya-dao/src/main/java/com/fuya/fuyadao/entity/USERS.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="7" column="3" lean-forward="true" selection-start-line="7" selection-start-column="3" selection-end-line="12" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fuya-solr/src/main/java/com/fuya/fuyasolr/Solr/serviceImpl/USERSSolrserviceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="41" column="73" selection-start-line="41" selection-start-column="73" selection-end-line="41" selection-end-column="73" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fuya-solr/src/main/java/com/fuya/fuyasolr/Solr/service/USERSSolrservice.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" column="27" lean-forward="true" selection-start-line="5" selection-start-column="27" selection-end-line="5" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fuya-service/src/main/java/com/fuya/fuyaservice/impl/USERServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="131">
+          <caret line="30" column="24" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/fuya-web/src/main/java/com/fuya/fuyaweb/RegisterLoginController/RegisterController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="133" column="8" selection-start-line="133" selection-start-column="8" selection-end-line="133" selection-end-column="8" />
+        <state relative-caret-position="77">
+          <caret line="120" column="55" selection-start-line="120" selection-start-column="55" selection-end-line="120" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fuya-dao/src/main/java/com/fuya/fuyadao/dao/USERSRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="12" column="44" selection-start-line="12" selection-start-column="44" selection-end-line="12" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fuya-solr/src/main/java/com/fuya/fuyasolr/Solr/dao/YUESOBASICINFOSearchdao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fuya-solr/src/main/java/com/fuya/fuyasolr/Solr/dao/USERSearchdao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="26" column="16" selection-start-line="26" selection-start-column="16" selection-end-line="26" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fuya-solr/src/main/java/com/fuya/fuyasolr/Solr/serviceImpl/YUESOBASICINFOSolrImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="969">
+          <caret line="59" column="17" selection-start-line="59" selection-start-column="17" selection-end-line="59" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fuya-solr/src/main/java/com/fuya/fuyasolr/Solr/service/YUESOBASICINFOSolrservice.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="11" column="41" selection-start-line="11" selection-start-column="2" selection-end-line="11" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fuya-web/src/main/java/com/fuya/fuyaweb/yusaoController/YuesaoindexController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="589">
+          <caret line="47" column="7" selection-start-line="37" selection-start-column="5" selection-end-line="47" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fuya-solr/src/main/resources/application.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="22" lean-forward="true" selection-start-column="22" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fuya-solr/src/main/resources/application.yml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fuya-web/src/main/resources/application.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="12" column="12" lean-forward="true" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fuya-web/src/main/java/com/fuya/ActiveMQ/service/ProductService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="6" column="27" selection-start-line="6" selection-start-column="27" selection-end-line="6" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fuya-web/src/main/java/com/fuya/ActiveMQ/serviceImpl/ProductServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="14" column="54" lean-forward="true" selection-start-line="14" selection-start-column="54" selection-end-line="14" selection-end-column="54" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#716#717#0" expanded="true" />
+            <element signature="e#768#769#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fuya-web/src/main/java/com/fuya/ActiveMQ/comsumer/consumer1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="9" column="19" lean-forward="true" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fuya-web/src/main/java/com/fuya/ActiveMQ/configuration/MsgListeners.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="156">
+          <caret line="24" column="7" lean-forward="true" selection-start-line="24" selection-start-column="7" selection-end-line="24" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fuya-web/src/main/java/com/fuya/ActiveMQ/comsumer/Consumer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="113">
+          <caret line="18" column="3" lean-forward="true" selection-start-line="18" selection-start-column="3" selection-end-line="18" selection-end-column="3" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

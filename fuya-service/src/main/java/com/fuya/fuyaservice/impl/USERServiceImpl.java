@@ -6,6 +6,8 @@ import com.fuya.fuyaservice.USERService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class USERServiceImpl implements USERService {
     @Autowired
@@ -23,5 +25,11 @@ public class USERServiceImpl implements USERService {
     public void save(USERS users) {
 
         USERS user=usersRepository.save(users);
+    }
+
+    @Override
+    public USERS findByID(int ID) {
+        USERS users =usersRepository.findByID(ID);
+        return users;
     }
 }
