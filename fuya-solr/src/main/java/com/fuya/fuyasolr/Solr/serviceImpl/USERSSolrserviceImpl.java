@@ -18,12 +18,12 @@ public class USERSSolrserviceImpl implements USERSSolrservice {
     USERSearchdao searchdao;
     @Override
     public List<USERS> search(String keyword) {
-        if (keyword==null||!keyword.equals("")){
+        if (keyword==null||keyword.equals("")){
             return null;
         }
         SolrQuery solrQuery=new SolrQuery();
         //查询语句
-        solrQuery.set("q","usersNAME"+keyword+"*");
+        solrQuery.set("q","usersNAME:"+"*"+keyword+"*");
         solrQuery.setStart(0);
         solrQuery.setRows(5);
         List<USERS>usersList=null;

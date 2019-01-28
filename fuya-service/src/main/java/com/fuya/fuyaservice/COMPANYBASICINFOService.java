@@ -6,5 +6,7 @@ import java.util.List;
 
 public interface COMPANYBASICINFOService {
     List<COMPANYBASICINFO> findAlllimit();
+    COMPANYBASICINFO findByID(int ID);
+    void save(COMPANYBASICINFO companybasicinfo);
 
 }

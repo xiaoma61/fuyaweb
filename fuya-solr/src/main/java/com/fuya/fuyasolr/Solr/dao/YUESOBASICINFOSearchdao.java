@@ -92,7 +92,8 @@ public class YUESOBASICINFOSearchdao {
             yuesobasicinfo.setPHONE((String) solrDocument.get("yuesaoPHONE"));
             yuesobasicinfo.setWORKAREA((String) solrDocument.get("yuasaoWORKAREA"));
 
-            List<String>list=highlight.get(solrDocument.get("yuesaoID")).get("yuesaoNAME");
+
+            List<String>list=highlight.get(solrDocument.get("id")).get("yuesaoNAME");
             String name=null;
             if (list!=null&&list.size()>0){
                 name=list.get(0);

@@ -18,6 +18,15 @@ public class COMPANYBASICINFO {
     private String ADDRESS;
     private int LEVELS;
     private String CORPORATENAME;
+    private int NUMS;
+
+    public int getNUMS() {
+        return NUMS;
+    }
+
+    public void setNUMS(int NUMS) {
+        this.NUMS = NUMS;
+    }
 
     public int getID() {
         return ID;

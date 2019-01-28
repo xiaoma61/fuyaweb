@@ -2,17 +2,18 @@ package com.fuya.fuyaweb.RegisterLoginController;
 
 import com.fuya.ActiveMQ.service.ProductService;
 import com.fuya.fuyadao.entity.*;
-import com.fuya.fuyaservice.COMPANYINFOService;
-import com.fuya.fuyaservice.PROVEINFOService;
-import com.fuya.fuyaservice.USERService;
-import com.fuya.fuyaservice.YUESOBASICINFOService;
+import com.fuya.fuyaservice.*;
+import com.fuya.fuyasolr.Solr.service.USERSSolrservice;
+import net.sf.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.jms.Queue;
 import javax.jms.Topic;
+import java.util.List;
 
 @Controller
 public class RegisterController {
@@ -31,6 +32,10 @@ public class RegisterController {
     private Topic topic;
     @Autowired
     private ProductService productService;
+   @Autowired
+   private USERSSolrservice usersSolrservice;
+   @Autowired
+   private COMPANYBASICINFOService companybasicinfoService;
 
 
 
@@ -117,10 +122,10 @@ public class RegisterController {
 
     //企业用户注册2
     @RequestMapping("/companyRegister")
-    public String companyRegister(@RequestParam(name="name") String name,@RequestParam(name = "phone") String phone,@RequestParam(name = "password") String password
-//                                  String corporatename,String email,String licene,
-//                                  String contactname,String contantphone,String liceneno,String idcard,
-//                                  String address,String idcardfile
+    public String companyRegister(@RequestParam(name="name") String name,@RequestParam(name = "phone") String phone,@RequestParam(name = "password") String password,
+                                  String corporatename,String email,String licene,
+                                  String contactname,String contantphone,String liceneno,String idcard,
+                                  String address,String idcardfile
                                     ){
 
 
@@ -131,30 +136,50 @@ public class RegisterController {
         users.setPHONE(phone);
         users.setTYPE(type);
         userService.save(users);
-//        COMPANYBASICINFO companybasicinfo=new COMPANYBASICINFO();
-//        companybasicinfo.setADDRESS(address);
-//        companybasicinfo.setCORPORATENAME(corporatename);
-//        companybasicinfo.setUSERID(users.getID());
-//        COMPANYINFO companyinfo=new COMPANYINFO();
-//        companyinfo.setADDRESS(address);
-//        companyinfo.setCONTACTNAME(contactname);
-//        companyinfo.setUSERSID(users.getID());
-//        companyinfo.setLICENCENO(liceneno);
-//        companyinfo.setLICENCE(licene);
-//        companyinfo.setEMAIL(email);
-//        companyinfo.setIDCARD(idcard);
-//        companyinfo.setIDCARDFILE(idcardfile);
-//        companyinfo.setCONTACTPHONE(contantphone);
-//        companyinfoService.save(companyinfo);
+        COMPANYBASICINFO companybasicinfo=new COMPANYBASICINFO();
+        companybasicinfo.setADDRESS(address);
+        companybasicinfo.setCORPORATENAME(corporatename);
+        companybasicinfo.setUSERID(users.getID());
+        companybasicinfo.setNUMS(0);
+        companybasicinfo.setLEVELS(0);
+        companybasicinfo.setINTRODUCE("暂无介绍");
+        companybasicinfoService.save(companybasicinfo);
+
+        COMPANYINFO companyinfo=new COMPANYINFO();
+        companyinfo.setADDRESS(address);
+        companyinfo.setCONTACTNAME(contactname);
+        companyinfo.setUSERSID(users.getID());
+        companyinfo.setLICENCENO(liceneno);
+        companyinfo.setLICENCE(licene);
+        companyinfo.setEMAIL(email);
+        companyinfo.setIDCARD(idcard);
+        companyinfo.setIDCARDFILE(idcardfile);
+        companyinfo.setCONTACTPHONE(contantphone);
+        companyinfoService.save(companyinfo);
 
 
         //Activemq通知
         productService.sendMessage(this.topic, String.valueOf(users.getID()));
-
-
-
-
         return "redirect:/Login";
     }
+
+    //实现用户名查找
+    @RequestMapping("findusername")
+    @ResponseBody
+    public JSONArray findusername(@RequestParam(name = "keyword")String keyword){
+        List<USERS>usersList=usersSolrservice.search(keyword);
+        if (usersList!=null){
+
+            JSONArray jsonArray=JSONArray.fromObject(usersList);
+            return jsonArray;
+    }
+        return null;
+
+
+
+    }
+
+
+
 
 }

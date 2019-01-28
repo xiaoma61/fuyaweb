@@ -17,4 +17,16 @@ public class COMPANYBASICINFOServiceImpl implements COMPANYBASICINFOService {
         List<COMPANYBASICINFO> companybasicinfoList=companybasicinfoRepository.findAlllimit();
         return companybasicinfoList;
     }
+
+    @Override
+    public COMPANYBASICINFO findByID(int ID) {
+
+        COMPANYBASICINFO companybasicinfo=companybasicinfoRepository.findByID(ID);
+        return companybasicinfo;
+    }
+
+    @Override
+    public void save(COMPANYBASICINFO companybasicinfo) {
+        companybasicinfoRepository.save(companybasicinfo);
+    }
 }
