@@ -91,10 +91,15 @@ public class RegisterController {
 
         //证明存入
         PROVEINFO proveinfo=new PROVEINFO();
+        //健康证明
         proveinfo.setHEALTHCERTIFICATES(healthcertificates);
+        //体检证明
         proveinfo.setREPORT(report);
+        //考核分数
         proveinfo.setSCORE(score);
+        //服务证明
         proveinfo.setSERVICEPICTURE(servicepiceture);
+        //月嫂证
         proveinfo.setYUESAOSYNDROME(yuesaosyndrome);
         proveinfo.setUSERSID(users.getID());
 

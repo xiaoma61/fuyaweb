@@ -58,8 +58,36 @@ public class YUESOBASICINFOSearchdao {
         client.commit();
 
     }
-    //执行查找
-    public SearchResult  searchResult(SolrQuery solrQuery) throws IOException, SolrServerException {
+    public  void addYUESOBASICINFO(int id) throws IOException, SolrServerException {
+       YUESOBASICINFO yuesobasicinfo=yuesobasicinfoService.findbyid(id);
+        SolrInputDocument solrInputDocument=new SolrInputDocument();
+        solrInputDocument.addField("yuesaoID",yuesobasicinfo.getID());
+        solrInputDocument.addField("yuesaoAGE",yuesobasicinfo.getAGE());
+        solrInputDocument.addField("yuesaoLEVELS",yuesobasicinfo.getLEVELS());
+        solrInputDocument.addField("yuesaoWAGES",yuesobasicinfo.getWAGES());
+        solrInputDocument.addField("yuesaoNATIVEPLACE",yuesobasicinfo.getNATIVEPLACE());
+        solrInputDocument.addField("yuesaoNAME",yuesobasicinfo.getNAME());
+        solrInputDocument.addField("yuesaoSENIORITY",yuesobasicinfo.getSENIORITY());
+        solrInputDocument.addField("yuesaoEMAIL",yuesobasicinfo.getEMAIL());
+        solrInputDocument.addField("yuesaoEDUCATION",yuesobasicinfo.getEDUCATION());
+        solrInputDocument.addField("yuesaoCOMPANYID",yuesobasicinfo.getCOMPANYID());
+        solrInputDocument.addField("yuesaoHEIGHT",yuesobasicinfo.getHEIGHT());
+        solrInputDocument.addField("yuesaoIDCARD",yuesobasicinfo.getIDCARD());
+        solrInputDocument.addField("yuesaoPHONE",yuesobasicinfo.getPHONE());
+        solrInputDocument.addField("yuesaoPHOTO",yuesobasicinfo.getPHOTO());
+        solrInputDocument.addField("yuesaoWEIGHT",yuesobasicinfo.getWEIGHT());
+        solrInputDocument.addField("yuesaoWORKAREA",yuesobasicinfo.getWORKAREA());
+
+        client.add(solrInputDocument);
+        client.commit();
+
+    }
+
+
+    //执行查找分页
+    public SearchResult  searchResult(SolrQuery solrQuery,boolean flag) throws IOException, SolrServerException {
+
+       //flag执不执行高亮，true 高亮
         //根据query查询索引库
         QueryResponse queryResponse=client.query(solrQuery);
         //取得查询结果
@@ -93,15 +121,22 @@ public class YUESOBASICINFOSearchdao {
             yuesobasicinfo.setWORKAREA((String) solrDocument.get("yuasaoWORKAREA"));
 
 
-            List<String>list=highlight.get(solrDocument.get("id")).get("yuesaoNAME");
-            String name=null;
-            if (list!=null&&list.size()>0){
-                name=list.get(0);
+            if (flag){
+                List<String>list=highlight.get(solrDocument.get("id")).get("yuesaoNAME");
+                String name=null;
+                if (list!=null&&list.size()>0){
+                    name=list.get(0);
 
-            }else {
-                name= (String) solrDocument.get("yuesaoNAME");
+                }else {
+                    name= (String) solrDocument.get("yuesaoNAME");
+                }
+                yuesobasicinfo.setNAME(name);
+            }else{
+
+                yuesobasicinfo.setNAME((String) solrDocument.get("yuesaoNAME"));
             }
-            yuesobasicinfo.setNAME(name);
+
+
             yuesobasicinfoList.add(yuesobasicinfo);
 
 
@@ -111,7 +146,45 @@ public class YUESOBASICINFOSearchdao {
 
         return searchResult;
     }
+    public YUESOBASICINFO  searchbyid(SolrQuery solrQuery) throws IOException, SolrServerException {
 
+        //flag执不执行高亮，true 高亮
+        //根据query查询索引库
+        QueryResponse queryResponse=client.query(solrQuery);
+        //取得查询结果
+        SolrDocumentList solrDocumentList=queryResponse.getResults();
+        //取得查询结果总记录数
+        YUESOBASICINFO yuesobasicinfo=new YUESOBASICINFO();
+        for (SolrDocument solrDocument: solrDocumentList){
+
+            yuesobasicinfo.setID((Integer) solrDocument.get("yuesaoID"));
+            yuesobasicinfo.setAGE((String) solrDocument.get("yuesaoAGE"));
+            yuesobasicinfo.setCOMPANYID((String) solrDocument.get("yuesaoLEVELS"));
+            yuesobasicinfo.setEDUCATION((String) solrDocument.get("yuesaoWAGES"));
+            yuesobasicinfo.setEMAIL((String) solrDocument.get("yuesaoEMAIL"));
+            yuesobasicinfo.setHEIGHT((String) solrDocument.get("yuesaoHEIGHT"));
+            yuesobasicinfo.setIDCARD((String) solrDocument.get("yuesaoIDCARD"));
+
+            yuesobasicinfo.setNATIVEPLACE((String) solrDocument.get("yuesaoNATIVEPLACE"));
+            yuesobasicinfo.setWEIGHT((String) solrDocument.get("yuesaoWEIGHT"));
+            yuesobasicinfo.setSENIORITY((String) solrDocument.get("yuesaoSENIORITY"));
+            yuesobasicinfo.setPHOTO((String) solrDocument.get("yuesaoPHOTO"));
+            yuesobasicinfo.setLEVELS((Integer) solrDocument.get("yuesaoLEVELS"));
+            yuesobasicinfo.setWAGES((String) solrDocument.get("yuesaoWAGES"));
+            yuesobasicinfo.setEDUCATION((String) solrDocument.get("yuesaoEDUCATION"));
+            yuesobasicinfo.setCOMPANYID((String) solrDocument.get("yuesaoCOMPANYID"));
+            yuesobasicinfo.setPHONE((String) solrDocument.get("yuesaoPHONE"));
+            yuesobasicinfo.setWORKAREA((String) solrDocument.get("yuasaoWORKAREA"));
+            yuesobasicinfo.setNAME((String) solrDocument.get("yuesaoNAME"));
+
+
+
+        }
+
+        //返回条数和结果
+
+        return yuesobasicinfo;
+    }
 
 
 }

@@ -102,7 +102,8 @@ public class IndexController {
            for (YUESOBASICINFO yuesobasicinfo : yuesobasicinfoList){
                //封装连接---跳转到月嫂的页面
                int id=yuesobasicinfo.getID();
-               COMMENTS comments=commentsService.findByUSERID(id);
+               List<COMMENTS> commentsList=commentsService.findByUSERID(id);
+               COMMENTS comments=commentsList.get(0);
                Map<String,Object>map=new HashMap<>();
                map.put("ID",yuesobasicinfo.getID());//评论
                map.put("CONTENT",comments.getCONTENT());//评论

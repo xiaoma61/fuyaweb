@@ -16,4 +16,10 @@ public class COMPANYINFOImpl implements COMPANYINFOService {
        companyinfoRepository.save(companyinfo);
 
     }
+
+    @Override
+    public COMPANYINFO findbyid(int id) {
+        COMPANYINFO companyinfo=companyinfoRepository.findByID(id);
+        return companyinfo;
+    }
 }

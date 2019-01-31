@@ -9,4 +9,6 @@ public interface YUESOBASICINFOService {
    public  List<YUESOBASICINFO>findAlllimit();
    public  List<YUESOBASICINFO>findAll();
    public  void save(YUESOBASICINFO yuesobasicinfo);
+   public YUESOBASICINFO findbyid(int id);
+   YUESOBASICINFO findByUSERSID(int userid);
 }

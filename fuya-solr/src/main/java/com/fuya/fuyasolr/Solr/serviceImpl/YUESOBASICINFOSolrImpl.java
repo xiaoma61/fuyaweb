@@ -1,5 +1,6 @@
 package com.fuya.fuyasolr.Solr.serviceImpl;
 
+import com.fuya.fuyadao.entity.YUESOBASICINFO;
 import com.fuya.fuyasolr.SearchResult.SearchResult;
 import com.fuya.fuyasolr.Solr.dao.YUESOBASICINFOSearchdao;
 import com.fuya.fuyasolr.Solr.service.YUESOBASICINFOSolrservice;
@@ -14,10 +15,19 @@ import java.io.IOException;
 public class YUESOBASICINFOSolrImpl implements YUESOBASICINFOSolrservice {
     @Autowired
     private  YUESOBASICINFOSearchdao yuesobasicinfoSearchdao;
+    //查找名字的关键词
     @Override
-    public String search(String keyword) {
+    public SearchResult search(String keyword) throws IOException, SolrServerException {
+        //查找前五个
+        SolrQuery solrQuery=new SolrQuery();
+        solrQuery.set("q","yuesaoNAME:"+"*"+keyword+"*");
+        solrQuery.setStart(0);
+        solrQuery.setRows(5);
 
-        return null;
+        SearchResult result=yuesobasicinfoSearchdao.searchResult(solrQuery,false);
+
+
+        return result;
     }
 
     @Override
@@ -52,11 +62,26 @@ public class YUESOBASICINFOSolrImpl implements YUESOBASICINFOSolrservice {
         solrQuery.setHighlightSimplePost("</em>");
 
         //执行dao查询
-        SearchResult result=yuesobasicinfoSearchdao.searchResult(solrQuery);
+        SearchResult result=yuesobasicinfoSearchdao.searchResult(solrQuery,true);
         long recordCount=result.getResultCount();
         int totalPage= (int) (recordCount/rows);
         if (recordCount%rows>0)totalPage++;
         result.setTotalPage(totalPage);
         return result;
+    }
+
+    @Override
+    public void addYUESOBASICINFO(int id) throws IOException, SolrServerException {
+        yuesobasicinfoSearchdao.addYUESOBASICINFO(id);
+    }
+
+    @Override
+    public YUESOBASICINFO searchbyid(int id) throws IOException, SolrServerException {
+        SolrQuery solrQuery=new SolrQuery();
+        solrQuery.set("yuesaoID:"+id);
+        solrQuery.setStart(0);
+        solrQuery.setRows(1);
+        YUESOBASICINFO yuesobasicinfo=yuesobasicinfoSearchdao.searchbyid(solrQuery);
+        return yuesobasicinfo;
     }
 }

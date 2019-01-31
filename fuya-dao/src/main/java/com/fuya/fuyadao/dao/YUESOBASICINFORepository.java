@@ -16,9 +16,12 @@ public interface YUESOBASICINFORepository extends JpaRepository<YUESOBASICINFO,I
     //首页
     @Query(nativeQuery = true,value = "select * from (select * from  YUESOBASICINFO order by LEVELS desc ) where rownum<=6")
     List<YUESOBASICINFO> findAlllimit();
-
     @Override
     List<YUESOBASICINFO> findAll();
+    @Query("select  y from  YUESOBASICINFO y where  y.ID=?1")
+    YUESOBASICINFO findByID(int id);
+    @Query("select y from YUESOBASICINFO  y where  y.USERSID=?1")
+    YUESOBASICINFO findByUSERSID(int userid);
 
 
 }

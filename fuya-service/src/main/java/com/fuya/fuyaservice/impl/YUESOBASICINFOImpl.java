@@ -32,4 +32,17 @@ public class YUESOBASICINFOImpl implements YUESOBASICINFOService {
         yuesobasicinfoRepository.save(yuesobasicinfo);
     }
 
+    @Override
+    public YUESOBASICINFO findbyid(int id) {
+        YUESOBASICINFO yuesobasicinfo=yuesobasicinfoRepository.findByID(id);
+        return yuesobasicinfo;
+
+    }
+
+    @Override
+    public YUESOBASICINFO findByUSERSID(int userid) {
+        YUESOBASICINFO yuesobasicinfo=yuesobasicinfoRepository.findByUSERSID(userid);
+        return yuesobasicinfo;
+    }
+
 }

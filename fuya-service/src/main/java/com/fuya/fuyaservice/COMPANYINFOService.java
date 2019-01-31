@@ -4,4 +4,5 @@ import com.fuya.fuyadao.entity.COMPANYINFO;
 
 public interface COMPANYINFOService {
     public  void  save(COMPANYINFO companyinfo);
+    public COMPANYINFO findbyid(int id);
 }
