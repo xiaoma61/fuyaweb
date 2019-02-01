@@ -7,7 +7,8 @@ import org.apache.solr.client.solrj.SolrServerException;
 import java.io.IOException;
 import java.util.List;
 
-public interface COMMENTSSearchdaoSolrService {
+public interface COMMENTSSolrService {
     public void addCOMMENTS(int id) throws IOException, SolrServerException;
     public List<COMMENTS> searchbyuserid(int id) throws IOException, SolrServerException;
+    public List<COMMENTS> searchbyorderid(int id) throws IOException, SolrServerException;
 }

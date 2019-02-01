@@ -37,7 +37,7 @@ public class EMPLOYERINFORMATIONSearchdao {
         solrClient.commit();
     }
     //查找orderid
-    public EMPLOYERINFORMATION searchbyorderid(SolrQuery solrQuery) throws IOException, SolrServerException {
+    public EMPLOYERINFORMATION search(SolrQuery solrQuery) throws IOException, SolrServerException {
         QueryResponse solrResponse=solrClient.query(solrQuery);
         EMPLOYERINFORMATION employerinformation=new EMPLOYERINFORMATION();
         SolrDocumentList solrDocumentList= solrResponse.getResults();
@@ -47,8 +47,6 @@ public class EMPLOYERINFORMATIONSearchdao {
             employerinformation.setNAME((String) solrDocument.get("employerinformationNAME"));
             employerinformation.setPHONE((String) solrDocument.get("employerinformationPHONE"));
             employerinformation.setTYPE((Integer) solrDocument.get("employerinformationTYPE"));
-
-
         }
         return  employerinformation;
 

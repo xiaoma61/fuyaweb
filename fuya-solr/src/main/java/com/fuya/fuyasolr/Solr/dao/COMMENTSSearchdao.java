@@ -41,7 +41,7 @@ public class COMMENTSSearchdao {
         solrClient.commit();
     }
     //查找信息
-    public List<COMMENTS>  searchbyuserid(SolrQuery solrQuery) throws IOException, SolrServerException {
+    public List<COMMENTS>  search(SolrQuery solrQuery) throws IOException, SolrServerException {
         List<COMMENTS>commentsList=new ArrayList<>();
         QueryResponse solrResponse=solrClient.query(solrQuery);
         SolrDocumentList solrDocumentList= solrResponse.getResults();
