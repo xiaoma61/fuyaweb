@@ -39,6 +39,16 @@ public class USERSSolrserviceImpl implements USERSSolrservice {
     }
 
     @Override
+    public List<USERS> searchbyusername(String name) throws IOException, SolrServerException {
+        SolrQuery solrQuery=new SolrQuery();
+        //查询语句
+        solrQuery.set("usersNAME:",name);
+
+        List<USERS>usersList=searchdao.searchUSER(solrQuery);
+        return usersList;
+    }
+
+    @Override
     public void addUSER(int id) throws IOException, SolrServerException {
         searchdao.addUSER(id);
     }

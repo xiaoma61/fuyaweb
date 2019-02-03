@@ -8,8 +8,8 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface YUESAOOTHERPROVERepository extends JpaRepository<YUESAOOTHERPROVE,Integer> {
-    @Query("select y from  YUESAOOTHERPROVE  y where  y.ID?=1")
+    @Query("select y from  YUESAOOTHERPROVE  y where  y.ID=?1")
     YUESAOOTHERPROVE findByID(int id);
-    @Query("select y from  YUESAOOTHERPROVE y where y.USERID?=1")
+    @Query("select y from  YUESAOOTHERPROVE y where y.USERID=?1")
     List<YUESAOOTHERPROVE>findByUSERID(int userid);
 }

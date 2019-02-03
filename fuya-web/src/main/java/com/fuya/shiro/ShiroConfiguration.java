@@ -41,15 +41,22 @@ public class ShiroConfiguration {
         shiroFilterFactoryBean.setSecurityManager(securityManager);
         Map<String,String> map = new HashMap<String, String>();
         //登出
+        map.put("/", "anon");
+        map.put("/static/js/**", "anon");
+        map.put("/static/css/**", "anon");
+        map.put("/static/fonts/**", "anon");
+        map.put("/login/**", "anon");
         map.put("/logout","logout");
-        //对所有用户认证
+        //对所有用户认证authc ,不必认证anon
         map.put("/login","anon");
+        //需要拦截的资源
+        map.put("/**",  "authc");//其他资源全部拦截
         //登录
         shiroFilterFactoryBean.setLoginUrl("/Login");
         //首页
         shiroFilterFactoryBean.setSuccessUrl("/index");
         //错误页面，认证不通过跳转
-        shiroFilterFactoryBean.setUnauthorizedUrl("/login");
+        shiroFilterFactoryBean.setUnauthorizedUrl("/403");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(map);
         return shiroFilterFactoryBean;
     }

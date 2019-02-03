@@ -6,6 +6,8 @@ import com.fuya.fuyaservice.PROVEINFOService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PROVEINFOImpl  implements PROVEINFOService {
     @Autowired
@@ -14,5 +16,16 @@ public class PROVEINFOImpl  implements PROVEINFOService {
     public void save(PROVEINFO proveinfo) {
         proveinfoRepository.save(proveinfo);
 
+    }
+
+    @Override
+    public List<PROVEINFO> findByUSERSID(int userid) {
+
+        return proveinfoRepository.findByUSERSID(userid);
+    }
+
+    @Override
+    public PROVEINFO findByID(int id) {
+        return proveinfoRepository.findByID(id);
     }
 }

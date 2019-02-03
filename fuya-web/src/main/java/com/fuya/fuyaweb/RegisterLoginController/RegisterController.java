@@ -108,7 +108,8 @@ public class RegisterController {
 
 
         //存入数据库,同时存入solr库
-
+        //Activemq通知
+        productService.sendMessage(this.topic,"yuesobasicinfo:"+users.getID());
 
 
 
@@ -164,7 +165,7 @@ public class RegisterController {
 
 
         //Activemq通知
-        productService.sendMessage(this.topic, String.valueOf(users.getID()));
+        productService.sendMessage(this.topic,"companyregister:"+users.getID());
         return "redirect:/Login";
     }
 

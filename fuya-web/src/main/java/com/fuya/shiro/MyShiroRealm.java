@@ -2,6 +2,7 @@ package com.fuya.shiro;
 
 import com.fuya.fuyadao.entity.USERS;
 import com.fuya.fuyaservice.USERService;
+import org.apache.catalina.manager.util.SessionUtils;
 import org.apache.shiro.authc.*;
 
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -43,6 +44,7 @@ public class MyShiroRealm extends AuthorizingRealm {
             //企业用户 2
             permissions.add("Company");
             roles.add("Company");
+            //不能实现收藏
         }
         if (users.getTYPE()==3){
             //月嫂用户 3
@@ -53,6 +55,7 @@ public class MyShiroRealm extends AuthorizingRealm {
                 //月嫂用户 3
                 permissions.add("Admin");
                 roles.add("Admin");
+                //不能实现收藏
             }
 
             simpleAuthorizationInfo.addRoles(roles);

@@ -9,6 +9,10 @@ import java.util.List;
 public interface USERSSolrservice {
     //查找关键词
     public List<USERS> search(String keyword);
+
+
+    List<USERS> searchbyusername(String name) throws IOException, SolrServerException;
+
     public  void addUSER(int id) throws IOException, SolrServerException;
 
 }

@@ -30,21 +30,6 @@ public class YuesaoindexController {
     @Autowired
     private YUESOBASICINFOSolrservice yuesobasicinfoSolrservice;
 
-
-
-//    @RequestMapping("/yusao/index")
-//    public String YuesaoIndex(){
-//        //分页
-//        //第几页，多少条
-//
-//
-//        return null;
-//    }
-//    @RequestMapping("/search/workarea")//工作地点
-//    public String Searchworkarea (String  workarea){
-//        return null;
-//
-//    }
     @RequestMapping("/fuyayuesao/search/index")//名字
     @ResponseBody
     public  JSONObject Searchname (@RequestParam(name="name")String name,@RequestParam(name="page",defaultValue = "0")int page,

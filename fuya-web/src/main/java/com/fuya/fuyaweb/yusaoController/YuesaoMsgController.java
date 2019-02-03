@@ -8,11 +8,13 @@ import com.fuya.fuyasolr.Solr.service.*;
 import net.sf.json.JSONObject;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +34,11 @@ public class YuesaoMsgController {
     SKILLSolrService skillSolrService;
     @Autowired
     YUESAOOTHERPROVESolrService yuesaootherproveSolrService;
+    @Autowired
+    COLLECTIONSSolrService collectionsSolrService;
+    @Autowired
+    USERSSolrservice usersSolrservice;
+
 
 
 
@@ -39,11 +46,33 @@ public class YuesaoMsgController {
 
     @RequestMapping("/fuyayusao/search/id")//名字--关键词
     @ResponseBody
-    public  JSONObject Searchbyid (@RequestParam(name ="id") int id,@RequestParam(name = "start",defaultValue = "0")int start,@RequestParam(name = "rows",defaultValue = "5")int rows) throws IOException, SolrServerException {
+    public  JSONObject Searchbyid (@RequestParam(name ="id") int id,
+                                   HttpServletRequest request,@RequestParam(name = "start",defaultValue = "0")int start,@RequestParam(name = "rows",defaultValue = "5")int rows) throws IOException, SolrServerException {
         //基本信息
         YUESOBASICINFO yuesobasicinfo=yuesobasicinfoSolrservice.searchbyid(id);
-        //相关证明实现分页
-        JSONObject jsonResult = JSONObject.fromObject(yuesobasicinfo);
+
+        yuesaobasicinfoandcollection yuesaobasicinfoandcollection=new yuesaobasicinfoandcollection();
+
+        if (request.getSession().getAttribute("username")!=null){
+            //查找id
+            String name= (String) request.getSession().getAttribute("username");
+            List<USERS>usersList=usersSolrservice.searchbyusername(name);
+            if (usersList!=null){
+                USERS users=usersList.get(0);
+                //查看是否收藏
+                COLLECTIONS collections=collectionsSolrService.Searchbyfromidandtoid(users.getID(),id);
+                if (collections!=null){
+                    yuesaobasicinfoandcollection.setIscollection(true);
+                }else {
+                    yuesaobasicinfoandcollection.setIscollection(false);
+                }
+
+            }
+
+        }
+
+        yuesaobasicinfoandcollection.setYuesobasicinfo(yuesobasicinfo);
+        JSONObject jsonResult = JSONObject.fromObject(yuesaobasicinfoandcollection);
         return  jsonResult;
 
     }
@@ -116,11 +145,17 @@ public class YuesaoMsgController {
     }
     @RequestMapping("/fuyayusao/search/id/prove")//id--证明
     @ResponseBody
-    public  JSONObject Searchprovebyid (@RequestParam(name ="id") int id,@RequestParam(name = "start")int start,@RequestParam(name = "rows")int rows) throws IOException, SolrServerException {
+    public  JSONObject Searchprovebyid (@RequestParam(name ="id") int id, @RequestParam(name = "start")int start,
+                                        @RequestParam(name = "rows")int rows) throws IOException, SolrServerException {
         //基本信息
         YUESOBASICINFO yuesobasicinfo=yuesobasicinfoSolrservice.searchbyid(id);
         //获取月嫂的id
         int usersid=yuesobasicinfo.getUSERSID();
+        //是否被收藏
+
+
+
+
         SearchResult searchResult=new SearchResult();
         searchResult=yuesaootherproveSolrService.searchbyuserid(usersid,start,rows);
         int totalpages=0;

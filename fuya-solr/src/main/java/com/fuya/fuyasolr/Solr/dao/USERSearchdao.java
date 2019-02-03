@@ -57,7 +57,6 @@ public class USERSearchdao {
 
         }
 
-
         return usersList;
     }
 
