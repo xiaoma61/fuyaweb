@@ -10,7 +10,7 @@ public class COMPANYINFO {
 
     @Id
 
-    @SequenceGenerator(name = "COMPANYINFO_SEQUENCEid",sequenceName = "COMPANYINFO_SEQUENCE",initialValue =1)
+    @SequenceGenerator(name = "COMPANYINFO_SEQUENCEid",sequenceName = "COMPANYINFO_SEQUENCE",initialValue =1,allocationSize=1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator ="COMPANYINFO_SEQUENCEid")
     private int ID;
     private int USERSID;

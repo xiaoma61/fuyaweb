@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.jms.Queue;
 import javax.jms.Topic;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 public class CollectionController {
@@ -32,24 +35,36 @@ public class CollectionController {
 
     @RequestMapping("/fuyayusao/collection")
     @ResponseBody
-    public JSONObject collection(@RequestParam(name = "fromid") int fromid ,@RequestParam(name = "toid") int toid,
-                                 @RequestParam(name = "type")int type) throws IOException, SolrServerException {
+    public Map<String,String> collection(@RequestParam(name = "fromid") int fromid , @RequestParam(name = "toid") int toid,
+                                         @RequestParam(name = "type")int type) throws IOException, SolrServerException {
         //1的话删除
+        List<String> collectionList=solrService.Searchbyfromidandtoid(fromid,toid);
+        Map<String,String>map=new HashMap<>();
+        map.put("msg","success");
         if (type==1){
             collectionsService.deleteByFROMIDAndTOID(fromid,toid);
-            COLLECTIONS collections=solrService.Searchbyfromidandtoid(fromid,toid);
-            productService.sendMessage(this.topic,"collections-delete:"+collections.getID());
-            return JSONObject.fromObject("success");
+
+            if (collectionList!=null){
+                for (String collections:collectionList)
+                productService.sendMessage(this.topic,"collections-delete:"+collections);
+            }
+
+
+            return map;
 
             //修改solr
         }else {
+            if (collectionList!=null){
+                return map;
+            }
             COLLECTIONS collections=new COLLECTIONS();
             collections.setFROMID(fromid);
             collections.setTOID(toid);
             collectionsService.save(collections);
             //添加
             productService.sendMessage(this.topic,"collections:"+collections.getID());
-            return JSONObject.fromObject("success");
+
+            return map;
         }
 
 

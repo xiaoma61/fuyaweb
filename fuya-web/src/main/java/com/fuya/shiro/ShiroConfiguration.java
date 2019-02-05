@@ -46,6 +46,7 @@ public class ShiroConfiguration {
         map.put("/static/css/**", "anon");
         map.put("/static/fonts/**", "anon");
         map.put("/login/**", "anon");
+        map.put("/CheckLogin", "anon");
         map.put("/logout","logout");
         //对所有用户认证authc ,不必认证anon
         map.put("/login","anon");

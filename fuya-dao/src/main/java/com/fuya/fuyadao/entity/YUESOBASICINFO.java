@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class YUESOBASICINFO {
 
     @Id
-    @SequenceGenerator(name = "YUESOBASICINFO_SEQUENCEid",sequenceName ="YUESOBASICINFO_SEQUENCE", initialValue = 1)
+    @SequenceGenerator(name = "YUESOBASICINFO_SEQUENCEid",sequenceName ="YUESOBASICINFO_SEQUENCE", initialValue = 1,allocationSize=1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "YUESOBASICINFO_SEQUENCEid")
     private int ID;
     private int USERSID;

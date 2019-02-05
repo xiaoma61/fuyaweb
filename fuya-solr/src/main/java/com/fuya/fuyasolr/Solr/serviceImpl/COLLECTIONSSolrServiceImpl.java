@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.List;
 
 @Service
 //层是业务逻辑层注解，这个注解只是标注该类处于业务逻辑层。
@@ -22,11 +23,17 @@ public class COLLECTIONSSolrServiceImpl implements COLLECTIONSSolrService {
     }
 
     @Override
-    public COLLECTIONS Searchbyfromidandtoid(int fromid, int toid) throws IOException, SolrServerException {
+    public List<String> Searchbyfromidandtoid(int fromid, int toid) throws IOException, SolrServerException {
         SolrQuery solrQuery=new SolrQuery();
-        solrQuery.set("collectionsFROMID:",fromid);
-        solrQuery.set("collectionsTOID:",toid);
-        COLLECTIONS collections=collectionsSearchdao.Search(solrQuery);
+        StringBuffer stringBuffer=new StringBuffer();
+        stringBuffer.append("collectionsFROMID:"+fromid);
+        stringBuffer.append(" AND collectionsTOID:"+toid);
+//        solrQuery.set("collectionsFROMID:",fromid);
+//        solrQuery.set("collectionsTOID:",toid);
+        solrQuery.setQuery(stringBuffer.toString());
+//        solrQuery.setStart(0);
+//        solrQuery.setRows(1);
+        List<String> collections=collectionsSearchdao.Search(solrQuery);
 
         return collections;
 
@@ -34,8 +41,20 @@ public class COLLECTIONSSolrServiceImpl implements COLLECTIONSSolrService {
     }
 
     @Override
-    public void delete(int id) throws IOException, SolrServerException {
-        String query="collectionsID:"+id;
+    public void delete(String id) throws IOException, SolrServerException {
+
+
+      //  System.out.println("dddd"+id);
+      //  String query="id:"+id;
+       collectionsSearchdao.delete(id);
+
+      //  return collections;
+    }
+
+    @Override
+    public void delete(int fromid, int toid) throws IOException, SolrServerException {
+        String query="collectionsFROMID:"+fromid+" AND collectionsTOID:"+toid;
+
         collectionsSearchdao.delete(query);
     }
 }

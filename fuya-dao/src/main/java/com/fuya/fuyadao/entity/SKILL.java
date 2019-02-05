@@ -10,7 +10,7 @@ public class SKILL {
     private int TYPE;
     private String SKILL;
     @Id
-    @SequenceGenerator(name = "SKILL_SEQUENCEid",initialValue = 1,sequenceName = "SKILL_SEQUENCE")
+    @SequenceGenerator(name = "SKILL_SEQUENCEid",initialValue = 1,allocationSize=1,sequenceName = "SKILL_SEQUENCE")
     @GeneratedValue(generator = "SKILL_SEQUENCEid" ,strategy = GenerationType.SEQUENCE)
 
     public int getID() {

@@ -60,7 +60,7 @@ public class YuesaoMsgController {
             if (usersList!=null){
                 USERS users=usersList.get(0);
                 //查看是否收藏
-                COLLECTIONS collections=collectionsSolrService.Searchbyfromidandtoid(users.getID(),id);
+                List<String> collections=collectionsSolrService.Searchbyfromidandtoid(users.getID(),id);
                 if (collections!=null){
                     yuesaobasicinfoandcollection.setIscollection(true);
                 }else {

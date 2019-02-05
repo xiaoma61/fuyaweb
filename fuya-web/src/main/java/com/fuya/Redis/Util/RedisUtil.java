@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import redis.clients.jedis.JedisCluster;
 
+import java.util.List;
+
 @Component
 public class RedisUtil {
     @Autowired
@@ -26,4 +28,11 @@ public class RedisUtil {
     public void delete(String key) {
         jedisCluster.del(key);
     }
+    public void lpush(String key,String value){
+        jedisCluster.lpush(key,value);
+    }
+    public List<String>brpop(int timeout,String key){
+        return jedisCluster.brpop(timeout,key);
+    }
+
 }

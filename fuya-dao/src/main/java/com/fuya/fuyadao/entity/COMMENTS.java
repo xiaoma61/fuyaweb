@@ -8,7 +8,7 @@ import javax.persistence.*;
 public class COMMENTS {
 
     @Id
-    @SequenceGenerator(name = "COMMENTS_SEQUENCEid" ,initialValue = 1,sequenceName = "COMMENTS_SEQUENCE")
+    @SequenceGenerator(name = "COMMENTS_SEQUENCEid" ,initialValue = 1,allocationSize=1,sequenceName = "COMMENTS_SEQUENCE")
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "COMMENTS_SEQUENCEid")
     private int ID;
     private int ORDERID;

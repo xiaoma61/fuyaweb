@@ -2,6 +2,7 @@ package com.fuya.shiro;
 
 import com.fuya.fuyadao.entity.USERS;
 import com.fuya.fuyaservice.USERService;
+import org.apache.catalina.Session;
 import org.apache.catalina.manager.util.SessionUtils;
 import org.apache.shiro.authc.*;
 
@@ -11,7 +12,11 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -82,6 +87,9 @@ public class MyShiroRealm extends AuthorizingRealm {
             return null;
         }else{
 
+            HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+            HttpSession session=request.getSession();
+            session.setAttribute("id",users.getID());
             return new SimpleAuthenticationInfo(users.getNAME(),users.getPASSWORD(),getName());
         }
 

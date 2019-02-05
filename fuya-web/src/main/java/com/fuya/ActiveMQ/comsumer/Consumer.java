@@ -37,9 +37,10 @@ public class Consumer {
     public String receiveQueue(String id) throws IOException, SolrServerException {
         String[] text=id.split(":");
         //实现solr插入users
-        usersSolrservice.addUSER(Integer.parseInt(text[1]));
+
 
         if (text[0].equals("yuesobasicinfo")){
+            usersSolrservice.addUSER(Integer.parseInt(text[1]));
             //录入月嫂信息
             yuesobasicinfoSolrservice.addYUESOBASICINFO(Integer.parseInt(text[1]));
             proveinfoSolrService.addPROVEINFO(Integer.parseInt(text[1]));
@@ -47,16 +48,21 @@ public class Consumer {
 
         }
         if (text[0].equals("companyregister")){
+            usersSolrservice.addUSER(Integer.parseInt(text[1]));
             companybasicinfoSolrService.addCOMPANYBASICINFO(Integer.parseInt(text[1]));
             companyinfoSolrService.addCOMPANYINFO(Integer.parseInt(text[1]));
         }
 
         if (text[0].equals("collections-delete")){
-            collectionsSolrService.delete(Integer.parseInt(text[1]));
+           // String[] ids=text[1].split(",");
+
+           // System.out.println(ids[0]);
+            collectionsSolrService.delete(text[1]);
         //    collectionsSearchdao.delete(query);
 
         }
         if (text[0].equals("collections")){
+
             collectionsSolrService.addCOLLECTIONS(Integer.parseInt(text[1]));
 
         }

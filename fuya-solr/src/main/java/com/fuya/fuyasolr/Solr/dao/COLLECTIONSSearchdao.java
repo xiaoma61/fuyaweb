@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Repository
 //@Repository注解可以标记在任何的类上，用来表明该类是用来执行与数据库相关的操作（即dao对象），并支持自动处理数据库操作产生的异常
@@ -31,19 +33,23 @@ public class COLLECTIONSSearchdao {
         solrClient.commit();
     }
     //查找收藏
-    public COLLECTIONS Search(SolrQuery query) throws IOException, SolrServerException {
-        COLLECTIONS collections=new COLLECTIONS();
+    public List<String> Search(SolrQuery query) throws IOException, SolrServerException {
+        List<String> collectionsList=new ArrayList<>();
         QueryResponse solrResponse=solrClient.query(query);
         SolrDocumentList solrDocumentList= solrResponse.getResults();
         for (SolrDocument solrDocument :solrDocumentList){
-            collections.setID((Integer) solrDocument.get("collectionsID"));
-            return collections;
+            String id= (String) solrDocument.get("id");
+//                 COLLECTIONS collections=new COLLECTIONS();
+//                 collections.setID(Integer.parseInt(id));
+                 collectionsList.add(id);
+
         }
-        return null;
+        return collectionsList;
 
     }
-    public void delete(String solrQuery) throws IOException, SolrServerException {
-        solrClient.deleteByQuery(solrQuery);
+    public void delete(String id) throws IOException, SolrServerException {
+        solrClient.deleteById(id);
+        solrClient.commit();
     }
 
 
