@@ -47,10 +47,10 @@ public class COMMENTSSearchdao {
         SolrDocumentList solrDocumentList= solrResponse.getResults();
         for (SolrDocument solrDocument :solrDocumentList){
             COMMENTS comments=new COMMENTS();
-            comments.setID((Integer) solrDocument.get("commentsID"));
-            comments.setORDERID((Integer) solrDocument.get("commentsORDERID"));
-            comments.setCONTENT((String) solrDocument.get("commentsCONTENT"));
-            comments.setLEVELS((Integer) solrDocument.get("commentsLEVELS"));
+            comments.setID((Integer) solrDocument.getFieldValue("commentsID"));
+            comments.setORDERID((Integer) solrDocument.getFieldValue("commentsORDERID"));
+            comments.setCONTENT((String) solrDocument.getFieldValue("commentsCONTENT"));
+            comments.setLEVELS((Integer) solrDocument.getFieldValue("commentsLEVELS"));
             commentsList.add(comments);
 
         }

@@ -15,4 +15,9 @@ public class MSGServiceImpl implements MSGService {
     public void save(MSG msg) {
         msgRepository.save(msg);
     }
+
+    @Override
+    public MSG findByID(int id) {
+        return msgRepository.findByID(id);
+    }
 }

@@ -42,11 +42,11 @@ public class EMPLOYERINFORMATIONSearchdao {
         EMPLOYERINFORMATION employerinformation=new EMPLOYERINFORMATION();
         SolrDocumentList solrDocumentList= solrResponse.getResults();
         for (SolrDocument solrDocument:solrDocumentList){
-            employerinformation.setADDRESS((String) solrDocument.get("employerinformationADDRESS"));
-            employerinformation.setAREA((String) solrDocument.get("employerinformationAREA"));
-            employerinformation.setNAME((String) solrDocument.get("employerinformationNAME"));
-            employerinformation.setPHONE((String) solrDocument.get("employerinformationPHONE"));
-            employerinformation.setTYPE((Integer) solrDocument.get("employerinformationTYPE"));
+            employerinformation.setADDRESS((String) solrDocument.getFieldValue("employerinformationADDRESS"));
+            employerinformation.setAREA((String) solrDocument.getFieldValue("employerinformationAREA"));
+            employerinformation.setNAME((String) solrDocument.getFieldValue("employerinformationNAME"));
+            employerinformation.setPHONE((String) solrDocument.getFieldValue("employerinformationPHONE"));
+            employerinformation.setTYPE((Integer) solrDocument.getFieldValue("employerinformationTYPE"));
         }
         return  employerinformation;
 

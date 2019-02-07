@@ -53,13 +53,13 @@ public class COMPANYBASICINFOSearchdao {
         searchResult.setResultCount((int) result);
         for (SolrDocument solrInputDocument :solrDocumentList){
             COMPANYBASICINFO companybasicinfo=new COMPANYBASICINFO();
-            companybasicinfo.setUSERID((Integer) solrInputDocument.get("companybasicinfoID"));
-            companybasicinfo.setCORPORATENAME((String) solrInputDocument.get("companybasicinfoCORPORATENAME"));
-            companybasicinfo.setADDRESS((String) solrInputDocument.get("companybasicinfoADDRESS"));
-            companybasicinfo.setINTRODUCE((String) solrInputDocument.get("companybasicinfoINTRODUCE"));
-            companybasicinfo.setLEVELS((Integer) solrInputDocument.get("companybasicinfoLEVELS"));
-            companybasicinfo.setID((Integer) solrInputDocument.get("companybasicinfoID"));
-            companybasicinfo.setNUMS((Integer) solrInputDocument.get("companybasicinfoNUMS"));
+            companybasicinfo.setUSERID((Integer) solrInputDocument.getFieldValue("companybasicinfoID"));
+            companybasicinfo.setCORPORATENAME((String) solrInputDocument.getFieldValue("companybasicinfoCORPORATENAME"));
+            companybasicinfo.setADDRESS((String) solrInputDocument.getFieldValue("companybasicinfoADDRESS"));
+            companybasicinfo.setINTRODUCE((String) solrInputDocument.getFieldValue("companybasicinfoINTRODUCE"));
+            companybasicinfo.setLEVELS((Integer) solrInputDocument.getFieldValue("companybasicinfoLEVELS"));
+            companybasicinfo.setID((Integer) solrInputDocument.getFieldValue("companybasicinfoID"));
+            companybasicinfo.setNUMS((Integer) solrInputDocument.getFieldValue("companybasicinfoNUMS"));
 
             if (keyword!=null&&!keyword.equals("")){
                 List<String>list=highlight.get(solrInputDocument.get("id")).get("companybasicinfoCORPORATENAME");
@@ -68,7 +68,7 @@ public class COMPANYBASICINFOSearchdao {
                     name=list.get(0);
 
                 }else {
-                    name= (String) solrInputDocument.get("companybasicinfoCORPORATENAME");
+                    name= (String) solrInputDocument.getFieldValue("companybasicinfoCORPORATENAME");
 
                 }
                 companybasicinfo.setCORPORATENAME(name);

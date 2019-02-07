@@ -45,13 +45,9 @@ public class USERSearchdao {
         for (SolrDocument Document : solrDocumentList ){
             USERS users=new USERS();
             if (!Document.get("usersTYPE").equals("4")){
-               List<String>userlist= (List<String>) Document.get("usersNAME");
-               for (String username :userlist){
-                   //System.out.println(user);
-                   users.setNAME(username);
-               }
-//
-               // users.setNAME((String) Document.get("usersNAME"));
+                users.setNAME((String) Document.getFieldValue("usersNAME"));
+
+               // users.setNAME((String) Document.getFieldValue("usersNAME"));
             }
             usersList.add(users);
 

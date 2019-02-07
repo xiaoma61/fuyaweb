@@ -41,7 +41,7 @@ public class SKILLSearchdao {
         for (SolrDocument Document : solrDocumentList ){
             SKILL skill=new SKILL();
             //skill.setID();
-            skill.setSKILL((String) Document.get("skillSKILL"));
+            skill.setSKILL((String) Document.getFieldValue("skillSKILL"));
            // skill.setTYPE(Document.get(""));
             skillList.add(skill);
         }

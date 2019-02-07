@@ -44,10 +44,10 @@ public class YUESAOOTHERPROVESearchdao {
         searchResult.setResultCount((int) solrDocumentList.getNumFound());
         for (SolrDocument solrocument:solrDocumentList){
             YUESAOOTHERPROVE yuesaootherprove=new YUESAOOTHERPROVE();
-            yuesaootherprove.setFILEAREA((String) solrocument.get("yuesaootherproveFILEAREA"));
-            yuesaootherprove.setID((Integer) solrocument.get("yuesaootherproveID"));
-            yuesaootherprove.setTITLE((String) solrocument.get("yuesaootherproveTITLE"));
-            yuesaootherprove.setUSERID((Integer) solrocument.get("yuesaootherproveUSERID"));
+            yuesaootherprove.setFILEAREA((String) solrocument.getFieldValue("yuesaootherproveFILEAREA"));
+            yuesaootherprove.setID((Integer) solrocument.getFieldValue("yuesaootherproveID"));
+            yuesaootherprove.setTITLE((String) solrocument.getFieldValue("yuesaootherproveTITLE"));
+            yuesaootherprove.setUSERID((Integer) solrocument.getFieldValue("yuesaootherproveUSERID"));
             yuesaootherproves.add(yuesaootherprove);
         }
         searchResult.setObjects(yuesaootherproves);

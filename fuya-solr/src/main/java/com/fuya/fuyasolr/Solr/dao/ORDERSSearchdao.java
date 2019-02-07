@@ -41,10 +41,10 @@ public class ORDERSSearchdao {
         SolrDocumentList solrDocumentList=queryResponse.getResults();
         for (SolrDocument Document : solrDocumentList ){
             ORDERS orders=new ORDERS();
-            orders.setID((Integer) Document.get("ordersID"));
-            orders.setCONTRACTNUMBER((String) Document.get("ordersCONTRACTNUMBER"));
-            orders.setFROMID((Integer) Document.get("ordersFROMID"));
-            orders.setTOID((Integer) Document.get("ordersTOID"));
+            orders.setID((Integer) Document.getFieldValue("ordersID"));
+            orders.setCONTRACTNUMBER((String) Document.getFieldValue("ordersCONTRACTNUMBER"));
+            orders.setFROMID((Integer) Document.getFieldValue("ordersFROMID"));
+            orders.setTOID((Integer) Document.getFieldValue("ordersTOID"));
             ordersList.add(orders);
         }
         return  ordersList;

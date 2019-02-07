@@ -23,7 +23,11 @@ public class RedisUtil {
     }
     public String get(String key) {
         String value = jedisCluster.get(key);
+
         return value;
+    }
+    public Long llen(String key){
+        return jedisCluster.llen(key);
     }
     public void delete(String key) {
         jedisCluster.del(key);

@@ -52,4 +52,13 @@ public class USERSSolrserviceImpl implements USERSSolrservice {
     public void addUSER(int id) throws IOException, SolrServerException {
         searchdao.addUSER(id);
     }
+
+    @Override
+    public String searchbyid(int id) throws IOException, SolrServerException {
+        SolrQuery solrQuery=new SolrQuery();
+        //查询语句
+        solrQuery.set("usersID:",id);
+        List<USERS>usersList=searchdao.searchUSER(solrQuery);
+        return usersList.get(0).getNAME();
+    }
 }
