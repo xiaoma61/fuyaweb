@@ -19,7 +19,11 @@ public class LoginController {
 
         return "login";
     }
+    @RequestMapping("/403")
+    public  String error(){
 
+        return "/403";
+    }
 
     @RequestMapping("/CheckLogin")
     public  String CheckLogin(String name , String password, Model model, HttpServletRequest request){
@@ -56,11 +60,11 @@ public class LoginController {
         return "index";
     }
 
-    //错误页面展示
-    @RequestMapping(value = "/error",method = RequestMethod.POST)
-    public String error(){
-        return "error ok!";
-    }
+//    //错误页面展示
+//    @RequestMapping(value = "/error",method = RequestMethod.POST)
+//    public String error(){
+//        return "error ok!";
+//    }
 
 
 }

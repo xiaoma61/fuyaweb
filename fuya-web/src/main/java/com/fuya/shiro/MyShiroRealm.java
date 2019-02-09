@@ -1,9 +1,12 @@
 package com.fuya.shiro;
 
+import com.fuya.Redis.Util.RedisUtil;
+import com.fuya.fuyadao.entity.PERMISSION;
 import com.fuya.fuyadao.entity.USERS;
+import com.fuya.fuyaservice.PERMISSIONService;
 import com.fuya.fuyaservice.USERService;
-import org.apache.catalina.Session;
-import org.apache.catalina.manager.util.SessionUtils;
+import com.fuya.fuyasolr.Solr.service.USERSSolrservice;
+
 import org.apache.shiro.authc.*;
 
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -11,66 +14,78 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.solr.client.solrj.SolrServerException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class MyShiroRealm extends AuthorizingRealm {
 
 
     @Autowired
     private USERService userService;
+    @Autowired
+    private RedisUtil redisUtil;
+    @Autowired
+    private PERMISSIONService permissionService;
+    @Autowired
+    private USERSSolrservice usersSolrservice;
+
 
     //    执行授权逻辑
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
+
        // 获取登录名
         String name= (String) principalCollection.getPrimaryPrincipal();
-        USERS users =userService.findUSERSByNAME(name);
+        System.out.println("name: "+name);
+        List<USERS>usersList=new ArrayList<>();
+        if (name.equals("")||name==null){
+            return null;
+        }
+        try {
+            usersList=usersSolrservice.searchbyusername(name);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (SolrServerException e) {
+            e.printStackTrace();
+        }
+        if (usersList==null){
+            return null;
+
+        }
+        USERS users =usersList.get(0);
+        List<String> permissions=new ArrayList<>();
+        if (!(redisUtil.scard(String.valueOf(users.getTYPE()))>0)){
+            //没有添加
+            List<PERMISSION>permissionList=permissionService.findall();
+            for (PERMISSION permission:permissionList){
+                redisUtil.zSet(permission.getTYPE(),permission.getURL());
+            }
+        }else {
+            Set<String>perssionsset=redisUtil.smembers(String.valueOf(users.getTYPE()));
+            for (String  permssionString :perssionsset){
+                permissions.add(permssionString);
+            }
+        }
         //添加角色和权限
         SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
-        //添加角色
-
-        if (users!=null){
-            List<String> permissions=new ArrayList<>();
-            List<String> roles =new ArrayList<>();
-        if (users.getTYPE()==1){
-            //普通用户 1
-            permissions.add("Personal");
-            roles.add("Personal");
-
-        }
-        if (users.getTYPE()==2){
-            //企业用户 2
-            permissions.add("Company");
-            roles.add("Company");
-            //不能实现收藏
-        }
-        if (users.getTYPE()==3){
-            //月嫂用户 3
-            permissions.add("Yuesao");
-            roles.add("Yuesao");
-        }
-            if (users.getTYPE()==4){
-                //月嫂用户 3
-                permissions.add("Admin");
-                roles.add("Admin");
-                //不能实现收藏
-            }
-
-            simpleAuthorizationInfo.addRoles(roles);
-            simpleAuthorizationInfo.addStringPermissions(permissions);
-            return simpleAuthorizationInfo;
-        }
+        //将角色添加到数据库中
+//            simpleAuthorizationInfo.addRoles(roles);
+        simpleAuthorizationInfo.addStringPermissions(permissions);
+        return simpleAuthorizationInfo;
 
 
 
-       return null;
+
+      // return null;
     }
 
     @Override

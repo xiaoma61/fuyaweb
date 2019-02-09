@@ -1,4 +1,7 @@
-package com.fuya.fuyadao.entity;
+package com.fuya.fuyadao.model;
+
+import com.fuya.fuyadao.entity.EMPLOYERINFORMATION;
+import com.fuya.fuyadao.entity.ORDERS;
 
 import java.util.List;
 

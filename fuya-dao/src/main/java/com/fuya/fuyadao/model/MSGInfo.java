@@ -1,4 +1,4 @@
-package com.fuya.fuyadao.entity;
+package com.fuya.fuyadao.model;
 
 public class MSGInfo {
     private  int fromid;

@@ -2,10 +2,13 @@ package com.fuya.shiro;
 
 
 
-import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
+
+import com.fuya.fuyaservice.PERMISSIONService;
+import com.fuya.fuyasolr.Solr.service.USERSSolrservice;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -17,6 +20,10 @@ import java.util.Map;
 
 public class ShiroConfiguration {
 
+    @Autowired
+    private PERMISSIONService permissionService;
+    @Autowired
+    private USERSSolrservice usersSolrservice;
    
     //将自己的验证方式加入容器
     @Bean
@@ -37,6 +44,8 @@ public class ShiroConfiguration {
     //Filter工厂，设置对应的过滤条件和跳转条件
     @Bean
     public ShiroFilterFactoryBean shiroFilterFactoryBean(DefaultWebSecurityManager securityManager) {
+        //关联数据库权限
+
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(securityManager);
         Map<String,String> map = new HashMap<String, String>();
@@ -57,6 +66,7 @@ public class ShiroConfiguration {
         //首页
         shiroFilterFactoryBean.setSuccessUrl("/index");
         //错误页面，认证不通过跳转
+
         shiroFilterFactoryBean.setUnauthorizedUrl("/403");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(map);
         return shiroFilterFactoryBean;
@@ -69,13 +79,19 @@ public class ShiroConfiguration {
         authorizationAttributeSourceAdvisor.setSecurityManager(securityManager);
         return authorizationAttributeSourceAdvisor;
     }
-
-    @Bean
-    public HashedCredentialsMatcher hashedCredentialsMatcher(){
-        HashedCredentialsMatcher hashedCredentialsMatcher = new HashedCredentialsMatcher();
-        hashedCredentialsMatcher.setHashAlgorithmName("md5");//散列算法:这里使用md5算法;
-        hashedCredentialsMatcher.setHashIterations(2);//散列的次数，比如散列两次，相当于 md5( md5(""));
-        return hashedCredentialsMatcher;
-    }
+//    @Bean(value="ehCacheManager")
+//    public EhCacheManager ehCacheManager(@Qualifier("ehCacheManagerFactoryBean") EhCacheManagerFactoryBean bean) {
+////        log.info("ehCacheManager()");
+//        EhCacheManager cacheManager = new EhCacheManager();
+//        cacheManager.setCacheManagerConfigFile("classpath:ehcache-shiro.xml");
+//        return cacheManager;
+//    }
+//    @Bean
+//    public HashedCredentialsMatcher hashedCredentialsMatcher(){
+//        HashedCredentialsMatcher hashedCredentialsMatcher = new HashedCredentialsMatcher();
+//        hashedCredentialsMatcher.setHashAlgorithmName("md5");//散列算法:这里使用md5算法;
+//        hashedCredentialsMatcher.setHashIterations(2);//散列的次数，比如散列两次，相当于 md5( md5(""));
+//        return hashedCredentialsMatcher;
+//    }
 
 }

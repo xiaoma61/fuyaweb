@@ -11,7 +11,7 @@ public class ORDERS {
     @GeneratedValue(strategy= GenerationType.SEQUENCE,generator="ORDERS_SEQUENCEid")
     private int ID;
     private int FROMID;
-    private String CONTRACTNUMBER;
+    private String CONTRACTNUMBER;//合同号码
     private int TOID;
 
     public int getID() {

@@ -2,32 +2,31 @@ package com.fuya.fuyaweb.yusaoController;
 
 import com.fuya.Redis.Util.RedisUtil;
 import com.fuya.fuyadao.entity.MSG;
-import com.fuya.fuyadao.entity.MSGInfo;
-import com.fuya.fuyadao.entity.MSGinfodetail;
+import com.fuya.fuyadao.model.MSGInfo;
+import com.fuya.fuyadao.model.MSGinfodetail;
+import com.fuya.fuyadao.entity.ORDERS;
+import com.fuya.fuyadao.model.ORDERScontact;
 import com.fuya.fuyaservice.MSGService;
+import com.fuya.fuyasolr.SearchResult.SearchResult;
 import com.fuya.fuyasolr.Solr.service.MSGSolrService;
+import com.fuya.fuyasolr.Solr.service.ORDERSSolrService;
 import com.fuya.fuyasolr.Solr.service.USERSSolrservice;
 import com.fuya.fuyautil.TimeUtil;
 import net.sf.json.JSONObject;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import redis.clients.jedis.Jedis;
-import redis.clients.jedis.JedisPool;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 @Controller
 
@@ -42,6 +41,8 @@ public class TalkingController {
     MSGSolrService msgSolrService;
     @Autowired
     USERSSolrservice usersSolrservice;
+    @Autowired
+    ORDERSSolrService ordersSolrService;
     //实现聊天功能
     //生产者
     @RequestMapping("/fuyayusao/talkingsend")
@@ -125,7 +126,7 @@ public class TalkingController {
     }
     //系统通知
     @RequestMapping("/fuyayusao/talkingsystem")
-    public String talkingsystem(HttpServletRequest request) throws IOException, SolrServerException {
+    public JSONObject talkingsystem(HttpServletRequest request) throws IOException, SolrServerException {
         //得到通知列表
         HttpSession session=request.getSession();
         String toid= (String) session.getAttribute("id");
@@ -133,9 +134,40 @@ public class TalkingController {
         List<MSGInfo>msgInfoList=msgSolrService.findbytoid(Integer.parseInt(toid),1);
 
 
-        return "";
+        return JSONObject.fromObject(msgInfoList);
     }
 
-    //最近信息
-
+    //联系人列表---订单列表
+    @RequestMapping("/fuyayusao/talkingrecent")
+    public JSONObject talkingrecent(HttpServletRequest request,@RequestParam(name = "start" ,defaultValue = "0")int start
+    ,@RequestParam(name = "rows",defaultValue = "5")int rows) throws IOException, SolrServerException {
+        //月嫂列表
+        //得到通知列表
+        HttpSession session=request.getSession();
+        String toid= (String) session.getAttribute("id");
+//        //未读
+//        List<MSGInfo>msgInfoList=msgSolrService.findbytoid(Integer.parseInt(toid),1);
+        List<ORDERScontact>orderScontactList=new ArrayList<>();
+        List<ORDERS>ordersList=ordersSolrService.Searchbytoid(Integer.parseInt(toid),0,rows);
+        for (ORDERS orders:ordersList){
+            //查找名字
+            String name=usersSolrservice.searchbyid(orders.getFROMID());
+            //名字和订单号码
+            ORDERScontact orderScontact=new ORDERScontact();
+            orderScontact.setId(orders.getFROMID());
+            orderScontact.setName(name);
+            orderScontactList.add(orderScontact);
+        }
+        SearchResult searchResult=new SearchResult();
+        searchResult.setObjects(orderScontactList);
+        searchResult.setResultCount(orderScontactList.size());
+        int totalpages=0;
+        if (searchResult.getObjects().size()%rows!=0){
+            totalpages=(searchResult.getObjects().size()/rows)+1;
+        }else {
+            totalpages=(searchResult.getObjects().size()/rows);
+        }
+        searchResult.setTotalPage(totalpages);
+        return JSONObject.fromObject(searchResult);
+    }
 }

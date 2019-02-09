@@ -1,14 +1,14 @@
 package com.fuya.fuyaweb.yusaoController;
 
 import com.fuya.fuyadao.entity.*;
-import com.fuya.fuyaservice.ORDERSService;
+import com.fuya.fuyadao.model.ORDERSINFO;
+import com.fuya.fuyadao.model.SKILLInfo;
+import com.fuya.fuyadao.model.yuesaobasicinfoandcollection;
 import com.fuya.fuyasolr.SearchResult.SearchResult;
-import com.fuya.fuyasolr.Solr.dao.ORDERSSearchdao;
 import com.fuya.fuyasolr.Solr.service.*;
 import net.sf.json.JSONObject;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;

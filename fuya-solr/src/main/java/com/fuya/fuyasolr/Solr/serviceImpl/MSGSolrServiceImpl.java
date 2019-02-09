@@ -1,7 +1,7 @@
 package com.fuya.fuyasolr.Solr.serviceImpl;
 
 import com.fuya.fuyadao.entity.MSG;
-import com.fuya.fuyadao.entity.MSGInfo;
+import com.fuya.fuyadao.model.MSGInfo;
 import com.fuya.fuyasolr.Solr.dao.MSGSearchdao;
 import com.fuya.fuyasolr.Solr.service.MSGSolrService;
 import org.apache.solr.client.solrj.SolrQuery;

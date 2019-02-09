@@ -1,4 +1,7 @@
-package com.fuya.fuyadao.entity;
+package com.fuya.fuyadao.model;
+
+import com.fuya.fuyadao.entity.COMMENTS;
+import com.fuya.fuyadao.entity.YUESOBASICINFO;
 
 public class ProveAndYuesaobasic {
 

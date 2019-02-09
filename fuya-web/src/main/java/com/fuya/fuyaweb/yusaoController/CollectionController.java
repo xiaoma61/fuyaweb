@@ -44,17 +44,16 @@ public class CollectionController {
         if (type==1){
             collectionsService.deleteByFROMIDAndTOID(fromid,toid);
 
-            if (collectionList!=null){
+            if (collectionList.size()>0){
                 for (String collections:collectionList)
                 productService.sendMessage(this.topic,"collections-delete:"+collections);
             }
-
-
             return map;
 
             //修改solr
         }else {
-            if (collectionList!=null){
+            if (collectionList.size()>0){
+                System.out.println(collectionList);
                 return map;
             }
             COLLECTIONS collections=new COLLECTIONS();

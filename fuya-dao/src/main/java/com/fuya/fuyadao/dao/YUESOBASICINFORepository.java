@@ -10,7 +10,7 @@ import java.util.List;
 public interface YUESOBASICINFORepository extends JpaRepository<YUESOBASICINFO,Integer> {
 
     //SELECT new com.johnfnash.learn.domain.ViewInfo(u, a) FROM UserInfo u, Address a WHERE u.addressId = a.addressId
-    // @Query("select new com.fuya.fuyadao.entity.ProveAndYuesaobasic(y.c) from  YUESOBASICINFO y , COMMENTS c where y.USERSID=c.USERID")
+    // @Query("select new com.fuya.fuyadao.model.ProveAndYuesaobasic(y.c) from  YUESOBASICINFO y , COMMENTS c where y.USERSID=c.USERID")
     // List<ProveAndYuesaobasic> findAlllimit();
 
     //首页

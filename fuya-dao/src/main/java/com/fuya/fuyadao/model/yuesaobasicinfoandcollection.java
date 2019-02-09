@@ -1,4 +1,6 @@
-package com.fuya.fuyadao.entity;
+package com.fuya.fuyadao.model;
+
+import com.fuya.fuyadao.entity.YUESOBASICINFO;
 
 public class yuesaobasicinfoandcollection {
     YUESOBASICINFO yuesobasicinfo;

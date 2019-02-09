@@ -1,7 +1,6 @@
 package com.fuya.fuyasolr.Solr.service;
 
-import com.fuya.fuyadao.entity.MSG;
-import com.fuya.fuyadao.entity.MSGInfo;
+import com.fuya.fuyadao.model.MSGInfo;
 import org.apache.solr.client.solrj.SolrServerException;
 
 import java.io.IOException;

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import redis.clients.jedis.JedisCluster;
 
 import java.util.List;
+import java.util.Set;
 
 @Component
 public class RedisUtil {
@@ -37,6 +38,16 @@ public class RedisUtil {
     }
     public List<String>brpop(int timeout,String key){
         return jedisCluster.brpop(timeout,key);
+    }
+    public void zSet(String key,String value){
+        jedisCluster.sadd(key,value);
+    }
+    public Set<String> smembers(String key){
+        Set<String> smembers = jedisCluster.smembers(key);
+        return smembers;
+    }
+    public int scard(String key){
+        return Math.toIntExact(jedisCluster.scard(key));
     }
 
 }
