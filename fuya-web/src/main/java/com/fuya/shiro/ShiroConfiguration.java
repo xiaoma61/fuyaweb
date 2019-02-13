@@ -3,8 +3,11 @@ package com.fuya.shiro;
 
 
 
+import com.fuya.Redis.Util.RedisUtil;
+import com.fuya.fuyadao.entity.PERMISSION;
 import com.fuya.fuyaservice.PERMISSIONService;
 import com.fuya.fuyasolr.Solr.service.USERSSolrservice;
+import net.sf.json.JSONObject;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
@@ -12,8 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 
 @Configuration
@@ -24,7 +26,9 @@ public class ShiroConfiguration {
     private PERMISSIONService permissionService;
     @Autowired
     private USERSSolrservice usersSolrservice;
-   
+    @Autowired
+    private RedisUtil redisUtil;
+
     //将自己的验证方式加入容器
     @Bean
     public MyShiroRealm myShiroRealm() {
@@ -61,6 +65,34 @@ public class ShiroConfiguration {
         map.put("/login","anon");
         //需要拦截的资源
         map.put("/**",  "authc");//其他资源全部拦截
+        //取得权限
+        List<PERMISSION> permissionList=new ArrayList<>();
+
+        for (int i=1;i<5;i++){
+            if (!(redisUtil.scard(String.valueOf(i))>0)){
+                //没有添加
+                List<PERMISSION>permissionLists=permissionService.findall();
+                for (PERMISSION permission:permissionLists){
+                    JSONObject object=JSONObject.fromObject(permission);
+                    redisUtil.zSet(permission.getTYPE(), object.toString());
+                }
+            }else {
+            Set<String> smembers=redisUtil.smembers(String.valueOf(i));
+            for (String permisson:smembers){
+
+                JSONObject jsonObject= JSONObject.fromObject(permisson);
+                PERMISSION permissionString= (PERMISSION) JSONObject.toBean(jsonObject,PERMISSION.class);
+                System.out.println(permissionString.getURL()+"   0000000");
+                map.put(permissionString.getURL(),"perms["+permissionString.getNAME()+"]");
+
+            }
+            }
+
+        }
+        map.put("/users/**","roles[user]");
+        map.put("/fuyayuesaos/**","roles[yuesaos]");
+        map.put("/companys/**","roles[companys]");
+
         //登录
         shiroFilterFactoryBean.setLoginUrl("/Login");
         //首页

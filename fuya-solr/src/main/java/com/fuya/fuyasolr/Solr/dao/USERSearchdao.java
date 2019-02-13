@@ -29,10 +29,10 @@ public class USERSearchdao {
         USERS users=service.findByID(id);
         SolrInputDocument solrDocument=new SolrInputDocument();
         solrDocument.addField("usersID",users.getID());
-//        solrDocument.addField("usersIMAGE",users.getIMAGE());
+//        solrDocument.addField("usersIMAGE",usersController.getIMAGE());
         solrDocument.addField("usersNAME",users.getNAME());
-//        solrDocument.addField("usersPHONE",users.getPHONE());
-//        solrDocument.addField("usersPASSWORD",users.getPASSWORD());
+//        solrDocument.addField("usersPHONE",usersController.getPHONE());
+//        solrDocument.addField("usersPASSWORD",usersController.getPASSWORD());
         solrDocument.addField("usersTYPE",users.getTYPE());
          solrClient.add(solrDocument);
          solrClient.commit();
@@ -43,11 +43,17 @@ public class USERSearchdao {
         QueryResponse queryResponse=solrClient.query(solrQuery);
         SolrDocumentList solrDocumentList=queryResponse.getResults();
         for (SolrDocument Document : solrDocumentList ){
-            USERS users=new USERS();
-            if (!Document.get("usersTYPE").equals("4")){
-                users.setNAME((String) Document.getFieldValue("usersNAME"));
 
-               // users.setNAME((String) Document.getFieldValue("usersNAME"));
+            USERS users=new USERS();
+            List<Long>typelist= (List<Long>) Document.get("usersTYPE");
+            if (!typelist.get(0).equals("4")){
+                List<String>NAMElist= (List<String>) Document.get("usersNAME");
+             System.out.println("username：：：：" +NAMElist.get(0));
+                users.setNAME(NAMElist.get(0));
+                users.setTYPE(Math.toIntExact(typelist.get(0)));
+                System.out.println("usertype：：：：" +Math.toIntExact(typelist.get(0)));
+
+               // usersController.setNAME((String) Document.getFieldValue("usersNAME"));
             }
             usersList.add(users);
 

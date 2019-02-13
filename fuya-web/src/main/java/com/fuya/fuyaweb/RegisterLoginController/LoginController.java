@@ -27,6 +27,7 @@ public class LoginController {
 
     @RequestMapping("/CheckLogin")
     public  String CheckLogin(String name , String password, Model model, HttpServletRequest request){
+        System.out.println(name+":  ssss");
         //获取subject
         Subject subject= SecurityUtils.getSubject();
         //获取token
@@ -50,15 +51,15 @@ public class LoginController {
 
     }
     //登出
-    @RequestMapping(value = "/logout")
-    public String logout(HttpServletRequest request){
-        //清除session
-        HttpSession session=request.getSession();
-        session.removeAttribute("username");
-        Subject subject = SecurityUtils.getSubject();
-        subject.logout();
-        return "index";
-    }
+//    @RequestMapping(value = "/logout")
+//    public String logout(HttpServletRequest request){
+//        //清除session
+//        HttpSession session=request.getSession();
+//        session.removeAttribute("username");
+//        Subject subject = SecurityUtils.getSubject();
+//        subject.logout();
+//        return "index";
+//    }
 
 //    //错误页面展示
 //    @RequestMapping(value = "/error",method = RequestMethod.POST)

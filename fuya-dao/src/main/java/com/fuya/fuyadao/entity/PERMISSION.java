@@ -13,6 +13,15 @@ public class PERMISSION {
     private String  URL;
     private String  TYPE;
     private String  NAME;
+    private String  PERMISSIONS;
+
+    public String getPERMISSIONS() {
+        return PERMISSIONS;
+    }
+
+    public void setPERMISSIONS(String PERMISSIONS) {
+        this.PERMISSIONS = PERMISSIONS;
+    }
 
     public int getID() {
         return ID;

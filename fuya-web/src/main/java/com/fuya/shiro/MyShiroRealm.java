@@ -7,6 +7,8 @@ import com.fuya.fuyaservice.PERMISSIONService;
 import com.fuya.fuyaservice.USERService;
 import com.fuya.fuyasolr.Solr.service.USERSSolrservice;
 
+
+import net.sf.json.JSONObject;
 import org.apache.shiro.authc.*;
 
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -57,7 +59,8 @@ public class MyShiroRealm extends AuthorizingRealm {
         } catch (SolrServerException e) {
             e.printStackTrace();
         }
-        if (usersList==null){
+        if (usersList==null||usersList.size()<=0){
+            System.out.println("null");
             return null;
 
         }
@@ -65,18 +68,42 @@ public class MyShiroRealm extends AuthorizingRealm {
         List<String> permissions=new ArrayList<>();
         if (!(redisUtil.scard(String.valueOf(users.getTYPE()))>0)){
             //没有添加
+            System.out.println("per");
             List<PERMISSION>permissionList=permissionService.findall();
             for (PERMISSION permission:permissionList){
-                redisUtil.zSet(permission.getTYPE(),permission.getURL());
+                JSONObject object=JSONObject.fromObject(permission);
+                redisUtil.zSet(permission.getTYPE(), object.toString());
             }
         }else {
             Set<String>perssionsset=redisUtil.smembers(String.valueOf(users.getTYPE()));
             for (String  permssionString :perssionsset){
+                //获取权限
                 permissions.add(permssionString);
+                JSONObject object=JSONObject.fromObject(permssionString);
+                PERMISSION permissionObject= (PERMISSION) JSONObject.toBean(object,PERMISSION.class);
+                System.out.println(permissionObject.getPERMISSIONS()+"   1111111111");
+                permissions.add(permissionObject.getPERMISSIONS());
+
             }
         }
-        //添加角色和权限
         SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
+        List<String>roles=new ArrayList<>();
+        //添加角色和权限
+        if (users.getTYPE()==1){
+            //普通用户
+            roles.add("users");
+
+        }else if(users.getTYPE()==2){
+            //企业用户
+            roles.add("company");
+
+        }else if(users.getTYPE()==3){
+            //月嫂用户
+            roles.add("yuesao");
+
+        }
+        simpleAuthorizationInfo.addRoles(roles);
+
         //将角色添加到数据库中
 //            simpleAuthorizationInfo.addRoles(roles);
         simpleAuthorizationInfo.addStringPermissions(permissions);

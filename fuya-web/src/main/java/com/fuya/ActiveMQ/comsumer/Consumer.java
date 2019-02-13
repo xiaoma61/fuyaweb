@@ -28,6 +28,8 @@ public class Consumer {
     PROVEINFOSolrService proveinfoSolrService;
     @Autowired
     COLLECTIONSSolrService collectionsSolrService;
+    @Autowired
+    ARTICLESolrService articleSolrService;
 
 
 
@@ -64,6 +66,11 @@ public class Consumer {
         if (text[0].equals("collections")){
 
             collectionsSolrService.addCOLLECTIONS(Integer.parseInt(text[1]));
+
+        }
+        if (text[0].equals("article-update")){
+
+            articleSolrService.update(Integer.parseInt(text[1]));
 
         }
 

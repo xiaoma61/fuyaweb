@@ -23,7 +23,7 @@ public class EMPLOYERINFORMATIONSolrServiceImpl implements EMPLOYERINFORMATIONSo
     @Override
     public EMPLOYERINFORMATION searchbyorderid(int orderid) throws IOException, SolrServerException {
         SolrQuery solrQuery=new SolrQuery();
-        solrQuery.set("employerinformationODERID:"+orderid);
+        solrQuery.set("employerinformationODERID"+orderid);
         EMPLOYERINFORMATION employerinformation=employerinformationSearchdao.search(solrQuery);
 
         return employerinformation;

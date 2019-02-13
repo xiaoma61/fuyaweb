@@ -21,7 +21,7 @@ public class COMPANYBASICINFOSolrServiceImpl implements COMPANYBASICINFOSolrServ
         SolrQuery query=new SolrQuery();
         query.setStart(0);
         query.setRows(1);
-        query.set("companybasicinfoID:"+id);
+        query.set("companybasicinfoID"+id);
         SearchResult searchResult =companybasicinfoSearchdao.SearchCOMPANYBASICINFO(query,null);
         return searchResult;
     }

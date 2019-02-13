@@ -40,9 +40,12 @@ public class USERSSolrserviceImpl implements USERSSolrservice {
 
     @Override
     public List<USERS> searchbyusername(String name) throws IOException, SolrServerException {
+        String query="usersNAME:"+name;
         SolrQuery solrQuery=new SolrQuery();
         //查询语句
-        solrQuery.set("usersNAME:",name);
+        solrQuery.set("q",query);
+        solrQuery.setStart(0);
+        solrQuery.setRows(5);
 
         List<USERS>usersList=searchdao.searchUSER(solrQuery);
         return usersList;
@@ -57,7 +60,7 @@ public class USERSSolrserviceImpl implements USERSSolrservice {
     public String searchbyid(int id) throws IOException, SolrServerException {
         SolrQuery solrQuery=new SolrQuery();
         //查询语句
-        solrQuery.set("usersID:",id);
+        solrQuery.set("usersID",id);
         List<USERS>usersList=searchdao.searchUSER(solrQuery);
         return usersList.get(0).getNAME();
     }

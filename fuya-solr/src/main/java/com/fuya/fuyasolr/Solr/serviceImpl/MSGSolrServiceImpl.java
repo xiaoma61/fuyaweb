@@ -28,15 +28,15 @@ public class MSGSolrServiceImpl implements MSGSolrService {
     @Override
     public List<MSGInfo> findbytoid(int toid, int type) throws IOException, SolrServerException {
         SolrQuery solrQuery=new SolrQuery();
-        solrQuery.set("msgTOID:"+toid);
+        solrQuery.set("msgTOID"+toid);
         List<MSGInfo>msgInfoList=new ArrayList<>();
         HashSet<String> msgstoid=msgSearchdao.Search(solrQuery,type);
         //获取fromid
         for (String fromid: msgstoid ){
             MSGInfo msgInfo=new MSGInfo();
             SolrQuery solrQuery1=new SolrQuery();
-            solrQuery1.set("msgTOID:"+toid);
-            solrQuery1.set("msgFROMID:"+fromid);
+            solrQuery1.set("msgTOID"+toid);
+            solrQuery1.set("msgFROMID"+fromid);
             solrQuery1.setSort("msgTIME",SolrQuery.ORDER.desc);
 //            solrQuery1.setStart(0);
 //            solrQuery1.setRows(1);

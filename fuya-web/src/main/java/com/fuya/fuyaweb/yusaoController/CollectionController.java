@@ -5,6 +5,7 @@ import com.fuya.fuyadao.entity.COLLECTIONS;
 import com.fuya.fuyaservice.COLLECTIONSService;
 import com.fuya.fuyasolr.Solr.service.COLLECTIONSSolrService;
 import net.sf.json.JSONObject;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -33,6 +34,7 @@ public class CollectionController {
     @Autowired
     private ProductService productService;
 
+    @RequiresRoles("users")
     @RequestMapping("/fuyayusao/collection")
     @ResponseBody
     public Map<String,String> collection(@RequestParam(name = "fromid") int fromid , @RequestParam(name = "toid") int toid,

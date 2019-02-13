@@ -44,8 +44,8 @@ public class TalkingController {
     @Autowired
     ORDERSSolrService ordersSolrService;
     //实现聊天功能
-    //生产者
-    @RequestMapping("/fuyayusao/talkingsend")
+    //生产者--月嫂和普通用户
+    @RequestMapping("/fuyayusaos/talkingsend")
     public String talkingsend(@RequestParam(name = "id")String id, @RequestParam(name = "msg")String msg, HttpServletRequest request) throws IOException, SolrServerException {
 
         //获取
@@ -71,7 +71,7 @@ public class TalkingController {
         return "";
     }
     //消费者
-    @RequestMapping("/fuyayusao/talking")
+    @RequestMapping("/fuyayusaos/talking")
     public JSONObject talkingget(@RequestParam(name = "id")String toid) throws IOException, SolrServerException {
         boolean flag=true;
         List<MSGinfodetail>msGinfodetails=new ArrayList<>();
@@ -125,7 +125,7 @@ public class TalkingController {
         return JSONObject.fromObject(msGinfodetails);
     }
     //系统通知
-    @RequestMapping("/fuyayusao/talkingsystem")
+    @RequestMapping("/fuyayusaos/talkingsystem")
     public JSONObject talkingsystem(HttpServletRequest request) throws IOException, SolrServerException {
         //得到通知列表
         HttpSession session=request.getSession();

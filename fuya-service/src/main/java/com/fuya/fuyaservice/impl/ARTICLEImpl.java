@@ -20,4 +20,14 @@ public class ARTICLEImpl implements ARTICLEService {
 
         return articleList;
     }
+
+    @Override
+    public ARTICLE findByID(int id) {
+        return articleRepository.findByID(id);
+    }
+
+    @Override
+    public void updatebyid(int nums, int id) {
+        articleRepository.updatebyid(nums,id);
+    }
 }
