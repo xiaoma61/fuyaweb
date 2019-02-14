@@ -30,4 +30,19 @@ public class ARTICLEImpl implements ARTICLEService {
     public void updatebyid(int nums, int id) {
         articleRepository.updatebyid(nums,id);
     }
+
+    @Override
+    public void save(ARTICLE article) {
+        articleRepository.save(article);
+    }
+
+    @Override
+    public void delete(int id) {
+        articleRepository.deleteByid(id);
+    }
+
+    @Override
+    public void updateARTICLEbyid(int type, String title, String content, int id) {
+        articleRepository.updateARTICLEbyid(type,title,content,id);
+    }
 }

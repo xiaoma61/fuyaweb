@@ -70,6 +70,7 @@ public class ARTICLESearchdao {
         return id;
 
     }
+
     public void delete(String id) throws IOException, SolrServerException {
         solrClient.deleteById(id);
         solrClient.commit();

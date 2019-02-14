@@ -18,5 +18,13 @@ public interface ARTICLERepository  extends JpaRepository<ARTICLE,Integer> {
     @Modifying
     @Query("update  ARTICLE a set a.NUMS=?1 where a.ID=?2")
     void updatebyid(int nums,int id);
+  @Transactional//注解，使用默认配置，抛出异常之后，事务会自动回滚，数据不会插入到数据库
+  @Modifying
+  @Query("delete from ARTICLE a where a.ID=?1")
+  void   deleteByid(int id);
+  @Transactional//注解，使用默认配置，抛出异常之后，事务会自动回滚，数据不会插入到数据库
+  @Modifying
+  @Query("update ARTICLE a set a.TYPE=?1, a.TITLE=?2,a.CONTENT=?3 where a.ID=?4")
+  void   updateARTICLEbyid(int type,String title,String content,int id);
 
 }

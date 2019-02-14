@@ -74,6 +74,11 @@ public class Consumer {
 
         }
 
+        if (text[0].equals(" article-add")){
+
+            articleSolrService.addARTICLE(Integer.parseInt(text[1]));
+
+        }
         return "Consumer2收到!";
     }
 

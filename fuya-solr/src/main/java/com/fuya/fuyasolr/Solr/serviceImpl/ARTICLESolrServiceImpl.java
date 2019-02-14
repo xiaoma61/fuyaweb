@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -68,5 +70,28 @@ public class ARTICLESolrServiceImpl implements ARTICLESolrService {
 
 
 
+    }
+
+    @Override
+    public void delete(int articleid) throws IOException, SolrServerException {
+        String id=null;
+        SolrQuery solrQuery=new SolrQuery();
+        solrQuery.set("q","articleTITLE:"+id);
+        id=articleSearchdao.Searchid(solrQuery);
+        //删除
+        articleSearchdao.delete(id);
+    }
+
+    @Override
+    public SearchResult SearchbyTime(Date starttime, Date endtime,int start,int rows) throws IOException, SolrServerException {
+        SolrQuery solrQuery=new SolrQuery();
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm'");
+        String time = "createTime:["+sdf.format(starttime)+" TO "+sdf.format(endtime)+"]";
+        solrQuery.setStart(start);
+        solrQuery.setRows(rows);
+        solrQuery.set("q",time);
+        SearchResult searchResult=articleSearchdao.Search(solrQuery);
+        return searchResult;
     }
 }

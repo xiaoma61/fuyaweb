@@ -7,6 +7,7 @@ import com.fuya.fuyadao.model.ARTICLEinfo;
 import com.fuya.fuyaservice.ARTICLEService;
 import com.fuya.fuyasolr.SearchResult.SearchResult;
 import com.fuya.fuyasolr.Solr.service.ARTICLESolrService;
+import com.fuya.fuyautil.SearchKeyword;
 import net.sf.json.JSONObject;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -93,12 +94,7 @@ public class KnowledgeController {
     JSONObject knowledgebyTitle(@RequestParam(name = "Title")String title,@RequestParam(name = "start",defaultValue = "0")int start,
                                 @RequestParam(name="rows",defaultValue = "5")int rows) throws IOException, SolrServerException {
         SearchResult searchResult=articleSolrService.SearchbyLikeName(title,start,rows);
-        List<ARTICLE> articleList=searchResult.getObjects();
-        List<String>stringList=new ArrayList<>();
-        for (ARTICLE article:articleList){
-            stringList.add(article.getTITLE());
-
-        }
+        List<String>stringList= SearchKeyword.searchkeyword(searchResult);
         return JSONObject.fromObject(stringList);
     }
     //根据文章题目搜索
