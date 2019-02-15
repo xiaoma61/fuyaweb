@@ -43,16 +43,23 @@ public class RECRUITSolrServiceImpl implements RECRUITSolrService {
 
     @Override
     public String SearchIDByRECRUITID(int id) throws IOException, SolrServerException {
-        return null;
+        SolrQuery solrQuery=new SolrQuery();
+        solrQuery.set("q","RECRUITID:"+id);
+        String searchid= recruitSearchdao.Searchid(solrQuery);
+        return searchid;
     }
 
     @Override
     public void UpdateByRECRUITID(int id) throws IOException, SolrServerException {
+        String ids=SearchIDByRECRUITID(id);
+        recruitSearchdao.delete(ids);
+        addRECRUIT(id);
 
     }
 
     @Override
     public void DeleteByRECRUITID(int id) throws IOException, SolrServerException {
-
+        String ids=SearchIDByRECRUITID(id);
+        recruitSearchdao.delete(ids);
     }
 }

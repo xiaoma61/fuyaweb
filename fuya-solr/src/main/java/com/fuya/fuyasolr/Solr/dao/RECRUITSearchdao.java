@@ -78,5 +78,22 @@ public class RECRUITSearchdao {
 
         return searchResult;
     }
+    public String Searchid(SolrQuery query) throws IOException, SolrServerException {
+        List< RECRUITmodel> recruitList=new ArrayList<RECRUITmodel>();
+        QueryResponse solrResponse=solrClient.query(query);
+        SolrDocumentList solrDocumentList= solrResponse.getResults();
+        String id=null;
+        for (SolrDocument solrDocument :solrDocumentList){
+            id= (String) solrDocument.get(id);
+
+
+        }
+        return id;
+
+    }
+    public void delete(String id) throws IOException, SolrServerException {
+        solrClient.deleteById(id);
+        solrClient.commit();
+    }
 
 }

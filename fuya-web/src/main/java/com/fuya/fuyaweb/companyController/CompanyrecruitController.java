@@ -110,8 +110,11 @@ public class CompanyrecruitController {
     @ResponseBody
     public JSONObject recruitdelete(@RequestParam(name = "id")int id) throws IOException, SolrServerException {
 
-        Map<String,Object> msg=new HashMap<>();
-        msg.put("msg",recruiTmodel);
+        recruitSolrService.DeleteByRECRUITID(id);
+        //数据库删除
+        recruitService.delete(id);
+        Map<String,String> msg=new HashMap<>();
+        msg.put("msg","success");
         return JSONObject.fromObject(msg);
     }
 
@@ -127,9 +130,17 @@ public class CompanyrecruitController {
                                     @RequestParam(name = "starttime",defaultValue = "2018-01-09")String starttime,
                                     @RequestParam(name = "endtime",defaultValue = "2018-01-12")String endtime, @RequestParam(name = "position",defaultValue = "程序员")String position,
                                     @RequestParam(name = "salary",defaultValue = "工资")String salary, @RequestParam(name = "education",defaultValue = "教育水平")String education,
-                                    @RequestParam(name = "workarea",defaultValue = "北京")String workarea, HttpServletRequest request) throws IOException, SolrServerException {
+                                    @RequestParam(name = "workarea",defaultValue = "北京")String workarea,
+                                    @RequestParam(name = "id")int id,
+                                    HttpServletRequest request) throws IOException, SolrServerException, ParseException {
 
 
+        recruitSolrService.UpdateByRECRUITID(id);
+        //数据库删除
+        recruitService.updateRECRUITbyid(nums,describe,education,TimeUtil.stringtodate(endtime),workbackgound,hightlight,linkman,phone,position,salary,TimeUtil.stringtodate(starttime),
+                TimeUtil.getsqldate(new Date()),workarea,id);
+        Map<String,String> msg=new HashMap<>();
+        msg.put("msg","success");
         return JSONObject.fromObject(msg);
     }
 
