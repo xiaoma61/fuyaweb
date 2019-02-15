@@ -1,27 +1,35 @@
 package com.fuya.fuyadao.entity;
 
+import org.apache.solr.client.solrj.beans.Field;
+
 import javax.persistence.*;
 @Table(name="USERS")
 @Entity
 public class USERS {
-
-    private int ID;
-    private String IMAGE;
-    private String NAME;
-    private String PHONE;
-    private String PASSWORD;
-    private int TYPE;
-
     @Id
     @SequenceGenerator(name = "USERS_SEQUENCEid",sequenceName = "USERS_SEQUENCE",initialValue=1,allocationSize=1 )
     @GeneratedValue(strategy=GenerationType.SEQUENCE,generator="USERS_SEQUENCEid")
-    @Column(name="ID")
-    public int getID() {
-        return ID;
+    @Column(name="USERSID")
+    @Field
+    private int USERSID;
+    @Field
+    private String IMAGE;
+    @Field
+    private String NAME;
+    @Field
+    private String PHONE;
+    @Field
+    private String PASSWORD;
+    @Field
+    private int TYPE;
+
+
+    public int getUSERSID() {
+        return USERSID;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setUSERSID(int USERSID) {
+        this.USERSID = USERSID;
     }
 
     public String getIMAGE() {

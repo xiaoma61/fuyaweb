@@ -11,17 +11,25 @@ public class TimeUtil {
         java.sql.Date sqlDate = new java.sql.Date(date.getTime());
         return sqlDate;
     }
+//    //获取stringdate
+//    public static String getstringdate(java.sql.Date sqldate){
+//        DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+//        Date date = null;
+//        return date.toString();
+//
+//    }
     //获取stringdate
-    public static String getstringdate(java.sql.Date sqldate){
-        DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-        Date date = null;
-        return date.toString();
+    public static String datetostring(Date date) throws ParseException {
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+
+        String str=sdf.format(date);
+        return str;
 
     }
-    //获取stringdate
-    public static java.util.Date datetostring(String date) throws ParseException {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        return sdf.parse(date);
+    public static java.sql.Date stringtodate(String dateS) throws ParseException {
+        SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd");
+        java.util.Date date = sdf.parse(dateS);
+        return getsqldate(date);
 
     }
 

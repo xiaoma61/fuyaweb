@@ -1,6 +1,8 @@
 package com.fuya.fuyadao.entity;
 
 
+import org.apache.solr.client.solrj.beans.Field;
+
 import javax.persistence.*;
 
 @Entity
@@ -9,22 +11,28 @@ public class PROVEINFO {
     @Id
     @SequenceGenerator(name = "PROVEINFO_SEQUENCEid",initialValue = 1,allocationSize=1,sequenceName = "PROVEINFO_SEQUENCE")
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "PROVEINFO_SEQUENCEid")
-    private  int ID;
+    @Field
+    private  int PROVEINFOID;
+    @Field
     private  int USERSID;
+    @Field
     private String YUESAOSYNDROME;
+    @Field
     private String HEALTHCERTIFICATES;
+    @Field
     private String SERVICEPICTURE;
-
+    @Field
     private String REPORT;
+    @Field
     private String SCORE;
 
 
-    public int getID() {
-        return ID;
+    public int getPROVEINFOID() {
+        return PROVEINFOID;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setPROVEINFOID(int PROVEINFOID) {
+        this.PROVEINFOID = PROVEINFOID;
     }
 
     public int getUSERSID() {

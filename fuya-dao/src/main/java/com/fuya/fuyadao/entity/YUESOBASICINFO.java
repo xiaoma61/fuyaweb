@@ -1,5 +1,7 @@
 package com.fuya.fuyadao.entity;
 
+import org.apache.solr.client.solrj.beans.Field;
+
 import javax.persistence.*;
 
 @Entity
@@ -9,24 +11,44 @@ public class YUESOBASICINFO {
     @Id
     @SequenceGenerator(name = "YUESOBASICINFO_SEQUENCEid",sequenceName ="YUESOBASICINFO_SEQUENCE", initialValue = 1,allocationSize=1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "YUESOBASICINFO_SEQUENCEid")
-    private int ID;
+    @Field
+    private int YUESOBASICINFOID;
+    @Field
     private int USERSID;
+    @Field
     private String NAME;
+    @Field
     private String PHONE;
+    @Field
     private String IDCARD;
+    @Field
     private String AGE;
+    @Field
     private String EDUCATION;
+    @Field
     private String NATIVEPLACE;
+    @Field
     private String EMAIL;
+    @Field
     private String PHOTO;
+    @Field
     private String HEIGHT;
+    @Field
     private String WEIGHT;
+    @Field
     private String SENIORITY;
+    @Field
     private String COMPANYID;
+    @Field
     private int LEVELS;
+    @Field
     private String WAGES;
+    @Field
     private String TYPE;
+    @Field
     private String WORKAREA;
+
+
 
     public String getWORKAREA() {
         return WORKAREA;
@@ -44,12 +66,12 @@ public class YUESOBASICINFO {
         this.TYPE = TYPE;
     }
 
-    public int getID() {
-        return ID;
+    public int getYUESOBASICINFOID() {
+        return YUESOBASICINFOID;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setYUESOBASICINFOID(int YUESOBASICINFOID) {
+        this.YUESOBASICINFOID = YUESOBASICINFOID;
     }
 
     public int getUSERSID() {
@@ -171,4 +193,6 @@ public class YUESOBASICINFO {
     public void setWAGES(String WAGES) {
         this.WAGES = WAGES;
     }
+
+
 }

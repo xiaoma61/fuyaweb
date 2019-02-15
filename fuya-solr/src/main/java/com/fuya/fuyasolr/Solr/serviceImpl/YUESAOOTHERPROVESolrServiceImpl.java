@@ -25,7 +25,7 @@ public class YUESAOOTHERPROVESolrServiceImpl implements YUESAOOTHERPROVESolrServ
     @Override
     public SearchResult searchbyuserid(int userid, int start, int rows) throws IOException, SolrServerException {
         SolrQuery solrQuery=new SolrQuery();
-        solrQuery.set("yuesaootherproveUSERID"+userid);
+        solrQuery.set("USERID"+userid);
         solrQuery.setStart(start);
         solrQuery.setRows(rows);
         SearchResult result=yuesaootherproveSearchdao.search(solrQuery);

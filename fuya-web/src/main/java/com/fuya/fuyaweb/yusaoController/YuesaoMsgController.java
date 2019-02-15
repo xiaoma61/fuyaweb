@@ -60,7 +60,7 @@ public class YuesaoMsgController {
             if (usersList!=null){
                 USERS users=usersList.get(0);
                 //查看是否收藏
-                List<String> collections=collectionsSolrService.Searchbyfromidandtoid(users.getID(),id);
+                List<String> collections=collectionsSolrService.Searchbyfromidandtoid(users.getUSERSID(),id);
                 if (collections!=null){
                     yuesaobasicinfoandcollection.setIscollection(true);
                 }else {
@@ -92,9 +92,9 @@ public class YuesaoMsgController {
 
 
             //得到客户评价
-            List<COMMENTS> comments=commentsSolrService.searchbyorderid(orders.getID());
+            List<COMMENTS> comments=commentsSolrService.searchbyorderid(orders.getORDERSID());
             //客户信息
-            EMPLOYERINFORMATION employerinformation=employerinformationSolrService.searchbyorderid(orders.getID());
+            EMPLOYERINFORMATION employerinformation=employerinformationSolrService.searchbyorderid(orders.getORDERSID());
             ORDERSINFO ordersinfo=new ORDERSINFO() ;
             ordersinfo.setComments(comments);
             ordersinfo.setEmployerinformation(employerinformation);

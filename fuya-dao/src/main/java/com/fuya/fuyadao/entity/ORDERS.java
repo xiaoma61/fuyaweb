@@ -1,5 +1,7 @@
 package com.fuya.fuyadao.entity;
 
+import org.apache.solr.client.solrj.beans.Field;
+
 import javax.persistence.*;
 
 @Entity
@@ -9,17 +11,21 @@ public class ORDERS {
     @Id
     @SequenceGenerator(name = "ORDERS_SEQUENCEid",sequenceName = "ORDERS_SEQUENCE",initialValue=1,allocationSize=1 )
     @GeneratedValue(strategy= GenerationType.SEQUENCE,generator="ORDERS_SEQUENCEid")
-    private int ID;
+    @Field
+    private int ORDERSID;
+    @Field
     private int FROMID;
+    @Field
     private String CONTRACTNUMBER;//合同号码
+    @Field
     private int TOID;
 
-    public int getID() {
-        return ID;
+    public int getORDERSID() {
+        return ORDERSID;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setORDERSID(int ORDERSID) {
+        this.ORDERSID = ORDERSID;
     }
 
     public int getFROMID() {

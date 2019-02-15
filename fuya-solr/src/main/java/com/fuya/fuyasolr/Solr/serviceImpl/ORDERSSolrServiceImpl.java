@@ -30,7 +30,7 @@ public class ORDERSSolrServiceImpl implements ORDERSSolrService {
     @Override
     public List<ORDERS> Searchbytoid(int toid,int start,int rows) throws IOException, SolrServerException {
         SolrQuery solrQuery=new SolrQuery();
-        solrQuery.set("ordersTOID"+toid);
+        solrQuery.set("TOID"+toid);
         solrQuery.setStart(start);
         solrQuery.setRows(rows);
         List<ORDERS>ordersList=ordersSearchdao.Search(solrQuery);

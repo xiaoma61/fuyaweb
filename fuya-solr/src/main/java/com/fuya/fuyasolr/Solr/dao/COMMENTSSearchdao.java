@@ -31,13 +31,14 @@ public class COMMENTSSearchdao {
 
         COMMENTS comments=commentsService.findbyid(id);
 
-        SolrInputDocument solrInputDocument=new SolrInputDocument();
-        solrInputDocument.addField("commentsCONTENT",comments.getCONTENT());
-        solrInputDocument.addField("commentsLEVELS",comments.getLEVELS());
-        solrInputDocument.addField("commentsUSERID",comments.getUSERID());
-        solrInputDocument.addField("commentsORDERID",comments.getORDERID());
-        solrInputDocument.addField("commentsID",comments.getID());
-        solrClient.add(solrInputDocument);
+//        SolrInputDocument solrInputDocument=new SolrInputDocument();
+//        solrInputDocument.addField("commentsCONTENT",comments.getCONTENT());
+//        solrInputDocument.addField("commentsLEVELS",comments.getLEVELS());
+//        solrInputDocument.addField("commentsUSERID",comments.getUSERID());
+//        solrInputDocument.addField("commentsORDERID",comments.getORDERID());
+//        solrInputDocument.addField("commentsID",comments.getID());
+//        solrClient.add(solrInputDocument);
+        solrClient.addBean(comments);
         solrClient.commit();
     }
     //查找信息
@@ -47,10 +48,10 @@ public class COMMENTSSearchdao {
         SolrDocumentList solrDocumentList= solrResponse.getResults();
         for (SolrDocument solrDocument :solrDocumentList){
             COMMENTS comments=new COMMENTS();
-            comments.setID((Integer) solrDocument.getFieldValue("commentsID"));
-            comments.setORDERID((Integer) solrDocument.getFieldValue("commentsORDERID"));
-            comments.setCONTENT((String) solrDocument.getFieldValue("commentsCONTENT"));
-            comments.setLEVELS((Integer) solrDocument.getFieldValue("commentsLEVELS"));
+            comments.setCOMMENTSID((Integer) solrDocument.getFieldValue("COMMENTSID"));
+            comments.setORDERID((Integer) solrDocument.getFieldValue("ORDERID"));
+            comments.setCONTENT((String) solrDocument.getFieldValue("CONTENT"));
+            comments.setLEVELS((Integer) solrDocument.getFieldValue("LEVELS"));
             commentsList.add(comments);
 
         }

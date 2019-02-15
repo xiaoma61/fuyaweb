@@ -101,6 +101,9 @@ public class MyShiroRealm extends AuthorizingRealm {
             //月嫂用户
             roles.add("yuesao");
 
+        }else if(users.getTYPE()==5){
+            roles.add("admin");
+
         }
         simpleAuthorizationInfo.addRoles(roles);
 
@@ -131,7 +134,7 @@ public class MyShiroRealm extends AuthorizingRealm {
 
             HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
             HttpSession session=request.getSession();
-            session.setAttribute("id",users.getID());
+            session.setAttribute("id",users.getUSERSID());
             return new SimpleAuthenticationInfo(users.getNAME(),users.getPASSWORD(),getName());
         }
 

@@ -1,5 +1,8 @@
 package com.fuya.fuyadao.entity;
 
+import org.apache.solr.client.solrj.beans.Field;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -9,10 +12,16 @@ import javax.persistence.Table;
 @Table(name = "PERMISSION")
 public class PERMISSION {
     @Id
-    private int ID;
+    @Field
+    @Column(name = "PERMISSIONID")
+    private int PERMISSIONID;
+    @Field
     private String  URL;
+    @Field
     private String  TYPE;
+    @Field
     private String  NAME;
+    @Field
     private String  PERMISSIONS;
 
     public String getPERMISSIONS() {
@@ -23,12 +32,12 @@ public class PERMISSION {
         this.PERMISSIONS = PERMISSIONS;
     }
 
-    public int getID() {
-        return ID;
+    public int getPERMISSIONID() {
+        return PERMISSIONID;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setPERMISSIONID(int PERMISSIONID) {
+        this.PERMISSIONID = PERMISSIONID;
     }
 
     public String getURL() {

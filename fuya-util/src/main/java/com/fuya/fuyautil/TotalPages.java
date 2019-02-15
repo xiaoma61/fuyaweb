@@ -9,6 +9,6 @@ public class TotalPages {
         }else {
             totalpages=(counts/rows);
         }
-        return rows;
+        return totalpages;
     }
 }

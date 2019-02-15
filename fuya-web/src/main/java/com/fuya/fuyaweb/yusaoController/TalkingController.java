@@ -64,9 +64,9 @@ public class TalkingController {
         msg1.setTIME(date);
         msg1.setMSG(msg);
         msgService.save(msg1);
-        String value=fromid+":"+msg+":"+msg1.getID()+":"+date;
+        String value=fromid+":"+msg+":"+msg1.getMSGID()+":"+date;
         redisUtil.lpush(key,value);
-        msgSolrService.addMSG(msg1.getID());
+        msgSolrService.addMSG(msg1.getMSGID());
 
         return "";
     }

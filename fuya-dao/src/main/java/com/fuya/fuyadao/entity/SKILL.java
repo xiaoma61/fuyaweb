@@ -1,24 +1,31 @@
 package com.fuya.fuyadao.entity;
 
+import org.apache.solr.client.solrj.beans.Field;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "SKILL")
 public class SKILL {
-    private int ID;
-    private int USERID;
-    private int TYPE;
-    private String SKILL;
     @Id
     @SequenceGenerator(name = "SKILL_SEQUENCEid",initialValue = 1,allocationSize=1,sequenceName = "SKILL_SEQUENCE")
     @GeneratedValue(generator = "SKILL_SEQUENCEid" ,strategy = GenerationType.SEQUENCE)
+    @Field
+    private int SKILLID;
+    @Field
+    private int USERID;
+    @Field
+    private int TYPE;
+    @Field
+    private String SKILL;
 
-    public int getID() {
-        return ID;
+
+    public int getSKILLID() {
+        return SKILLID;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setSKILLID(int SKILLID) {
+        this.SKILLID = SKILLID;
     }
 
     public int getUSERID() {

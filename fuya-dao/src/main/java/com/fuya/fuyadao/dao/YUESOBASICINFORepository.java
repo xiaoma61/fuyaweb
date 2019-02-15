@@ -18,7 +18,7 @@ public interface YUESOBASICINFORepository extends JpaRepository<YUESOBASICINFO,I
     List<YUESOBASICINFO> findAlllimit();
     @Override
     List<YUESOBASICINFO> findAll();
-    @Query("select  y from  YUESOBASICINFO y where  y.ID=?1")
+    @Query("select  y from  YUESOBASICINFO y where  y.YUESOBASICINFOID=?1")
     YUESOBASICINFO findByID(int id);
     @Query("select y from YUESOBASICINFO  y where  y.USERSID=?1")
     YUESOBASICINFO findByUSERSID(int userid);

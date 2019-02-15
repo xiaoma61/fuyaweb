@@ -1,6 +1,7 @@
 package com.fuya.fuyadao.entity;
 
 import com.sun.javafx.beans.IDProperty;
+import org.apache.solr.client.solrj.beans.Field;
 
 import javax.persistence.*;
 
@@ -12,15 +13,25 @@ public class COMPANYINFO {
 
     @SequenceGenerator(name = "COMPANYINFO_SEQUENCEid",sequenceName = "COMPANYINFO_SEQUENCE",initialValue =1,allocationSize=1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator ="COMPANYINFO_SEQUENCEid")
-    private int ID;
+    @Field
+    private int COMPANYINFOID;
+    @Field
     private int USERSID;
+    @Field
     private String CONTACTNAME;
+    @Field
     private String CONTACTPHONE;
+    @Field
     private String LICENCENO;
+    @Field
     private String IDCARD;
+    @Field
     private String IDCARDFILE;
+    @Field
     private String ADDRESS;
+    @Field
     private String LICENCE;
+    @Field
     private String EMAIL;
 
     public String getLICENCE() {
@@ -39,12 +50,12 @@ public class COMPANYINFO {
         this.EMAIL = EMAIL;
     }
 
-    public int getID() {
-        return ID;
+    public int getCOMPANYINFOID() {
+        return COMPANYINFOID;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setCOMPANYINFOID(int COMPANYINFOID) {
+        this.COMPANYINFOID = COMPANYINFOID;
     }
 
     public int getUSERSID() {

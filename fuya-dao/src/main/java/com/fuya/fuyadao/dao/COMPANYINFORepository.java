@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface COMPANYINFORepository extends JpaRepository<COMPANYINFO,Integer> {
 
-    @Query("select c from COMPANYINFO c where c.ID=?1")
+    @Query("select c from COMPANYINFO c where c.COMPANYINFOID=?1")
     COMPANYINFO findByID(int id);
 }

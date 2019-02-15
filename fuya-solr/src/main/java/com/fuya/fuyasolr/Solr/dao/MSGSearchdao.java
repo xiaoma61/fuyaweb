@@ -26,14 +26,15 @@ public class MSGSearchdao {
     MSGService msgService;
     public void  addMSG(int id) throws IOException, SolrServerException {
         MSG msg=msgService.findByID(id);
-        SolrInputDocument solrInputDocument=new SolrInputDocument();
-        solrInputDocument.addField("msgID",msg.getID());
-        solrInputDocument.addField("msgFROMID",msg.getFROMID());
-        solrInputDocument.addField("msgMSG",msg.getMSG());
-        solrInputDocument.addField("msgTIME",msg.getTIME());
-        solrInputDocument.addField("msgTOID",msg.getTOID());
-        solrInputDocument.addField("msgtype",1);//未读状态
-        solrClient.add(solrInputDocument);
+//        SolrInputDocument solrInputDocument=new SolrInputDocument();
+//        solrInputDocument.addField("msgID",msg.getID());
+//        solrInputDocument.addField("msgFROMID",msg.getFROMID());
+//        solrInputDocument.addField("msgMSG",msg.getMSG());
+//        solrInputDocument.addField("msgTIME",msg.getTIME());
+//        solrInputDocument.addField("msgTOID",msg.getTOID());
+//        solrInputDocument.addField("msgtype",1);//未读状态
+//        solrClient.add(solrInputDocument);
+        solrClient.addBean(msg);
         solrClient.commit();
 
     }
@@ -45,8 +46,8 @@ public class MSGSearchdao {
         SolrDocumentList solrDocumentList=queryResponse.getResults();
         for (SolrDocument Document : solrDocumentList ){
             MSG msg=new MSG();
-           if (Document.getFieldValue("msgtype").equals(type)){
-                hashSet.add((String) Document.getFieldValue("msgFROMID"));
+           if (Document.getFieldValue("type").equals(type)){
+                hashSet.add((String) Document.getFieldValue("FROMID"));
                 //未读状态的时候
 //                msg.setTIME((Date) Document.getFieldValue("msgTIME"));
 //                msg.setTOID((Integer) Document.getFieldValue("msgTOID"));
@@ -71,11 +72,11 @@ public class MSGSearchdao {
             if (Document.getFieldValue("msgtype").equals(type)){
 //                hashSet.add((String) Document.getFieldValue("msgFROMID"));
                 //未读状态的时候
-                msg.setTIME((Date) Document.getFieldValue("msgTIME"));
-                msg.setTOID((Integer) Document.getFieldValue("msgTOID"));
-                msg.setFROMID((Integer) Document.getFieldValue("msgFROMID"));
-                msg.setMSG((String) Document.getFieldValue("msgMSG"));
-                msg.setID((Integer) Document.getFieldValue("msgID"));
+                msg.setTIME((Date) Document.getFieldValue("TIME"));
+                msg.setTOID((Integer) Document.getFieldValue("TOID"));
+                msg.setFROMID((Integer) Document.getFieldValue("FROMID"));
+                msg.setMSG((String) Document.getFieldValue("MSG"));
+                msg.setMSGID((Integer) Document.getFieldValue("ID"));
                 msgList.add(msg);
             }
 
@@ -100,7 +101,7 @@ public class MSGSearchdao {
     public void update(int type ,String id) throws IOException, SolrServerException {
         SolrInputDocument solrInputDocument=new SolrInputDocument();
         solrInputDocument.addField("id",id);
-        solrInputDocument.addField("msgtype",type);
+        solrInputDocument.addField("type",type);
         solrClient.add(solrInputDocument);
         solrClient.commit();
     }

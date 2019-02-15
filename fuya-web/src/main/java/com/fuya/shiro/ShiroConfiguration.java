@@ -92,6 +92,7 @@ public class ShiroConfiguration {
         map.put("/users/**","roles[user]");
         map.put("/fuyayuesaos/**","roles[yuesaos]");
         map.put("/companys/**","roles[companys]");
+        map.put("/admin/**","roles[admin]");
 
         //登录
         shiroFilterFactoryBean.setLoginUrl("/Login");

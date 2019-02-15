@@ -25,8 +25,8 @@ public class SKILLSolrServiceImpl implements SKILLSolrService {
     public List<SKILL> searchbyuseridandtype(int userid, int type) throws IOException, SolrServerException {
 
         SolrQuery solrQuery=new SolrQuery();
-        solrQuery.set("skillUSERID "+userid);
-        solrQuery.set("skillTYPE"+type);
+        solrQuery.set("USERID "+userid);
+        solrQuery.set("TYPE"+type);
         List<SKILL>skillList=skillSearchdao.Search(solrQuery);
         return skillList;
     }

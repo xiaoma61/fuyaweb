@@ -12,19 +12,19 @@ public interface ARTICLERepository  extends JpaRepository<ARTICLE,Integer> {
     //查找前6条--首页功能
   @Query(nativeQuery = true ,value = "select * from  ARTICLE  where rownum<=?1 and TYPE=?2 ")
     List<ARTICLE>findAlllimit(int nums ,int type);
-    @Query("select a from  ARTICLE  a where a.ID=?1")
+    @Query("select a from  ARTICLE  a where a.ARTICLEID=?1")
     ARTICLE findByID(int id);
     @Transactional//注解，使用默认配置，抛出异常之后，事务会自动回滚，数据不会插入到数据库
     @Modifying
-    @Query("update  ARTICLE a set a.NUMS=?1 where a.ID=?2")
+    @Query("update  ARTICLE a set a.NUMS=?1 where a.ARTICLEID=?2")
     void updatebyid(int nums,int id);
   @Transactional//注解，使用默认配置，抛出异常之后，事务会自动回滚，数据不会插入到数据库
   @Modifying
-  @Query("delete from ARTICLE a where a.ID=?1")
+  @Query("delete from ARTICLE a where a.ARTICLEID=?1")
   void   deleteByid(int id);
   @Transactional//注解，使用默认配置，抛出异常之后，事务会自动回滚，数据不会插入到数据库
   @Modifying
-  @Query("update ARTICLE a set a.TYPE=?1, a.TITLE=?2,a.CONTENT=?3 where a.ID=?4")
+  @Query("update ARTICLE a set a.TYPE=?1, a.TITLE=?2,a.CONTENT=?3 where a.ARTICLEID=?4")
   void   updateARTICLEbyid(int type,String title,String content,int id);
 
 }

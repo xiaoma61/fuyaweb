@@ -1,5 +1,7 @@
 package com.fuya.fuyadao.entity;
 
+import org.apache.solr.client.solrj.beans.Field;
+
 import javax.persistence.*;
 
 @Entity
@@ -8,22 +10,31 @@ public class EMPLOYERINFORMATION {
     @Id
     @SequenceGenerator(name = "EMPLOYERINFORMATION_SEQUENCEid",initialValue = 1,allocationSize=1,sequenceName = "EMPLOYERINFORMATION_SEQUENCE")
     @GeneratedValue(generator = "EMPLOYERINFORMATION_SEQUENCEid" ,strategy = GenerationType.SEQUENCE)
-    private int ID;
+    @Field
+
+    private int EMPLOYERINFORMATIONID;
+    @Field
     private int ODERID;
+    @Field
     private String NAME;
+    @Field
     private String AREA;
+    @Field
     private String ADDRESS;
+    @Field
     private String PHONE;
+    @Field
     private int TYPE;
+    @Field
     private String IDCARD;
 
 
-    public int getID() {
-        return ID;
+    public int getEMPLOYERINFORMATIONID() {
+        return EMPLOYERINFORMATIONID;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setEMPLOYERINFORMATIONID(int EMPLOYERINFORMATIONID) {
+        this.EMPLOYERINFORMATIONID = EMPLOYERINFORMATIONID;
     }
 
     public int getODERID() {

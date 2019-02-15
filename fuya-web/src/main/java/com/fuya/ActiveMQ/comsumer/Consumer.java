@@ -30,6 +30,8 @@ public class Consumer {
     COLLECTIONSSolrService collectionsSolrService;
     @Autowired
     ARTICLESolrService articleSolrService;
+    @Autowired
+    RECRUITSolrService recruitSolrService;
 
 
 
@@ -74,9 +76,13 @@ public class Consumer {
 
         }
 
-        if (text[0].equals(" article-add")){
+        if (text[0].equals("article-add")){
 
             articleSolrService.addARTICLE(Integer.parseInt(text[1]));
+
+        }
+        if (text[0].equals("recruit-add")){
+            recruitSolrService.addRECRUIT(Integer.parseInt(text[1]));
 
         }
         return "Consumer2收到!";

@@ -21,7 +21,7 @@ public class COMPANYBASICINFOSolrServiceImpl implements COMPANYBASICINFOSolrServ
         SolrQuery query=new SolrQuery();
         query.setStart(0);
         query.setRows(1);
-        query.set("companybasicinfoID"+id);
+        query.set("ID"+id);
         SearchResult searchResult =companybasicinfoSearchdao.SearchCOMPANYBASICINFO(query,null);
         return searchResult;
     }
@@ -32,9 +32,9 @@ public class COMPANYBASICINFOSolrServiceImpl implements COMPANYBASICINFOSolrServ
         SolrQuery query=new SolrQuery();
         query.setStart(start);
         query.setRows(rows);
-        query.setSort("companybasicinfoLEVELS", SolrQuery.ORDER.desc);
+        query.setSort("LEVELS", SolrQuery.ORDER.desc);
         if (keyword!=null&&!keyword.equals("")){
-            query.set("q","companybasicinfoCORPORATENAME:","*"+keyword+"*");//相似的查找
+            query.set("q","CORPORATENAME:","*"+keyword+"*");//相似的查找
             query.setHighlight(true);
             query.setHighlightSimplePre("<em style='color:red'>");
             query.setHighlightSimplePost("</em>");

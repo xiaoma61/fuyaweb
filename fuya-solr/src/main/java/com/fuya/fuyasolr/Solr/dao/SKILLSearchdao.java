@@ -25,12 +25,13 @@ public class SKILLSearchdao {
     SolrClient solrClient;
     public void addSKILL(int id) throws IOException, SolrServerException {
         SKILL skill=skillService.findByID(id);
-        SolrInputDocument solrInputDocument=new SolrInputDocument();
-        solrInputDocument.addField("skillID",skill.getID());
-        solrInputDocument.addField("skillSKILL",skill.getSKILL());
-        solrInputDocument.addField("skillTYPE",skill.getTYPE());
-        solrInputDocument.addField("skillUSERID",skill.getUSERID());
-        solrClient.add(solrInputDocument);
+//        SolrInputDocument solrInputDocument=new SolrInputDocument();
+//        solrInputDocument.addField("skillID",skill.getID());
+//        solrInputDocument.addField("skillSKILL",skill.getSKILL());
+//        solrInputDocument.addField("skillTYPE",skill.getTYPE());
+//        solrInputDocument.addField("skillUSERID",skill.getUSERID());
+//        solrClient.add(solrInputDocument);
+        solrClient.addBean(skill);
         solrClient.commit();
 
     }
@@ -41,7 +42,7 @@ public class SKILLSearchdao {
         for (SolrDocument Document : solrDocumentList ){
             SKILL skill=new SKILL();
             //skill.setID();
-            skill.setSKILL((String) Document.getFieldValue("skillSKILL"));
+            skill.setSKILL((String) Document.getFieldValue("SKILL"));
            // skill.setTYPE(Document.get(""));
             skillList.add(skill);
         }

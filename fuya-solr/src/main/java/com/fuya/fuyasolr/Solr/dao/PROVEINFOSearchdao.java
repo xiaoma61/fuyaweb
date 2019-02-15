@@ -23,10 +23,11 @@ public class PROVEINFOSearchdao {
     PROVEINFOService proveinfoService;
     @Autowired
     SolrClient solrClient;
-    public void addPROVEINFO(int id){
+    public void addPROVEINFO(int id) throws IOException, SolrServerException {
         PROVEINFO proveinfo=proveinfoService.findByID(id);
-        SolrInputDocument solrInputDocument=new SolrInputDocument();
-        solrInputDocument.addField("proveinfoHEALTHCERTIFICATES",proveinfo.getHEALTHCERTIFICATES());
+//        SolrInputDocument solrInputDocument=new SolrInputDocument();
+//        solrInputDocument.addField("proveinfoHEALTHCERTIFICATES",proveinfo.getHEALTHCERTIFICATES());
+        solrClient.addBean(proveinfo);
 
     }
     public List<PROVEINFO>search(SolrQuery solrQuery) throws IOException, SolrServerException {

@@ -26,12 +26,13 @@ public class ORDERSSearchdao {
     //添加订单
     public  void addORDERS(int id) throws IOException, SolrServerException {
        ORDERS orders=ordersService.findByID(id);
-        SolrInputDocument solrInputDocument=new SolrInputDocument();
-        solrInputDocument.addField("ordersCONTRACTNUMBER",orders.getCONTRACTNUMBER());
-        solrInputDocument.addField("ordersTOID",orders.getTOID());
-        solrInputDocument.addField("ordersFROMID",orders.getFROMID());
-        solrInputDocument.addField("ordersID",orders.getID());
-        solrClient.add(solrInputDocument);
+//        SolrInputDocument solrInputDocument=new SolrInputDocument();
+//        solrInputDocument.addField("ordersCONTRACTNUMBER",orders.getCONTRACTNUMBER());
+//        solrInputDocument.addField("ordersTOID",orders.getTOID());
+//        solrInputDocument.addField("ordersFROMID",orders.getFROMID());
+//        solrInputDocument.addField("ordersID",orders.getID());
+//        solrClient.add(solrInputDocument);
+        solrClient.addBean(orders);
         solrClient.commit();
     }
     //查找订单---根据月嫂查询
@@ -41,10 +42,10 @@ public class ORDERSSearchdao {
         SolrDocumentList solrDocumentList=queryResponse.getResults();
         for (SolrDocument Document : solrDocumentList ){
             ORDERS orders=new ORDERS();
-            orders.setID((Integer) Document.getFieldValue("ordersID"));
-            orders.setCONTRACTNUMBER((String) Document.getFieldValue("ordersCONTRACTNUMBER"));
-            orders.setFROMID((Integer) Document.getFieldValue("ordersFROMID"));
-            orders.setTOID((Integer) Document.getFieldValue("ordersTOID"));
+            orders.setORDERSID((Integer) Document.getFieldValue("ID"));
+            orders.setCONTRACTNUMBER((String) Document.getFieldValue("CONTRACTNUMBER"));
+            orders.setFROMID((Integer) Document.getFieldValue("FROMID"));
+            orders.setTOID((Integer) Document.getFieldValue("TOID"));
             ordersList.add(orders);
         }
         return  ordersList;

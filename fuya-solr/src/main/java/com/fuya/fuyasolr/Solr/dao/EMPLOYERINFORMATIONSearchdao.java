@@ -24,16 +24,17 @@ public class EMPLOYERINFORMATIONSearchdao {
     SolrClient solrClient;
     public  void addEMPLOYERINFORMATION(int id) throws IOException, SolrServerException {
         EMPLOYERINFORMATION employerinformation =employerinformationService.findByID(id);
-        SolrInputDocument solrDocument=new SolrInputDocument();
-        solrDocument.addField("employerinformationADDRESS",employerinformation.getADDRESS());
-        solrDocument.addField("employerinformationAREA",employerinformation.getAREA());
-        solrDocument.addField("employerinformationID",employerinformation.getID());
-        solrDocument.addField("employerinformationIDCARD",employerinformation.getIDCARD());
-        solrDocument.addField("employerinformationNAME",employerinformation.getNAME());
-        solrDocument.addField("employerinformationODERID",employerinformation.getODERID());
-        solrDocument.addField("employerinformationPHONE",employerinformation.getPHONE());
-        solrDocument.addField("employerinformationTYPE",employerinformation.getTYPE());
-        solrClient.add(solrDocument);
+//        SolrInputDocument solrDocument=new SolrInputDocument();
+//        solrDocument.addField("ADDRESS",employerinformation.getADDRESS());
+//        solrDocument.addField("AREA",employerinformation.getAREA());
+//        solrDocument.addField("ID",employerinformation.getID());
+//        solrDocument.addField("IDCARD",employerinformation.getIDCARD());
+//        solrDocument.addField("employerinformationNAME",employerinformation.getNAME());
+//        solrDocument.addField("employerinformationODERID",employerinformation.getODERID());
+//        solrDocument.addField("employerinformationPHONE",employerinformation.getPHONE());
+//        solrDocument.addField("employerinformationTYPE",employerinformation.getTYPE());
+//        solrClient.add(solrDocument);
+        solrClient.addBean(employerinformation);
         solrClient.commit();
     }
     //查找orderid
@@ -42,11 +43,11 @@ public class EMPLOYERINFORMATIONSearchdao {
         EMPLOYERINFORMATION employerinformation=new EMPLOYERINFORMATION();
         SolrDocumentList solrDocumentList= solrResponse.getResults();
         for (SolrDocument solrDocument:solrDocumentList){
-            employerinformation.setADDRESS((String) solrDocument.getFieldValue("employerinformationADDRESS"));
-            employerinformation.setAREA((String) solrDocument.getFieldValue("employerinformationAREA"));
-            employerinformation.setNAME((String) solrDocument.getFieldValue("employerinformationNAME"));
-            employerinformation.setPHONE((String) solrDocument.getFieldValue("employerinformationPHONE"));
-            employerinformation.setTYPE((Integer) solrDocument.getFieldValue("employerinformationTYPE"));
+            employerinformation.setADDRESS((String) solrDocument.getFieldValue("ADDRESS"));
+            employerinformation.setAREA((String) solrDocument.getFieldValue("AREA"));
+            employerinformation.setNAME((String) solrDocument.getFieldValue("NAME"));
+            employerinformation.setPHONE((String) solrDocument.getFieldValue("PHONE"));
+            employerinformation.setTYPE((Integer) solrDocument.getFieldValue("TYPE"));
         }
         return  employerinformation;
 

@@ -10,7 +10,7 @@ public interface COMPANYBASICINFORepository extends JpaRepository<COMPANYBASICIN
 //原生的sql，首页
     @Query(nativeQuery = true,value = "select * from (select * from  COMPANYBASICINFO order by LEVELS desc ) where rownum<=6")
     List<COMPANYBASICINFO>findAlllimit();
-    @Query("select  c from COMPANYBASICINFO c where  c.ID=?1")
+    @Query("select  c from COMPANYBASICINFO c where  c.COMPANYBASICINFOID=?1")
     COMPANYBASICINFO findByID(int ID);
 
 }

@@ -63,7 +63,7 @@ public class CollectionController {
             collections.setTOID(toid);
             collectionsService.save(collections);
             //添加
-            productService.sendMessage(this.topic,"collections:"+collections.getID());
+            productService.sendMessage(this.topic,"collections:"+collections.getCOLLECTIONSID());
 
             return map;
         }

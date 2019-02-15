@@ -1,5 +1,7 @@
 package com.fuya.fuyadao.entity;
 
+import org.apache.solr.client.solrj.beans.Field;
+
 import javax.persistence.*;
 import java.sql.Date;
 
@@ -9,18 +11,23 @@ public class MSG {
     @Id
     @SequenceGenerator(name = "MSG_SEQUENCEid",initialValue = 1,allocationSize=1,sequenceName = "MSG_SEQUENCE")
     @GeneratedValue(generator = "MSG_SEQUENCEid" ,strategy = GenerationType.SEQUENCE)
-    private  int ID;
+    @Field
+    private  int MSGID;
+    @Field
     private  int FROMID;
+    @Field
     private  int TOID;
+    @Field
     private  String MSG;
+    @Field
     private  Date TIME;
 
-    public int getID() {
-        return ID;
+    public int getMSGID() {
+        return MSGID;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setMSGID(int MSGID) {
+        this.MSGID = MSGID;
     }
 
     public int getFROMID() {

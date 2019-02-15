@@ -1,5 +1,7 @@
 package com.fuya.fuyadao.entity;
 
+import org.apache.solr.client.solrj.beans.Field;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -10,25 +12,37 @@ public class SERVICECONTENT {
     @Id
     @SequenceGenerator(name = "SERVICECONTENT_SEQUENCEid",sequenceName = "SERVICECONTENT_SEQUENCE",initialValue=1,allocationSize=1 )
     @GeneratedValue(strategy= GenerationType.SEQUENCE,generator="SERVICECONTENT_SEQUENCEid")
-    private int ID;
+    @Field
+    private int SERVICECONTENTID;
+    @Field
     private int ORDERID;
+    @Field
     private String CHILDBIRTH;//预产期
+    @Field
     private Date STARTTIME;//服务开始日期
+    @Field
     private int FATE;
+    @Field
     private String PRICE;//价格
+    @Field
     private String OTHERS;//其他
+    @Field
     private int STATUS;//状态
+    @Field
     private int HANDSELSTATUS;//定金支付状态
+    @Field
     private String SUM;//全额
+    @Field
     private String HANDSEL;//定金
+    @Field
     private int SUMSTATUS;//全额支付状态
 
-    public int getID() {
-        return ID;
+    public int getSERVICECONTENTID() {
+        return SERVICECONTENTID;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setSERVICECONTENTID(int SERVICECONTENTID) {
+        this.SERVICECONTENTID = SERVICECONTENTID;
     }
 
     public int getORDERID() {

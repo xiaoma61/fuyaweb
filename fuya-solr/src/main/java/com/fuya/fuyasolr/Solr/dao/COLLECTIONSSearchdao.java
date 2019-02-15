@@ -25,11 +25,12 @@ public class COLLECTIONSSearchdao {
     SolrClient solrClient;
     public  void  addCOLLECTIONS(int id) throws IOException, SolrServerException {
         COLLECTIONS collections=service.findByID(id);
-        SolrInputDocument solrInputDocument=new SolrInputDocument();
-        solrInputDocument.addField("collectionsFROMID",collections.getFROMID());
-        solrInputDocument.addField("collectionsID",collections.getID());
-        solrInputDocument.addField("collectionsTOID",collections.getTOID());
-        solrClient.add(solrInputDocument);
+//        SolrInputDocument solrInputDocument=new SolrInputDocument();
+//        solrInputDocument.addField("collectionsFROMID",collections.getFROMID());
+//        solrInputDocument.addField("collectionsID",collections.getID());
+//        solrInputDocument.addField("collectionsTOID",collections.getTOID());
+//        solrClient.add(solrInputDocument);
+        solrClient.addBean(collections);
         solrClient.commit();
     }
     //查找收藏

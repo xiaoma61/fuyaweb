@@ -20,7 +20,7 @@ public class YUESOBASICINFOSolrImpl implements YUESOBASICINFOSolrservice {
     public SearchResult search(String keyword) throws IOException, SolrServerException {
         //查找前五个
         SolrQuery solrQuery=new SolrQuery();
-        solrQuery.set("q","yuesaoNAME:"+"*"+keyword+"*");
+        solrQuery.set("q","NAME:"+"*"+keyword+"*");
         solrQuery.setStart(0);
         solrQuery.setRows(5);
 
@@ -36,7 +36,7 @@ public class YUESOBASICINFOSolrImpl implements YUESOBASICINFOSolrservice {
         SolrQuery solrQuery=new SolrQuery();
         StringBuffer stringBuffer=new StringBuffer();
         if (!workarea.equals("null")){
-            stringBuffer.append("yuesaoWORKAREA:"+workarea);
+            stringBuffer.append("WORKAREA:"+workarea);
         }
         if (!type.equals("null")){
             stringBuffer.append("AND yusaoTYPE:"+type);
@@ -45,7 +45,7 @@ public class YUESOBASICINFOSolrImpl implements YUESOBASICINFOSolrservice {
             stringBuffer.append("AND yusaoWAGES:[ "+minwages +"TO " +maxwages+"]");//工资
         }
         if (!nativeplace.equals("null")){
-            stringBuffer.append("AND　yuesaoNATIVEPLACE:"+nativeplace);
+            stringBuffer.append("AND　NATIVEPLACE:"+nativeplace);
 
         }
 
@@ -56,7 +56,7 @@ public class YUESOBASICINFOSolrImpl implements YUESOBASICINFOSolrservice {
         //分页
         solrQuery.setStart((page-1)*rows);
         solrQuery.setRows(rows);
-        solrQuery.set("df","yuesaoNAME");
+        solrQuery.set("df","NAME");
         solrQuery.setHighlight(true);
         solrQuery.setHighlightSimplePre("<em style='color:red'>");
         solrQuery.setHighlightSimplePost("</em>");
@@ -78,7 +78,7 @@ public class YUESOBASICINFOSolrImpl implements YUESOBASICINFOSolrservice {
     @Override
     public YUESOBASICINFO searchbyid(int id) throws IOException, SolrServerException {
         SolrQuery solrQuery=new SolrQuery();
-        solrQuery.set("yuesaoID:"+id);
+        solrQuery.set("ID:"+id);
         solrQuery.setStart(0);
         solrQuery.setRows(1);
         YUESOBASICINFO yuesobasicinfo=yuesobasicinfoSearchdao.searchbyid(solrQuery);

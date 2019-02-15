@@ -4,6 +4,7 @@ import com.fuya.ActiveMQ.service.ProductService;
 import com.fuya.fuyadao.entity.ARTICLE;
 import com.fuya.fuyadao.model.ARTICLEidinfo;
 import com.fuya.fuyadao.model.ARTICLEinfo;
+import com.fuya.fuyadao.model.ARTICLEmodel;
 import com.fuya.fuyaservice.ARTICLEService;
 import com.fuya.fuyasolr.SearchResult.SearchResult;
 import com.fuya.fuyasolr.Solr.service.ARTICLESolrService;
@@ -14,13 +15,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.jms.Queue;
 import javax.jms.Topic;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 @Controller
 public class KnowledgeController {
@@ -37,7 +37,9 @@ public class KnowledgeController {
 
     //显示主要页面
     @RequestMapping("/knowledge")
-    JSONObject knowledge(@RequestParam(name="type",defaultValue = "1")int type,@RequestParam(name = "start",defaultValue = "0")int start,@RequestParam(name = "rows",defaultValue = "10")int rows) throws IOException, SolrServerException {
+
+    @ResponseBody
+    public JSONObject knowledge(@RequestParam(name="type",defaultValue = "1")int type,@RequestParam(name = "start",defaultValue = "0")int start,@RequestParam(name = "rows",defaultValue = "10")int rows) throws IOException, SolrServerException {
 
        SearchResult searchResult= articleSolrService.Searchbytype(type,start,rows);
         int totalpages=0;
@@ -50,9 +52,9 @@ public class KnowledgeController {
 
 
         //和相关推荐
-        ARTICLE article= (ARTICLE) searchResult.getObjects().get(0);
+        ARTICLEmodel article= (ARTICLEmodel) searchResult.getObjects().get(0);
         SearchResult articlesearchResult=articleSolrService.SearchbyLikeName(article.getTITLE(),start,rows);
-        List<ARTICLE>articleList=articlesearchResult.getObjects();
+        List<ARTICLEmodel>articleList=articlesearchResult.getObjects();
         ARTICLEinfo articlEinfo=new ARTICLEinfo();
         articlEinfo.setObjects(Collections.singletonList(articleList));
         articlEinfo.setSearchResult(searchResult);
@@ -67,10 +69,11 @@ public class KnowledgeController {
 
     //查看文章
     @RequestMapping("/knowledge/id")
-    JSONObject knowledgebyid(@RequestParam(name = "id")int id) throws IOException, SolrServerException {
+    @ResponseBody
+    public JSONObject knowledgebyid(@RequestParam(name = "id")int id) throws IOException, SolrServerException {
         SearchResult searchResult=articleSolrService.Searchbyid(id);
-        List<ARTICLE> articleList=searchResult.getObjects();
-        ARTICLE article=articleList.get(0);
+        List<ARTICLEmodel> articleList=searchResult.getObjects();
+        ARTICLEmodel article=articleList.get(0);
         int nums=article.getNUMS()+1;
         //更新数据库
         articleService.updatebyid(nums,id);
@@ -80,7 +83,7 @@ public class KnowledgeController {
         //和相关推荐
 
         SearchResult articlesearchResult=articleSolrService.SearchbyLikeName(article.getTITLE(),0,10);
-        List<ARTICLE>articleList1=articlesearchResult.getObjects();
+        List<ARTICLEmodel>articleList1=articlesearchResult.getObjects();
         ARTICLEidinfo articleidinfo=new ARTICLEidinfo();
         articleidinfo.setArticle(article);
         articleidinfo.setObjects(Collections.singletonList(articleList1));
@@ -91,15 +94,19 @@ public class KnowledgeController {
     }
     //搜索
     @RequestMapping("/knowledge/searchtitle")
-    JSONObject knowledgebyTitle(@RequestParam(name = "Title")String title,@RequestParam(name = "start",defaultValue = "0")int start,
+    @ResponseBody
+    public JSONObject knowledgebyTitle(@RequestParam(name = "Title")String title,@RequestParam(name = "start",defaultValue = "0")int start,
                                 @RequestParam(name="rows",defaultValue = "5")int rows) throws IOException, SolrServerException {
         SearchResult searchResult=articleSolrService.SearchbyLikeName(title,start,rows);
-        List<String>stringList= SearchKeyword.searchkeyword(searchResult);
+        List<String>stringList=SearchKeyword.searchkeyword(searchResult);
+        Map<String,List> msg=new HashMap<>();
+        msg.put("msg",stringList);
         return JSONObject.fromObject(stringList);
     }
     //根据文章题目搜索
     @RequestMapping("/knowledge/searchbytitle")
-    JSONObject knowledgeSearchbyTitle(@RequestParam(name = "Title")String title,@RequestParam(name = "start",defaultValue = "0")int start,
+    @ResponseBody
+    public JSONObject knowledgeSearchbyTitle(@RequestParam(name = "Title")String title,@RequestParam(name = "start",defaultValue = "0")int start,
                                       @RequestParam(name="rows",defaultValue = "10")int rows) throws IOException, SolrServerException {
         SearchResult searchResult=articleSolrService.SearchbyLikeName(title,start,rows);
         return JSONObject.fromObject(searchResult);

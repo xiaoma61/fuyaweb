@@ -9,7 +9,7 @@ import java.util.List;
 public interface PROVEINFORepository extends JpaRepository<PROVEINFO,Integer> {
     @Query("select p from PROVEINFO  p where p.USERSID=?1")
     List<PROVEINFO>findByUSERSID(int userid);
-    @Query("select p from  PROVEINFO  p where p.ID=?2")
+    @Query("select p from  PROVEINFO  p where p.PROVEINFOID=?2")
     PROVEINFO findByID(int id);
 
 }

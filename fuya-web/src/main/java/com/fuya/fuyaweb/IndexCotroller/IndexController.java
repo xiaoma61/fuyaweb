@@ -70,7 +70,7 @@ public class IndexController {
             for (COMPANYBASICINFO companybasicinfo:companybasicinfoList){
                 Map<String,Object>map=new HashMap<>();
                 //跳转到公司页面
-                map.put("ID",companybasicinfo.getID());
+                map.put("ID",companybasicinfo.getCOMPANYBASICINFOID());
                 map.put("ADDRESS",companybasicinfo.getADDRESS());
                 map.put("CORPORATENAME",companybasicinfo.getCORPORATENAME());
                 map.put("INTRODUCE",companybasicinfo.getINTRODUCE());
@@ -101,11 +101,11 @@ public class IndexController {
 
            for (YUESOBASICINFO yuesobasicinfo : yuesobasicinfoList){
                //封装连接---跳转到月嫂的页面
-               int id=yuesobasicinfo.getID();
+               int id=yuesobasicinfo.getYUESOBASICINFOID();
                List<COMMENTS> commentsList=commentsService.findByUSERID(id);
                COMMENTS comments=commentsList.get(0);
                Map<String,Object>map=new HashMap<>();
-               map.put("ID",yuesobasicinfo.getID());//评论
+               map.put("ID",yuesobasicinfo.getYUESOBASICINFOID());//评论
                map.put("CONTENT",comments.getCONTENT());//评论
                map.put("NAME",yuesobasicinfo.getNAME());// 名称
                map.put("NATIVEPLACE",yuesobasicinfo.getNATIVEPLACE());//地点
@@ -141,7 +141,7 @@ public class IndexController {
                 Map<String,Object>map=new HashMap<>();
                 //封装连接
                 //跳转到文章页面
-                map.put("ID",article.getID());
+                map.put("ID",article.getARTICLEID());
                 map.put("TITLE",article.getTITLE());
                 String content=BodyContentUtil.GetContent(article.getCONTENT());
                 System.out.println(content);

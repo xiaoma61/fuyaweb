@@ -1,28 +1,25 @@
-package com.fuya.fuyadao.entity;
+package com.fuya.fuyadao.model;
 
 import org.apache.solr.client.solrj.beans.Field;
 
-import javax.persistence.*;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import java.sql.Date;
 
-@Entity
-@Table(name = "ARTICLE")
-public class ARTICLE {
+public class ARTICLEmodel {
 
-    @Id
-    @SequenceGenerator(name = "ARTICLE_SEQUENCEid",initialValue = 1,allocationSize=1,sequenceName = "ARTICLE_SEQUENCE")
-    @GeneratedValue(generator = "ARTICLE_SEQUENCEid" ,strategy = GenerationType.SEQUENCE)
-    @Field
     private int ARTICLEID;
-    @Field
+
     private String  TITLE;
-    @Field
+
     private int TYPE;
-    @Field
-    private Date TIME;
-    @Field
+
+    private String TIME;
+
     private String CONTENT;
-    @Field
+
     private int NUMS;
 
     public int getARTICLEID() {
@@ -49,11 +46,11 @@ public class ARTICLE {
         this.TYPE = TYPE;
     }
 
-    public Date getTIME() {
+    public String getTIME() {
         return TIME;
     }
 
-    public void setTIME(Date TIME) {
+    public void setTIME(String TIME) {
         this.TIME = TIME;
     }
 

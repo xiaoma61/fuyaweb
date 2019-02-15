@@ -85,7 +85,7 @@ public class RegisterController {
         yuesobasicinfo.setEMAIL(email);
         yuesobasicinfo.setTYPE(yuesaotype);
         yuesobasicinfo.setAGE(age);
-        yuesobasicinfo.setUSERSID(users.getID());
+        yuesobasicinfo.setUSERSID(users.getUSERSID());
         yuesobasicinfo.setWORKAREA(workarea);
 
 
@@ -101,7 +101,7 @@ public class RegisterController {
         proveinfo.setSERVICEPICTURE(servicepiceture);
         //月嫂证
         proveinfo.setYUESAOSYNDROME(yuesaosyndrome);
-        proveinfo.setUSERSID(users.getID());
+        proveinfo.setUSERSID(users.getUSERSID());
 
         proveinfoService.save(proveinfo);
 
@@ -109,7 +109,7 @@ public class RegisterController {
 
         //存入数据库,同时存入solr库
         //Activemq通知
-        productService.sendMessage(this.topic,"yuesobasicinfo:"+users.getID());
+        productService.sendMessage(this.topic,"yuesobasicinfo:"+ users.getUSERSID());
 
 
 
@@ -145,7 +145,7 @@ public class RegisterController {
         COMPANYBASICINFO companybasicinfo=new COMPANYBASICINFO();
         companybasicinfo.setADDRESS(address);
         companybasicinfo.setCORPORATENAME(corporatename);
-        companybasicinfo.setUSERID(users.getID());
+        companybasicinfo.setUSERID(users.getUSERSID());
         companybasicinfo.setNUMS(0);
         companybasicinfo.setLEVELS(0);
         companybasicinfo.setINTRODUCE("暂无介绍");
@@ -154,7 +154,7 @@ public class RegisterController {
         COMPANYINFO companyinfo=new COMPANYINFO();
         companyinfo.setADDRESS(address);
         companyinfo.setCONTACTNAME(contactname);
-        companyinfo.setUSERSID(users.getID());
+        companyinfo.setUSERSID(users.getUSERSID());
         companyinfo.setLICENCENO(liceneno);
         companyinfo.setLICENCE(licene);
         companyinfo.setEMAIL(email);
@@ -165,7 +165,7 @@ public class RegisterController {
 
 
         //Activemq通知
-        productService.sendMessage(this.topic,"companyregister:"+users.getID());
+        productService.sendMessage(this.topic,"companyregister:"+users.getUSERSID());
         return "redirect:/Login";
     }
 

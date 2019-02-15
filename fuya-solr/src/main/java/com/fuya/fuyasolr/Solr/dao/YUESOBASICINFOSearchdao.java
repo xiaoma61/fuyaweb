@@ -36,24 +36,25 @@ public class YUESOBASICINFOSearchdao {
 
         for (YUESOBASICINFO yuesobasicinfo:yuesobasicinfoList){
             SolrInputDocument solrInputDocument=new SolrInputDocument();
-            solrInputDocument.addField("yuesaoID",yuesobasicinfo.getID());
-            solrInputDocument.addField("yuesaoAGE",yuesobasicinfo.getAGE());
-            solrInputDocument.addField("yuesaoLEVELS",yuesobasicinfo.getLEVELS());
-            solrInputDocument.addField("yuesaoWAGES",yuesobasicinfo.getWAGES());
-            solrInputDocument.addField("yuesaoNATIVEPLACE",yuesobasicinfo.getNATIVEPLACE());
-            solrInputDocument.addField("yuesaoNAME",yuesobasicinfo.getNAME());
-            solrInputDocument.addField("yuesaoSENIORITY",yuesobasicinfo.getSENIORITY());
-            solrInputDocument.addField("yuesaoEMAIL",yuesobasicinfo.getEMAIL());
-            solrInputDocument.addField("yuesaoEDUCATION",yuesobasicinfo.getEDUCATION());
-            solrInputDocument.addField("yuesaoCOMPANYID",yuesobasicinfo.getCOMPANYID());
-            solrInputDocument.addField("yuesaoHEIGHT",yuesobasicinfo.getHEIGHT());
-            solrInputDocument.addField("yuesaoIDCARD",yuesobasicinfo.getIDCARD());
-            solrInputDocument.addField("yuesaoPHONE",yuesobasicinfo.getPHONE());
-            solrInputDocument.addField("yuesaoPHOTO",yuesobasicinfo.getPHOTO());
-            solrInputDocument.addField("yuesaoWEIGHT",yuesobasicinfo.getWEIGHT());
-            solrInputDocument.addField("yuesaoWORKAREA",yuesobasicinfo.getWORKAREA());
+//            solrInputDocument.addField("yuesaoID",yuesobasicinfo.getID());
+//            solrInputDocument.addField("yuesaoAGE",yuesobasicinfo.getAGE());
+//            solrInputDocument.addField("yuesaoLEVELS",yuesobasicinfo.getLEVELS());
+//            solrInputDocument.addField("yuesaoWAGES",yuesobasicinfo.getWAGES());
+//            solrInputDocument.addField("yuesaoNATIVEPLACE",yuesobasicinfo.getNATIVEPLACE());
+//            solrInputDocument.addField("yuesaoNAME",yuesobasicinfo.getNAME());
+//            solrInputDocument.addField("yuesaoSENIORITY",yuesobasicinfo.getSENIORITY());
+//            solrInputDocument.addField("yuesaoEMAIL",yuesobasicinfo.getEMAIL());
+//            solrInputDocument.addField("yuesaoEDUCATION",yuesobasicinfo.getEDUCATION());
+//            solrInputDocument.addField("yuesaoCOMPANYID",yuesobasicinfo.getCOMPANYID());
+//            solrInputDocument.addField("yuesaoHEIGHT",yuesobasicinfo.getHEIGHT());
+//            solrInputDocument.addField("yuesaoIDCARD",yuesobasicinfo.getIDCARD());
+//            solrInputDocument.addField("yuesaoPHONE",yuesobasicinfo.getPHONE());
+//            solrInputDocument.addField("yuesaoPHOTO",yuesobasicinfo.getPHOTO());
+//            solrInputDocument.addField("yuesaoWEIGHT",yuesobasicinfo.getWEIGHT());
+//            solrInputDocument.addField("yuesaoWORKAREA",yuesobasicinfo.getWORKAREA());
+              client.addBean(yuesobasicinfo);
 
-                client.add(solrInputDocument);
+
             }
         client.commit();
 
@@ -61,22 +62,22 @@ public class YUESOBASICINFOSearchdao {
     public  void addYUESOBASICINFO(int id) throws IOException, SolrServerException {
        YUESOBASICINFO yuesobasicinfo=yuesobasicinfoService.findbyid(id);
         SolrInputDocument solrInputDocument=new SolrInputDocument();
-        solrInputDocument.addField("yuesaoID",yuesobasicinfo.getID());
-        solrInputDocument.addField("yuesaoAGE",yuesobasicinfo.getAGE());
-        solrInputDocument.addField("yuesaoLEVELS",yuesobasicinfo.getLEVELS());
-        solrInputDocument.addField("yuesaoWAGES",yuesobasicinfo.getWAGES());
-        solrInputDocument.addField("yuesaoNATIVEPLACE",yuesobasicinfo.getNATIVEPLACE());
-        solrInputDocument.addField("yuesaoNAME",yuesobasicinfo.getNAME());
-        solrInputDocument.addField("yuesaoSENIORITY",yuesobasicinfo.getSENIORITY());
-        solrInputDocument.addField("yuesaoEMAIL",yuesobasicinfo.getEMAIL());
-        solrInputDocument.addField("yuesaoEDUCATION",yuesobasicinfo.getEDUCATION());
-        solrInputDocument.addField("yuesaoCOMPANYID",yuesobasicinfo.getCOMPANYID());
-        solrInputDocument.addField("yuesaoHEIGHT",yuesobasicinfo.getHEIGHT());
-        solrInputDocument.addField("yuesaoIDCARD",yuesobasicinfo.getIDCARD());
-        solrInputDocument.addField("yuesaoPHONE",yuesobasicinfo.getPHONE());
-        solrInputDocument.addField("yuesaoPHOTO",yuesobasicinfo.getPHOTO());
-        solrInputDocument.addField("yuesaoWEIGHT",yuesobasicinfo.getWEIGHT());
-        solrInputDocument.addField("yuesaoWORKAREA",yuesobasicinfo.getWORKAREA());
+        solrInputDocument.addField("ID",yuesobasicinfo.getYUESOBASICINFOID());
+        solrInputDocument.addField("AGE",yuesobasicinfo.getAGE());
+        solrInputDocument.addField("LEVELS",yuesobasicinfo.getLEVELS());
+        solrInputDocument.addField("WAGES",yuesobasicinfo.getWAGES());
+        solrInputDocument.addField("NATIVEPLACE",yuesobasicinfo.getNATIVEPLACE());
+        solrInputDocument.addField("NAME",yuesobasicinfo.getNAME());
+        solrInputDocument.addField("SENIORITY",yuesobasicinfo.getSENIORITY());
+        solrInputDocument.addField("EMAIL",yuesobasicinfo.getEMAIL());
+        solrInputDocument.addField("EDUCATION",yuesobasicinfo.getEDUCATION());
+        solrInputDocument.addField("COMPANYID",yuesobasicinfo.getCOMPANYID());
+        solrInputDocument.addField("HEIGHT",yuesobasicinfo.getHEIGHT());
+        solrInputDocument.addField("IDCARD",yuesobasicinfo.getIDCARD());
+        solrInputDocument.addField("PHONE",yuesobasicinfo.getPHONE());
+        solrInputDocument.addField("PHOTO",yuesobasicinfo.getPHOTO());
+        solrInputDocument.addField("WEIGHT",yuesobasicinfo.getWEIGHT());
+        solrInputDocument.addField("WORKAREA",yuesobasicinfo.getWORKAREA());
 
         client.add(solrInputDocument);
         client.commit();
@@ -101,39 +102,39 @@ public class YUESOBASICINFOSearchdao {
         searchResult.setResultCount((int) numFound);
         for (SolrDocument solrDocument: solrDocumentList){
             YUESOBASICINFO yuesobasicinfo=new YUESOBASICINFO();
-            yuesobasicinfo.setID((Integer) solrDocument.getFieldValue("yuesaoID"));
-            yuesobasicinfo.setAGE((String) solrDocument.getFieldValue("yuesaoAGE"));
-            yuesobasicinfo.setCOMPANYID((String) solrDocument.getFieldValue("yuesaoLEVELS"));
-            yuesobasicinfo.setEDUCATION((String) solrDocument.getFieldValue("yuesaoWAGES"));
-            yuesobasicinfo.setEMAIL((String) solrDocument.getFieldValue("yuesaoEMAIL"));
-            yuesobasicinfo.setHEIGHT((String) solrDocument.getFieldValue("yuesaoHEIGHT"));
-            yuesobasicinfo.setIDCARD((String) solrDocument.getFieldValue("yuesaoIDCARD"));
+            yuesobasicinfo.setYUESOBASICINFOID((Integer) solrDocument.getFieldValue("ID"));
+            yuesobasicinfo.setAGE((String) solrDocument.getFieldValue("AGE"));
+            yuesobasicinfo.setCOMPANYID((String) solrDocument.getFieldValue("LEVELS"));
+            yuesobasicinfo.setEDUCATION((String) solrDocument.getFieldValue("WAGES"));
+            yuesobasicinfo.setEMAIL((String) solrDocument.getFieldValue("EMAIL"));
+            yuesobasicinfo.setHEIGHT((String) solrDocument.getFieldValue("HEIGHT"));
+            yuesobasicinfo.setIDCARD((String) solrDocument.getFieldValue("IDCARD"));
 
-            yuesobasicinfo.setNATIVEPLACE((String) solrDocument.getFieldValue("yuesaoNATIVEPLACE"));
-            yuesobasicinfo.setWEIGHT((String) solrDocument.getFieldValue("yuesaoWEIGHT"));
-            yuesobasicinfo.setSENIORITY((String) solrDocument.getFieldValue("yuesaoSENIORITY"));
-            yuesobasicinfo.setPHOTO((String) solrDocument.getFieldValue("yuesaoPHOTO"));
-            yuesobasicinfo.setLEVELS((Integer) solrDocument.getFieldValue("yuesaoLEVELS"));
-            yuesobasicinfo.setWAGES((String) solrDocument.getFieldValue("yuesaoWAGES"));
-            yuesobasicinfo.setEDUCATION((String) solrDocument.getFieldValue("yuesaoEDUCATION"));
-            yuesobasicinfo.setCOMPANYID((String) solrDocument.getFieldValue("yuesaoCOMPANYID"));
-            yuesobasicinfo.setPHONE((String) solrDocument.getFieldValue("yuesaoPHONE"));
+            yuesobasicinfo.setNATIVEPLACE((String) solrDocument.getFieldValue("NATIVEPLACE"));
+            yuesobasicinfo.setWEIGHT((String) solrDocument.getFieldValue("WEIGHT"));
+            yuesobasicinfo.setSENIORITY((String) solrDocument.getFieldValue("SENIORITY"));
+            yuesobasicinfo.setPHOTO((String) solrDocument.getFieldValue("PHOTO"));
+            yuesobasicinfo.setLEVELS((Integer) solrDocument.getFieldValue("LEVELS"));
+            yuesobasicinfo.setWAGES((String) solrDocument.getFieldValue("WAGES"));
+            yuesobasicinfo.setEDUCATION((String) solrDocument.getFieldValue("EDUCATION"));
+            yuesobasicinfo.setCOMPANYID((String) solrDocument.getFieldValue("COMPANYID"));
+            yuesobasicinfo.setPHONE((String) solrDocument.getFieldValue("PHONE"));
             yuesobasicinfo.setWORKAREA((String) solrDocument.getFieldValue("yuasaoWORKAREA"));
 
 
             if (flag){
-                List<String>list=highlight.get(solrDocument.get("id")).get("yuesaoNAME");
+                List<String>list=highlight.get(solrDocument.get("id")).get("NAME");
                 String name=null;
                 if (list!=null&&list.size()>0){
                     name=list.get(0);
 
                 }else {
-                    name= (String) solrDocument.get("yuesaoNAME");
+                    name= (String) solrDocument.get("NAME");
                 }
                 yuesobasicinfo.setNAME(name);
             }else{
 
-                yuesobasicinfo.setNAME((String) solrDocument.get("yuesaoNAME"));
+                yuesobasicinfo.setNAME((String) solrDocument.get("NAME"));
             }
 
 
@@ -157,25 +158,25 @@ public class YUESOBASICINFOSearchdao {
         YUESOBASICINFO yuesobasicinfo=new YUESOBASICINFO();
         for (SolrDocument solrDocument: solrDocumentList){
 
-            yuesobasicinfo.setID((Integer) solrDocument.get("yuesaoID"));
-            yuesobasicinfo.setAGE((String) solrDocument.get("yuesaoAGE"));
-            yuesobasicinfo.setCOMPANYID((String) solrDocument.get("yuesaoLEVELS"));
-            yuesobasicinfo.setEDUCATION((String) solrDocument.get("yuesaoWAGES"));
-            yuesobasicinfo.setEMAIL((String) solrDocument.get("yuesaoEMAIL"));
-            yuesobasicinfo.setHEIGHT((String) solrDocument.get("yuesaoHEIGHT"));
-            yuesobasicinfo.setIDCARD((String) solrDocument.get("yuesaoIDCARD"));
+            yuesobasicinfo.setYUESOBASICINFOID((Integer) solrDocument.get("ID"));
+            yuesobasicinfo.setAGE((String) solrDocument.get("AGE"));
+            yuesobasicinfo.setCOMPANYID((String) solrDocument.get("LEVELS"));
+            yuesobasicinfo.setEDUCATION((String) solrDocument.get("WAGES"));
+            yuesobasicinfo.setEMAIL((String) solrDocument.get("EMAIL"));
+            yuesobasicinfo.setHEIGHT((String) solrDocument.get("HEIGHT"));
+            yuesobasicinfo.setIDCARD((String) solrDocument.get("IDCARD"));
 
-            yuesobasicinfo.setNATIVEPLACE((String) solrDocument.get("yuesaoNATIVEPLACE"));
-            yuesobasicinfo.setWEIGHT((String) solrDocument.get("yuesaoWEIGHT"));
-            yuesobasicinfo.setSENIORITY((String) solrDocument.get("yuesaoSENIORITY"));
-            yuesobasicinfo.setPHOTO((String) solrDocument.get("yuesaoPHOTO"));
-            yuesobasicinfo.setLEVELS((Integer) solrDocument.get("yuesaoLEVELS"));
-            yuesobasicinfo.setWAGES((String) solrDocument.get("yuesaoWAGES"));
-            yuesobasicinfo.setEDUCATION((String) solrDocument.get("yuesaoEDUCATION"));
-            yuesobasicinfo.setCOMPANYID((String) solrDocument.get("yuesaoCOMPANYID"));
-            yuesobasicinfo.setPHONE((String) solrDocument.get("yuesaoPHONE"));
+            yuesobasicinfo.setNATIVEPLACE((String) solrDocument.get("NATIVEPLACE"));
+            yuesobasicinfo.setWEIGHT((String) solrDocument.get("WEIGHT"));
+            yuesobasicinfo.setSENIORITY((String) solrDocument.get("SENIORITY"));
+            yuesobasicinfo.setPHOTO((String) solrDocument.get("PHOTO"));
+            yuesobasicinfo.setLEVELS((Integer) solrDocument.get("LEVELS"));
+            yuesobasicinfo.setWAGES((String) solrDocument.get("WAGES"));
+            yuesobasicinfo.setEDUCATION((String) solrDocument.get("EDUCATION"));
+            yuesobasicinfo.setCOMPANYID((String) solrDocument.get("COMPANYID"));
+            yuesobasicinfo.setPHONE((String) solrDocument.get("PHONE"));
             yuesobasicinfo.setWORKAREA((String) solrDocument.get("yuasaoWORKAREA"));
-            yuesobasicinfo.setNAME((String) solrDocument.get("yuesaoNAME"));
+            yuesobasicinfo.setNAME((String) solrDocument.get("NAME"));
 
 
 

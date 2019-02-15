@@ -28,16 +28,16 @@ public class MSGSolrServiceImpl implements MSGSolrService {
     @Override
     public List<MSGInfo> findbytoid(int toid, int type) throws IOException, SolrServerException {
         SolrQuery solrQuery=new SolrQuery();
-        solrQuery.set("msgTOID"+toid);
+        solrQuery.set("TOID"+toid);
         List<MSGInfo>msgInfoList=new ArrayList<>();
         HashSet<String> msgstoid=msgSearchdao.Search(solrQuery,type);
         //获取fromid
         for (String fromid: msgstoid ){
             MSGInfo msgInfo=new MSGInfo();
             SolrQuery solrQuery1=new SolrQuery();
-            solrQuery1.set("msgTOID"+toid);
-            solrQuery1.set("msgFROMID"+fromid);
-            solrQuery1.setSort("msgTIME",SolrQuery.ORDER.desc);
+            solrQuery1.set("TOID"+toid);
+            solrQuery1.set("FROMID"+fromid);
+            solrQuery1.setSort("TIME",SolrQuery.ORDER.desc);
 //            solrQuery1.setStart(0);
 //            solrQuery1.setRows(1);
             List<MSG>msgList=msgSearchdao.Searchby(solrQuery1,type);
@@ -55,14 +55,14 @@ public class MSGSolrServiceImpl implements MSGSolrService {
     @Override
     public List<MSGInfo> updatebytall(int msgid, int type) throws IOException, SolrServerException {
         SolrQuery solrQuery=new SolrQuery();
-        solrQuery.set("msgID:",msgid);
+        solrQuery.set("ID:",msgid);
         String id=msgSearchdao.Searchid(solrQuery);
         //开始更新
-        //solrQuery.set("msgtype:",2);
+        //solrQuery.set("type:",2);
         msgSearchdao.update(type,id);
 
 
-       // solrQuery.set("msgTOID:"+toid);
+       // solrQuery.set("TOID:"+toid);
 
         return null;
     }

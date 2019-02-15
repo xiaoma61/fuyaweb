@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 public interface MSGRepository extends JpaRepository<MSG,Integer> {
-    @Query("select  m from MSG m where m.ID=?1")
+    @Query("select  m from MSG m where m.MSGID=?1")
     MSG findByID(int id);
 
 }

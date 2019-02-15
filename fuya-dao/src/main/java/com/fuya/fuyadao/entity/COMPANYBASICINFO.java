@@ -2,6 +2,8 @@ package com.fuya.fuyadao.entity;
 
 
 
+import org.apache.solr.client.solrj.beans.Field;
+
 import javax.persistence.*;
 
 @Entity
@@ -12,12 +14,20 @@ public class COMPANYBASICINFO {
     @SequenceGenerator(name = "COMPANYBASICINFOSEQUENCEid",sequenceName = "COMPANYBASICINFOSEQUENCE",initialValue=1,allocationSize=1 )
     @GeneratedValue(strategy= GenerationType.SEQUENCE,generator="COMPANYBASICINFOSEQUENCEid")
 
-    private int ID;
+    @Field
+
+    private int COMPANYBASICINFOID;
+    @Field
     private int USERID;
+    @Field
     private String INTRODUCE;
+    @Field
     private String ADDRESS;
+    @Field
     private int LEVELS;
+    @Field
     private String CORPORATENAME;
+    @Field
     private int NUMS;
 
     public int getNUMS() {
@@ -28,12 +38,12 @@ public class COMPANYBASICINFO {
         this.NUMS = NUMS;
     }
 
-    public int getID() {
-        return ID;
+    public int getCOMPANYBASICINFOID() {
+        return COMPANYBASICINFOID;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setCOMPANYBASICINFOID(int COMPANYBASICINFOID) {
+        this.COMPANYBASICINFOID = COMPANYBASICINFOID;
     }
 
     public int getUSERID() {

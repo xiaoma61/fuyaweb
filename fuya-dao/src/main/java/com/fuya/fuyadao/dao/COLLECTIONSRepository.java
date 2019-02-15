@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import javax.transaction.Transactional;
 
 public interface COLLECTIONSRepository extends JpaRepository<COLLECTIONS,Integer> {
-    @Query("select  c from  COLLECTIONS c where c.ID=?1")
+    @Query("select  c from  COLLECTIONS c where c.COLLECTIONSID=?1")
     COLLECTIONS findByID(int id);
     //增加
     @Transactional//注解，使用默认配置，抛出异常之后，事务会自动回滚，数据不会插入到数据库

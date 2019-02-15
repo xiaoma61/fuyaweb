@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface ORDERSRepository extends JpaRepository<ORDERS,Integer> {
     //添加
-    @Query("select o from  ORDERS o where  o.ID=?1")
+    @Query("select o from  ORDERS o where  o.ORDERSID=?1")
     ORDERS findByID(int id);
     //根据月嫂id查找信息
     @Query("select o from  ORDERS  o  where  o.TOID=?1")

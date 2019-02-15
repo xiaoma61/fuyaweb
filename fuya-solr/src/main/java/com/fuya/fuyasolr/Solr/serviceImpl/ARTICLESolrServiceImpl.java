@@ -27,11 +27,11 @@ public class ARTICLESolrServiceImpl implements ARTICLESolrService {
     @Override
     public SearchResult Searchbytype(int type, int start, int rows) throws IOException, SolrServerException {
         SolrQuery solrQuery=new SolrQuery();
-        String query="articleTYPE:"+type;
+        String query="TYPE:"+type;
         solrQuery.setQuery(query);
         solrQuery.setStart(start);
         solrQuery.setRows(rows);
-        solrQuery.setSort("articleNUMS", SolrQuery.ORDER.desc);
+        solrQuery.setSort("NUMS", SolrQuery.ORDER.desc);
         SearchResult searchResult=articleSearchdao.Search(solrQuery);
 
         return searchResult;
@@ -40,8 +40,14 @@ public class ARTICLESolrServiceImpl implements ARTICLESolrService {
     @Override
     public SearchResult Searchbyid(int id) throws IOException, SolrServerException {
         SolrQuery solrQuery=new SolrQuery();
-        String query="articleID:"+id;
+        solrQuery.set("q","ARTICLEID:"+id);
         SearchResult searchResult=articleSearchdao.Search(solrQuery);
+//        String ids=articleSearchdao.Searchid(solrQuery);
+//        System.out.println("ARTICLEID:"+ids);
+//        String id=articleSearchdao.Searchid(solrQuery);
+
+//        solrQuery.setQuery(query);
+//        SearchResult searchResult=articleSearchdao.Search(solrQuery);
 
 
         return searchResult;
@@ -50,7 +56,7 @@ public class ARTICLESolrServiceImpl implements ARTICLESolrService {
     @Override
     public SearchResult SearchbyLikeName(String Name,int start,int rows) throws IOException, SolrServerException {
         SolrQuery solrQuery=new SolrQuery();
-        solrQuery.set("q","articleTITLE:"+"*"+Name+"*");
+        solrQuery.set("q","TITLE:"+"*"+Name+"*");
 
         solrQuery.setStart(start);
         solrQuery.setRows(rows);
@@ -60,13 +66,18 @@ public class ARTICLESolrServiceImpl implements ARTICLESolrService {
 
     @Override
     public void update(int articleid) throws IOException, SolrServerException {
-        String id=null;
+//        String id=null;
         SolrQuery solrQuery=new SolrQuery();
-        solrQuery.set("q","articleTITLE:"+id);
-        id=articleSearchdao.Searchid(solrQuery);
+        solrQuery.set("q","ARTICLEID:"+articleid);
+        String id=articleSearchdao.Searchid(solrQuery);
+        System.out.println("ARTICLEID:"+articleid);
+        System.out.println(id);
         //删除
-        articleSearchdao.delete(id);
-        articleSearchdao.addARTICLE(articleid);
+        if (id!=null&&!id.equals("")){
+            articleSearchdao.delete(id);
+            articleSearchdao.addARTICLE(articleid);
+        }
+
 
 
 
@@ -76,10 +87,16 @@ public class ARTICLESolrServiceImpl implements ARTICLESolrService {
     public void delete(int articleid) throws IOException, SolrServerException {
         String id=null;
         SolrQuery solrQuery=new SolrQuery();
-        solrQuery.set("q","articleTITLE:"+id);
+        solrQuery.set("q","ARTICLEID:"+articleid);
+        System.out.println("ARTICLEID:"+articleid);
         id=articleSearchdao.Searchid(solrQuery);
         //删除
-        articleSearchdao.delete(id);
+        System.out.println(id);
+        if (id!=null&&!id.equals("")){
+            articleSearchdao.delete(id);
+        }
+
+
     }
 
     @Override
@@ -87,7 +104,7 @@ public class ARTICLESolrServiceImpl implements ARTICLESolrService {
         SolrQuery solrQuery=new SolrQuery();
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm'");
-        String time = "createTime:["+sdf.format(starttime)+" TO "+sdf.format(endtime)+"]";
+        String time = "Time:["+sdf.format(starttime)+" TO "+sdf.format(endtime)+"]";
         solrQuery.setStart(start);
         solrQuery.setRows(rows);
         solrQuery.set("q",time);

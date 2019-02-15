@@ -1,6 +1,8 @@
 package com.fuya.fuyadao.entity;
 
 
+import org.apache.solr.client.solrj.beans.Field;
+
 import javax.persistence.*;
 
 @Entity
@@ -10,18 +12,23 @@ public class COMMENTS {
     @Id
     @SequenceGenerator(name = "COMMENTS_SEQUENCEid" ,initialValue = 1,allocationSize=1,sequenceName = "COMMENTS_SEQUENCE")
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "COMMENTS_SEQUENCEid")
-    private int ID;
+    @Field
+    private int COMMENTSID;
+    @Field
     private int ORDERID;
+    @Field
     private String CONTENT;
+    @Field
     private int LEVELS;
+    @Field
     private int USERID;
 
-    public int getID() {
-        return ID;
+    public int getCOMMENTSID() {
+        return COMMENTSID;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setCOMMENTSID(int COMMENTSID) {
+        this.COMMENTSID = COMMENTSID;
     }
 
     public int getORDERID() {

@@ -5,14 +5,14 @@ import com.fuya.fuyadao.entity.ARTICLE;
 import java.util.List;
 
 public class ARTICLEidinfo {
-    ARTICLE article;
+    ARTICLEmodel article;
     List<Object> objects;
 
-    public ARTICLE getArticle() {
+    public ARTICLEmodel getArticle() {
         return article;
     }
 
-    public void setArticle(ARTICLE article) {
+    public void setArticle(ARTICLEmodel article) {
         this.article = article;
     }
 

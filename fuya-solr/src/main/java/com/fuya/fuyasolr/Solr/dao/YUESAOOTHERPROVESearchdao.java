@@ -25,13 +25,15 @@ public class YUESAOOTHERPROVESearchdao {
     YUESAOOTHERPROVEService yuesaootherproveService;
     public void addYUESAOOTHERPROVE(int id) throws IOException, SolrServerException {
         YUESAOOTHERPROVE yuesaootherprove=yuesaootherproveService.findByID(id);
-        SolrInputDocument solrInputDocument=new SolrInputDocument();
-        solrInputDocument.addField("yuesaootherproveFILEAREA",yuesaootherprove.getFILEAREA());
-        solrInputDocument.addField("yuesaootherproveID",yuesaootherprove.getID());
-        solrInputDocument.addField("yuesaootherproveTITLE",yuesaootherprove.getTITLE());
-        solrInputDocument.addField("yuesaootherproveUSERID",yuesaootherprove.getUSERID());
-
-        solrClient.add(solrInputDocument);
+//        SolrInputDocument solrInputDocument=new SolrInputDocument();
+//        solrInputDocument.addField("yuesaootherproveFILEAREA",yuesaootherprove.getFILEAREA());
+//        solrInputDocument.addField("yuesaootherproveID",yuesaootherprove.getID());
+//        solrInputDocument.addField("yuesaootherproveTITLE",yuesaootherprove.getTITLE());
+//        solrInputDocument.addField("yuesaootherproveUSERID",yuesaootherprove.getUSERID());
+//
+//
+//        solrClient.add(solrInputDocument);
+        solrClient.addBean(yuesaootherprove);
         solrClient.commit();
 
 
@@ -44,10 +46,10 @@ public class YUESAOOTHERPROVESearchdao {
         searchResult.setResultCount((int) solrDocumentList.getNumFound());
         for (SolrDocument solrocument:solrDocumentList){
             YUESAOOTHERPROVE yuesaootherprove=new YUESAOOTHERPROVE();
-            yuesaootherprove.setFILEAREA((String) solrocument.getFieldValue("yuesaootherproveFILEAREA"));
-            yuesaootherprove.setID((Integer) solrocument.getFieldValue("yuesaootherproveID"));
-            yuesaootherprove.setTITLE((String) solrocument.getFieldValue("yuesaootherproveTITLE"));
-            yuesaootherprove.setUSERID((Integer) solrocument.getFieldValue("yuesaootherproveUSERID"));
+            yuesaootherprove.setFILEAREA((String) solrocument.getFieldValue("FILEAREA"));
+            yuesaootherprove.setYUESAOOTHERPROVEID((Integer) solrocument.getFieldValue("ID"));
+            yuesaootherprove.setTITLE((String) solrocument.getFieldValue("TITLE"));
+            yuesaootherprove.setUSERID((Integer) solrocument.getFieldValue("USERID"));
             yuesaootherproves.add(yuesaootherprove);
         }
         searchResult.setObjects(yuesaootherproves);

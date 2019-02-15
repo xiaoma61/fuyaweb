@@ -1,5 +1,7 @@
 package com.fuya.fuyadao.entity;
 
+import org.apache.solr.client.solrj.beans.Field;
+
 import javax.persistence.*;
 
 
@@ -9,16 +11,19 @@ public class COLLECTIONS {
     @Id
     @SequenceGenerator(name = "COLLECTIONS_SEQUENCEid",initialValue = 1,allocationSize=1,sequenceName = "COLLECTIONS_SEQUENCE")
     @GeneratedValue(generator = "COLLECTIONS_SEQUENCEid" ,strategy = GenerationType.SEQUENCE)
-    private int ID;
+    @Field
+    private int COLLECTIONSID;
+    @Field
     private int FROMID;
+    @Field
     private  int TOID;
 
-    public int getID() {
-        return ID;
+    public int getCOLLECTIONSID() {
+        return COLLECTIONSID;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setCOLLECTIONSID(int COLLECTIONSID) {
+        this.COLLECTIONSID = COLLECTIONSID;
     }
 
     public int getFROMID() {

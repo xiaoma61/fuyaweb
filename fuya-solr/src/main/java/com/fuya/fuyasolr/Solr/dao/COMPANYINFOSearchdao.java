@@ -20,19 +20,20 @@ public class COMPANYINFOSearchdao {
     SolrClient solrClient;
     public void addCOMPANYINFO(int id) throws IOException, SolrServerException {
         COMPANYINFO companyinfo=service.findbyid(id);
-        SolrInputDocument solrInputDocument=new SolrInputDocument();
-        solrInputDocument.addField("companyinfoADDRESS",companyinfo.getADDRESS());
-        solrInputDocument.addField("companyinfoCONTACTNAME",companyinfo.getCONTACTNAME());
-        solrInputDocument.addField("companyinfoCONTACTPHONE",companyinfo.getCONTACTPHONE());
-        solrInputDocument.addField("companyinfoEMAIL",companyinfo.getEMAIL());
-        solrInputDocument.addField("companyinfoID",companyinfo.getID());
-        solrInputDocument.addField("companyinfoIDCARD",companyinfo.getIDCARD());
-        solrInputDocument.addField("companyinfoIDCARDFILE",companyinfo.getIDCARDFILE());
-        solrInputDocument.addField("companyinfoLICENCE",companyinfo.getLICENCE());
-
-        solrInputDocument.addField("companyinfoLICENCENO",companyinfo.getLICENCENO());
-        solrInputDocument.addField("companyinfoUSERSID",companyinfo.getUSERSID());
-        solrClient.add(solrInputDocument);
+//        SolrInputDocument solrInputDocument=new SolrInputDocument();
+//        solrInputDocument.addField("companyinfoADDRESS",companyinfo.getADDRESS());
+//        solrInputDocument.addField("companyinfoCONTACTNAME",companyinfo.getCONTACTNAME());
+//        solrInputDocument.addField("companyinfoCONTACTPHONE",companyinfo.getCONTACTPHONE());
+//        solrInputDocument.addField("companyinfoEMAIL",companyinfo.getEMAIL());
+//        solrInputDocument.addField("companyinfoID",companyinfo.getID());
+//        solrInputDocument.addField("companyinfoIDCARD",companyinfo.getIDCARD());
+//        solrInputDocument.addField("companyinfoIDCARDFILE",companyinfo.getIDCARDFILE());
+//        solrInputDocument.addField("companyinfoLICENCE",companyinfo.getLICENCE());
+//
+//        solrInputDocument.addField("companyinfoLICENCENO",companyinfo.getLICENCENO());
+//        solrInputDocument.addField("companyinfoUSERSID",companyinfo.getUSERSID());
+//        solrClient.add(solrInputDocument);
+        solrClient.addBean(companyinfo);
         solrClient.commit();
     }
 

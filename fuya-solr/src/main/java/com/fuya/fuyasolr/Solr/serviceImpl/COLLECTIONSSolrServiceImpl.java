@@ -26,10 +26,10 @@ public class COLLECTIONSSolrServiceImpl implements COLLECTIONSSolrService {
     public List<String> Searchbyfromidandtoid(int fromid, int toid) throws IOException, SolrServerException {
         SolrQuery solrQuery=new SolrQuery();
         StringBuffer stringBuffer=new StringBuffer();
-        stringBuffer.append("collectionsFROMID:"+fromid);
-        stringBuffer.append(" AND collectionsTOID:"+toid);
-//        solrQuery.set("collectionsFROMID:",fromid);
-//        solrQuery.set("collectionsTOID:",toid);
+        stringBuffer.append("FROMID:"+fromid);
+        stringBuffer.append(" AND TOID:"+toid);
+//        solrQuery.set("FROMID:",fromid);
+//        solrQuery.set("TOID:",toid);
         solrQuery.setQuery(stringBuffer.toString());
 //        solrQuery.setStart(0);
 //        solrQuery.setRows(1);
@@ -53,7 +53,7 @@ public class COLLECTIONSSolrServiceImpl implements COLLECTIONSSolrService {
 
     @Override
     public void delete(int fromid, int toid) throws IOException, SolrServerException {
-        String query="collectionsFROMID:"+fromid+" AND collectionsTOID:"+toid;
+        String query="FROMID:"+fromid+" AND TOID:"+toid;
 
         collectionsSearchdao.delete(query);
     }

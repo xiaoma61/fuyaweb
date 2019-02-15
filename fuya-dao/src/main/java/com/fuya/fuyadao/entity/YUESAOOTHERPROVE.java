@@ -1,26 +1,33 @@
 package com.fuya.fuyadao.entity;
 
+import org.apache.solr.client.solrj.beans.Field;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "YUESAOOTHERPROVE")
 public class YUESAOOTHERPROVE {
+    public int getYUESAOOTHERPROVEID() {
+        return YUESAOOTHERPROVEID;
+    }
+
+    public void setYUESAOOTHERPROVEID(int YUESAOOTHERPROVEID) {
+        this.YUESAOOTHERPROVEID = YUESAOOTHERPROVEID;
+    }
+
     @Id
     @SequenceGenerator(name = "YUESAOOTHERPROVE_SEQUENCEid",initialValue = 1,allocationSize=1,sequenceName = "YUESAOOTHERPROVE_SEQUENCE")
     @GeneratedValue(generator = "YUESAOOTHERPROVE_SEQUENCEid" ,strategy = GenerationType.SEQUENCE)
-
-    private int ID;
+    @Field
+    private int YUESAOOTHERPROVEID;
+    @Field
     private String FILEAREA;
+    @Field
     private String TITLE;
+    @Field
     private int USERID;
 
-    public int getID() {
-        return ID;
-    }
 
-    public void setID(int ID) {
-        this.ID = ID;
-    }
 
     public String getFILEAREA() {
         return FILEAREA;
