@@ -1,10 +1,9 @@
-package com.fuya.fuyaweb.yusaoController;
+package com.fuya.fuyaweb.IndexyuesaoController;
 
 import com.fuya.ActiveMQ.service.ProductService;
 import com.fuya.fuyadao.entity.COLLECTIONS;
 import com.fuya.fuyaservice.COLLECTIONSService;
 import com.fuya.fuyasolr.Solr.service.COLLECTIONSSolrService;
-import net.sf.json.JSONObject;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.springframework.beans.factory.annotation.Autowired;

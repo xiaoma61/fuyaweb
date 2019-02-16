@@ -15,9 +15,9 @@ public interface RECRUITRepository extends JpaRepository<RECRUIT,Integer> {
     void deleteByRECRUITID(int id);
     @Transactional//注解，使用默认配置，抛出异常之后，事务会自动回滚，数据不会插入到数据库
     @Modifying
-    @Query("update RECRUIT r set r.NUMS=?1 ,r.DESCRIBE=?2,r.EDUCATION=?3,r.ENDTIME=?4,r.WORKBACKGROUND=?5,r.HIGHLIGHT=?6,r.LINKMAN=?6,r.PHONE=?7,r.POSITION=?8,r.SALARY=?9,r.STARTTIME=?10," +
-            "r.TIME=?11,r.WORKAREA=?12 where r.RECRUITID=?13")
-    void   updateRECRUITbyid(int NUMS, String DESCRIBE, String EDUCATION, Date ENDTIME,String WORKBACKGROUND,String HIGHLIGHT,String LINKMAN,
+    @Query("update RECRUIT r set r.NUMS=?1 ,r.DESCRIBE=?2,r.EDUCATION=?3,r.ENDTIME=?4,r.WORKBACKGROUND=?5,r.HIGHLIGHT=?6,r.LINKMAN=?7,r.PHONE=?8,r.POSITION=?9,r.SALARY=?10,r.STARTTIME=?11," +
+            "r.TIME=?12,r.WORKAREA=?13 where r.RECRUITID=?14")
+    void   updateRECRUITbyid(String NUMS, String DESCRIBE, String EDUCATION, Date ENDTIME,String WORKBACKGROUND,String HIGHLIGHT,String LINKMAN,
                              String PHONE,String POSITION,String SALARY,Date STARTTIME,Date TIME,String  WORKAREA,int id);
 
 

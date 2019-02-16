@@ -123,10 +123,10 @@ public class CompanyrecruitController {
     @RequiresRoles("company")
     @RequestMapping("/companys/recruit/update")
     @ResponseBody
-    public JSONObject recruitupdate(@RequestParam(name = "nums",defaultValue = "1")int nums, @RequestParam(name = "highlight",defaultValue = "无")String hightlight,
+    public JSONObject recruitupdate(@RequestParam(name = "nums",defaultValue = "1")String nums, @RequestParam(name = "highlight",defaultValue = "无")String hightlight,
                                     @RequestParam(name = "linkman",defaultValue ="马小姐" )String linkman,
                                     @RequestParam(name="phone",defaultValue = "0000")String phone, @RequestParam(name = "describe",defaultValue = "无")String describe,
-                                    @RequestParam(name = "workbackgound",defaultValue = "很好的公司")String workbackgound,
+                                    @RequestParam(name = "workbackgound",defaultValue = "很对对对司")String workbackgound,
                                     @RequestParam(name = "starttime",defaultValue = "2018-01-09")String starttime,
                                     @RequestParam(name = "endtime",defaultValue = "2018-01-12")String endtime, @RequestParam(name = "position",defaultValue = "程序员")String position,
                                     @RequestParam(name = "salary",defaultValue = "工资")String salary, @RequestParam(name = "education",defaultValue = "教育水平")String education,
@@ -135,14 +135,18 @@ public class CompanyrecruitController {
                                     HttpServletRequest request) throws IOException, SolrServerException, ParseException {
 
 
-        recruitSolrService.UpdateByRECRUITID(id);
+
         //数据库删除
         recruitService.updateRECRUITbyid(nums,describe,education,TimeUtil.stringtodate(endtime),workbackgound,hightlight,linkman,phone,position,salary,TimeUtil.stringtodate(starttime),
                 TimeUtil.getsqldate(new Date()),workarea,id);
+        recruitSolrService.UpdateByRECRUITID(id);
         Map<String,String> msg=new HashMap<>();
         msg.put("msg","success");
         return JSONObject.fromObject(msg);
     }
+    //搜索发布时间
+    //搜索公司
+    //搜索职位
 
 
 }

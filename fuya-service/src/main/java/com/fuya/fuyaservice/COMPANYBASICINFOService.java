@@ -8,5 +8,6 @@ public interface COMPANYBASICINFOService {
     List<COMPANYBASICINFO> findAlllimit();
     COMPANYBASICINFO findByID(int ID);
     void save(COMPANYBASICINFO companybasicinfo);
+    void   updateCOMPANYBASICINFObyid(String ADDRESS,String CORPORATENAME,int id);
 
 }

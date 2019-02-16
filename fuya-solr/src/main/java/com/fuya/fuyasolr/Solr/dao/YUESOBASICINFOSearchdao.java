@@ -61,25 +61,9 @@ public class YUESOBASICINFOSearchdao {
     }
     public  void addYUESOBASICINFO(int id) throws IOException, SolrServerException {
        YUESOBASICINFO yuesobasicinfo=yuesobasicinfoService.findbyid(id);
-        SolrInputDocument solrInputDocument=new SolrInputDocument();
-        solrInputDocument.addField("ID",yuesobasicinfo.getYUESOBASICINFOID());
-        solrInputDocument.addField("AGE",yuesobasicinfo.getAGE());
-        solrInputDocument.addField("LEVELS",yuesobasicinfo.getLEVELS());
-        solrInputDocument.addField("WAGES",yuesobasicinfo.getWAGES());
-        solrInputDocument.addField("NATIVEPLACE",yuesobasicinfo.getNATIVEPLACE());
-        solrInputDocument.addField("NAME",yuesobasicinfo.getNAME());
-        solrInputDocument.addField("SENIORITY",yuesobasicinfo.getSENIORITY());
-        solrInputDocument.addField("EMAIL",yuesobasicinfo.getEMAIL());
-        solrInputDocument.addField("EDUCATION",yuesobasicinfo.getEDUCATION());
-        solrInputDocument.addField("COMPANYID",yuesobasicinfo.getCOMPANYID());
-        solrInputDocument.addField("HEIGHT",yuesobasicinfo.getHEIGHT());
-        solrInputDocument.addField("IDCARD",yuesobasicinfo.getIDCARD());
-        solrInputDocument.addField("PHONE",yuesobasicinfo.getPHONE());
-        solrInputDocument.addField("PHOTO",yuesobasicinfo.getPHOTO());
-        solrInputDocument.addField("WEIGHT",yuesobasicinfo.getWEIGHT());
-        solrInputDocument.addField("WORKAREA",yuesobasicinfo.getWORKAREA());
+        client.addBean(yuesobasicinfo);
 
-        client.add(solrInputDocument);
+//        client.add(solrInputDocument);
         client.commit();
 
     }

@@ -22,4 +22,11 @@ public class COMPANYINFOImpl implements COMPANYINFOService {
         COMPANYINFO companyinfo=companyinfoRepository.findByID(id);
         return companyinfo;
     }
+
+    @Override
+    public void updateCOMPANYINFObyid(String ADDRESS, String CONTACTNAME, String CONTACTPHONE, String EMAIL, String IDCARD, String IDCARDFILE, String LICENCE, String LICENCENO, int USERSID) {
+        companyinfoRepository.updateCOMPANYINFObyid(ADDRESS, CONTACTNAME, CONTACTPHONE, EMAIL, IDCARD, IDCARDFILE, LICENCE, LICENCENO, USERSID);
+    }
+
+
 }

@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Service
 public class RECRUITSolrServiceImpl implements RECRUITSolrService {
@@ -51,9 +53,14 @@ public class RECRUITSolrServiceImpl implements RECRUITSolrService {
 
     @Override
     public void UpdateByRECRUITID(int id) throws IOException, SolrServerException {
+        System.out.println("ddddd"+id);
         String ids=SearchIDByRECRUITID(id);
-        recruitSearchdao.delete(ids);
-        addRECRUIT(id);
+        System.out.println("ids++++"+ids);
+        if (ids!=null&&!ids.equals("")){
+            recruitSearchdao.delete(ids);
+            addRECRUIT(id);
+        }
+
 
     }
 
@@ -61,5 +68,34 @@ public class RECRUITSolrServiceImpl implements RECRUITSolrService {
     public void DeleteByRECRUITID(int id) throws IOException, SolrServerException {
         String ids=SearchIDByRECRUITID(id);
         recruitSearchdao.delete(ids);
+    }
+
+    @Override
+    public SearchResult SearchBytime() throws IOException, SolrServerException {
+        SolrQuery solrQuery=new SolrQuery();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+        String stime = "STARTTIME:[* TO "+ sdf.format(new Date())+"]";
+
+        solrQuery.set("q",stime);
+        SearchResult result=recruitSearchdao.Search(solrQuery);
+        SolrQuery solrQuery1=new SolrQuery();
+        String etime = "ENDTIME:["+ sdf.format(new Date())+" TO *]";
+        solrQuery1.set("q",etime);
+        SearchResult result1=recruitSearchdao.Search(solrQuery1);
+
+        if (result.getObjects()!=null){
+            result.getObjects().removeAll(result1.getObjects());
+            result1.getObjects().removeAll(result.getObjects());
+            SearchResult resultfin=result1;
+            return resultfin;
+        }
+        return null;
+
+
+
+
+
+
+
     }
 }

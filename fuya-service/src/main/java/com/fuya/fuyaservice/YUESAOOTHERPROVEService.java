@@ -8,4 +8,5 @@ import java.util.List;
 public interface YUESAOOTHERPROVEService {
     YUESAOOTHERPROVE findByID(int id);
     List<YUESAOOTHERPROVE> findByUSERID(int userid);
+    void save(YUESAOOTHERPROVE yuesaootherprove);
 }

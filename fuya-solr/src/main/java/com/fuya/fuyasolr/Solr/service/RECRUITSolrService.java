@@ -13,4 +13,6 @@ public interface RECRUITSolrService {
     public String SearchIDByRECRUITID(int id) throws IOException, SolrServerException;
     public void UpdateByRECRUITID(int id) throws IOException, SolrServerException;
     public void DeleteByRECRUITID(int id) throws IOException, SolrServerException;
+
+    SearchResult SearchBytime() throws IOException, SolrServerException;
 }

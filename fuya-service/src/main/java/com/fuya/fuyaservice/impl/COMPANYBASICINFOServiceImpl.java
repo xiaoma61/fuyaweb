@@ -29,4 +29,11 @@ public class COMPANYBASICINFOServiceImpl implements COMPANYBASICINFOService {
     public void save(COMPANYBASICINFO companybasicinfo) {
         companybasicinfoRepository.save(companybasicinfo);
     }
+
+    @Override
+    public void updateCOMPANYBASICINFObyid(String ADDRESS, String CORPORATENAME, int id) {
+        companybasicinfoRepository.updateCOMPANYBASICINFObyid(ADDRESS, CORPORATENAME, id);
+    }
+
+
 }

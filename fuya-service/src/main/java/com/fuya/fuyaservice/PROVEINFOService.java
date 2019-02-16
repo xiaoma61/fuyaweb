@@ -9,4 +9,5 @@ public interface PROVEINFOService {
     List<PROVEINFO> findByUSERSID(int userid);
     PROVEINFO findByID(int id);
 
+
 }

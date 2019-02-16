@@ -23,9 +23,24 @@ public class YUESAOOTHERPROVESolrServiceImpl implements YUESAOOTHERPROVESolrServ
     }
 
     @Override
+    public void delete(int id) throws IOException, SolrServerException {
+        SolrQuery solrQuery=new SolrQuery();
+        String query="YUESAOOTHERPROVEID:"+id;
+        solrQuery.set("q",query);
+        String ids=yuesaootherproveSearchdao.Searchid(solrQuery);
+        yuesaootherproveSearchdao.delete(ids);
+
+        System.out.println(query);
+        yuesaootherproveSearchdao.delete(query);
+
+    }
+
+    @Override
     public SearchResult searchbyuserid(int userid, int start, int rows) throws IOException, SolrServerException {
         SolrQuery solrQuery=new SolrQuery();
-        solrQuery.set("USERID"+userid);
+
+        solrQuery.set("q","YUESAOOTHERPROVEUSERID:"+userid);
+        System.out.println("YUESAOOTHERPROVEUSERID:"+userid);
         solrQuery.setStart(start);
         solrQuery.setRows(rows);
         SearchResult result=yuesaootherproveSearchdao.search(solrQuery);

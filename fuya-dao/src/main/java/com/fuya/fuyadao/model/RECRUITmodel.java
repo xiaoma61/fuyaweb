@@ -5,7 +5,7 @@ public class RECRUITmodel {
     
     private int RECRUITID;
     
-    private int USERSID;
+    private String COMPANY;
     
     private String POSITION;
     
@@ -41,12 +41,12 @@ public class RECRUITmodel {
         this.RECRUITID = RECRUITID;
     }
 
-    public int getUSERSID() {
-        return USERSID;
+    public String getCOMPANY() {
+        return COMPANY;
     }
 
-    public void setUSERSID(int USERSID) {
-        this.USERSID = USERSID;
+    public void setCOMPANY(String COMPANY) {
+        this.COMPANY = COMPANY;
     }
 
     public String getPOSITION() {

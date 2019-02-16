@@ -48,6 +48,7 @@ public class COMMENTSSearchdao {
         SolrDocumentList solrDocumentList= solrResponse.getResults();
         for (SolrDocument solrDocument :solrDocumentList){
             COMMENTS comments=new COMMENTS();
+
             comments.setCOMMENTSID((Integer) solrDocument.getFieldValue("COMMENTSID"));
             comments.setORDERID((Integer) solrDocument.getFieldValue("ORDERID"));
             comments.setCONTENT((String) solrDocument.getFieldValue("CONTENT"));

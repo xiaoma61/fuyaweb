@@ -30,7 +30,7 @@ public class RECRUITServiceImpl implements RECRUITService {
     }
 
     @Override
-    public void updateRECRUITbyid(int NUMS, String DESCRIBE, String EDUCATION, Date ENDTIME, String WORKBACKGROUND, String HIGHLIGHT, String LINKMAN, String PHONE, String POSITION, String SALARY, Date STARTTIME, Date TIME, String WORKAREA, int id) {
+    public void updateRECRUITbyid(String NUMS, String DESCRIBE, String EDUCATION, Date ENDTIME, String WORKBACKGROUND, String HIGHLIGHT, String LINKMAN, String PHONE, String POSITION, String SALARY, Date STARTTIME, Date TIME, String WORKAREA, int id) {
         recruitRepository.updateRECRUITbyid(NUMS, DESCRIBE, EDUCATION, ENDTIME, WORKBACKGROUND, HIGHLIGHT, LINKMAN, PHONE, POSITION, SALARY, STARTTIME, TIME, WORKAREA, id);
     }
 }

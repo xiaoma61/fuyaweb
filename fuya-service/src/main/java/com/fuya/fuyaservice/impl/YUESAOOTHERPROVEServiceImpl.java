@@ -26,4 +26,9 @@ public class YUESAOOTHERPROVEServiceImpl implements YUESAOOTHERPROVEService {
 
         return yuesaootherproves;
     }
+
+    @Override
+    public void save(YUESAOOTHERPROVE yuesaootherprove) {
+        yuesaootherproveRepository.save(yuesaootherprove);
+    }
 }

@@ -1,7 +1,6 @@
-package com.fuya.fuyaweb.knowledgeController;
+package com.fuya.fuyaweb.IndexknowledgeController;
 
 import com.fuya.ActiveMQ.service.ProductService;
-import com.fuya.fuyadao.entity.ARTICLE;
 import com.fuya.fuyadao.model.ARTICLEidinfo;
 import com.fuya.fuyadao.model.ARTICLEinfo;
 import com.fuya.fuyadao.model.ARTICLEmodel;

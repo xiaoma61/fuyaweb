@@ -1,4 +1,4 @@
-package com.fuya.fuyaweb.yusaoController;
+package com.fuya.fuyaweb.IndexyuesaoController;
 
 
 

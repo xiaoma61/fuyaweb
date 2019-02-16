@@ -10,19 +10,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.util.List;
+
 @Service
 public class COMPANYBASICINFOSolrServiceImpl implements COMPANYBASICINFOSolrService {
     //实现查找页面
     @Autowired
     COMPANYBASICINFOSearchdao companybasicinfoSearchdao;
     @Override
-    public SearchResult search(int id) throws IOException, SolrServerException {
+    public COMPANYBASICINFO search(int id) throws IOException, SolrServerException {
         SolrQuery query=new SolrQuery();
-        query.setStart(0);
-        query.setRows(1);
-        query.set("ID"+id);
-        SearchResult searchResult =companybasicinfoSearchdao.SearchCOMPANYBASICINFO(query,null);
+        query.set("q","USERID:"+id);
+        COMPANYBASICINFO searchResult =companybasicinfoSearchdao.Search(query);
         return searchResult;
     }
 
@@ -54,6 +52,30 @@ public class COMPANYBASICINFOSolrServiceImpl implements COMPANYBASICINFOSolrServ
     @Override
     public void addCOMPANYBASICINFO(int id) throws IOException, SolrServerException {
         companybasicinfoSearchdao.addCOMPANYBASICINFO(id);
+
+    }
+
+    @Override
+    public String findName(int id) throws IOException, SolrServerException {
+        SolrQuery query=new SolrQuery();
+        query.set("q","COMPANYBASICINFOID:"+id);
+        String name=companybasicinfoSearchdao.SearchNAME(query);
+        return name;
+    }
+
+    @Override
+    public void update(int COMPANYBASICINFOID) throws IOException, SolrServerException {
+
+        SolrQuery query=new SolrQuery();
+        query.set("q","COMPANYBASICINFOID:"+COMPANYBASICINFOID);
+        String id=companybasicinfoSearchdao.Searchid(query);
+        delete(id);
+        addCOMPANYBASICINFO(COMPANYBASICINFOID);
+
+    }
+
+    @Override
+    public void delete(String id) throws IOException, SolrServerException {
 
     }
 }

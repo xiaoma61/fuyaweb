@@ -25,15 +25,17 @@ public class YUESAOOTHERPROVESearchdao {
     YUESAOOTHERPROVEService yuesaootherproveService;
     public void addYUESAOOTHERPROVE(int id) throws IOException, SolrServerException {
         YUESAOOTHERPROVE yuesaootherprove=yuesaootherproveService.findByID(id);
-//        SolrInputDocument solrInputDocument=new SolrInputDocument();
-//        solrInputDocument.addField("yuesaootherproveFILEAREA",yuesaootherprove.getFILEAREA());
-//        solrInputDocument.addField("yuesaootherproveID",yuesaootherprove.getID());
-//        solrInputDocument.addField("yuesaootherproveTITLE",yuesaootherprove.getTITLE());
-//        solrInputDocument.addField("yuesaootherproveUSERID",yuesaootherprove.getUSERID());
-//
-//
-//        solrClient.add(solrInputDocument);
-        solrClient.addBean(yuesaootherprove);
+        SolrInputDocument solrInputDocument=new SolrInputDocument();
+        solrInputDocument.addField("FILEAREA",yuesaootherprove.getFILEAREA());
+        Long YUESAOOTHERPROVEID= Long.valueOf(yuesaootherprove.getYUESAOOTHERPROVEID());
+        solrInputDocument.addField("YUESAOOTHERPROVEID",YUESAOOTHERPROVEID);
+        solrInputDocument.addField("TITLE",yuesaootherprove.getTITLE());
+        Long USERID= Long.valueOf(yuesaootherprove.getUSERID());
+        solrInputDocument.addField("YUESAOOTHERPROVEUSERID",USERID);
+
+
+        solrClient.add(solrInputDocument);
+//        solrClient.addBean(yuesaootherprove);
         solrClient.commit();
 
 
@@ -47,9 +49,11 @@ public class YUESAOOTHERPROVESearchdao {
         for (SolrDocument solrocument:solrDocumentList){
             YUESAOOTHERPROVE yuesaootherprove=new YUESAOOTHERPROVE();
             yuesaootherprove.setFILEAREA((String) solrocument.getFieldValue("FILEAREA"));
-            yuesaootherprove.setYUESAOOTHERPROVEID((Integer) solrocument.getFieldValue("ID"));
+            List<Long>YUESAOOTHERPROVEIDList= (List<Long>) solrocument.getFieldValue("YUESAOOTHERPROVEID");
+            yuesaootherprove.setYUESAOOTHERPROVEID(Math.toIntExact(YUESAOOTHERPROVEIDList.get(0)));
             yuesaootherprove.setTITLE((String) solrocument.getFieldValue("TITLE"));
-            yuesaootherprove.setUSERID((Integer) solrocument.getFieldValue("USERID"));
+            List<Long>YUESAOOTHERPROVEUSERIDList= (List<Long>) solrocument.getFieldValue("YUESAOOTHERPROVEUSERID");
+            yuesaootherprove.setUSERID(Math.toIntExact(YUESAOOTHERPROVEUSERIDList.get(0)));
             yuesaootherproves.add(yuesaootherprove);
         }
         searchResult.setObjects(yuesaootherproves);
@@ -57,6 +61,21 @@ public class YUESAOOTHERPROVESearchdao {
 
         return searchResult;
 
+    }
+    public  String Searchid(SolrQuery solrQuery) throws IOException, SolrServerException {
+        QueryResponse solrResponse=solrClient.query(solrQuery);
+        SolrDocumentList solrDocumentList= solrResponse.getResults();
+        String id=null;
+        for (SolrDocument solrocument:solrDocumentList){
+            id= (String) solrocument.get("id");
+
+        }
+        return id;
+
+    }
+    public  void delete(String id) throws IOException, SolrServerException {
+        solrClient.deleteById(id);
+        solrClient.commit();
     }
 
 

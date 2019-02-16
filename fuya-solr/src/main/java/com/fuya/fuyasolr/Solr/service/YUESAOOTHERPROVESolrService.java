@@ -11,6 +11,7 @@ import java.util.List;
 public interface YUESAOOTHERPROVESolrService {
     public void addYUESAOOTHERPROVE(int id) throws IOException, SolrServerException;
 //    public List<YUESAOOTHERPROVE> searchbyuserid(int userid);
+    void delete(int id) throws IOException, SolrServerException;
 
     SearchResult searchbyuserid(int userid, int start, int rows) throws IOException, SolrServerException;
 }

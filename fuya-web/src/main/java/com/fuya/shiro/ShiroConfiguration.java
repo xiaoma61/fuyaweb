@@ -62,6 +62,7 @@ public class ShiroConfiguration {
         map.put("/CheckLogin", "anon");
         map.put("/logout","logout");
         //对所有用户认证authc ,不必认证anon
+        map.put("/Register/**","anon");
         map.put("/login","anon");
         //需要拦截的资源
         map.put("/**",  "authc");//其他资源全部拦截

@@ -1,4 +1,4 @@
-package com.fuya.fuyaweb.yusaoController;
+package com.fuya.fuyaweb.IndexyuesaoController;
 
 import com.fuya.Redis.Util.RedisUtil;
 import com.fuya.fuyadao.entity.MSG;

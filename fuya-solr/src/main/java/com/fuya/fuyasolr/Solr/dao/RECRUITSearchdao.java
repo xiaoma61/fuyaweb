@@ -5,6 +5,7 @@ import com.fuya.fuyadao.model.ARTICLEmodel;
 import com.fuya.fuyadao.model.RECRUITmodel;
 import com.fuya.fuyaservice.RECRUITService;
 import com.fuya.fuyasolr.SearchResult.SearchResult;
+import com.fuya.fuyasolr.Solr.service.COMPANYBASICINFOSolrService;
 import org.apache.solr.client.solrj.SolrClient;
 import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.SolrServerException;
@@ -26,6 +27,8 @@ public class RECRUITSearchdao {
     SolrClient solrClient;
     @Autowired
     RECRUITService recruitService;
+    @Autowired
+    COMPANYBASICINFOSolrService companybasicinfoSolrService;
     public  void  addRECRUIT(int id) throws IOException, SolrServerException {
         RECRUIT recruit =recruitService.findByID(id);
         solrClient.addBean(recruit);
@@ -43,7 +46,10 @@ public class RECRUITSearchdao {
             long RECRUITID= (long) solrDocument.getFieldValue("RECRUITID");
             recruit.setRECRUITID(Math.toIntExact(RECRUITID));
             long USERSID= (long) solrDocument.getFieldValue("USERSID");
-            recruit.setUSERSID(Math.toIntExact(USERSID));
+            //查找公司名称
+            String name=companybasicinfoSolrService.findName(Math.toIntExact(USERSID));
+
+            recruit.setCOMPANY(name);
             recruit.setPOSITION((String) solrDocument.getFieldValue("POSITION"));
             recruit.setSALARY((String) solrDocument.getFieldValue("SALARY"));
             recruit.setEDUCATION((String) solrDocument.getFieldValue("EDUCATION"));
@@ -74,23 +80,26 @@ public class RECRUITSearchdao {
             searchResult.setObjects(recruitList);
             searchResult.setResultCount(recruitList.size());
         }
-//        System.out.println(articleList.get(0).getTITLE());
+
 
         return searchResult;
     }
     public String Searchid(SolrQuery query) throws IOException, SolrServerException {
-        List< RECRUITmodel> recruitList=new ArrayList<RECRUITmodel>();
+//        List< RECRUITmodel> recruitList=new ArrayList<RECRUITmodel>();
         QueryResponse solrResponse=solrClient.query(query);
         SolrDocumentList solrDocumentList= solrResponse.getResults();
         String id=null;
         for (SolrDocument solrDocument :solrDocumentList){
-            id= (String) solrDocument.get(id);
+            id= (String) solrDocument.get("id");
 
 
         }
         return id;
 
     }
+
+
+
     public void delete(String id) throws IOException, SolrServerException {
         solrClient.deleteById(id);
         solrClient.commit();
