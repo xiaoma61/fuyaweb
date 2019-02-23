@@ -6,13 +6,14 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="fuya" />
         <module name="fuya-base" />
         <module name="fuya-dao" />
         <module name="fuya-service" />
         <module name="fuya-solr" />
         <module name="fuya-util" />
         <module name="fuya-web" />
+        <module name="fuyaactivemq" />
+        <module name="fuyaRedis" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -24,6 +25,9 @@
       <module name="fuya-solr" target="1.8" />
       <module name="fuya-util" target="1.8" />
       <module name="fuya-web" target="1.8" />
+      <module name="fuyaactivemq" target="1.8" />
+      <module name="fuyaRedis" target="1.8" />
+      <module name="fuyaredis" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

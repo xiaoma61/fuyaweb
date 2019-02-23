@@ -1,6 +1,6 @@
 package com.fuya.ActiveMQ.comsumer;
 
-import com.fuya.fuyadao.entity.YUESOBASICINFO;
+
 import com.fuya.fuyaservice.YUESOBASICINFOService;
 import com.fuya.fuyasolr.Solr.service.*;
 import org.apache.solr.client.solrj.SolrServerException;
@@ -34,6 +34,8 @@ public class Consumer {
     RECRUITSolrService recruitSolrService;
     @Autowired
     YUESAOOTHERPROVESolrService yuesaootherproveSolrService;
+    @Autowired
+    COMPANYYUESAOSolrService companyyuesaoSolrService;
 
 
 
@@ -51,11 +53,15 @@ public class Consumer {
         if (text[0].equals("proveinfo")){
 //
             //录入月嫂信息
-
+            System.out.println("ddddddd"+Integer.parseInt(text[1]));
             proveinfoSolrService.addPROVEINFO(Integer.parseInt(text[1]));
 
 
-        }if (text[0].equals("companyinfo")){
+        }
+
+
+
+        if (text[0].equals("companyinfo")){
             companyinfoSolrService.addCOMPANYINFO(Integer.parseInt(text[1]));
 
         }if (text[0].equals("companybasicinfo")){
@@ -64,19 +70,21 @@ public class Consumer {
         if (text[0].equals("yuesobasicinfo")){
             yuesobasicinfoSolrservice.addYUESOBASICINFO(Integer.parseInt(text[1]));
         }
+
+
+
+
+
         if(text[0].equals("yuesaootherprove")){
 
             yuesaootherproveSolrService.addYUESAOOTHERPROVE(Integer.parseInt(text[1]));
         }
 
 
+        if (text[0].equals("companyyuesao")){
 
-//        if (text[0].equals("companyregister")){
-//            usersSolrservice.addUSER(Integer.parseInt(text[1]));
-//            companybasicinfoSolrService.addCOMPANYBASICINFO(Integer.parseInt(text[1]));
-//            companyinfoSolrService.addCOMPANYINFO(Integer.parseInt(text[1]));
-//        }
-
+            companyyuesaoSolrService.addCOMPANYYUESAO(Integer.parseInt(text[1]));
+        }
         if (text[0].equals("collections-delete")){
            // String[] ids=text[1].split(",");
 
@@ -105,6 +113,35 @@ public class Consumer {
             recruitSolrService.addRECRUIT(Integer.parseInt(text[1]));
 
         }
+
+        /////
+        if (text[0].equals("users-delete")){
+           usersSolrservice.delete(Integer.parseInt(text[1]));
+
+        }
+        if (text[0].equals("yuesobasicinfoService-delete")){
+
+            yuesobasicinfoSolrservice.delete(Integer.parseInt(text[1]));
+
+        }
+        if (text[0].equals("proveinfoService-delete")){
+
+
+            proveinfoSolrService.delete(Integer.parseInt(text[1]));
+        }
+        if (text[0].equals("companyyuesaoService-delete")){
+            companyyuesaoSolrService.delete(Integer.parseInt(text[1]));
+
+        }
+
+
+
+
+
+
+
+
+
         return "Consumer2收到!";
     }
 

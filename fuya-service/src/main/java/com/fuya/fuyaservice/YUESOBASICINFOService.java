@@ -11,4 +11,7 @@ public interface YUESOBASICINFOService {
    public  void save(YUESOBASICINFO yuesobasicinfo);
    public YUESOBASICINFO findbyid(int id);
    YUESOBASICINFO findByUSERSID(int userid);
+   void deleteByYUESOBASICINFOID(int id);
+   void update(String IDCARD,  String EMAIL ,String WORKAREA ,String PHONE ,String EDUCATION ,String NAME ,String WEIGHT,String AGE ,String HEIGHT ,String NATIVEPLACE ,String PHOTO ,String SENIORITY ,String WAGES  , int YUESOBASICINFOID );
+
 }

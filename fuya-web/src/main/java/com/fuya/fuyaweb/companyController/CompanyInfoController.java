@@ -76,14 +76,7 @@ public class CompanyInfoController {
         return JSONObject.fromObject(companysInfosModle);
 
     }
-    //证明
-//    @RequiresRoles("company")
-//    @RequestMapping("/companys/proves/update")
-//    @ResponseBody
-//    public JSONObject companysInfos(){
-//
-//    }
-//    //修改
+
     @RequiresRoles("company")
     @RequestMapping("/companys/Infos/update")
     @ResponseBody

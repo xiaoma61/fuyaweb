@@ -19,7 +19,7 @@ public class YUESOBASICINFO {
     private String NAME;
     @Field
     private String PHONE;
-    @Field
+    @Field("YUESOBASICINFOIDCARD")
     private String IDCARD;
     @Field
     private String AGE;
@@ -39,7 +39,8 @@ public class YUESOBASICINFO {
     private String SENIORITY;
     @Field
     private String COMPANYID;
-    @Field
+
+    @Field("YUESOBASICINFOLEVELS")
     private int LEVELS;
     @Field
     private String WAGES;

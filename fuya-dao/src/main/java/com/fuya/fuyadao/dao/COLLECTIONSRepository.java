@@ -15,6 +15,5 @@ public interface COLLECTIONSRepository extends JpaRepository<COLLECTIONS,Integer
     @Modifying
     @Query("delete  from COLLECTIONS c where c.FROMID=?1 and c.TOID=?2")
     void deleteByFROMIDAndTOID(int fromid,int toid);
-//    @Query("select  c from  COLLECTIONS  c where c.FROMID=?1 and  c.ID=?2")
-//    COLLECTIONS findByFROMIDAndTOID(int fromid,int toid);
+
 }

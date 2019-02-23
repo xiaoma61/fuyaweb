@@ -9,6 +9,8 @@
       <module fileurl="file://$PROJECT_DIR$/fuya-solr/fuya-solr.iml" filepath="$PROJECT_DIR$/fuya-solr/fuya-solr.iml" />
       <module fileurl="file://$PROJECT_DIR$/fuya-util/fuya-util.iml" filepath="$PROJECT_DIR$/fuya-util/fuya-util.iml" />
       <module fileurl="file://$PROJECT_DIR$/fuya-web/fuya-web.iml" filepath="$PROJECT_DIR$/fuya-web/fuya-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fuya-Redis/fuyaRedis.iml" filepath="$PROJECT_DIR$/fuya-Redis/fuyaRedis.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fuya-activemq/fuyaactivemq.iml" filepath="$PROJECT_DIR$/fuya-activemq/fuyaactivemq.iml" />
     </modules>
   </component>
 </project>

@@ -59,5 +59,23 @@ public class USERSearchdao {
 
         return usersList;
     }
+    public List<String> findid(SolrQuery solrQuery) throws IOException, SolrServerException {
+
+        QueryResponse queryResponse=solrClient.query(solrQuery);
+        SolrDocumentList solrDocumentList=queryResponse.getResults();
+        List<String> id=new ArrayList();
+        for (SolrDocument Document : solrDocumentList ){
+
+            id.add((String) Document.get("id"));
+
+        }
+        return id;
+
+    }
+    public void delete(String id) throws IOException, SolrServerException {
+        solrClient.deleteById(id);
+        solrClient.commit();
+
+    }
 
 }

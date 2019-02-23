@@ -6,4 +6,5 @@ import java.io.IOException;
 
 public interface PROVEINFOSolrService {
     void addPROVEINFO(int id) throws IOException, SolrServerException;
+    public void delete(int id) throws IOException, SolrServerException;
 }

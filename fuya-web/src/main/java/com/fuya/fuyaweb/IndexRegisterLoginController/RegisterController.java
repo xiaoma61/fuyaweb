@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.jms.Queue;
 import javax.jms.Topic;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -79,7 +80,8 @@ public class RegisterController {
                           @RequestParam(name = "score",defaultValue = "12") String score,
                           @RequestParam(name = "servicepiceture",defaultValue = "头像") String servicepiceture) throws IOException, SolrServerException {
 
-        List<USERS>usersList=usersSolrservice.searchbyusername(name);
+
+        List<USERS> usersList=usersSolrservice.searchbyusername(name);
         Map<String,Object> msg=new HashMap<>();
         if (usersList.size()>0){
             msg.put("msg","error");
@@ -96,6 +98,12 @@ public class RegisterController {
         users.setPHONE(phone);
         users.setTYPE(type);
         userService.save(users);
+
+
+
+
+
+
         productService.sendMessage(this.topic,"users:"+ users.getUSERSID());
         //其他信息录入
         YUESOBASICINFO yuesobasicinfo=new YUESOBASICINFO();
@@ -137,20 +145,12 @@ public class RegisterController {
         proveinfoService.save(proveinfo);
 
 
-
         //存入数据库,同时存入solr库
         //Activemq通知
         productService.sendMessage(this.topic,"proveinfo:"+ proveinfo.getPROVEINFOID());
 
 
-
-
-
-        //类型为4
-        //照片上传为回显功能
-
-
-
+        //用户关联
         //跳转到下一个页面
         msg.put("msg","success");
         return JSONArray.fromObject(msg);

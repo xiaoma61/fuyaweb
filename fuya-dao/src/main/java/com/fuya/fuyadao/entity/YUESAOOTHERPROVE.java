@@ -7,13 +7,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "YUESAOOTHERPROVE")
 public class YUESAOOTHERPROVE {
-    public int getYUESAOOTHERPROVEID() {
-        return YUESAOOTHERPROVEID;
-    }
 
-    public void setYUESAOOTHERPROVEID(int YUESAOOTHERPROVEID) {
-        this.YUESAOOTHERPROVEID = YUESAOOTHERPROVEID;
-    }
 
     @Id
     @SequenceGenerator(name = "YUESAOOTHERPROVE_SEQUENCEid",initialValue = 1,allocationSize=1,sequenceName = "YUESAOOTHERPROVE_SEQUENCE")
@@ -27,7 +21,13 @@ public class YUESAOOTHERPROVE {
     @Field
     private int USERID;
 
+    public int getYUESAOOTHERPROVEID() {
+        return YUESAOOTHERPROVEID;
+    }
 
+    public void setYUESAOOTHERPROVEID(int YUESAOOTHERPROVEID) {
+        this.YUESAOOTHERPROVEID = YUESAOOTHERPROVEID;
+    }
 
     public String getFILEAREA() {
         return FILEAREA;

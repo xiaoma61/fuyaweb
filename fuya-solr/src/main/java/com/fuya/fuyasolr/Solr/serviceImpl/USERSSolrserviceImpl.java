@@ -64,4 +64,21 @@ public class USERSSolrserviceImpl implements USERSSolrservice {
         List<USERS>usersList=searchdao.searchUSER(solrQuery);
         return usersList.get(0).getNAME();
     }
+
+    @Override
+    public void delete(int id) throws IOException, SolrServerException {
+        SolrQuery solrQuery=new SolrQuery();
+        //查询语句
+        solrQuery.set("q","usersID:"+id);
+        List<String> ids=searchdao.findid(solrQuery);
+        if (ids!=null){
+            if (ids!=null&&ids.size()>0){
+                for (String mid:ids){
+                    searchdao.delete(mid);
+                }
+            }
+
+        }
+
+    }
 }

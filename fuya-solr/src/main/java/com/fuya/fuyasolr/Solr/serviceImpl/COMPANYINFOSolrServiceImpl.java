@@ -42,6 +42,6 @@ public class COMPANYINFOSolrServiceImpl implements COMPANYINFOSolrService {
     @Override
     public void delete(String id) throws IOException, SolrServerException {
 
-        companyinfoSearchdao.delete(id);
+
     }
 }

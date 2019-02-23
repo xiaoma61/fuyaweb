@@ -1,0 +1,23 @@
+package com.fuya.fuyadao.dao;
+
+import com.fuya.fuyadao.entity.COMPANYYUESAO;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+
+import javax.transaction.Transactional;
+import java.util.List;
+
+public interface COMPANYYUESAORepository extends JpaRepository<COMPANYYUESAO,Integer> {
+    @Query("select c from COMPANYYUESAO c where c.COMPANYYUESAOID=?1")
+    COMPANYYUESAO findByCOMPANYID(int id);
+    @Transactional//注解，使用默认配置，抛出异常之后，事务会自动回滚，数据不会插入到数据库
+    @Modifying
+    @Query("delete from COMPANYYUESAO c where c.YUESAOID=?1")
+    void deleteByCOMPANYYUESAOID(int id);
+    @Query("select c from COMPANYYUESAO  c where c.COMPANYID=?1")
+    List<COMPANYYUESAO>findByRealCOMPANYID(int id);
+
+
+
+}

@@ -9,4 +9,6 @@ public interface EMPLOYERINFORMATIONRepository extends JpaRepository<EMPLOYERINF
     EMPLOYERINFORMATION findByODERID(int oderid);
     @Query("select e from  EMPLOYERINFORMATION  e  where  e.EMPLOYERINFORMATIONID=?1")
     EMPLOYERINFORMATION findByID(int id);
+
+
 }

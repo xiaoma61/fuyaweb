@@ -10,4 +10,5 @@ public interface USERService {
     USERS findUSERSByNAME(String NAME);
     void save(USERS users);
     USERS findByID(int ID);
+    void delete(int ID);
 }

@@ -17,5 +17,6 @@ public interface YUESOBASICINFOSolrservice {
 
     //通过id查找
     public YUESOBASICINFO searchbyid(int id) throws IOException, SolrServerException;
+    void delete(int id) throws IOException, SolrServerException;
 
 }

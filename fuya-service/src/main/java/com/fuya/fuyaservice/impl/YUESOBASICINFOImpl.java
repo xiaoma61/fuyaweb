@@ -45,4 +45,15 @@ public class YUESOBASICINFOImpl implements YUESOBASICINFOService {
         return yuesobasicinfo;
     }
 
+    @Override
+    public void deleteByYUESOBASICINFOID(int id) {
+        yuesobasicinfoRepository.deleteByYUESOBASICINFOID(id);
+    }
+
+    @Override
+    public void update(String IDCARD, String EMAIL, String WORKAREA, String PHONE, String EDUCATION, String NAME, String WEIGHT, String AGE, String HEIGHT, String NATIVEPLACE, String PHOTO, String SENIORITY, String WAGES, int YUESOBASICINFOID) {
+        yuesobasicinfoRepository.update(IDCARD, EMAIL, WORKAREA, PHONE, EDUCATION, NAME, WEIGHT, AGE, HEIGHT, NATIVEPLACE, PHOTO, SENIORITY, WAGES, YUESOBASICINFOID);
+    }
+
+
 }

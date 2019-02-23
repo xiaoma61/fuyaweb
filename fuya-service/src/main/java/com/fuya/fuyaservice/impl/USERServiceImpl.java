@@ -32,4 +32,9 @@ public class USERServiceImpl implements USERService {
         USERS users =usersRepository.findByID(ID);
         return users;
     }
+
+    @Override
+    public void delete(int ID) {
+        usersRepository.deleteByUSERSID(ID);
+    }
 }

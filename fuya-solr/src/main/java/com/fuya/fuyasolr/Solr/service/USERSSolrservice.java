@@ -15,5 +15,6 @@ public interface USERSSolrservice {
 
     public  void addUSER(int id) throws IOException, SolrServerException;
     String searchbyid(int id) throws IOException, SolrServerException;
+    void delete(int id) throws IOException, SolrServerException;
 
 }

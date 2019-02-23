@@ -171,5 +171,21 @@ public class YUESOBASICINFOSearchdao {
         return yuesobasicinfo;
     }
 
+    public String findid(SolrQuery solrQuery) throws IOException, SolrServerException {
 
+        QueryResponse queryResponse=client.query(solrQuery);
+        SolrDocumentList solrDocumentList=queryResponse.getResults();
+        String id=null;
+        for (SolrDocument Document : solrDocumentList ){
+
+            id= (String) Document.get("id");
+        }
+        return id;
+
+    }
+    public void delete(String id) throws IOException, SolrServerException {
+        client.deleteById(id);
+        client.commit();
+
+    }
 }

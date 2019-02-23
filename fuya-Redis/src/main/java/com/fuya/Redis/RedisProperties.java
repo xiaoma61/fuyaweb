@@ -1,4 +1,4 @@
-package com.fuya.Redis.config;
+package com.fuya.Redis;
 
 
 import org.springframework.boot.context.properties.ConfigurationProperties;

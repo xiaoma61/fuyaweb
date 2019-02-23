@@ -25,8 +25,14 @@ public class PROVEINFOSearchdao {
     SolrClient solrClient;
     public void addPROVEINFO(int id) throws IOException, SolrServerException {
         PROVEINFO proveinfo=proveinfoService.findByID(id);
-        solrClient.addBean(proveinfo);
-        solrClient.commit();
+
+
+
+        if (proveinfo!=null){
+            solrClient.addBean(proveinfo);
+            solrClient.commit();
+        }
+
 
     }
     public List<PROVEINFO>search(SolrQuery solrQuery) throws IOException, SolrServerException {
@@ -38,5 +44,22 @@ public class PROVEINFOSearchdao {
         }
     return  proveinfoList;
     }
+    public List<String> findid(SolrQuery solrQuery) throws IOException, SolrServerException {
 
+        QueryResponse queryResponse=solrClient.query(solrQuery);
+        SolrDocumentList solrDocumentList=queryResponse.getResults();
+        List<String> id=new ArrayList();
+        for (SolrDocument Document : solrDocumentList ){
+
+            id.add((String) Document.get("id"));
+
+        }
+        return id;
+
+    }
+    public void delete(String id) throws IOException, SolrServerException {
+        solrClient.deleteById(id);
+        solrClient.commit();
+
+    }
 }
