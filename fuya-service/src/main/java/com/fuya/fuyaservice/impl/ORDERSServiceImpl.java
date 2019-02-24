@@ -36,5 +36,10 @@ public class ORDERSServiceImpl implements ORDERSService {
         return ordersRepository.findODERSEMPCommentMSGByTOID(toid,SUMSTATUS);
     }
 
+    @Override
+    public void save(ORDERS orders) {
+        ordersRepository.save(orders);
+    }
+
 
 }

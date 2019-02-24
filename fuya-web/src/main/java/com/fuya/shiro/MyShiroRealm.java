@@ -99,7 +99,7 @@ public class MyShiroRealm extends AuthorizingRealm {
 
         }else if(users.getTYPE()==3){
             //月嫂用户
-            roles.add("yuesao");
+            roles.add("yuesaos");
 
         }else if(users.getTYPE()==5){
             roles.add("admin");

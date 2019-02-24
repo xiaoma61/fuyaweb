@@ -11,4 +11,5 @@ public interface ORDERSService {
     ORDERS findByID(int id);
     List<ODERSEMPMSG>findODERSEMPMSGByTOID(int toid,int SUMSTATUS);
     List<ODERSEMPCommentMSG>findODERSEMPCommentMSGByTOID(int toid, int SUMSTATUS);
+    void save(ORDERS orders);
 }

@@ -24,4 +24,9 @@ public class COMMENTSImpl implements COMMENTSService {
         COMMENTS comments=commentsRepository.findByID(id);
         return comments;
     }
+
+    @Override
+    public void save(COMMENTS comments) {
+        commentsRepository.save(comments);
+    }
 }

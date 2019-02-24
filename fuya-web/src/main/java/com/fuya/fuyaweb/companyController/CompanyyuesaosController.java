@@ -15,7 +15,7 @@ import com.fuya.fuyasolr.Solr.service.USERSSolrservice;
 import com.fuya.fuyautil.StringNameUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,7 +59,7 @@ public class CompanyyuesaosController {
     @RequiresRoles("company")
     @RequestMapping("/companys/yuesao/add")
     @ResponseBody
-    JSONArray Companyyuesaoadd(@RequestParam(name = "name",defaultValue = "肖彩珠") String name, @RequestParam(name = "phone",defaultValue = "1314333") String phone,
+    JSONObject Companyyuesaoadd(@RequestParam(name = "name",defaultValue = "肖彩珠") String name, @RequestParam(name = "phone",defaultValue = "1314333") String phone,
                                @RequestParam(name = "idcard",defaultValue = "44440000")String idcard, @RequestParam(name = "age",defaultValue = "45") String age,
                                @RequestParam(name = "education",defaultValue = "高中") String education , @RequestParam(name = "nativeplace",defaultValue = "北京") String nativeplace,
                                @RequestParam(name = "email",defaultValue = "123@qq.com") String email, @RequestParam(name = "photo",defaultValue = "file:") String photo,
@@ -157,13 +157,13 @@ public class CompanyyuesaosController {
         //用户关联
         //跳转到下一个页面
         msg.put("msg","success");
-        return JSONArray.fromObject(msg);
+        return JSONObject.fromObject(msg);
     }
     //删除
     @RequiresRoles("company")
     @RequestMapping("/companys/yuesao/delete")
     @ResponseBody
-    JSONArray Companyyuesaodelete(@RequestParam(name = "id",defaultValue = "id") int id,HttpServletRequest request){
+    JSONObject Companyyuesaodelete(@RequestParam(name = "id",defaultValue = "id") int id,HttpServletRequest request){
         //删除user
 
 
@@ -187,13 +187,13 @@ public class CompanyyuesaosController {
 
         Map<String,Object> msg=new HashMap<>();
         msg.put("msg","success");
-        return JSONArray.fromObject(msg);
+        return JSONObject.fromObject(msg);
     }
     //列表
     @RequiresRoles("company")
     @RequestMapping("/companys/yuesao/list")
     @ResponseBody
-    JSONArray Companyyuesaolist(@RequestParam(name = "start",defaultValue = "0")int start,@RequestParam(name = "rows",defaultValue = "10")int rows,HttpServletRequest request){
+    JSONObject Companyyuesaolist(@RequestParam(name = "start",defaultValue = "0")int start,@RequestParam(name = "rows",defaultValue = "10")int rows,HttpServletRequest request){
 
         HttpSession session=request.getSession();
         int id= (int) session.getAttribute("id");
@@ -212,7 +212,8 @@ public class CompanyyuesaosController {
 
         Map<String,Object> msg=new HashMap<>();
         msg.put("msg",objectLists);
-        return JSONArray.fromObject(proveinfoandbaisinfoPageInfo);
+        return JSONObject.fromObject(proveinfoandbaisinfoPageInfo);
+//        return JSONArray.fromObject(proveinfoandbaisinfoPageInfo);
     }
     //修改
     //月嫂信息录入--增加
@@ -220,7 +221,7 @@ public class CompanyyuesaosController {
     @RequiresRoles("company")
     @RequestMapping("/companys/yuesao/update")
     @ResponseBody
-    JSONArray Companyyuesaoupdate(
+    JSONObject Companyyuesaoupdate(
 
 
                                @RequestParam(name = "name",defaultValue = "肖彩珠") String name, @RequestParam(name = "phone",defaultValue = "1314333") String phone,
@@ -254,7 +255,7 @@ public class CompanyyuesaosController {
         //跳转到下一个页面
         Map<String,Object> msg=new HashMap<>();
         msg.put("msg","success");
-        return JSONArray.fromObject(msg);
+        return JSONObject.fromObject(msg);
     }
     //订单
 

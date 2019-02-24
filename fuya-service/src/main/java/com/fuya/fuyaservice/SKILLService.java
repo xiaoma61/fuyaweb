@@ -7,4 +7,5 @@ import java.util.List;
 public interface SKILLService {
     List<SKILL> findByUSERID(int ID, int type);
     SKILL findByID(int id);
+    void save(SKILL skill);
 }

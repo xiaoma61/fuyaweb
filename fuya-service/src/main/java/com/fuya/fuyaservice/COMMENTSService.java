@@ -7,5 +7,6 @@ import java.util.List;
 public interface COMMENTSService {
     List<COMMENTS> findByUSERID(int ID);
     COMMENTS findbyid(int id);
+    void save(COMMENTS comments);
 
 }

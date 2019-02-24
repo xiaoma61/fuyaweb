@@ -90,7 +90,7 @@ public class ShiroConfiguration {
             }
 
         }
-        map.put("/users/**","roles[user]");
+        map.put("/users/**","roles[users]");
         map.put("/fuyayuesaos/**","roles[yuesaos]");
         map.put("/companys/**","roles[companys]");
         map.put("/admin/**","roles[admin]");

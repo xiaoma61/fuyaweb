@@ -17,7 +17,7 @@ public class SERVICECONTENT {
     @Field
     private int ORDERID;
     @Field
-    private String CHILDBIRTH;//预产期
+    private Date CHILDBIRTH;//预产期
     @Field
     private Date STARTTIME;//服务开始日期
     @Field
@@ -53,11 +53,12 @@ public class SERVICECONTENT {
         this.ORDERID = ORDERID;
     }
 
-    public String getCHILDBIRTH() {
+
+    public Date getCHILDBIRTH() {
         return CHILDBIRTH;
     }
 
-    public void setCHILDBIRTH(String CHILDBIRTH) {
+    public void setCHILDBIRTH(Date CHILDBIRTH) {
         this.CHILDBIRTH = CHILDBIRTH;
     }
 

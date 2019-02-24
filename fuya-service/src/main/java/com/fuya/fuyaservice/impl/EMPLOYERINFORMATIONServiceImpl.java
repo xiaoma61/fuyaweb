@@ -21,4 +21,9 @@ public class EMPLOYERINFORMATIONServiceImpl implements EMPLOYERINFORMATIONServic
         EMPLOYERINFORMATION employerinformation=employerinformationRepository.findByID(id);
         return employerinformation;
     }
+
+    @Override
+    public void save(EMPLOYERINFORMATION employerinformation) {
+        employerinformationRepository.save(employerinformation);
+    }
 }
