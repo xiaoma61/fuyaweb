@@ -3,6 +3,7 @@ package com.fuya.fuyadao.entity;
 import org.apache.solr.client.solrj.beans.Field;
 
 import javax.persistence.*;
+
 @Entity
 @Table(name = "COMPANYYUESAO")
 public class COMPANYYUESAO {

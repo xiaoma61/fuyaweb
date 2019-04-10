@@ -26,7 +26,7 @@ public class ProveAndYuesaobasic {
     public void setYuesobasicinfo(YUESOBASICINFO yuesobasicinfo) {
         this.yuesobasicinfo = yuesobasicinfo;
     }
-    public ProveAndYuesaobasic(COMMENTS comments,YUESOBASICINFO yuesobasicinfo){
+    public ProveAndYuesaobasic(COMMENTS comments, YUESOBASICINFO yuesobasicinfo){
         this.yuesobasicinfo = yuesobasicinfo;
         this.comments = comments;
 

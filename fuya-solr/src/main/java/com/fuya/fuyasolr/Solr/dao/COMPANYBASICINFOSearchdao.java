@@ -1,20 +1,17 @@
 package com.fuya.fuyasolr.Solr.dao;
 
 import com.fuya.fuyadao.entity.COMPANYBASICINFO;
-import com.fuya.fuyadao.entity.COMPANYINFO;
-import com.fuya.fuyadao.entity.YUESOBASICINFO;
 import com.fuya.fuyaservice.COMPANYBASICINFOService;
 import com.fuya.fuyasolr.SearchResult.SearchResult;
 import org.apache.solr.client.solrj.SolrClient;
 import org.apache.solr.client.solrj.SolrQuery;
-import org.apache.solr.client.solrj.SolrResponse;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.common.SolrDocument;
 import org.apache.solr.common.SolrDocumentList;
-import org.apache.solr.common.SolrInputDocument;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +42,7 @@ public class COMPANYBASICINFOSearchdao {
         System.out.println("companybasicinfo:"+id);
     }
     //查找信息
-    public  SearchResult SearchCOMPANYBASICINFO(SolrQuery solrQuery,String keyword) throws IOException, SolrServerException {
+    public SearchResult SearchCOMPANYBASICINFO(SolrQuery solrQuery, String keyword) throws IOException, SolrServerException {
         List<COMPANYBASICINFO>companybasicinfoList=new ArrayList<>();
         QueryResponse Response=solrClient.query(solrQuery);
         SolrDocumentList solrDocumentList=Response.getResults();

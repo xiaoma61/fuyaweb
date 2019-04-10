@@ -3,7 +3,6 @@ package com.fuya.fuyaweb.IndexrecruitController;
 import com.fuya.fuyasolr.SearchResult.SearchResult;
 import com.fuya.fuyasolr.Solr.service.RECRUITSolrService;
 import net.sf.json.JSONObject;
-import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

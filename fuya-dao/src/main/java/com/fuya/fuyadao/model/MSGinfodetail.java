@@ -1,7 +1,5 @@
 package com.fuya.fuyadao.model;
 
-import java.util.Date;
-
 public class MSGinfodetail {
     String msg;
     String date;

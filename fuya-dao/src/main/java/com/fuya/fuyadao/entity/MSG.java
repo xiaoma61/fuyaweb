@@ -21,6 +21,15 @@ public class MSG {
     private  String MSG;
     @Field
     private  Date TIME;
+    private int TYPE;
+
+    public int getTYPE() {
+        return TYPE;
+    }
+
+    public void setTYPE(int TYPE) {
+        this.TYPE = TYPE;
+    }
 
     public int getMSGID() {
         return MSGID;

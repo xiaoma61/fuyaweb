@@ -17,8 +17,12 @@ public class SERVICECONTENT {
     @Field
     private int ORDERID;
     @Field
+
+    @Temporal(TemporalType.TIMESTAMP)
+
     private Date CHILDBIRTH;//预产期
     @Field
+    @Temporal(TemporalType.TIMESTAMP)
     private Date STARTTIME;//服务开始日期
     @Field
     private int FATE;

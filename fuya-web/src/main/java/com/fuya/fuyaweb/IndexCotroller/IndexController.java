@@ -2,7 +2,6 @@ package com.fuya.fuyaweb.IndexCotroller;
 
 import com.alibaba.druid.support.json.JSONUtils;
 import com.fuya.Redis.Util.RedisUtil;
-
 import com.fuya.fuyadao.entity.ARTICLE;
 import com.fuya.fuyadao.entity.COMMENTS;
 import com.fuya.fuyadao.entity.COMPANYBASICINFO;
@@ -14,9 +13,6 @@ import com.fuya.fuyaservice.YUESOBASICINFOService;
 import com.fuya.fuyautil.BodyContentUtil;
 import com.fuya.fuyautil.BodyImageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.PropertySource;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,15 +22,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@PropertySource("classpath:Redis.properties")
+
 @Controller
 public class IndexController {
-    @Value("${redis.COMPANYBASICINFO.key}")
-    private String companykey;
-    @Value("${redis.YUESOBASICINFO.key}")
-    private String yuesaokey;
-    @Value("${redis.ARTICLE.key}")
-    private  String articlekey;
+
+    private String companykey="COMPANYBASICINFO";
+
+    private String yuesaokey="YUESOBASICINFO";
+
+    private  String articlekey="ARTICLE";
 
 
     @Autowired
@@ -93,7 +89,7 @@ public class IndexController {
             }
 
         }else {
-            System.out.println("adssssssss");
+
            List<YUESOBASICINFO>yuesobasicinfoList=yuesobasicinfoService.findAlllimit();
            List<Map<String,Object>>yuesobasicinfoListmap=new ArrayList<>();
 
@@ -154,15 +150,7 @@ public class IndexController {
             String articleListmapJson=JSONUtils.toJSONString(articleListmap);
             redisUtil.set(articlekey,articleListmapJson);
 
-
-
-
-
         }
-
-
-
-
 
 
         return "/index";

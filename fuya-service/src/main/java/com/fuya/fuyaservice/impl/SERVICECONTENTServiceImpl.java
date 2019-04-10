@@ -15,4 +15,15 @@ public class SERVICECONTENTServiceImpl implements SERVICECONTENTService {
     public void save(SERVICECONTENT servicecontent) {
         servicecontentRepository.save(servicecontent);
     }
+
+    @Override
+    public void updateHANDSELSTATUSbySERVICECONTENTID(int handselstatus, int id) {
+        servicecontentRepository.updateHANDSELSTATUSbySERVICECONTENTID(handselstatus,id);
+    }
+
+    @Override
+    public void updatebySERVICECONTENTID(int sumstatus, int id) {
+
+        servicecontentRepository.updatebySERVICECONTENTID(sumstatus,id);
+    }
 }

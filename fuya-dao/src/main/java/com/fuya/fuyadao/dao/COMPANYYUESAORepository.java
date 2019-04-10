@@ -1,6 +1,7 @@
 package com.fuya.fuyadao.dao;
 
 import com.fuya.fuyadao.entity.COMPANYYUESAO;
+import com.fuya.fuyadao.entity.YUESOBASICINFO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -17,6 +18,9 @@ public interface COMPANYYUESAORepository extends JpaRepository<COMPANYYUESAO,Int
     void deleteByCOMPANYYUESAOID(int id);
     @Query("select c from COMPANYYUESAO  c where c.COMPANYID=?1")
     List<COMPANYYUESAO>findByRealCOMPANYID(int id);
+    //得到名字
+    @Query("select y from COMPANYYUESAO  c, YUESOBASICINFO y where c.COMPANYID=?1 and y.USERSID=c.YUESAOID and y.NAME like concat('%',?2,'%') ")
+    YUESOBASICINFO findYUESOBASICINFObynameandcompanyid(int id, String name);
 
 
 

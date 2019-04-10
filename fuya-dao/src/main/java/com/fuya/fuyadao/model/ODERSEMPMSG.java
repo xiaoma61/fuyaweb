@@ -9,7 +9,7 @@ public class ODERSEMPMSG {
     EMPLOYERINFORMATION employerinformation;
     SERVICECONTENT servicecontent;
 
-    public  ODERSEMPMSG(EMPLOYERINFORMATION employerinformation,ORDERS orders,SERVICECONTENT servicecontent){
+    public  ODERSEMPMSG(EMPLOYERINFORMATION employerinformation, ORDERS orders, SERVICECONTENT servicecontent){
 
         this.orders=orders;
         this.employerinformation=employerinformation;

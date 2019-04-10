@@ -43,8 +43,6 @@ public class YuesaoPersonalController {
         int id= (int) session.getAttribute("id");
         //查找
         List<PROVEINFOANDBAISINFO> objectList=proveinfoService.findPROVEINFOByAndYUESAOBASICINFOByUSERSID(id);
-
-
         Map<String,Object> msg=new HashMap<>();
         msg.put("msg",objectList);
         return JSONObject.fromObject(msg);

@@ -3,8 +3,10 @@ package com.fuya.fuyadao.entity;
 import org.apache.solr.client.solrj.beans.Field;
 
 import javax.persistence.*;
+
 @Table(name="USERS")
 @Entity
+@NamedStoredProcedureQuery(name = "USER_PROCEDURE",procedureName = "USER_PROCEDURE",parameters = {@StoredProcedureParameter(mode = ParameterMode.IN,name = "ID",type = Integer.class )})
 public class USERS {
     @Id
     @SequenceGenerator(name = "USERS_SEQUENCEid",sequenceName = "USERS_SEQUENCE",initialValue=1,allocationSize=1 )

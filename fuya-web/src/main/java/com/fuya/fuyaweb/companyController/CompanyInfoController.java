@@ -69,10 +69,6 @@ public class CompanyInfoController {
         CompanysInfosModle companysInfosModle=new CompanysInfosModle();
         companysInfosModle.setCompanybasicinfo(companybasicinfo);
         companysInfosModle.setCompanyinfo(companyinfo);
-
-
-
-
         return JSONObject.fromObject(companysInfosModle);
 
     }
@@ -128,8 +124,6 @@ public class CompanyInfoController {
         yuesaootherprove.setFILEAREA(file);
         yuesaootherprove.setUSERID(id);
         yuesaootherproveService.save(yuesaootherprove);
-
-
         productService.sendMessage(this.topic,"yuesaootherprove:"+yuesaootherprove.getYUESAOOTHERPROVEID());
         Map<String,Object> msg=new HashMap<>();
         msg.put("msg","success");

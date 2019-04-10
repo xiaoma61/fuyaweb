@@ -15,7 +15,6 @@ public class COMPANYBASICINFO {
     @GeneratedValue(strategy= GenerationType.SEQUENCE,generator="COMPANYBASICINFOSEQUENCEid")
 
     @Field
-
     private int COMPANYBASICINFOID;
     @Field
     private int USERID;

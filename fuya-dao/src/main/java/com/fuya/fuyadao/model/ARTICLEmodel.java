@@ -1,13 +1,5 @@
 package com.fuya.fuyadao.model;
 
-import org.apache.solr.client.solrj.beans.Field;
-
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
-import java.sql.Date;
-
 public class ARTICLEmodel {
 
     private int ARTICLEID;

@@ -10,7 +10,7 @@ public class ODERSEMPCommentMSG {
     EMPLOYERINFORMATION employerinformation;
     SERVICECONTENT servicecontent;
     COMMENTS comments;
-    public  ODERSEMPCommentMSG(EMPLOYERINFORMATION employerinformation,ORDERS orders,SERVICECONTENT servicecontent,COMMENTS comments){
+    public  ODERSEMPCommentMSG(EMPLOYERINFORMATION employerinformation, ORDERS orders, SERVICECONTENT servicecontent, COMMENTS comments){
         this.employerinformation=employerinformation;
         this.orders=orders;
         this.servicecontent=servicecontent;

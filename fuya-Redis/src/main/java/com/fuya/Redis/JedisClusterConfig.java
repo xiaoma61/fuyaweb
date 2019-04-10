@@ -13,11 +13,11 @@ import java.util.Set;
 
 @Configuration
 public class JedisClusterConfig {
-   @Autowired
+    @Autowired
     RedisProperties redisProperties;
     @Bean
     public JedisCluster getJedisCluster(){
-       String[]serverArray=redisProperties.getClusterNodes().split(",");
+        String[]serverArray=redisProperties.getClusterNodes().split(",");
         Set<HostAndPort>nodes=new HashSet<>();
         for (String port:serverArray){
             String[]isPortPair=port.split(":");

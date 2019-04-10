@@ -1,6 +1,5 @@
 package com.fuya.fuyadao.entity;
 
-import com.sun.javafx.beans.IDProperty;
 import org.apache.solr.client.solrj.beans.Field;
 
 import javax.persistence.*;

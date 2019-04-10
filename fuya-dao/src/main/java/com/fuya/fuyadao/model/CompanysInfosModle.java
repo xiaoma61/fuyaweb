@@ -6,7 +6,13 @@ import com.fuya.fuyadao.entity.COMPANYINFO;
 public class CompanysInfosModle {
     COMPANYBASICINFO companybasicinfo;
     COMPANYINFO companyinfo;
+    public CompanysInfosModle(COMPANYBASICINFO companybasicinfo, COMPANYINFO companyInfo){
+        this.companybasicinfo=companybasicinfo;
+        this.companyinfo=companyInfo;
+    }
+    public CompanysInfosModle(){
 
+    }
     public COMPANYBASICINFO getCompanybasicinfo() {
         return companybasicinfo;
     }

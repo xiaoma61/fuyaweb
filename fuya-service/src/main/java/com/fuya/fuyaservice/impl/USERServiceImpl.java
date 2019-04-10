@@ -6,8 +6,6 @@ import com.fuya.fuyaservice.USERService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 public class USERServiceImpl implements USERService {
     @Autowired
@@ -36,5 +34,15 @@ public class USERServiceImpl implements USERService {
     @Override
     public void delete(int ID) {
         usersRepository.deleteByUSERSID(ID);
+    }
+
+    @Override
+    public void updatebyuserid(int type, int userid) {
+        usersRepository.updatebyuserid(type, userid);
+    }
+
+    @Override
+    public void deleteAllByUSERSID(int id) {
+        usersRepository.deleteAllByUSERSID(id);
     }
 }

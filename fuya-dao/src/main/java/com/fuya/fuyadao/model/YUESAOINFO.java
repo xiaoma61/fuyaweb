@@ -10,7 +10,7 @@ public class YUESAOINFO {
     List<PROVEINFO> proveinfo;
     public  YUESAOINFO(){
     }
-    public   YUESAOINFO(YUESOBASICINFO yuesobasicinfo,List<PROVEINFO> proveinfo){
+    public   YUESAOINFO(YUESOBASICINFO yuesobasicinfo, List<PROVEINFO> proveinfo){
         this.yuesobasicinfo=yuesobasicinfo;
         this.proveinfo=proveinfo;
     }

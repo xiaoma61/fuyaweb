@@ -11,7 +11,7 @@ public interface PROVEINFOService {
     PROVEINFO findByID(int id);
     void deleteByUSERSID(int id);
     List<PROVEINFOANDBAISINFO> findPROVEINFOByAndYUESAOBASICINFOByUSERSID(int id);
-    void update(String YUESAOSYNDROME,String HEALTHCERTIFICATES,String  REPORT,String SERVICEPICTURE,int PROVEINFOID );
+    void update(String YUESAOSYNDROME, String HEALTHCERTIFICATES, String REPORT, String SERVICEPICTURE, int PROVEINFOID);
 
 
 

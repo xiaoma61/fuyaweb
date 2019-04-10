@@ -10,13 +10,10 @@ import org.apache.solr.client.solrj.SolrServerException;
 import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.common.SolrDocument;
 import org.apache.solr.common.SolrDocumentList;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-
 import java.io.IOException;
-import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,16 +29,6 @@ public class ARTICLESearchdao {
 
         ARTICLE article= articleService.findByID(id);
         solrClient.addBean(article);
-//        System.out.println("xx:"+article.getID());
-//        SolrInputDocument solrInputDocument=new SolrInputDocument();
-//        solrInputDocument.addField("articleCONTENT",article.getCONTENT());
-//        solrInputDocument.addField("articleTITLE",article.getTITLE());
-//        solrInputDocument.addField("articleNUMS",article.getNUMS());
-//        solrInputDocument.addField("articleTIME",article.getTIME());
-//        solrInputDocument.addField("articleTYPE",article.getTYPE());
-//        solrInputDocument.addField("articleID",article.getID());
-
-//        solrClient.add(solrInputDocument);
         solrClient.commit();
     }
     //查找
@@ -69,6 +56,7 @@ public class ARTICLESearchdao {
             article.setTITLE((String) solrDocument.getFieldValue("TITLE"));
             String  type= (String) solrDocument.getFieldValue("TYPE");
             article.setTYPE(Integer.parseInt(type));
+
             articleList.add(article);
         }
 //        System.out.println(articleList.get(0).getTITLE());

@@ -22,7 +22,7 @@ public class YUESOBASICINFO {
     @Field("YUESOBASICINFOIDCARD")
     private String IDCARD;
     @Field
-    private String AGE;
+    private int AGE;
     @Field
     private String EDUCATION;
     @Field
@@ -43,7 +43,7 @@ public class YUESOBASICINFO {
     @Field("YUESOBASICINFOLEVELS")
     private int LEVELS;
     @Field
-    private String WAGES;
+    private int WAGES;
     @Field
     private String TYPE;
     @Field
@@ -107,13 +107,7 @@ public class YUESOBASICINFO {
         this.IDCARD = IDCARD;
     }
 
-    public String getAGE() {
-        return AGE;
-    }
 
-    public void setAGE(String AGE) {
-        this.AGE = AGE;
-    }
 
     public String getEDUCATION() {
         return EDUCATION;
@@ -187,13 +181,19 @@ public class YUESOBASICINFO {
         this.LEVELS = LEVELS;
     }
 
-    public String getWAGES() {
+    public int getAGE() {
+        return AGE;
+    }
+
+    public void setAGE(int AGE) {
+        this.AGE = AGE;
+    }
+
+    public int getWAGES() {
         return WAGES;
     }
 
-    public void setWAGES(String WAGES) {
+    public void setWAGES(int WAGES) {
         this.WAGES = WAGES;
     }
-
-
 }

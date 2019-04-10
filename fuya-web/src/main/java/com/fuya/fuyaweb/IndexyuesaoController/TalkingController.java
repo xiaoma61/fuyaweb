@@ -2,9 +2,9 @@ package com.fuya.fuyaweb.IndexyuesaoController;
 
 import com.fuya.Redis.Util.RedisUtil;
 import com.fuya.fuyadao.entity.MSG;
+import com.fuya.fuyadao.entity.ORDERS;
 import com.fuya.fuyadao.model.MSGInfo;
 import com.fuya.fuyadao.model.MSGinfodetail;
-import com.fuya.fuyadao.entity.ORDERS;
 import com.fuya.fuyadao.model.ORDERScontact;
 import com.fuya.fuyaservice.MSGService;
 import com.fuya.fuyasolr.SearchResult.SearchResult;
@@ -18,13 +18,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 
@@ -45,33 +44,36 @@ public class TalkingController {
     ORDERSSolrService ordersSolrService;
     //实现聊天功能
     //生产者--月嫂和普通用户
-    @RequestMapping("/fuyayusaos/talkingsend")
-    public String talkingsend(@RequestParam(name = "id")String id, @RequestParam(name = "msg")String msg, HttpServletRequest request) throws IOException, SolrServerException {
+
+    @RequestMapping("/fuyayusaos/talkingsendmsg")
+    @ResponseBody
+    public JSONObject talkingsendmsg(@RequestParam(name = "id")String id, @RequestParam(name = "msg")String msg, HttpServletRequest request) throws IOException, SolrServerException {
 
         //获取
         java.sql.Date date=TimeUtil.getsqldate(new Date());
         HttpSession session=request.getSession();
-        String fromid= (String) session.getAttribute("id");
+        int fromid= (int) session.getAttribute("id");
         String key=id;
-
-
         //存储到数据库
         MSG msg1=new MSG();
-        msg1.setFROMID(Integer.parseInt(fromid));
+        msg1.setFROMID(fromid);
         msg1.setTOID(Integer.parseInt(id));
+        msg1.setTYPE(1);
         //SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-
         msg1.setTIME(date);
         msg1.setMSG(msg);
         msgService.save(msg1);
         String value=fromid+":"+msg+":"+msg1.getMSGID()+":"+date;
         redisUtil.lpush(key,value);
-        msgSolrService.addMSG(msg1.getMSGID());
+//        msgSolrService.addMSG(msg1.getMSGID());
 
-        return "";
+        Map<String,Object> msgs=new HashMap<>();
+        msgs.put("msg","success");
+        return JSONObject.fromObject(msgs);
     }
     //消费者
     @RequestMapping("/fuyayusaos/talking")
+    @ResponseBody
     public JSONObject talkingget(@RequestParam(name = "id")String toid) throws IOException, SolrServerException {
         boolean flag=true;
         List<MSGinfodetail>msGinfodetails=new ArrayList<>();
@@ -126,19 +128,19 @@ public class TalkingController {
     }
     //系统通知
     @RequestMapping("/fuyayusaos/talkingsystem")
+    @ResponseBody
     public JSONObject talkingsystem(HttpServletRequest request) throws IOException, SolrServerException {
         //得到通知列表
         HttpSession session=request.getSession();
         String toid= (String) session.getAttribute("id");
         //未读
         List<MSGInfo>msgInfoList=msgSolrService.findbytoid(Integer.parseInt(toid),1);
-
-
         return JSONObject.fromObject(msgInfoList);
     }
 
     //联系人列表---订单列表
     @RequestMapping("/fuyayusao/talkingrecent")
+    @ResponseBody
     public JSONObject talkingrecent(HttpServletRequest request,@RequestParam(name = "start" ,defaultValue = "0")int start
     ,@RequestParam(name = "rows",defaultValue = "5")int rows) throws IOException, SolrServerException {
         //月嫂列表

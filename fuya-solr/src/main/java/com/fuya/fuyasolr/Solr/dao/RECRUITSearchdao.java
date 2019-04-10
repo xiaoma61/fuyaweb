@@ -1,7 +1,6 @@
 package com.fuya.fuyasolr.Solr.dao;
 
 import com.fuya.fuyadao.entity.RECRUIT;
-import com.fuya.fuyadao.model.ARTICLEmodel;
 import com.fuya.fuyadao.model.RECRUITmodel;
 import com.fuya.fuyaservice.RECRUITService;
 import com.fuya.fuyasolr.SearchResult.SearchResult;
@@ -35,7 +34,7 @@ public class RECRUITSearchdao {
         solrClient.commit();
     }
     public SearchResult Search(SolrQuery query) throws IOException, SolrServerException {
-        List< RECRUITmodel> recruitList=new ArrayList<RECRUITmodel>();
+        List<RECRUITmodel> recruitList=new ArrayList<RECRUITmodel>();
         QueryResponse solrResponse=solrClient.query(query);
         SolrDocumentList solrDocumentList= solrResponse.getResults();
 //        List<RECRUITmodel> recruitList=solrResponse.getBeans(RECRUITmodel.class);

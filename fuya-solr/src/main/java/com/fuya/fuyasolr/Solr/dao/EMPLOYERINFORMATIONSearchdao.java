@@ -1,16 +1,13 @@
 package com.fuya.fuyasolr.Solr.dao;
 
-import com.fuya.fuyadao.entity.COMMENTS;
 import com.fuya.fuyadao.entity.EMPLOYERINFORMATION;
 import com.fuya.fuyaservice.EMPLOYERINFORMATIONService;
 import org.apache.solr.client.solrj.SolrClient;
 import org.apache.solr.client.solrj.SolrQuery;
-import org.apache.solr.client.solrj.SolrResponse;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.common.SolrDocument;
 import org.apache.solr.common.SolrDocumentList;
-import org.apache.solr.common.SolrInputDocument;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

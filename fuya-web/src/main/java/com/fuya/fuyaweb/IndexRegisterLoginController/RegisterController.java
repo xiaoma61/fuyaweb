@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.jms.Queue;
 import javax.jms.Topic;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -67,11 +66,11 @@ public class RegisterController {
     //月嫂用户注册3
     @RequestMapping("/Register/yuesao")
     JSONArray yuesaoRegister(@RequestParam(name = "name",defaultValue = "肖彩珠") String name,@RequestParam(name = "phone",defaultValue = "1314333") String phone,
-                          @RequestParam(name = "idcard",defaultValue = "44440000")String idcard,@RequestParam(name = "age",defaultValue = "45") String age,
+                          @RequestParam(name = "idcard",defaultValue = "44440000")String idcard,@RequestParam(name = "age",defaultValue = "45") int age,
                           @RequestParam(name = "education",defaultValue = "高中") String education ,@RequestParam(name = "nativeplace",defaultValue = "北京") String nativeplace,
                           @RequestParam(name = "email",defaultValue = "123@qq.com") String email,@RequestParam(name = "photo",defaultValue = "file:") String photo,
                           @RequestParam(name = "widght",defaultValue = "63kg") String widght,@RequestParam(name = "height",defaultValue = "163cm") String height ,
-                          @RequestParam(name = "wages",defaultValue = "13") String wages,@RequestParam(name = "seniority",defaultValue = "ssss") String seniority,
+                          @RequestParam(name = "wages",defaultValue = "13") int wages,@RequestParam(name = "seniority",defaultValue = "ssss") String seniority,
                           @RequestParam(name = "yuesaotype",defaultValue = "育婴师") String yuesaotype,
                           @RequestParam(name = "workarea",defaultValue = "工作地点") String workarea,
                           @RequestParam(name = "yuesaosyndrome",defaultValue = "yuesaosyndrome") String yuesaosyndrome,

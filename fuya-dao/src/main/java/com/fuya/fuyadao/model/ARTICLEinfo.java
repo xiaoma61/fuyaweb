@@ -1,8 +1,9 @@
 package com.fuya.fuyadao.model;
 
 
-import java.util.List;
 import com.fuya.fuyasolr.SearchResult.SearchResult;
+
+import java.util.List;
 
 public class ARTICLEinfo {
     SearchResult searchResult;

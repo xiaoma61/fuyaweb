@@ -61,7 +61,7 @@ public class MSGSearchdao {
         return hashSet;
 
     }
-    public List<MSG> Searchby(SolrQuery solrQuery,int type) throws IOException, SolrServerException {
+    public List<MSG> Searchby(SolrQuery solrQuery, int type) throws IOException, SolrServerException {
         //获取多少
         List<MSG>msgList=new ArrayList<>();
 //        HashSet<String>hashSet=new HashSet<>();

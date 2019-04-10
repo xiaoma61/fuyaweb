@@ -3,13 +3,11 @@ package com.fuya.fuyadao.model;
 import com.fuya.fuyadao.entity.PROVEINFO;
 import com.fuya.fuyadao.entity.YUESOBASICINFO;
 
-import java.util.List;
-
 public class PROVEINFOANDBAISINFO {
     YUESOBASICINFO yuesobasicinfo;
     PROVEINFO proveinfo;
 
-    public   PROVEINFOANDBAISINFO(YUESOBASICINFO yuesobasicinfo,PROVEINFO proveinfo){
+    public   PROVEINFOANDBAISINFO(YUESOBASICINFO yuesobasicinfo, PROVEINFO proveinfo){
         this.yuesobasicinfo=yuesobasicinfo;
         this.proveinfo=proveinfo;
     }

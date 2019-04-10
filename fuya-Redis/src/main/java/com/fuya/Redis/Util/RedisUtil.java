@@ -46,8 +46,17 @@ public class RedisUtil {
         Set<String> smembers = jedisCluster.smembers(key);
         return smembers;
     }
-    public int scard(String key){
-        return Math.toIntExact(jedisCluster.scard(key));
+    public Set<String> zrevrangeByScore(String name,int start,int rows){
+
+        return jedisCluster.zrevrangeByScore(name, "+inf", "-inf",start,rows);
     }
+    public void zadd(String key,int j,String name){
+        jedisCluster.zadd(name, j, key);
+    }
+
+
+   /* public int scard(String key){
+        return Math.toIntExact(jedisCluster.scard(key));
+    }*/
 
 }

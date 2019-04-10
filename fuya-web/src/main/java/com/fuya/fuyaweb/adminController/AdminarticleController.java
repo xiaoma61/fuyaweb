@@ -24,7 +24,6 @@ import javax.jms.Topic;
 import java.io.IOException;
 import java.sql.Date;
 import java.text.ParseException;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -168,7 +167,6 @@ public class AdminarticleController {
     @RequestMapping("/admin/article/keyword")
     @ResponseBody
     public JSONObject Searchbykeyword(@RequestParam("title")String title,@RequestParam(name = "start",defaultValue = "0")int start,@RequestParam(name = "rows",defaultValue = "10")int rows) throws IOException, SolrServerException {
-
 
         SearchResult searchResult=articleSolrService.SearchbyLikeName(title,start,rows);
         List<String>stringList=SearchKeyword.searchkeyword(searchResult);

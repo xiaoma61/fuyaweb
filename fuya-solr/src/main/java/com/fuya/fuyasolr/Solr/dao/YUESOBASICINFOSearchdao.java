@@ -6,15 +6,12 @@ import com.fuya.fuyasolr.SearchResult.SearchResult;
 import org.apache.solr.client.solrj.SolrClient;
 import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.SolrServerException;
-
 import org.apache.solr.client.solrj.response.QueryResponse;
-
 import org.apache.solr.common.SolrDocument;
 import org.apache.solr.common.SolrDocumentList;
 import org.apache.solr.common.SolrInputDocument;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -70,7 +67,7 @@ public class YUESOBASICINFOSearchdao {
 
 
     //执行查找分页
-    public SearchResult  searchResult(SolrQuery solrQuery,boolean flag) throws IOException, SolrServerException {
+    public SearchResult searchResult(SolrQuery solrQuery, boolean flag) throws IOException, SolrServerException {
 
        //flag执不执行高亮，true 高亮
         //根据query查询索引库
@@ -87,7 +84,7 @@ public class YUESOBASICINFOSearchdao {
         for (SolrDocument solrDocument: solrDocumentList){
             YUESOBASICINFO yuesobasicinfo=new YUESOBASICINFO();
             yuesobasicinfo.setYUESOBASICINFOID((Integer) solrDocument.getFieldValue("ID"));
-            yuesobasicinfo.setAGE((String) solrDocument.getFieldValue("AGE"));
+            yuesobasicinfo.setAGE((int) solrDocument.getFieldValue("AGE"));
             yuesobasicinfo.setCOMPANYID((String) solrDocument.getFieldValue("LEVELS"));
             yuesobasicinfo.setEDUCATION((String) solrDocument.getFieldValue("WAGES"));
             yuesobasicinfo.setEMAIL((String) solrDocument.getFieldValue("EMAIL"));
@@ -99,7 +96,7 @@ public class YUESOBASICINFOSearchdao {
             yuesobasicinfo.setSENIORITY((String) solrDocument.getFieldValue("SENIORITY"));
             yuesobasicinfo.setPHOTO((String) solrDocument.getFieldValue("PHOTO"));
             yuesobasicinfo.setLEVELS((Integer) solrDocument.getFieldValue("LEVELS"));
-            yuesobasicinfo.setWAGES((String) solrDocument.getFieldValue("WAGES"));
+            yuesobasicinfo.setWAGES((int) solrDocument.getFieldValue("WAGES"));
             yuesobasicinfo.setEDUCATION((String) solrDocument.getFieldValue("EDUCATION"));
             yuesobasicinfo.setCOMPANYID((String) solrDocument.getFieldValue("COMPANYID"));
             yuesobasicinfo.setPHONE((String) solrDocument.getFieldValue("PHONE"));
@@ -131,7 +128,7 @@ public class YUESOBASICINFOSearchdao {
 
         return searchResult;
     }
-    public YUESOBASICINFO  searchbyid(SolrQuery solrQuery) throws IOException, SolrServerException {
+    public YUESOBASICINFO searchbyid(SolrQuery solrQuery) throws IOException, SolrServerException {
 
         //flag执不执行高亮，true 高亮
         //根据query查询索引库
@@ -143,7 +140,7 @@ public class YUESOBASICINFOSearchdao {
         for (SolrDocument solrDocument: solrDocumentList){
 
             yuesobasicinfo.setYUESOBASICINFOID((Integer) solrDocument.get("ID"));
-            yuesobasicinfo.setAGE((String) solrDocument.get("AGE"));
+            yuesobasicinfo.setAGE((int) solrDocument.get("AGE"));
             yuesobasicinfo.setCOMPANYID((String) solrDocument.get("LEVELS"));
             yuesobasicinfo.setEDUCATION((String) solrDocument.get("WAGES"));
             yuesobasicinfo.setEMAIL((String) solrDocument.get("EMAIL"));
@@ -155,7 +152,7 @@ public class YUESOBASICINFOSearchdao {
             yuesobasicinfo.setSENIORITY((String) solrDocument.get("SENIORITY"));
             yuesobasicinfo.setPHOTO((String) solrDocument.get("PHOTO"));
             yuesobasicinfo.setLEVELS((Integer) solrDocument.get("LEVELS"));
-            yuesobasicinfo.setWAGES((String) solrDocument.get("WAGES"));
+            yuesobasicinfo.setWAGES((int) solrDocument.get("WAGES"));
             yuesobasicinfo.setEDUCATION((String) solrDocument.get("EDUCATION"));
             yuesobasicinfo.setCOMPANYID((String) solrDocument.get("COMPANYID"));
             yuesobasicinfo.setPHONE((String) solrDocument.get("PHONE"));

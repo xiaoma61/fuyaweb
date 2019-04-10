@@ -1,7 +1,5 @@
 package com.fuya.fuyadao.model;
 
-import com.fuya.fuyadao.entity.ARTICLE;
-
 import java.util.List;
 
 public class ARTICLEidinfo {
