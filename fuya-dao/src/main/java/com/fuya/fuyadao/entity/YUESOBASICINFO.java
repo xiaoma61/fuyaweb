@@ -9,8 +9,6 @@ import javax.persistence.*;
 public class YUESOBASICINFO {
 
     @Id
-    @SequenceGenerator(name = "YUESOBASICINFO_SEQUENCEid",sequenceName ="YUESOBASICINFO_SEQUENCE", initialValue = 1,allocationSize=1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "YUESOBASICINFO_SEQUENCEid")
     @Field
     private int YUESOBASICINFOID;
     @Field

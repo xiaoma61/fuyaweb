@@ -1,14 +1,13 @@
 package com.fuya.fuyautil;
 
 import java.sql.Date;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 public class TimeUtil {
     //获取sqldate
     public static Date getsqldate(java.util.Date date){
-        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+        Date sqlDate = new Date(date.getTime());
         return sqlDate;
     }
 //    //获取stringdate
@@ -26,7 +25,7 @@ public class TimeUtil {
         return str;
 
     }
-    public static java.sql.Date stringtodate(String dateS) throws ParseException {
+    public static Date stringtodate(String dateS) throws ParseException {
         SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd");
         java.util.Date date = sdf.parse(dateS);
         return getsqldate(date);

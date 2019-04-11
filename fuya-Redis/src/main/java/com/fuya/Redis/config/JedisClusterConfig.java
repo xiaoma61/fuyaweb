@@ -1,5 +1,6 @@
-package com.fuya.Redis;
+package com.fuya.Redis.config;
 
+import com.fuya.Redis.Redis.RedisProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.context.annotation.Bean;

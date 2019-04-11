@@ -10,8 +10,7 @@ public class YUESAOOTHERPROVE {
 
 
     @Id
-    @SequenceGenerator(name = "YUESAOOTHERPROVE_SEQUENCEid",initialValue = 1,allocationSize=1,sequenceName = "YUESAOOTHERPROVE_SEQUENCE")
-    @GeneratedValue(generator = "YUESAOOTHERPROVE_SEQUENCEid" ,strategy = GenerationType.SEQUENCE)
+
     @Field
     private int YUESAOOTHERPROVEID;
     @Field

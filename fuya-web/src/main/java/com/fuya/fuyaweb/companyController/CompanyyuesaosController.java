@@ -11,7 +11,6 @@ import com.fuya.fuyaservice.COMPANYYUESAOService;
 import com.fuya.fuyaservice.PROVEINFOService;
 import com.fuya.fuyaservice.USERService;
 import com.fuya.fuyaservice.YUESOBASICINFOService;
-import com.fuya.fuyasolr.Solr.service.USERSSolrservice;
 import com.fuya.fuyautil.StringNameUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -47,8 +46,8 @@ public class CompanyyuesaosController {
     private Topic topic;
     @Autowired
     private ProductService productService;
-    @Autowired
-    private USERSSolrservice usersSolrservice;
+    /*@Autowired
+    private USERSSolrservice usersSolrservice;*/
     @Autowired
     private USERService userService;
     @Autowired

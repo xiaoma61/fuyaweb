@@ -12,8 +12,7 @@ import java.util.Date;
 })
 public class PROBLEM {
     @Id
-    @SequenceGenerator(name = "PROBLEM_SEQUENCEid",initialValue = 1,allocationSize=1,sequenceName = "PROBLEM_SEQUENCE")
-    @GeneratedValue(generator = "PROBLEM_SEQUENCEid" ,strategy = GenerationType.SEQUENCE)
+
     private int PROBLEMID;
     private int CHOOSEID;
     private String TITLE;

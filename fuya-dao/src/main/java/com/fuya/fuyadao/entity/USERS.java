@@ -9,8 +9,7 @@ import javax.persistence.*;
 @NamedStoredProcedureQuery(name = "USER_PROCEDURE",procedureName = "USER_PROCEDURE",parameters = {@StoredProcedureParameter(mode = ParameterMode.IN,name = "ID",type = Integer.class )})
 public class USERS {
     @Id
-    @SequenceGenerator(name = "USERS_SEQUENCEid",sequenceName = "USERS_SEQUENCE",initialValue=1,allocationSize=1 )
-    @GeneratedValue(strategy=GenerationType.SEQUENCE,generator="USERS_SEQUENCEid")
+
     @Column(name="USERSID")
     @Field
     private int USERSID;

@@ -21,7 +21,6 @@ public class USERServiceImpl implements USERService {
 
     @Override
     public void save(USERS users) {
-
         USERS user=usersRepository.save(users);
     }
 

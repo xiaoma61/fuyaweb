@@ -9,8 +9,6 @@ import javax.persistence.*;
 @Table(name = "COLLECTIONS")
 public class COLLECTIONS {
     @Id
-    @SequenceGenerator(name = "COLLECTIONS_SEQUENCEid",initialValue = 1,allocationSize=1,sequenceName = "COLLECTIONS_SEQUENCE")
-    @GeneratedValue(generator = "COLLECTIONS_SEQUENCEid" ,strategy = GenerationType.SEQUENCE)
     @Field
     private int COLLECTIONSID;
     @Field

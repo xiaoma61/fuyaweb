@@ -9,8 +9,6 @@ import javax.persistence.*;
 public class ORDERS {
 
     @Id
-    @SequenceGenerator(name = "ORDERS_SEQUENCEid",sequenceName = "ORDERS_SEQUENCE",initialValue=1,allocationSize=1 )
-    @GeneratedValue(strategy= GenerationType.SEQUENCE,generator="ORDERS_SEQUENCEid")
     @Field
     private int ORDERSID;
     @Field

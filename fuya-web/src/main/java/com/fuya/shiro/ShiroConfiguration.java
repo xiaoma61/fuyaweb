@@ -4,7 +4,6 @@ package com.fuya.shiro;
 import com.fuya.Redis.Util.RedisUtil;
 import com.fuya.fuyadao.entity.PERMISSION;
 import com.fuya.fuyaservice.PERMISSIONService;
-import com.fuya.fuyasolr.Solr.service.USERSSolrservice;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
@@ -24,8 +23,8 @@ public class ShiroConfiguration {
 
     @Autowired
     private PERMISSIONService permissionService;
-    @Autowired
-    private USERSSolrservice usersSolrservice;
+  /*  @Autowired
+    private USERSSolrservice usersSolrservice;*/
     @Autowired
     private RedisUtil redisUtil;
 

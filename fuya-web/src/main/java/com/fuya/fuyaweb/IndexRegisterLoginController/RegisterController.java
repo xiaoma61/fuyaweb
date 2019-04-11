@@ -3,7 +3,6 @@ package com.fuya.fuyaweb.IndexRegisterLoginController;
 import com.fuya.ActiveMQ.service.ProductService;
 import com.fuya.fuyadao.entity.*;
 import com.fuya.fuyaservice.*;
-import com.fuya.fuyasolr.Solr.service.USERSSolrservice;
 import com.fuya.fuyautil.StringNameUtil;
 import net.sf.json.JSONArray;
 import org.apache.solr.client.solrj.SolrServerException;
@@ -17,7 +16,6 @@ import javax.jms.Queue;
 import javax.jms.Topic;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -37,8 +35,8 @@ public class RegisterController {
     private Topic topic;
     @Autowired
     private ProductService productService;
-   @Autowired
-   private USERSSolrservice usersSolrservice;
+  /* @Autowired
+   private USERSSolrservice usersSolrservice;*/
    @Autowired
    private COMPANYBASICINFOService companybasicinfoService;
 
@@ -46,13 +44,14 @@ public class RegisterController {
 
     //普通用户注册
     @RequestMapping("/Register/users")
+    @ResponseBody()
     JSONArray Register(String name, String password, String phone, @RequestParam(name="type" ,defaultValue = "1")int type) throws IOException, SolrServerException {
-        List<USERS>usersList=usersSolrservice.searchbyusername(name);
+   /*     List<USERS>usersList=usersSolrservice.searchbyusername(name);*/
         Map<String,Object> msg=new HashMap<>();
-        if (usersList.size()>0){
+        /*if (usersList.size()>0){
             msg.put("msg","error");
             return  JSONArray.fromObject(msg);
-        }
+        }*/
         USERS users=new USERS();
         users.setNAME(name);
         users.setPASSWORD(password);
@@ -65,6 +64,7 @@ public class RegisterController {
     }
     //月嫂用户注册3
     @RequestMapping("/Register/yuesao")
+    @ResponseBody()
     JSONArray yuesaoRegister(@RequestParam(name = "name",defaultValue = "肖彩珠") String name,@RequestParam(name = "phone",defaultValue = "1314333") String phone,
                           @RequestParam(name = "idcard",defaultValue = "44440000")String idcard,@RequestParam(name = "age",defaultValue = "45") int age,
                           @RequestParam(name = "education",defaultValue = "高中") String education ,@RequestParam(name = "nativeplace",defaultValue = "北京") String nativeplace,
@@ -80,12 +80,12 @@ public class RegisterController {
                           @RequestParam(name = "servicepiceture",defaultValue = "头像") String servicepiceture) throws IOException, SolrServerException {
 
 
-        List<USERS> usersList=usersSolrservice.searchbyusername(name);
+   /*     List<USERS> usersList=usersSolrservice.searchbyusername(name);*/
         Map<String,Object> msg=new HashMap<>();
-        if (usersList.size()>0){
+       /* if (usersList.size()>0){
             msg.put("msg","error");
             return  JSONArray.fromObject(msg);
-        }
+        }*/
         //未被审核不能被查找到
         int type=4;
         //以姓名为账号名， 密码身份证后6位
@@ -159,6 +159,7 @@ public class RegisterController {
 
     //企业用户注册2
     @RequestMapping("/Register/company")
+    @ResponseBody()
     public JSONArray companyRegister(@RequestParam(name="name",defaultValue = "优先有限公司") String name, @RequestParam(name = "phone",defaultValue = "1314333") String phone,
                                      @RequestParam(name = "password",defaultValue = "1314") String password,
                                      @RequestParam(name = "corporatename",defaultValue = "corporatename")String corporatename, @RequestParam(name = " email",defaultValue = " email")String email,
@@ -170,12 +171,12 @@ public class RegisterController {
 
 
         int type=2;
-        List<USERS>usersList=usersSolrservice.searchbyusername(name);
+/*        List<USERS>usersList=usersSolrservice.searchbyusername(name);*/
         Map<String,Object> msg=new HashMap<>();
-        if (usersList.size()>0){
+       /* if (usersList.size()>0){
             msg.put("msg","error");
             return  JSONArray.fromObject(msg);
-        }
+        }*/
         USERS users=new USERS();
         users.setNAME(name);
         users.setPASSWORD(password);
@@ -216,13 +217,13 @@ public class RegisterController {
     @RequestMapping("/Register/findusername")
     @ResponseBody
     public JSONArray findusername(@RequestParam(name = "keyword")String keyword){
-        List<USERS>usersList=usersSolrservice.search(keyword);
+       /* List<USERS>usersList=usersSolrservice.search(keyword);*/
         Map<String,Object> msg=new HashMap<>();
-        if (usersList!=null){
+        /*if (usersList!=null){
 
             msg.put("msg",usersList);
 
-         }
+         }*/
          msg.put("msg","error");
         return  JSONArray.fromObject(msg);
 

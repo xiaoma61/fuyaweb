@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="fuya-web:war">
+    <output-path>$PROJECT_DIR$/fuya-web/target</output-path>
+    <root id="archive" name="fuyaweb.war">
+      <element id="artifact" artifact-name="fuya-web:war exploded" />
+    </root>
+  </artifact>
+</component>

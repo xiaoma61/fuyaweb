@@ -10,8 +10,7 @@ import java.util.Date;
 public class SERVICECONTENT {
 
     @Id
-    @SequenceGenerator(name = "SERVICECONTENT_SEQUENCEid",sequenceName = "SERVICECONTENT_SEQUENCE",initialValue=1,allocationSize=1 )
-    @GeneratedValue(strategy= GenerationType.SEQUENCE,generator="SERVICECONTENT_SEQUENCEid")
+
     @Field
     private int SERVICECONTENTID;
     @Field

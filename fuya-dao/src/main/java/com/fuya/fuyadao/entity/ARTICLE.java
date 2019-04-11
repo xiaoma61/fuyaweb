@@ -9,9 +9,8 @@ import java.sql.Date;
 @Table(name = "ARTICLE")
 public class ARTICLE {
 
+
     @Id
-    @SequenceGenerator(name = "ARTICLE_SEQUENCEid",initialValue = 1,allocationSize=1,sequenceName = "ARTICLE_SEQUENCE")
-    @GeneratedValue(generator = "ARTICLE_SEQUENCEid" ,strategy = GenerationType.SEQUENCE)
     @Field
     private int ARTICLEID;
     @Field

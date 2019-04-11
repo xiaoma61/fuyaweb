@@ -25,7 +25,7 @@ spring:
       exclude: WEB-INF/**
   redis:
     expireSeconds: 120
-    clusterNodes: campus.gbdev.cn:6661,campus.gbdev.cn:6662,campus.gbdev.cn:6663,campus.gbdev.cn:6664,campus.gbdev.cn:6665,campus.gbdev.cn:6666
+    clusterNodes: localhost:6661,localhost:6662,localhost:6663,localhost:6664,localhost:6665,localhost:6666
     jedis:
       pool:
         max-active: 300
@@ -43,10 +43,8 @@ spring:
     user: admin
   jms:
     pub-sub-domain: true
-server:
-  port: 8063
 pagehelper:
-  helperDialect: oracle
+  helperDialect: mysql
   reasonable: true
   supportMethodsArguments: true
   params: count=countSql

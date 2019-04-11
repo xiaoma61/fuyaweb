@@ -2,13 +2,18 @@ package com.fuya;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 @SpringBootApplication
-public class FuyaWebApplication {
+
+public class FuyaWebApplication  extends SpringBootServletInitializer{
 
     public static void main(String[] args) {
         SpringApplication.run(FuyaWebApplication.class, args);
     }
-
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+        return builder.sources(FuyaWebApplication.class);
+    }
 }
 

@@ -9,8 +9,6 @@ import java.sql.Date;
 @Entity
 public class MSG {
     @Id
-    @SequenceGenerator(name = "MSG_SEQUENCEid",initialValue = 1,allocationSize=1,sequenceName = "MSG_SEQUENCE")
-    @GeneratedValue(generator = "MSG_SEQUENCEid" ,strategy = GenerationType.SEQUENCE)
     @Field
     private  int MSGID;
     @Field

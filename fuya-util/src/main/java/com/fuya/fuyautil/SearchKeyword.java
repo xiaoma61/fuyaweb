@@ -1,7 +1,6 @@
 package com.fuya.fuyautil;
 
 
-import com.fuya.fuyadao.entity.ARTICLE;
 import com.fuya.fuyadao.model.ARTICLEmodel;
 import com.fuya.fuyasolr.SearchResult.SearchResult;
 

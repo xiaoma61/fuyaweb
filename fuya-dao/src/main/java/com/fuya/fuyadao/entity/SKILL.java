@@ -8,8 +8,7 @@ import javax.persistence.*;
 @Table(name = "SKILL")
 public class SKILL {
     @Id
-    @SequenceGenerator(name = "SKILL_SEQUENCEid",initialValue = 1,allocationSize=1,sequenceName = "SKILL_SEQUENCE")
-    @GeneratedValue(generator = "SKILL_SEQUENCEid" ,strategy = GenerationType.SEQUENCE)
+
     @Field
     private int SKILLID;
     @Field

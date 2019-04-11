@@ -4,7 +4,6 @@ import com.fuya.fuyadao.entity.USERS;
 import com.fuya.fuyadao.model.AdminYuesaoinfo;
 import com.fuya.fuyadao.model.PROVEINFOANDBAISINFO;
 import com.fuya.fuyaservice.*;
-import com.fuya.fuyasolr.Solr.service.USERSSolrservice;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import net.sf.json.JSONObject;
@@ -33,8 +32,8 @@ public class AdminyuesaoController {
     private ORDERSService ordersService;
     @Autowired
     private USERService userService;
-    @Autowired
-    private USERSSolrservice usersSolrservice;
+   /* @Autowired
+    private USERSSolrservice usersSolrservice;*/
     @Autowired
     private PROVEINFOService proveinfoService;
     @Autowired
@@ -119,8 +118,8 @@ public class AdminyuesaoController {
         //更新
         USERS users=userService.findByID(id);
         userService.updatebyuserid(type,id);
-        usersSolrservice.delete(id);
-        usersSolrservice.addUSER(id);
+     /*   usersSolrservice.delete(id);
+        usersSolrservice.addUSER(id);*/
         //查找邮箱
 //        yuesobasicinfoService.findByUSERSID(id);
 

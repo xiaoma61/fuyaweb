@@ -10,10 +10,8 @@ import javax.persistence.*;
 @Table(name = "COMPANYBASICINFO")
 public class COMPANYBASICINFO {
 
-    @Id
-    @SequenceGenerator(name = "COMPANYBASICINFOSEQUENCEid",sequenceName = "COMPANYBASICINFOSEQUENCE",initialValue=1,allocationSize=1 )
-    @GeneratedValue(strategy= GenerationType.SEQUENCE,generator="COMPANYBASICINFOSEQUENCEid")
 
+    @Id
     @Field
     private int COMPANYBASICINFOID;
     @Field

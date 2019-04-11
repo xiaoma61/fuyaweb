@@ -2,26 +2,26 @@
   "groups": [
     {
       "name": "spring.redis",
-      "type": "com.fuya.Redis.RedisProperties",
-      "sourceType": "com.fuya.Redis.RedisProperties"
+      "type": "com.fuya.Redis.Redis.RedisProperties",
+      "sourceType": "com.fuya.Redis.Redis.RedisProperties"
     }
   ],
   "properties": [
     {
       "name": "spring.redis.cluster-nodes",
       "type": "java.lang.String",
-      "sourceType": "com.fuya.Redis.RedisProperties"
+      "sourceType": "com.fuya.Redis.Redis.RedisProperties"
     },
     {
       "name": "spring.redis.command-timeout",
       "type": "java.lang.Integer",
-      "sourceType": "com.fuya.Redis.RedisProperties",
+      "sourceType": "com.fuya.Redis.Redis.RedisProperties",
       "defaultValue": 0
     },
     {
       "name": "spring.redis.expire-seconds",
       "type": "java.lang.String",
-      "sourceType": "com.fuya.Redis.RedisProperties"
+      "sourceType": "com.fuya.Redis.Redis.RedisProperties"
     }
   ],
   "hints": []

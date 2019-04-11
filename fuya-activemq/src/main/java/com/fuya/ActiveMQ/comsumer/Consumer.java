@@ -14,8 +14,8 @@ import java.io.IOException;
 @Service
 public class Consumer {
 
-    @Autowired
-    USERSSolrservice usersSolrservice;
+   /* @Autowired
+    USERSSolrservice usersSolrservice;*/
     @Autowired
     COMPANYBASICINFOSolrService companybasicinfoSolrService;
     @Autowired
@@ -45,10 +45,10 @@ public class Consumer {
     public String receiveQueue(String id) throws IOException, SolrServerException {
         String[] text=id.split(":");
         //实现solr插入users
-        if (text[0].equals("users")){
+        /*if (text[0].equals("users")){
             usersSolrservice.addUSER(Integer.parseInt(text[1]));
 
-        }
+        }*/
 
         if (text[0].equals("proveinfo")){
 //
@@ -67,10 +67,6 @@ public class Consumer {
         }if (text[0].equals("companybasicinfo")){
             companybasicinfoSolrService.addCOMPANYBASICINFO(Integer.parseInt(text[1]));
         }
-        if (text[0].equals("yuesobasicinfo")){
-            yuesobasicinfoSolrservice.addYUESOBASICINFO(Integer.parseInt(text[1]));
-        }
-
 
 
 
@@ -115,10 +111,10 @@ public class Consumer {
         }
 
         /////
-        if (text[0].equals("users-delete")){
+       /* if (text[0].equals("users-delete")){
            usersSolrservice.delete(Integer.parseInt(text[1]));
 
-        }
+        }*/
         if (text[0].equals("yuesobasicinfoService-delete")){
 
             yuesobasicinfoSolrservice.delete(Integer.parseInt(text[1]));

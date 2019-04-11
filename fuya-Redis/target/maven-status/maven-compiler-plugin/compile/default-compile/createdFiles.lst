@@ -1,4 +1,4 @@
-com\fuya\Redis\JedisClusterConfig.class
+com\fuya\Redis\config\JedisClusterConfig.class
 com\fuya\Redis\Util\RedisUtil.class
-com\fuya\Redis\RedisProperties.class
+com\fuya\Redis\Redis\RedisProperties.class
 META-INF\spring-configuration-metadata.json

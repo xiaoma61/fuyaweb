@@ -6,8 +6,6 @@ import javax.persistence.*;
 @Table(name = "CHOOSE")
 public class CHOOSE {
     @Id
-    @SequenceGenerator(name = "CHOOSE_SEQUENCEid",initialValue = 1,allocationSize=1,sequenceName = "CHOOSE_SEQUENCE")
-    @GeneratedValue(generator = "CHOOSE_SEQUENCEid" ,strategy = GenerationType.SEQUENCE)
     private int CHOOSEID;
     private String ACHOOSE;
     private String BCHOOSE;
