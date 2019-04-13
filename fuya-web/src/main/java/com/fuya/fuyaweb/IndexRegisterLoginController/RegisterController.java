@@ -1,9 +1,11 @@
 package com.fuya.fuyaweb.IndexRegisterLoginController;
 
 import com.fuya.ActiveMQ.service.ProductService;
+import com.fuya.Redis.Util.RedisUtil;
 import com.fuya.fuyadao.entity.*;
 import com.fuya.fuyaservice.*;
 import com.fuya.fuyautil.StringNameUtil;
+import com.fuya.fuyautil.uuidUtil;
 import net.sf.json.JSONArray;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +37,8 @@ public class RegisterController {
     private Topic topic;
     @Autowired
     private ProductService productService;
+    @Autowired
+    private RedisUtil redisUtil;
   /* @Autowired
    private USERSSolrservice usersSolrservice;*/
    @Autowired
@@ -71,7 +75,7 @@ public class RegisterController {
                           @RequestParam(name = "email",defaultValue = "123@qq.com") String email,@RequestParam(name = "photo",defaultValue = "file:") String photo,
                           @RequestParam(name = "widght",defaultValue = "63kg") String widght,@RequestParam(name = "height",defaultValue = "163cm") String height ,
                           @RequestParam(name = "wages",defaultValue = "13") int wages,@RequestParam(name = "seniority",defaultValue = "ssss") String seniority,
-                          @RequestParam(name = "yuesaotype",defaultValue = "育婴师") String yuesaotype,
+                          @RequestParam(name = "yuesaotype",defaultValue = "1") int yuesaotype,
                           @RequestParam(name = "workarea",defaultValue = "工作地点") String workarea,
                           @RequestParam(name = "yuesaosyndrome",defaultValue = "yuesaosyndrome") String yuesaosyndrome,
                           @RequestParam(name = "healthcertificates",defaultValue = "healthcertificates") String healthcertificates,
@@ -103,7 +107,7 @@ public class RegisterController {
 
 
 
-        productService.sendMessage(this.topic,"users:"+ users.getUSERSID());
+        /*productService.sendMessage(this.topic,"users:"+ users.getUSERSID());*/
         //其他信息录入
         YUESOBASICINFO yuesobasicinfo=new YUESOBASICINFO();
         yuesobasicinfo.setPHONE(phone);
@@ -124,8 +128,9 @@ public class RegisterController {
         yuesobasicinfo.setAGE(age);
         yuesobasicinfo.setUSERSID(users.getUSERSID());
         yuesobasicinfo.setWORKAREA(workarea);
+        yuesobasicinfo.setId(uuidUtil.getuuidUtil());
         yuesobasicinfoService.save(yuesobasicinfo);
-        productService.sendMessage(this.topic,"yuesobasicinfo:"+ yuesobasicinfo.getYUESOBASICINFOID());
+    /*    productService.sendMessage(this.topic,"yuesobasicinfo:"+ yuesobasicinfo.getYUESOBASICINFOID());*/
 
         //证明存入
         PROVEINFO proveinfo=new PROVEINFO();
@@ -146,7 +151,7 @@ public class RegisterController {
 
         //存入数据库,同时存入solr库
         //Activemq通知
-        productService.sendMessage(this.topic,"proveinfo:"+ proveinfo.getPROVEINFOID());
+     /*   productService.sendMessage(this.topic,"proveinfo:"+ proveinfo.getPROVEINFOID());*/
 
 
         //用户关联
@@ -206,9 +211,9 @@ public class RegisterController {
 
 
         //Activemq通知
-        productService.sendMessage(this.topic,"users:"+users.getUSERSID());
+       /* productService.sendMessage(this.topic,"users:"+users.getUSERSID());
         productService.sendMessage(this.topic,"companyinfo:"+companyinfo.getCOMPANYINFOID());
-        productService.sendMessage(this.topic,"companybasicinfo:"+companybasicinfo.getCOMPANYBASICINFOID());
+        productService.sendMessage(this.topic,"companybasicinfo:"+companybasicinfo.getCOMPANYBASICINFOID());*/
         msg.put("msg","success");
         return JSONArray.fromObject(msg);
     }
@@ -217,13 +222,11 @@ public class RegisterController {
     @RequestMapping("/Register/findusername")
     @ResponseBody
     public JSONArray findusername(@RequestParam(name = "keyword")String keyword){
-       /* List<USERS>usersList=usersSolrservice.search(keyword);*/
+
+
+
         Map<String,Object> msg=new HashMap<>();
-        /*if (usersList!=null){
 
-            msg.put("msg",usersList);
-
-         }*/
          msg.put("msg","error");
         return  JSONArray.fromObject(msg);
 

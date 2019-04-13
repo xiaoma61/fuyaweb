@@ -96,7 +96,7 @@
           <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.25" />
           <element id="library" level="project" name="Maven: com.alibaba:druid:1.1.10" />
           <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-starter-aop:2.1.2.RELEASE" />
-          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:8.0.13" />
+          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:6.0.6" />
           <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-starter-jdbc:2.1.2.RELEASE" />
           <element id="library" level="project" name="Maven: com.zaxxer:HikariCP:3.2.0" />
           <element id="library" level="project" name="Maven: org.springframework:spring-jdbc:5.1.4.RELEASE" />
@@ -113,7 +113,7 @@
           <element id="library" level="project" name="Maven: com.alipay.sdk:alipay-sdk-java:3.0.0" />
           <element id="library" level="project" name="Maven: net.sf.json-lib:json-lib:jdk15:2.4" />
           <element id="library" level="project" name="Maven: org.json:json:20160810" />
-          <element id="library" level="project" name="Maven: net.sf.ezmorph:ezmorph:1.0.6" />
+          <element id="library" level="project" name="Maven: net.sf.ezmorph:ezmorph:1.0.3" />
           <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-starter-mail:2.1.2.RELEASE" />
           <element id="library" level="project" name="Maven: javax.mail:javax.mail-api:1.6.2" />
           <element id="library" level="project" name="Maven: com.sun.mail:javax.mail:1.6.2" />

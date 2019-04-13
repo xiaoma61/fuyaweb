@@ -10,6 +10,7 @@ import com.fuya.fuyaservice.COMPANYBASICINFOService;
 import com.fuya.fuyaservice.COMPANYYUESAOService;
 import com.fuya.fuyaservice.YUESOBASICINFOService;
 import com.fuya.fuyautil.JpaPageHelperUtil;
+import com.fuya.fuyautil.TypeUtil;
 import com.github.pagehelper.PageInfo;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -122,7 +123,7 @@ public class IndexcompanyController {
     @ResponseBody
     public  JSONObject Search (@RequestParam(name="name")String name,
                                    @RequestParam(name = "workarea",defaultValue = "null")String workarea,
-                                   @RequestParam(name = "type",defaultValue = "育婴师")String type,
+                                   @RequestParam(name = "type",defaultValue = "1")int type,
                                    @RequestParam(name = "minwages",defaultValue = "null")String minwages,
                                    @RequestParam(name = "maxwages",defaultValue = "null")String maxwages,
                                    @RequestParam(name = "nativeplace",defaultValue = "null")String nativeplace,
@@ -141,7 +142,7 @@ public class IndexcompanyController {
                 {
                     Yuesaolistyuesaomodel yuesaolistyuesaomodel=new Yuesaolistyuesaomodel();
                     yuesaolistyuesaomodel.setAGE(String.valueOf(yuesobasicinfo.getAGE()));
-                    yuesaolistyuesaomodel.setTYPE(yuesobasicinfo.getTYPE());
+                    yuesaolistyuesaomodel.setTYPE(TypeUtil.getTypeUtil(yuesobasicinfo.getTYPE()));
                     yuesaolistyuesaomodel.setNATIVEPLACE(yuesobasicinfo.getNATIVEPLACE());
                     yuesaolistyuesaomodel.setWAGES(String.valueOf(yuesobasicinfo.getWAGES()));
                     yuesaolistyuesaomodel.setPHOTO(yuesobasicinfo.getPHOTO());
@@ -177,7 +178,7 @@ public class IndexcompanyController {
     @ResponseBody
     public  JSONObject SearchName (@RequestParam(name="name")String name,
                                @RequestParam(name = "workarea",defaultValue = "null")String workarea,
-                               @RequestParam(name = "type",defaultValue = "null")String type,
+                               @RequestParam(name = "type",defaultValue = "null")int type,
                                @RequestParam(name = "minwages",defaultValue = "null")String minwages,
                                @RequestParam(name = "maxwages",defaultValue = "null")String maxwages,
                                @RequestParam(name = "nativeplace",defaultValue = "null")String nativeplace,
@@ -185,7 +186,7 @@ public class IndexcompanyController {
                                @RequestParam(name = " maxage" ,defaultValue = "null")String  maxage,
                                @RequestParam(name = "start",defaultValue = "0") int start,
                                @RequestParam(name = "rows",defaultValue = "10") int rows,@RequestParam(name = "userid",defaultValue = "0")int userid){
-        Page<YUESOBASICINFO>yuesobasicinfos=yuesobasicinfoService.query(name, workarea, type, minwages, maxwages, nativeplace, minage, maxage, start, rows);
+        Page<YUESOBASICINFO>yuesobasicinfos=yuesobasicinfoService.query(name, workarea, minwages, maxwages,type , nativeplace, minage, maxage, start, rows);
         List<YUESOBASICINFO>yuesobasicinfoList=yuesobasicinfos.getContent();
         List<COMPANYYUESAO> companyyuesaoList=companyyuesaoService.findByRealCOMPANYID(userid);
         HashSet<String>hashSet=new HashSet<>();

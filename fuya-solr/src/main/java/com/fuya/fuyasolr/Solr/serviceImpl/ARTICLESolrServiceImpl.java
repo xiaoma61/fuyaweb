@@ -19,11 +19,11 @@ import java.util.List;
 public class ARTICLESolrServiceImpl implements ARTICLESolrService {
     @Autowired
     ARTICLESearchdao articleSearchdao;
-    @Override
+  /*  @Override
     public void addARTICLE(int id) throws IOException, SolrServerException {
         articleSearchdao.addARTICLE(id);
     }
-
+*/
     @Override
     public SearchResult Searchbytype(int type, int start, int rows) throws IOException, SolrServerException {
         SolrQuery solrQuery=new SolrQuery();
@@ -32,7 +32,7 @@ public class ARTICLESolrServiceImpl implements ARTICLESolrService {
         solrQuery.setStart(start);
         solrQuery.setRows(rows);
         solrQuery.setSort("NUMS", SolrQuery.ORDER.desc);
-        SearchResult searchResult=articleSearchdao.Search(solrQuery);
+        SearchResult searchResult=articleSearchdao.Search(solrQuery,1);
 
         return searchResult;
     }
@@ -41,7 +41,7 @@ public class ARTICLESolrServiceImpl implements ARTICLESolrService {
     public SearchResult Searchbyid(int id) throws IOException, SolrServerException {
         SolrQuery solrQuery=new SolrQuery();
         solrQuery.set("q","ARTICLEID:"+id);
-        SearchResult searchResult=articleSearchdao.Search(solrQuery);
+        SearchResult searchResult=articleSearchdao.Search(solrQuery,2);
 //        String ids=articleSearchdao.Searchid(solrQuery);
 //        System.out.println("ARTICLEID:"+ids);
 //        String id=articleSearchdao.Searchid(solrQuery);
@@ -60,11 +60,11 @@ public class ARTICLESolrServiceImpl implements ARTICLESolrService {
 
         solrQuery.setStart(start);
         solrQuery.setRows(rows);
-        SearchResult searchResult=articleSearchdao.Search(solrQuery);
+        SearchResult searchResult=articleSearchdao.Search(solrQuery,1);
         return searchResult;
     }
 
-    @Override
+  /*  @Override
     public void update(int articleid) throws IOException, SolrServerException {
 //        String id=null;
         SolrQuery solrQuery=new SolrQuery();
@@ -82,8 +82,8 @@ public class ARTICLESolrServiceImpl implements ARTICLESolrService {
 
 
     }
-
-    @Override
+*/
+ /*   @Override
     public void delete(int articleid) throws IOException, SolrServerException {
         String id=null;
         SolrQuery solrQuery=new SolrQuery();
@@ -98,17 +98,17 @@ public class ARTICLESolrServiceImpl implements ARTICLESolrService {
 
 
     }
-
+*/
     @Override
-    public SearchResult SearchbyTime(Date starttime, Date endtime,int start,int rows) throws IOException, SolrServerException {
+    public SearchResult SearchbyTime(String starttime, String endtime,int start,int rows) throws IOException, SolrServerException {
         SolrQuery solrQuery=new SolrQuery();
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm'");
-        String time = "Time:["+sdf.format(starttime)+" TO "+sdf.format(endtime)+"]";
+       /* SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'");*/
+        String time = "TIME:["+starttime+" TO "+endtime+"]";
         solrQuery.setStart(start);
         solrQuery.setRows(rows);
         solrQuery.set("q",time);
-        SearchResult searchResult=articleSearchdao.Search(solrQuery);
+        SearchResult searchResult=articleSearchdao.Search(solrQuery,1);
         return searchResult;
     }
 }

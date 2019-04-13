@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Table(name = "SKILL")
 public class SKILL {
     @Id
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Field
     private int SKILLID;
     @Field

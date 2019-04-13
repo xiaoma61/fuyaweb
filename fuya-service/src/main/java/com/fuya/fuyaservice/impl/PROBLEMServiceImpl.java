@@ -2,6 +2,7 @@ package com.fuya.fuyaservice.impl;
 
 import com.fuya.fuyadao.dao.PROBLEMRepository;
 import com.fuya.fuyadao.entity.PROBLEM;
+import com.fuya.fuyadao.model.PROBLEMmodel;
 import com.fuya.fuyaservice.PROBLEMService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -49,7 +50,7 @@ public class PROBLEMServiceImpl implements PROBLEMService {
     }
 
     @Override
-    public List<PROBLEM> findByNum(int nums) {
+    public List<Object[]> findByNum(int nums) {
         return problemRepository.findByNum(nums);
     }
 }

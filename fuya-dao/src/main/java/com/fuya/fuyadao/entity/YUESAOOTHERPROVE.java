@@ -10,7 +10,7 @@ public class YUESAOOTHERPROVE {
 
 
     @Id
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Field
     private int YUESAOOTHERPROVEID;
     @Field

@@ -9,12 +9,17 @@ import java.util.List;
 
 public class SearchKeyword {
     public static List<String > searchkeyword(SearchResult searchResult){
-        List<ARTICLEmodel> articleList=searchResult.getObjects();
-        List<String>stringList=new ArrayList<>();
-        for (ARTICLEmodel article:articleList){
-            stringList.add(article.getTITLE());
+        if (searchResult!=null){
+            List<ARTICLEmodel> articleList=searchResult.getObjects();
+            List<String>stringList=new ArrayList<>();
+            for (ARTICLEmodel article:articleList){
+                stringList.add(article.getTITLE());
 
+            }
+            return stringList;
+        }else {
+            return null;
         }
-        return stringList;
+
     }
 }

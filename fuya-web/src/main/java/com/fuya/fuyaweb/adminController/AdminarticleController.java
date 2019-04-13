@@ -6,15 +6,13 @@ import com.fuya.fuyadao.model.ARTICLEmodel;
 import com.fuya.fuyaservice.ARTICLEService;
 import com.fuya.fuyasolr.SearchResult.SearchResult;
 import com.fuya.fuyasolr.Solr.service.ARTICLESolrService;
-import com.fuya.fuyautil.GetTypeUtil;
-import com.fuya.fuyautil.SearchKeyword;
-import com.fuya.fuyautil.TimeUtil;
-import com.fuya.fuyautil.TotalPages;
+import com.fuya.fuyautil.*;
 import net.sf.json.JSONObject;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -27,6 +25,7 @@ import java.text.ParseException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 @Controller
 //@RequestMapping("/admin/article")
@@ -49,23 +48,16 @@ public class AdminarticleController {
     @RequiresRoles("admin")
     @RequestMapping("/admin/article/add")
     @ResponseBody
-    public JSONObject add(@RequestParam("type")String articletype, @RequestParam("title")String title,
-                          @RequestParam("content")String content){
-        int type=0;
-        type= GetTypeUtil.GetType(articletype);
+    public JSONObject add(@RequestBody JSONObject jsonParam){
+        ARTICLE article = (ARTICLE) JSONObject.toBean(jsonParam,ARTICLE.class);
 
-
-
-
-        ARTICLE article=new ARTICLE();
-        article.setTYPE(type);
-        article.setTITLE(title);
         Date date= TimeUtil.getsqldate(new java.util.Date());
         article.setTIME(date);
         article.setNUMS(0);
-        article.setCONTENT(content);
+
+        article.setId(uuidUtil.getuuidUtil());
         articleService.save(article);
-        productService.sendMessage(this.topic,"article-add:"+article.getARTICLEID());
+
 
         Map<String,String>msg=new HashMap<>();
         msg.put("msg","success");
@@ -77,8 +69,8 @@ public class AdminarticleController {
     @RequestMapping("/admin/article/delete")
     @ResponseBody
     public JSONObject delete(@RequestParam("id")String articleid) throws IOException, SolrServerException {
-        //solr表删除
-        articleSolrService.delete(Integer.parseInt(articleid));
+       /* //solr表删除
+        articleSolrService.delete(Integer.parseInt(articleid));*/
         //数据库删除
         articleService.delete(Integer.parseInt(articleid));
         Map<String,String>msg=new HashMap<>();
@@ -89,18 +81,19 @@ public class AdminarticleController {
     @RequiresRoles("admin")
     @RequestMapping("/admin/article/update")
     @ResponseBody
-    public JSONObject update(@RequestParam("type")String articletype, @RequestParam("title")String title,
-                             @RequestParam("content")String content,@RequestParam("id")int id){
+    public JSONObject update(@RequestBody JSONObject jsonParam/*@RequestParam("type")String articletype, @RequestParam("title")String title,
+                             @RequestParam("content")String content,@RequestParam("id")int id*/){
 
-        int type=0;
+        ARTICLE article = (ARTICLE) JSONObject.toBean(jsonParam,ARTICLE.class);
+
+
+       /* //solr表修改/*int type=0;
         type= GetTypeUtil.GetType(articletype);
-
-        //solr表修改
         //更新solr
-        productService.sendMessage(this.topic,"article-update:"+id);
+        productService.sendMessage(this.topic,"article-update:"+id);*/
 
         //数据库修改
-        articleService.updateARTICLEbyid(type,title,content,id);
+        articleService.updateARTICLEbyid(article.getTYPE(),article.getTITLE(),article.getCONTENT(),article.getARTICLEID());
 
         Map<String,String>msg=new HashMap<>();
         msg.put("msg","success");
@@ -132,7 +125,6 @@ public class AdminarticleController {
     public JSONObject articlelist(@RequestParam(name="type",defaultValue = "1")int type,@RequestParam(name = "start",defaultValue = "0")int start,@RequestParam(name = "rows",defaultValue = "10")int rows) throws IOException, SolrServerException {
 
         SearchResult searchResult=articleSolrService.Searchbytype(type,start,rows);
-
         searchResult.setTotalPage(TotalPages.GetIMage(searchResult.getObjects().size(),rows));
         Map<String,String>msg=new HashMap<>();
         msg.put("msg","success");
@@ -147,10 +139,10 @@ public class AdminarticleController {
                                    @RequestParam(name = "start",defaultValue = "0")int start,
                                    @RequestParam(name = "rows",defaultValue = "10")int rows) throws ParseException, IOException, SolrServerException {
 
-        java.util.Date sTime=TimeUtil.stringtodate(startTime);
-        java.util.Date eTime=TimeUtil.stringtodate(endTime);
-        SearchResult searchResult=articleSolrService.SearchbyTime(sTime,eTime,start,rows);
-
+       /* java.util.Date sTime=TimeUtil.stringtodate(startTime);
+        java.util.Date eTime=TimeUtil.stringtodate(endTime);*/
+        SearchResult searchResult=articleSolrService.SearchbyTime(startTime,endTime,start,rows);
+        searchResult.setResultCount(start);
         return JSONObject.fromObject(searchResult);
     }
     @RequiresRoles("admin")
@@ -168,10 +160,14 @@ public class AdminarticleController {
     @ResponseBody
     public JSONObject Searchbykeyword(@RequestParam("title")String title,@RequestParam(name = "start",defaultValue = "0")int start,@RequestParam(name = "rows",defaultValue = "10")int rows) throws IOException, SolrServerException {
 
-        SearchResult searchResult=articleSolrService.SearchbyLikeName(title,start,rows);
-        List<String>stringList=SearchKeyword.searchkeyword(searchResult);
-        Map<String,List>msg=new HashMap<>();
-        msg.put("msg",stringList);
+        SearchResult searchResult = articleSolrService.SearchbyLikeName(title, start, rows);
+        Map<String, Object> msg = new HashMap<>();
+        if (SearchKeyword.searchkeyword(searchResult) == null) {
+            msg.put("msg", "暂无信息");
+        } else {
+            List<String> stringList = SearchKeyword.searchkeyword(searchResult);
+            msg.put("msg", stringList);
+        }
         return JSONObject.fromObject(msg);
     }
 

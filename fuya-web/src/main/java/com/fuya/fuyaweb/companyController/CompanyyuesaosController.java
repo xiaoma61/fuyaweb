@@ -71,7 +71,7 @@ public class CompanyyuesaosController {
                                @RequestParam(name = "email",defaultValue = "123@qq.com") String email, @RequestParam(name = "photo",defaultValue = "file:") String photo,
                                @RequestParam(name = "widght",defaultValue = "63kg") String widght, @RequestParam(name = "height",defaultValue = "163cm") String height ,
                                @RequestParam(name = "wages",defaultValue = "13") int wages, @RequestParam(name = "seniority",defaultValue = "ssss") String seniority,
-                               @RequestParam(name = "yuesaotype",defaultValue = "育婴师") String yuesaotype,
+                               @RequestParam(name = "yuesaotype",defaultValue = "1") int yuesaotype,
                                @RequestParam(name = "workarea",defaultValue = "工作地点") String workarea,
                                @RequestParam(name = "yuesaosyndrome",defaultValue = "yuesaosyndrome") String yuesaosyndrome,
                                @RequestParam(name = "healthcertificates",defaultValue = "healthcertificates") String healthcertificates,
@@ -416,7 +416,7 @@ public class CompanyyuesaosController {
 
 
 
-            String yuesaotype = row.getCell(12).getStringCellValue();
+            int yuesaotype = Integer.parseInt(row.getCell(12).getStringCellValue());
             yuesobasicinfo.setTYPE(yuesaotype);
 
 

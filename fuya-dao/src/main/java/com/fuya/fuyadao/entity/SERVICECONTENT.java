@@ -10,7 +10,7 @@ import java.util.Date;
 public class SERVICECONTENT {
 
     @Id
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Field
     private int SERVICECONTENTID;
     @Field

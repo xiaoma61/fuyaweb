@@ -25,45 +25,8 @@ public class YUESOBASICINFOSearchdao {
     @Autowired
     private YUESOBASICINFOService yuesobasicinfoService;
 
-    //添加数据到solr
-    public void addALL() throws IOException, SolrServerException {
-
-        //添加数据
-        List<YUESOBASICINFO>yuesobasicinfoList=yuesobasicinfoService.findAll();
-
-        for (YUESOBASICINFO yuesobasicinfo:yuesobasicinfoList){
-            SolrInputDocument solrInputDocument=new SolrInputDocument();
-//            solrInputDocument.addField("yuesaoID",yuesobasicinfo.getID());
-//            solrInputDocument.addField("yuesaoAGE",yuesobasicinfo.getAGE());
-//            solrInputDocument.addField("yuesaoLEVELS",yuesobasicinfo.getLEVELS());
-//            solrInputDocument.addField("yuesaoWAGES",yuesobasicinfo.getWAGES());
-//            solrInputDocument.addField("yuesaoNATIVEPLACE",yuesobasicinfo.getNATIVEPLACE());
-//            solrInputDocument.addField("yuesaoNAME",yuesobasicinfo.getNAME());
-//            solrInputDocument.addField("yuesaoSENIORITY",yuesobasicinfo.getSENIORITY());
-//            solrInputDocument.addField("yuesaoEMAIL",yuesobasicinfo.getEMAIL());
-//            solrInputDocument.addField("yuesaoEDUCATION",yuesobasicinfo.getEDUCATION());
-//            solrInputDocument.addField("yuesaoCOMPANYID",yuesobasicinfo.getCOMPANYID());
-//            solrInputDocument.addField("yuesaoHEIGHT",yuesobasicinfo.getHEIGHT());
-//            solrInputDocument.addField("yuesaoIDCARD",yuesobasicinfo.getIDCARD());
-//            solrInputDocument.addField("yuesaoPHONE",yuesobasicinfo.getPHONE());
-//            solrInputDocument.addField("yuesaoPHOTO",yuesobasicinfo.getPHOTO());
-//            solrInputDocument.addField("yuesaoWEIGHT",yuesobasicinfo.getWEIGHT());
-//            solrInputDocument.addField("yuesaoWORKAREA",yuesobasicinfo.getWORKAREA());
-              client.addBean(yuesobasicinfo);
 
 
-            }
-        client.commit();
-
-    }
-    public  void addYUESOBASICINFO(int id) throws IOException, SolrServerException {
-       YUESOBASICINFO yuesobasicinfo=yuesobasicinfoService.findbyid(id);
-        client.addBean(yuesobasicinfo);
-
-//        client.add(solrInputDocument);
-        client.commit();
-
-    }
 
 
     //执行查找分页
@@ -83,7 +46,7 @@ public class YUESOBASICINFOSearchdao {
         searchResult.setResultCount((int) numFound);
         for (SolrDocument solrDocument: solrDocumentList){
             YUESOBASICINFO yuesobasicinfo=new YUESOBASICINFO();
-            yuesobasicinfo.setYUESOBASICINFOID((Integer) solrDocument.getFieldValue("ID"));
+            yuesobasicinfo.setYUESOBASICINFOID((Integer) solrDocument.getFieldValue("YUESOBASICINFOID"));
             yuesobasicinfo.setAGE((int) solrDocument.getFieldValue("AGE"));
             yuesobasicinfo.setCOMPANYID((String) solrDocument.getFieldValue("LEVELS"));
             yuesobasicinfo.setEDUCATION((String) solrDocument.getFieldValue("WAGES"));
@@ -180,9 +143,5 @@ public class YUESOBASICINFOSearchdao {
         return id;
 
     }
-    public void delete(String id) throws IOException, SolrServerException {
-        client.deleteById(id);
-        client.commit();
 
-    }
 }

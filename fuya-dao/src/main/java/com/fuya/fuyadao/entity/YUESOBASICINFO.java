@@ -9,6 +9,7 @@ import javax.persistence.*;
 public class YUESOBASICINFO {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Field
     private int YUESOBASICINFOID;
     @Field
@@ -43,11 +44,19 @@ public class YUESOBASICINFO {
     @Field
     private int WAGES;
     @Field
-    private String TYPE;
+    private int TYPE;
     @Field
     private String WORKAREA;
 
+    private String id;
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getWORKAREA() {
         return WORKAREA;
@@ -57,11 +66,11 @@ public class YUESOBASICINFO {
         this.WORKAREA = WORKAREA;
     }
 
-    public String getTYPE() {
+    public int getTYPE() {
         return TYPE;
     }
 
-    public void setTYPE(String TYPE) {
+    public void setTYPE(int TYPE) {
         this.TYPE = TYPE;
     }
 

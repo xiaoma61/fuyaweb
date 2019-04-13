@@ -24,8 +24,8 @@ public class Consumer {
     YUESOBASICINFOSolrservice yuesobasicinfoSolrservice;
     @Autowired
     YUESOBASICINFOService yuesobasicinfoService;
-    @Autowired
-    PROVEINFOSolrService proveinfoSolrService;
+   /* @Autowired
+    PROVEINFOSolrService proveinfoSolrService;*/
     @Autowired
     COLLECTIONSSolrService collectionsSolrService;
     @Autowired
@@ -50,14 +50,14 @@ public class Consumer {
 
         }*/
 
-        if (text[0].equals("proveinfo")){
+       /* if (text[0].equals("proveinfo")){
 //
             //录入月嫂信息
             System.out.println("ddddddd"+Integer.parseInt(text[1]));
             proveinfoSolrService.addPROVEINFO(Integer.parseInt(text[1]));
 
 
-        }
+        }*/
 
 
 
@@ -81,7 +81,7 @@ public class Consumer {
 
             companyyuesaoSolrService.addCOMPANYYUESAO(Integer.parseInt(text[1]));
         }
-        if (text[0].equals("collections-delete")){
+       /* if (text[0].equals("collections-delete")){
            // String[] ids=text[1].split(",");
 
            // System.out.println(ids[0]);
@@ -94,37 +94,19 @@ public class Consumer {
             collectionsSolrService.addCOLLECTIONS(Integer.parseInt(text[1]));
 
         }
-        if (text[0].equals("article-update")){
+   */
 
-            articleSolrService.update(Integer.parseInt(text[1]));
-
-        }
-
-        if (text[0].equals("article-add")){
+       /* if (text[0].equals("article-add")){
 
             articleSolrService.addARTICLE(Integer.parseInt(text[1]));
 
-        }
-        if (text[0].equals("recruit-add")){
+        }*/
+       /* if (text[0].equals("recruit-add")){
             recruitSolrService.addRECRUIT(Integer.parseInt(text[1]));
 
-        }
-
-        /////
-       /* if (text[0].equals("users-delete")){
-           usersSolrservice.delete(Integer.parseInt(text[1]));
-
         }*/
-        if (text[0].equals("yuesobasicinfoService-delete")){
-
-            yuesobasicinfoSolrservice.delete(Integer.parseInt(text[1]));
-
-        }
-        if (text[0].equals("proveinfoService-delete")){
 
 
-            proveinfoSolrService.delete(Integer.parseInt(text[1]));
-        }
         if (text[0].equals("companyyuesaoService-delete")){
             companyyuesaoSolrService.delete(Integer.parseInt(text[1]));
 

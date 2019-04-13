@@ -11,6 +11,7 @@ public class ARTICLE {
 
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Field
     private int ARTICLEID;
     @Field
@@ -23,6 +24,15 @@ public class ARTICLE {
     private String CONTENT;
     @Field
     private int NUMS;
+    private  String id;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public int getARTICLEID() {
         return ARTICLEID;

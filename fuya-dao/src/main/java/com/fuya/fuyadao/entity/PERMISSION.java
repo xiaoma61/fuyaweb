@@ -2,10 +2,7 @@ package com.fuya.fuyadao.entity;
 
 import org.apache.solr.client.solrj.beans.Field;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 
 @Entity
@@ -13,6 +10,7 @@ import javax.persistence.Table;
 public class PERMISSION {
     @Id
     @Field
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "PERMISSIONID")
     private int PERMISSIONID;
     @Field

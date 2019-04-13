@@ -19,6 +19,6 @@ public interface YUESOBASICINFOService {
    List<String>findByNAMELike(int id, @Param("name") String name);
    String findEMILbyUERSID(int id);
    Object findObjectByUSERSID(int userid);
-   public Page<YUESOBASICINFO>query(String name, String workarea, String minwages, String maxwages, String type, String nativeplace, String minage, String maxage, int start, int rows);
+   public Page<YUESOBASICINFO>query(String name, String workarea, String minwages, String maxwages, int type, String nativeplace, String minage, String maxage, int start, int rows);
 
 }

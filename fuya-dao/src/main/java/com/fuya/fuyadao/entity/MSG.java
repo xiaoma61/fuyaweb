@@ -9,6 +9,7 @@ import java.sql.Date;
 @Entity
 public class MSG {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Field
     private  int MSGID;
     @Field

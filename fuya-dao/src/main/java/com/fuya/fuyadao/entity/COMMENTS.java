@@ -10,6 +10,7 @@ import javax.persistence.*;
 public class COMMENTS {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Field
     private int COMMENTSID;
     @Field

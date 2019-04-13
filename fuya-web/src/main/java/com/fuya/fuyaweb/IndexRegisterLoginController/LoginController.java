@@ -13,6 +13,10 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 public class LoginController {
+    /**
+     * 跳转登录页面
+     * @return
+     */
     @RequestMapping("/Login")
     public  String Login(){
 
@@ -23,6 +27,15 @@ public class LoginController {
 
         return "/403";
     }
+
+    /**
+     * 确认登陆信息
+     * @param name
+     * @param password
+     * @param model
+     * @param request
+     * @return
+     */
 
     @RequestMapping("/CheckLogin")
     public  String CheckLogin(String name , String password, Model model, HttpServletRequest request){
@@ -50,21 +63,19 @@ public class LoginController {
 
     }
     //登出
-//    @RequestMapping(value = "/logout")
-//    public String logout(HttpServletRequest request){
-//        //清除session
-//        HttpSession session=request.getSession();
-//        session.removeAttribute("username");
-//        Subject subject = SecurityUtils.getSubject();
-//        subject.logout();
-//        return "index";
-//    }
+    @RequestMapping(value = "/logout")
+    public String logout(HttpServletRequest request){
+        //清除session
+        HttpSession session=request.getSession();
+        session.removeAttribute("username");
+        session.removeAttribute("id");
+        Subject subject = SecurityUtils.getSubject();
+        subject.logout();
+        return "index";
+    }
 
-//    //错误页面展示
-//    @RequestMapping(value = "/error",method = RequestMethod.POST)
-//    public String error(){
-//        return "error ok!";
-//    }
+
+
 
 
 }

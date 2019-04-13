@@ -12,7 +12,7 @@ import java.util.Date;
 })
 public class PROBLEM {
     @Id
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int PROBLEMID;
     private int CHOOSEID;
     private String TITLE;

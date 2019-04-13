@@ -1,11 +1,13 @@
 package com.fuya.fuyaservice.impl;
 
 import com.fuya.fuyadao.dao.YUESOBASICINFORepository;
+import com.fuya.fuyadao.entity.RECRUIT;
 import com.fuya.fuyadao.entity.YUESOBASICINFO;
 import com.fuya.fuyaservice.YUESOBASICINFOService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -84,7 +86,9 @@ public class YUESOBASICINFOImpl implements YUESOBASICINFOService {
     }
     @Transactional
     @Override
-    public Page<YUESOBASICINFO> query(String name, String workarea, String minwages, String maxwages, String type, String nativeplace, String minage, String maxage, int start, int rows) {
+    public Page<YUESOBASICINFO> query(String name, String workarea, String minwages, String maxwages, int type, String nativeplace, String minage, String maxage, int start, int rows) {
+
+
       return   yuesobasicinfoRepository.findAll(new Specification<YUESOBASICINFO>(){
             @Override
             public Predicate toPredicate(Root<YUESOBASICINFO> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
@@ -150,7 +154,7 @@ public class YUESOBASICINFOImpl implements YUESOBASICINFOService {
                     }
                 }
 
-                if (!type.equals("null")){
+                if (type>=0){
                     list.add(criteriaBuilder.equal(typepath,type));
                 }
 

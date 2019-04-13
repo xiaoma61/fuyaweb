@@ -8,6 +8,7 @@ import javax.persistence.*;
 @Table(name = "EMPLOYERINFORMATION")
 public class EMPLOYERINFORMATION {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Field
 
     private int EMPLOYERINFORMATIONID;

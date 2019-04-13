@@ -9,6 +9,7 @@ import javax.persistence.*;
 public class ORDERS {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Field
     private int ORDERSID;
     @Field

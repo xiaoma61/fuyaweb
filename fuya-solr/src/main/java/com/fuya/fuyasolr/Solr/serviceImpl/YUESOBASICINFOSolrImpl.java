@@ -70,10 +70,6 @@ public class YUESOBASICINFOSolrImpl implements YUESOBASICINFOSolrservice {
         return result;
     }
 
-    @Override
-    public void addYUESOBASICINFO(int id) throws IOException, SolrServerException {
-        yuesobasicinfoSearchdao.addYUESOBASICINFO(id);
-    }
 
     @Override
     public YUESOBASICINFO searchbyid(int id) throws IOException, SolrServerException {
@@ -85,15 +81,5 @@ public class YUESOBASICINFOSolrImpl implements YUESOBASICINFOSolrservice {
         return yuesobasicinfo;
     }
 
-    @Override
-    public void delete(int id) throws IOException, SolrServerException {
-        SolrQuery solrQuery=new SolrQuery();
-        //查询语句
-        solrQuery.set("q","YUESOBASICINFOID:"+id);
-        String ids=yuesobasicinfoSearchdao.findid(solrQuery);
-        if (ids!=null){
-            yuesobasicinfoSearchdao.delete(ids);
-        }
 
-    }
 }

@@ -9,6 +9,7 @@ import javax.persistence.*;
 public class COMPANYINFO {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Field
     private int COMPANYINFOID;
     @Field

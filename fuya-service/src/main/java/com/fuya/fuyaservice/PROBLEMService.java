@@ -1,6 +1,7 @@
 package com.fuya.fuyaservice;
 
 import com.fuya.fuyadao.entity.PROBLEM;
+import com.fuya.fuyadao.model.PROBLEMmodel;
 import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
 
@@ -14,6 +15,6 @@ public interface PROBLEMService {
     Page<PROBLEM> findALL(int start, int rows);
     void deleteAllByPROMBLEIDandCHOOSEID(@Param("MCHOOSEID") int MCHOOSEID, @Param("PROMBLEID") int PROMBLEID);
     void update(String title, String choosetype, String subjectmatier, int id);
-    List<PROBLEM>findByNum(int nums);
+    List<Object[]>findByNum(int nums);
 //    List<AdminProblemAnswer>findByNum(int nums);
 }

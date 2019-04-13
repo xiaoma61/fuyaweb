@@ -5,6 +5,7 @@ import com.fuya.fuyadao.entity.YUESOBASICINFO;
 import com.fuya.fuyadao.model.PROVEINFOANDBAISINFO;
 import com.fuya.fuyadao.model.YUESAOORDERSERIVECONTENT;
 import com.fuya.fuyaservice.*;
+import com.fuya.fuyautil.TypeUtil;
 import net.sf.json.JSONObject;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +49,7 @@ public class CompanyOderController {
             YUESAOORDERSERIVECONTENT yuesaoorderserivecontent=new YUESAOORDERSERIVECONTENT();
             yuesaoorderserivecontent.setName(yuesobasicinfo.getNAME());
             yuesaoorderserivecontent.setObjectList(objectList);
-            yuesaoorderserivecontent.setType(yuesobasicinfo.getTYPE());
+            yuesaoorderserivecontent.setType(String.valueOf(TypeUtil.getTypeUtil(yuesobasicinfo.getTYPE())));
             yuesaoorderserivecontent.setUserid(yuesobasicinfo.getUSERSID());
 
             objectLists.addAll(objectList);

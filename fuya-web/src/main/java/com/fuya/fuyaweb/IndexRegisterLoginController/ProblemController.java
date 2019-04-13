@@ -5,8 +5,10 @@ import com.fuya.fuyadao.entity.CHOOSE;
 import com.fuya.fuyadao.entity.ExamChooseCheck;
 import com.fuya.fuyadao.entity.PROBLEM;
 import com.fuya.fuyadao.model.AdminProblemAnswer;
+import com.fuya.fuyadao.model.PROBLEMmodel;
 import com.fuya.fuyaservice.CHOOSEService;
 import com.fuya.fuyaservice.PROBLEMService;
+import com.fuya.fuyautil.EntityUtils;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,26 +37,10 @@ public class ProblemController {
     public JSONObject exam(@RequestParam(name = "type")String type){
 
         //选择20道
-        List<PROBLEM>problemList=problemService.findByNum(20);
-
-        List<AdminProblemAnswer>adminProblemAnswerList=new ArrayList<>();
-        for (PROBLEM problem:problemList){
-
-            List<Object>objectList=chooseService.findObjectByCHOOSEID(problem.getCHOOSEID());
-            for (int i=0;i<objectList.size();i++){
-                Object[]objects=(Object[])objectList.get(i);
-                CHOOSE choose=new CHOOSE();
-                choose.setACHOOSE(objects[0].toString());
-                choose.setBCHOOSE(objects[1].toString());
-                choose.setCCHOOSE(objects[2].toString());
-                choose.setDCHOOSE(objects[3].toString());
-                AdminProblemAnswer adminProblemAnswer=new AdminProblemAnswer(problem,choose);
-                adminProblemAnswerList.add(adminProblemAnswer);
-            }
-
-        }
+        List<Object[]>problemList=problemService.findByNum(20);
+        List<PROBLEMmodel>probleMmodelList=EntityUtils.castEntity(problemList ,PROBLEMmodel.class,new PROBLEMmodel());
         Map<String,Object> msg=new HashMap<>();
-        msg.put("msg",adminProblemAnswerList);
+        msg.put("msg",probleMmodelList);
         return JSONObject.fromObject(msg);
 
     }
@@ -65,18 +51,6 @@ public class ProblemController {
     public JSONObject examcheck(@RequestBody String jsonParam){
 
         int sum=0;
-
-//        List<ExamChooseCheck>examChooseChecks=new ArrayList<>();
-//        //测试数据
-//        for (int i=0;i<10;i++){
-//            ExamChooseCheck examChooseCheck=new ExamChooseCheck();
-//            examChooseCheck.setAnswer(i+"");
-//            examChooseCheck.setChooseid(i);
-//            examChooseChecks.add(examChooseCheck);
-//
-//        }
-//        Map<String,Object> msg=new HashMap<>();
-//        msg.put("msg",examChooseChecks);
 
         JSONObject jsonObject=JSONObject.fromObject(jsonParam);
         String json=jsonObject.getString("msg");
@@ -108,8 +82,7 @@ public class ProblemController {
 
             }
 
-//            JSONObject chooseObject=JSONObject.fromObject(chooseList);
-//            redisUtil.set("answer",chooseObject.toString());
+
 
 
             System.out.println(examChooseCheck.getAnswer());

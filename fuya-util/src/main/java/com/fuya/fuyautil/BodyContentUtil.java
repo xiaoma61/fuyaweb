@@ -18,7 +18,7 @@ public class BodyContentUtil {
             //System.out.println(element);
             stringBuffer.append(element.text().trim());
         }
-        return stringBuffer.toString().trim();
+        return text.substring(0,200);
 
     }
 

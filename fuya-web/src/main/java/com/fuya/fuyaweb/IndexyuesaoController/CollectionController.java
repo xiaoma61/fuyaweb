@@ -14,60 +14,67 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.jms.Queue;
 import javax.jms.Topic;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 完成
+ */
 @Controller
 public class CollectionController {
-    @Autowired
-    COLLECTIONSSolrService solrService;
+ /*   @Autowired
+    COLLECTIONSSolrService solrService;*/
     @Autowired
     COLLECTIONSService collectionsService;
     //实现收藏功能
-    @Autowired
+  /*  @Autowired
     private Queue queue;
     @Autowired
     private Topic topic;
     @Autowired
-    private ProductService productService;
+    private ProductService productService;*/
 
+    /**
+     *
+     *
+     * @param toid   月嫂id
+     * @param type   1为收藏2为删除
+     * @param request
+     * @return
+     * @throws IOException
+     * @throws SolrServerException
+     */
     @RequiresRoles("users")
     @RequestMapping("/fuyayusao/collection")
     @ResponseBody
-    public Map<String,String> collection(@RequestParam(name = "fromid") int fromid , @RequestParam(name = "toid") int toid,
-                                         @RequestParam(name = "type")int type) throws IOException, SolrServerException {
-        //1的话删除
-        List<String> collectionList=solrService.Searchbyfromidandtoid(fromid,toid);
-        Map<String,String>map=new HashMap<>();
-        map.put("msg","success");
+    public Map<String,String> collection(@RequestParam(name = "toid") int toid,
+                                         @RequestParam(name = "type")int type, HttpServletRequest request)  {
+
+        HttpSession httpSession=request.getSession();
+        int fromid= (int) httpSession.getAttribute("id");
+
         if (type==1){
-            collectionsService.deleteByFROMIDAndTOID(fromid,toid);
-
-            if (collectionList.size()>0){
-                for (String collections:collectionList)
-                productService.sendMessage(this.topic,"collections-delete:"+collections);
-            }
-            return map;
-
-            //修改solr
-        }else {
-            if (collectionList.size()>0){
-                System.out.println(collectionList);
-                return map;
-            }
             COLLECTIONS collections=new COLLECTIONS();
             collections.setFROMID(fromid);
             collections.setTOID(toid);
             collectionsService.save(collections);
-            //添加
-            productService.sendMessage(this.topic,"collections:"+collections.getCOLLECTIONSID());
+        }else {
+            collectionsService.deleteByFROMIDAndTOID(fromid,toid);
+        }
 
+
+
+
+        Map<String,String>map=new HashMap<>();
+        map.put("msg","success");
             return map;
         }
 
 
-    }
+
 
 }

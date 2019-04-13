@@ -9,7 +9,7 @@ import javax.persistence.*;
 @NamedStoredProcedureQuery(name = "USER_PROCEDURE",procedureName = "USER_PROCEDURE",parameters = {@StoredProcedureParameter(mode = ParameterMode.IN,name = "ID",type = Integer.class )})
 public class USERS {
     @Id
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="USERSID")
     @Field
     private int USERSID;

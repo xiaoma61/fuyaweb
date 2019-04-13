@@ -63,7 +63,6 @@ public class AdmincompanyController {
 
 
         List<CompanysInfosModle>companysInfosModleList=companybasicinfoService.findCOMPANYBASICINFOByCORPORATENAMELike(name);
-
         PageHelper.startPage(start,rows);
         PageInfo<CompanysInfosModle>pageInfo=new PageInfo<>(companysInfosModleList);
         Map<String,Object> msg=new HashMap<>();

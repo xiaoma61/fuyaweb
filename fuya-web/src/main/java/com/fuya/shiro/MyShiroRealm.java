@@ -87,6 +87,10 @@ public class MyShiroRealm extends AuthorizingRealm {
 
         UsernamePasswordToken token= (UsernamePasswordToken) authenticationToken;
         String name= token.getUsername();
+
+
+
+
         USERS users =userService.findUSERSByNAME(name);
         System.out.println(users.getNAME());
         System.out.println(users.getPASSWORD());

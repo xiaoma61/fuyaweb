@@ -24,6 +24,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 完成
+ */
 @Controller
 public class KnowledgeController {
     @Autowired
@@ -44,28 +47,35 @@ public class KnowledgeController {
     public JSONObject knowledge(@RequestParam(name="type",defaultValue = "1")int type,@RequestParam(name = "start",defaultValue = "0")int start,@RequestParam(name = "rows",defaultValue = "10")int rows) throws IOException, SolrServerException {
 
        SearchResult searchResult= articleSolrService.Searchbytype(type,start,rows);
-        int totalpages=0;
-        if (searchResult.getObjects().size()%rows!=0){
-            totalpages=(searchResult.getObjects().size()/rows)+1;
-        }else {
-            totalpages=(searchResult.getObjects().size()/rows);
-        }
-        searchResult.setTotalPage(totalpages);
+       if (searchResult!=null){
+           int totalpages=0;
+           if (searchResult.getObjects().size()%rows!=0){
+               totalpages=(searchResult.getObjects().size()/rows)+1;
+           }else {
+               totalpages=(searchResult.getObjects().size()/rows);
+           }
+           searchResult.setTotalPage(totalpages);
+           //和相关推荐
+           ARTICLEmodel article= (ARTICLEmodel) searchResult.getObjects().get(0);
+           SearchResult articlesearchResult=articleSolrService.SearchbyLikeName(article.getTITLE(),start,rows);
+           List<ARTICLEmodel>articleList=articlesearchResult.getObjects();
+           ARTICLEinfo articlEinfo=new ARTICLEinfo();
+           articlEinfo.setObjects(Collections.singletonList(articleList));
+           articlEinfo.setSearchResult(searchResult);
+           return JSONObject.fromObject(articlEinfo);
+       }
+
+        Map<String,Object> msg=new HashMap<>();
+        msg.put("msg","暂无文章");
+        return JSONObject.fromObject(msg);
 
 
-        //和相关推荐
-        ARTICLEmodel article= (ARTICLEmodel) searchResult.getObjects().get(0);
-        SearchResult articlesearchResult=articleSolrService.SearchbyLikeName(article.getTITLE(),start,rows);
-        List<ARTICLEmodel>articleList=articlesearchResult.getObjects();
-        ARTICLEinfo articlEinfo=new ARTICLEinfo();
-        articlEinfo.setObjects(Collections.singletonList(articleList));
-        articlEinfo.setSearchResult(searchResult);
 
 
 
 
 
-        return JSONObject.fromObject(articlEinfo);
+
 
     }
 
@@ -100,10 +110,17 @@ public class KnowledgeController {
     public JSONObject knowledgebyTitle(@RequestParam(name = "Title")String title,@RequestParam(name = "start",defaultValue = "0")int start,
                                 @RequestParam(name="rows",defaultValue = "5")int rows) throws IOException, SolrServerException {
         SearchResult searchResult=articleSolrService.SearchbyLikeName(title,start,rows);
-        List<String>stringList=SearchKeyword.searchkeyword(searchResult);
-        Map<String,List> msg=new HashMap<>();
-        msg.put("msg",stringList);
-        return JSONObject.fromObject(stringList);
+        Map<String,Object> msg=new HashMap<>();
+        if (SearchKeyword.searchkeyword(searchResult)==null){
+            msg.put("msg","暂无信息");
+        }else {
+            List<String>stringList=SearchKeyword.searchkeyword(searchResult);
+            msg.put("msg",stringList);
+        }
+
+
+
+        return JSONObject.fromObject( msg);
     }
     //根据文章题目搜索
     @RequestMapping("/knowledge/searchbytitle")

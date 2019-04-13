@@ -4,6 +4,8 @@ import com.fuya.fuyadao.dao.RECRUITRepository;
 import com.fuya.fuyadao.entity.RECRUIT;
 import com.fuya.fuyaservice.RECRUITService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
@@ -38,5 +40,10 @@ public class RECRUITServiceImpl implements RECRUITService {
     @Override
     public    List<Object> find() {
         return recruitRepository.find();
+    }
+
+    @Override
+    public Page<RECRUIT> findAll(Pageable pageable) {
+        return recruitRepository.findAll(pageable);
     }
 }

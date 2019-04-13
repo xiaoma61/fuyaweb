@@ -13,10 +13,10 @@ public interface YUESOBASICINFOSolrservice {
     public SearchResult search(String keyword) throws IOException, SolrServerException;
     //搜索查找，同时分页
     public SearchResult search(String keyword,String workarea,String type,String minwages,String maxwages,String nativeplace,String age,int page,int rows) throws IOException, SolrServerException;
-    public void addYUESOBASICINFO(int id) throws IOException, SolrServerException;
+
 
     //通过id查找
     public YUESOBASICINFO searchbyid(int id) throws IOException, SolrServerException;
-    void delete(int id) throws IOException, SolrServerException;
+
 
 }

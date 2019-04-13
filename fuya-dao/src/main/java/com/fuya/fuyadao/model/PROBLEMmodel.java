@@ -1,19 +1,27 @@
-package com.fuya.fuyadao.entity;
+package com.fuya.fuyadao.model;
 
-import javax.persistence.*;
-
-@Entity
-@Table(name = "CHOOSE")
-public class CHOOSE {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class PROBLEMmodel {
     private int CHOOSEID;
     private String ACHOOSE;
     private String BCHOOSE;
     private String CCHOOSE;
     private String DCHOOSE;
-    private String ANSWER;
+    private int PROBLEMID;
+    private String TITLE;
 
+    public PROBLEMmodel() {
+
+    }
+
+    public PROBLEMmodel(int CHOOSEID, String ACHOOSE, String BCHOOSE, String CCHOOSE, String DCHOOSE, int PROBLEMID, String TITLE) {
+        this.CHOOSEID = CHOOSEID;
+        this.ACHOOSE = ACHOOSE;
+        this.BCHOOSE = BCHOOSE;
+        this.CCHOOSE = CCHOOSE;
+        this.DCHOOSE = DCHOOSE;
+        this.PROBLEMID = PROBLEMID;
+        this.TITLE = TITLE;
+    }
 
     public int getCHOOSEID() {
         return CHOOSEID;
@@ -55,12 +63,19 @@ public class CHOOSE {
         this.DCHOOSE = DCHOOSE;
     }
 
-
-    public String getANSWER() {
-        return ANSWER;
+    public int getPROBLEMID() {
+        return PROBLEMID;
     }
 
-    public void setANSWER(String ANSWER) {
-        this.ANSWER = ANSWER;
+    public void setPROBLEMID(int PROBLEMID) {
+        this.PROBLEMID = PROBLEMID;
+    }
+
+    public String getTITLE() {
+        return TITLE;
+    }
+
+    public void setTITLE(String TITLE) {
+        this.TITLE = TITLE;
     }
 }
