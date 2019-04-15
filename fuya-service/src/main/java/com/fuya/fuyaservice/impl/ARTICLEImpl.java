@@ -14,8 +14,8 @@ public class ARTICLEImpl implements ARTICLEService {
     @Autowired
     ARTICLERepository articleRepository;
     @Override
-    public List<ARTICLE> findAlllimit(int nums , int type) {
-     List<ARTICLE> articleList=articleRepository.findAlllimit( nums ,type);
+    public List<ARTICLE> findAlllimit( int type) {
+     List<ARTICLE> articleList=articleRepository.findAlllimit( type);
 
         return articleList;
     }

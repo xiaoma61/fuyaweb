@@ -14,12 +14,17 @@ public class ProductServiceImpl implements ProductService {
     @Autowired
     private JmsMessagingTemplate jmsMessagingTemplate;
     @Override
-    public void sendMessage(Destination destination, String Msg) {
+    public String sendMessage(Destination destination, String Msg) {
         jmsMessagingTemplate.convertAndSend(destination,Msg);
+        System.out.println(Msg);
+        return Msg;
 
     }
     @JmsListener(destination = "return-queue")
     public void Message(String Msg){
+
         System.out.println("Product收到:"+Msg);
+
+
     }
 }

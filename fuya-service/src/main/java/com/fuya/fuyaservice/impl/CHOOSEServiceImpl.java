@@ -30,12 +30,12 @@ public class CHOOSEServiceImpl implements CHOOSEService {
     }
 
     @Override
-    public List<Object> findObjectByCHOOSEID(int id) {
+    public List<Object[]> findObjectByCHOOSEID(int id) {
         return  chooseRepository.findObjectByCHOOSEID(id);
     }
 
     @Override
-    public List<Object> findAnswer() {
+    public List<Object[]> findAnswer() {
         return chooseRepository.findAnswer();
     }
 

@@ -8,18 +8,19 @@
         <outputRelativeToContentRoot value="true" />
         <module name="fuya-base" />
         <module name="fuya-dao" />
+        <module name="fuya-Redis" />
         <module name="fuya-service" />
         <module name="fuya-solr" />
         <module name="fuya-util" />
         <module name="fuya-web" />
         <module name="fuyaactivemq" />
-        <module name="fuyaRedis" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="fuya" target="1.8" />
       <module name="fuya-base" target="1.8" />
       <module name="fuya-dao" target="1.8" />
+      <module name="fuya-Redis" target="1.8" />
       <module name="fuya-service" target="1.8" />
       <module name="fuya-shiro" target="1.8" />
       <module name="fuya-solr" target="1.8" />

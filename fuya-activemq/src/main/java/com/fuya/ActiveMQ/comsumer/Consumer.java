@@ -1,8 +1,17 @@
 package com.fuya.ActiveMQ.comsumer;
 
 
+
+import com.fuya.fuyadao.entity.EMPLOYERINFORMATION;
+import com.fuya.fuyadao.entity.ORDERS;
+import com.fuya.fuyadao.entity.SERVICECONTENT;
+import com.fuya.fuyaservice.EMPLOYERINFORMATIONService;
+import com.fuya.fuyaservice.ORDERSService;
+import com.fuya.fuyaservice.SERVICECONTENTService;
 import com.fuya.fuyaservice.YUESOBASICINFOService;
 import com.fuya.fuyasolr.Solr.service.*;
+
+import net.sf.json.JSONObject;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.annotation.JmsListener;
@@ -14,113 +23,33 @@ import java.io.IOException;
 @Service
 public class Consumer {
 
-   /* @Autowired
-    USERSSolrservice usersSolrservice;*/
+
     @Autowired
-    COMPANYBASICINFOSolrService companybasicinfoSolrService;
+    SERVICECONTENTService servicecontentService;
     @Autowired
-    COMPANYINFOSolrService companyinfoSolrService;
+    ORDERSService ordersService;
     @Autowired
-    YUESOBASICINFOSolrservice yuesobasicinfoSolrservice;
-    @Autowired
-    YUESOBASICINFOService yuesobasicinfoService;
-   /* @Autowired
-    PROVEINFOSolrService proveinfoSolrService;*/
-    @Autowired
-    COLLECTIONSSolrService collectionsSolrService;
-    @Autowired
-    ARTICLESolrService articleSolrService;
-    @Autowired
-    RECRUITSolrService recruitSolrService;
-    @Autowired
-    YUESAOOTHERPROVESolrService yuesaootherproveSolrService;
-    @Autowired
-    COMPANYYUESAOSolrService companyyuesaoSolrService;
+    EMPLOYERINFORMATIONService employerinformationService;
 
 
 
 
     @JmsListener(destination = "zh-topic")
     @SendTo("return-queue")
-    public String receiveQueue(String id) throws IOException, SolrServerException {
-        String[] text=id.split(":");
-        //实现solr插入users
-        /*if (text[0].equals("users")){
-            usersSolrservice.addUSER(Integer.parseInt(text[1]));
+    public String receiveQueue(String text) throws IOException, SolrServerException {
+        System.out.println(text);
+        JSONObject jsonObject = JSONObject.fromObject(text);
+        JSONObject servicecontentObject = jsonObject.getJSONObject("servicecontent");
+       /* JSONObject ordersObject = jsonObject.getJSONObject("orders");*/
+        JSONObject employerinformationObject = jsonObject.getJSONObject("employerinformation");
+       /* ORDERS orders= (ORDERS) JSONObject.toBean(ordersObject,ORDERS.class);
+        ordersService.save(orders);*/
+        SERVICECONTENT servicecontent= (SERVICECONTENT) JSONObject.toBean(servicecontentObject ,SERVICECONTENT.class);
+        servicecontentService.save(servicecontent);
+        EMPLOYERINFORMATION employerinformation= (EMPLOYERINFORMATION) JSONObject.toBean(employerinformationObject,EMPLOYERINFORMATION.class);
+        employerinformationService.save(employerinformation);
 
-        }*/
-
-       /* if (text[0].equals("proveinfo")){
-//
-            //录入月嫂信息
-            System.out.println("ddddddd"+Integer.parseInt(text[1]));
-            proveinfoSolrService.addPROVEINFO(Integer.parseInt(text[1]));
-
-
-        }*/
-
-
-
-        if (text[0].equals("companyinfo")){
-            companyinfoSolrService.addCOMPANYINFO(Integer.parseInt(text[1]));
-
-        }if (text[0].equals("companybasicinfo")){
-            companybasicinfoSolrService.addCOMPANYBASICINFO(Integer.parseInt(text[1]));
-        }
-
-
-
-
-        if(text[0].equals("yuesaootherprove")){
-
-            yuesaootherproveSolrService.addYUESAOOTHERPROVE(Integer.parseInt(text[1]));
-        }
-
-
-        if (text[0].equals("companyyuesao")){
-
-            companyyuesaoSolrService.addCOMPANYYUESAO(Integer.parseInt(text[1]));
-        }
-       /* if (text[0].equals("collections-delete")){
-           // String[] ids=text[1].split(",");
-
-           // System.out.println(ids[0]);
-            collectionsSolrService.delete(text[1]);
-        //    collectionsSearchdao.delete(query);
-
-        }
-        if (text[0].equals("collections")){
-
-            collectionsSolrService.addCOLLECTIONS(Integer.parseInt(text[1]));
-
-        }
-   */
-
-       /* if (text[0].equals("article-add")){
-
-            articleSolrService.addARTICLE(Integer.parseInt(text[1]));
-
-        }*/
-       /* if (text[0].equals("recruit-add")){
-            recruitSolrService.addRECRUIT(Integer.parseInt(text[1]));
-
-        }*/
-
-
-        if (text[0].equals("companyyuesaoService-delete")){
-            companyyuesaoSolrService.delete(Integer.parseInt(text[1]));
-
-        }
-
-
-
-
-
-
-
-
-
-        return "Consumer2收到!";
+        return "success";
     }
 
 

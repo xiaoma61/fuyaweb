@@ -100,7 +100,6 @@ public class YuesaoindexController {
     @RequestMapping("/fuyayuesaoindex/search/name/keyword")//名字--关键词
     @ResponseBody
     public  JSONObject Searchnamekeyword (@RequestParam(name="name")String name) throws IOException, SolrServerException {
-
         Page<YUESOBASICINFO>yuesobasicinfos=yuesobasicinfoService.query(name, "null", "null", "null", 1, "null", "null", "null", 0, 10);
         List<YUESOBASICINFO>yuesobasicinfoList=yuesobasicinfos.getContent();
         HashSet<String> hashSet=new HashSet<>();

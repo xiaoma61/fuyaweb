@@ -8,11 +8,12 @@ public class CHOOSE {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int CHOOSEID;
+    private String ANSWER;
     private String ACHOOSE;
     private String BCHOOSE;
     private String CCHOOSE;
     private String DCHOOSE;
-    private String ANSWER;
+
 
 
     public int getCHOOSEID() {

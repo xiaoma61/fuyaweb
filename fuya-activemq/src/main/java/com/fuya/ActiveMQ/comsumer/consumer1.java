@@ -31,28 +31,8 @@ public class consumer1 {
 
 
     @JmsListener(destination = "zh-topic")
-    public void receiveQueue(String id) {
-        String[] text=id.split(":");
-        //实现redis插入
-        if (text[0].equals("companyyuesao")){
-                    COMPANYYUESAO companyyuesao= companyyuesaoService.findByCOMPANYID(Integer.parseInt(text[1]));
-                    //存入数据库
-//                    companyyuesao.getYUESAOID();
-                    YUESOBASICINFO yuesobasicinfo =yuesobasicinfoService.findByUSERSID(companyyuesao.getYUESAOID());
-                    List<PROVEINFO> proveinfo=proveinfoService.findByUSERSID(companyyuesao.getYUESAOID());
-                    YUESAOINFO yuesaoinfo=new YUESAOINFO();
-                    yuesaoinfo.setProveinfo(proveinfo);
-                    yuesaoinfo.setYuesobasicinfo(yuesobasicinfo);
-                    JSONObject object=JSONObject.fromObject(yuesaoinfo);
-                    redisUtil.lpush(String.valueOf(companyyuesao.getCOMPANYID()), object.toString());
+    public void receiveQueue(String text) {
+        System.out.println(text+"");
 
-
-        }
-
-
-
-
-
-        System.out.println("con:"+id);
     }
 }

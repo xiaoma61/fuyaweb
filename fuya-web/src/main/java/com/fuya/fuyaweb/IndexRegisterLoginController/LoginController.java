@@ -39,9 +39,10 @@ public class LoginController {
 
     @RequestMapping("/CheckLogin")
     public  String CheckLogin(String name , String password, Model model, HttpServletRequest request){
-        System.out.println(name+":  ssss");
+        HttpSession session=request.getSession();
         //获取subject
         Subject subject= SecurityUtils.getSubject();
+        session.setAttribute("password",password);
         //获取token
         UsernamePasswordToken token=new UsernamePasswordToken(name,password);
         //验证后跳转
@@ -56,7 +57,7 @@ public class LoginController {
             return "redirect:Login";
         }
         //将用户名
-        HttpSession session=request.getSession();
+
         session.setAttribute("username",name);
 
         return "index";

@@ -12,10 +12,13 @@ import com.fuya.fuyaservice.COMPANYBASICINFOService;
 import com.fuya.fuyaservice.YUESOBASICINFOService;
 import com.fuya.fuyautil.BodyContentUtil;
 import com.fuya.fuyautil.BodyImageUtil;
+import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -46,9 +49,13 @@ public class IndexController {
     @Autowired
     RedisUtil redisUtil;
     @RequestMapping("/index")
-    public String index(Model model){
+    @ResponseBody
+    public JSONObject index(Model model){
         //redis实现查找前6个
         //前6个企业
+        Map<String,Object> msg=new HashMap<>();
+
+
         if (redisUtil.hasKey(companykey)){
             //存在key的情况下23
 
@@ -56,6 +63,7 @@ public class IndexController {
             if (value!=null&&!value.equals("")){
                 //当redis存在的时候直接取得value
                // return redisUtil.get(companykey);
+                msg.put("companybasicinfo", value);
             }
 
         }else{
@@ -74,6 +82,7 @@ public class IndexController {
                 companybasicinfoListmap.add(map);
             }
             String companybasicinfo = JSONUtils.toJSONString(companybasicinfoListmap);
+            msg.put("companybasicinfo", companybasicinfo);
             redisUtil.set(companykey,companybasicinfo );
 
 
@@ -85,7 +94,7 @@ public class IndexController {
             System.out.println("adssssssss1");
             String value=redisUtil.get(yuesaokey);
             if (value!=null&&!value.equals("")){
-                //添加到
+                msg.put("yuesobasicinfoListmapJson", value); //添加到
             }
 
         }else {
@@ -95,22 +104,26 @@ public class IndexController {
 
            for (YUESOBASICINFO yuesobasicinfo : yuesobasicinfoList){
                //封装连接---跳转到月嫂的页面
-               int id=yuesobasicinfo.getYUESOBASICINFOID();
+               int id=yuesobasicinfo.getUSERSID();
                List<COMMENTS> commentsList=commentsService.findByUSERID(id);
-               COMMENTS comments=commentsList.get(0);
-               Map<String,Object>map=new HashMap<>();
-               map.put("ID",yuesobasicinfo.getYUESOBASICINFOID());//评论
-               map.put("CONTENT",comments.getCONTENT());//评论
-               map.put("NAME",yuesobasicinfo.getNAME());// 名称
-               map.put("NATIVEPLACE",yuesobasicinfo.getNATIVEPLACE());//地点
-               map.put("WAGES",yuesobasicinfo.getWAGES());//工资
-               map.put("LEVELS",yuesobasicinfo.getLEVELS());//星级
-               map.put("AGE",yuesobasicinfo.getAGE());
-               map.put("WORKAREA",yuesobasicinfo.getWORKAREA());
-               yuesobasicinfoListmap.add(map);
+               if (commentsList!=null){
+                   COMMENTS comments=commentsList.get(0);
+                   Map<String,Object>map=new HashMap<>();
+                   map.put("ID",yuesobasicinfo.getYUESOBASICINFOID());//评论
+                   map.put("CONTENT",comments.getCONTENT());//评论
+                   map.put("NAME",yuesobasicinfo.getNAME());// 名称
+                   map.put("NATIVEPLACE",yuesobasicinfo.getNATIVEPLACE());//地点
+                   map.put("WAGES",yuesobasicinfo.getWAGES());//工资
+                   map.put("LEVELS",yuesobasicinfo.getLEVELS());//星级
+                   map.put("AGE",yuesobasicinfo.getAGE());
+                   map.put("WORKAREA",yuesobasicinfo.getWORKAREA());
+                   yuesobasicinfoListmap.add(map);
+               }
+
 
            }
            String yuesobasicinfoListmapJson=JSONUtils.toJSONString(yuesobasicinfoListmap);
+            msg.put("yuesobasicinfoListmapJson", yuesobasicinfoListmapJson);
            redisUtil.set(yuesaokey,yuesobasicinfoListmapJson);
 
         }
@@ -126,10 +139,11 @@ public class IndexController {
             if (value!=null&&!value.equals("")){
                 //当redis存在的时候直接取得value
                 // return redisUtil.get(companykey);
+                msg.put("articleListmapJson", value);
             }
 
         }else{
-            List<ARTICLE>articleList=articleService.findAlllimit(2,1);
+            List<ARTICLE>articleList=articleService.findAlllimit(2);
             List<Map<String,Object>>articleListmap=new ArrayList<>();
             for (ARTICLE article : articleList ){
                 Map<String,Object>map=new HashMap<>();
@@ -138,8 +152,8 @@ public class IndexController {
                 map.put("ID",article.getARTICLEID());
                 map.put("TITLE",article.getTITLE());
                 String content=BodyContentUtil.GetContent(article.getCONTENT());
-                System.out.println(content);
-                content=content.substring(0,200);
+
+
                 map.put("CONTENT",content);
                 //获取图片
                 String Image= BodyImageUtil.GetIMage(article.getCONTENT());
@@ -149,10 +163,12 @@ public class IndexController {
             }
             String articleListmapJson=JSONUtils.toJSONString(articleListmap);
             redisUtil.set(articlekey,articleListmapJson);
-
+            msg.put("articleListmapJson", articleListmapJson);
         }
 
 
-        return "/index";
+
+
+        return JSONObject.fromObject(msg);
     }
 }

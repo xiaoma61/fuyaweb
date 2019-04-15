@@ -17,7 +17,7 @@ public interface YUESOBASICINFORepository extends JpaRepository<YUESOBASICINFO,I
     // List<ProveAndYuesaobasic> findAlllimit();
 
     //首页
-    @Query(nativeQuery = true,value = "select * from (select * from  YUESOBASICINFO order by LEVELS desc ) where rownum<=6")
+    @Query(nativeQuery = true,value = "select * from YUESOBASICINFO order by LEVELS desc limit 0,6")
     List<YUESOBASICINFO> findAlllimit();
 //    @Override
 //    List<YUESOBASICINFO> findAll();

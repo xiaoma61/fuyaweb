@@ -25,7 +25,7 @@ spring:
       exclude: WEB-INF/**
   redis:
     expireSeconds: 120
-    clusterNodes: localhost:6661,localhost:6662,localhost:6663,localhost:6664,localhost:6665,localhost:6666
+    clusterNodes: 192.168.80.128:6661,192.168.80.128:6662,192.168.80.128:6663,192.168.80.128:6664,192.168.80.128:6665,192.168.80.128:6666
     jedis:
       pool:
         max-active: 300

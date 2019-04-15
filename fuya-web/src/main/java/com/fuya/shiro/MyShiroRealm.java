@@ -1,9 +1,12 @@
 package com.fuya.shiro;
 
+import com.fasterxml.jackson.core.JsonParser;
 import com.fuya.Redis.Util.RedisUtil;
 import com.fuya.fuyadao.entity.USERS;
+import com.fuya.fuyadao.model.UserModel;
 import com.fuya.fuyaservice.PERMISSIONService;
 import com.fuya.fuyaservice.USERService;
+import net.sf.json.JSONObject;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
@@ -27,6 +30,8 @@ public class MyShiroRealm extends AuthorizingRealm {
     private RedisUtil redisUtil;
     @Autowired
     private PERMISSIONService permissionService;
+
+    private static  final String KEY="userMsgkey";
    /* @Autowired
     private USERSSolrservice usersSolrservice;*/
 
@@ -84,26 +89,48 @@ public class MyShiroRealm extends AuthorizingRealm {
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
         //认证逻辑
         //null unknowAccount
-
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        HttpSession session=request.getSession();
+        String password= (String) session.getAttribute("password");
         UsernamePasswordToken token= (UsernamePasswordToken) authenticationToken;
         String name= token.getUsername();
+        UserModel userModel =new UserModel();
+        String rpassword=null;
+        USERS userss=null;
+        if(redisUtil.hexists(KEY,name)){
+            String user=redisUtil.hGet(KEY,name);
+            JSONObject object=JSONObject.fromObject(user);
+            userModel= (UserModel) JSONObject.toBean(object,userModel.getClass());
+            if(!userModel.getPASSWORD().equals(password)){
+                userss=userService.findUSERSByNAME(name);
+                rpassword=userss.getPASSWORD();
+                session.setAttribute("id",userss.getUSERSID());
+                session.setAttribute("type",userss.getTYPE());
+            }else {
+                rpassword=userModel.getPASSWORD();
+                session.setAttribute("id",userModel.getUSERSID());
+                session.setAttribute("type",userModel.getTYPE());
+            }
+        }else {
+
+            List<USERS>usersList=userService.findall();
+            for (USERS users:usersList){
+                if (users.getNAME().equals(name)){
+                    rpassword=users.getPASSWORD();
+                }
+                redisUtil.hset(KEY, users.getNAME(),JSONObject.fromObject(users).toString());
+            }
 
 
-
-
-        USERS users =userService.findUSERSByNAME(name);
-        System.out.println(users.getNAME());
-        System.out.println(users.getPASSWORD());
-        if (users==null){
-            return null;
-        }else{
-
-            HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-            HttpSession session=request.getSession();
-            session.setAttribute("id",users.getUSERSID());
-            session.setAttribute("type",users.getTYPE());
-            return new SimpleAuthenticationInfo(users.getNAME(),users.getPASSWORD(),getName());
+            return new SimpleAuthenticationInfo(name,rpassword,getName());
         }
+
+        /*System.out.println(userss.getNAME());
+        System.out.println(userss.getPASSWORD());*/
+
+
+        return new SimpleAuthenticationInfo(name,rpassword,getName());
+
 
 
 

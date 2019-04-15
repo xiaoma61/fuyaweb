@@ -51,7 +51,7 @@ public class CollectionController {
     @RequiresRoles("users")
     @RequestMapping("/fuyayusao/collection")
     @ResponseBody
-    public Map<String,String> collection(@RequestParam(name = "toid") int toid,
+    public Map<String,String> collectiondelete(@RequestParam(name = "toid") int toid,
                                          @RequestParam(name = "type")int type, HttpServletRequest request)  {
 
         HttpSession httpSession=request.getSession();
@@ -65,9 +65,6 @@ public class CollectionController {
         }else {
             collectionsService.deleteByFROMIDAndTOID(fromid,toid);
         }
-
-
-
 
         Map<String,String>map=new HashMap<>();
         map.put("msg","success");

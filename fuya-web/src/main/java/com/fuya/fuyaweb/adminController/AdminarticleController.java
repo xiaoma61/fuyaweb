@@ -86,12 +86,6 @@ public class AdminarticleController {
 
         ARTICLE article = (ARTICLE) JSONObject.toBean(jsonParam,ARTICLE.class);
 
-
-       /* //solr表修改/*int type=0;
-        type= GetTypeUtil.GetType(articletype);
-        //更新solr
-        productService.sendMessage(this.topic,"article-update:"+id);*/
-
         //数据库修改
         articleService.updateARTICLEbyid(article.getTYPE(),article.getTITLE(),article.getCONTENT(),article.getARTICLEID());
 

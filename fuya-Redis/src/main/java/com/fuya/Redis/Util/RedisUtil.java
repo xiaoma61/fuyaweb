@@ -53,10 +53,23 @@ public class RedisUtil {
     public void zadd(String key,int j,String name){
         jedisCluster.zadd(name, j, key);
     }
+    public boolean sismember (String key,String value){
+        return jedisCluster.sismember(key,value);
+    }
+    public Long sadd(String key, String value){
+        return jedisCluster.sadd(key,value);
+    }
+    public boolean hexists(String key,String field){
+        return  jedisCluster.hexists(key, field);
+    }
+    public String hGet(String key,String field){
+        return jedisCluster.hget(key,field);
+    }
+
+    public Long hset(String key , String field, String value){
+        return jedisCluster.hset(key, field, value);
+    }
 
 
-   /* public int scard(String key){
-        return Math.toIntExact(jedisCluster.scard(key));
-    }*/
 
 }

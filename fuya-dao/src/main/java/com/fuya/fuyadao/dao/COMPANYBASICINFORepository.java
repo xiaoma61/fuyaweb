@@ -12,7 +12,7 @@ import java.util.List;
 
 public interface COMPANYBASICINFORepository extends JpaRepository<COMPANYBASICINFO,Integer> {
 //原生的sql，首页
-    @Query(nativeQuery = true,value = "select * from (select * from  COMPANYBASICINFO order by LEVELS desc ) where rownum<=6")
+    @Query(nativeQuery = true,value = "select * from COMPANYBASICINFO c order by LEVELS desc limit 0,6")
     List<COMPANYBASICINFO>findAlllimit();
     @Query("select  c from COMPANYBASICINFO c where  c.COMPANYBASICINFOID=?1")
     COMPANYBASICINFO findByID(int ID);

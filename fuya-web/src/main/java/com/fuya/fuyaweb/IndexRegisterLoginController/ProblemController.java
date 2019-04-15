@@ -1,10 +1,7 @@
 package com.fuya.fuyaweb.IndexRegisterLoginController;
 
 import com.fuya.Redis.Util.RedisUtil;
-import com.fuya.fuyadao.entity.CHOOSE;
-import com.fuya.fuyadao.entity.ExamChooseCheck;
-import com.fuya.fuyadao.entity.PROBLEM;
-import com.fuya.fuyadao.model.AdminProblemAnswer;
+import com.fuya.fuyadao.model.ExamChooseCheck;
 import com.fuya.fuyadao.model.PROBLEMmodel;
 import com.fuya.fuyaservice.CHOOSEService;
 import com.fuya.fuyaservice.PROBLEMService;
@@ -18,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,6 +27,7 @@ public class ProblemController {
     CHOOSEService chooseService;
     @Autowired
     RedisUtil redisUtil;
+    private static  final String KEY="examMsgkey";
     //拿到考题
     @RequestMapping("/exam")
     @ResponseBody
@@ -51,56 +48,43 @@ public class ProblemController {
     public JSONObject examcheck(@RequestBody String jsonParam){
 
         int sum=0;
+        JSONArray msgjson = JSONArray.fromObject(jsonParam);
 
-        JSONObject jsonObject=JSONObject.fromObject(jsonParam);
-        String json=jsonObject.getString("msg");
-        System.out.println(json);
-        JSONArray msgjson= JSONArray.fromObject(json);
         String answerS="answer";
-        for (Object object:msgjson){
-            ExamChooseCheck examChooseCheck= (ExamChooseCheck) JSONObject.toBean(JSONObject.fromObject(object),ExamChooseCheck.class);
+        for (int i = 0; i < msgjson.size(); i++){
+            JSONObject jsonObject = msgjson.getJSONObject(i);
+            String chooseid= answerS+ jsonObject.get("chooseid");
+            String answer= (String) jsonObject.get("answer");
             //从redis中提取
-
-            if (redisUtil.hasKey(answerS+examChooseCheck.getChooseid())){
-                String answer=redisUtil.get(answerS+examChooseCheck.getChooseid());
-                if (answer.equals(examChooseCheck.getAnswer())){
+            if (redisUtil.hexists(KEY,chooseid)){
+                if (answer.equals(redisUtil.hGet(KEY,chooseid))){
                     sum+=2;
                 }
             }else {
-                List<Object>chooseList=chooseService.findAnswer();
-                for (int i=0;i<chooseList.size();i++){
-                    Object[]objects=(Object[])chooseList.get(i);
-                    redisUtil.set(answerS+objects[1].toString(),objects[0].toString());
-
-                }
-                if (redisUtil.hasKey(answerS+examChooseCheck.getChooseid())){
-                    String answer=redisUtil.get(answerS+examChooseCheck.getChooseid());
-                    if (answer.equals(examChooseCheck.getAnswer())){
-                        sum+=2;
+                List<Object[]>chooseList=chooseService.findAnswer();
+                for (Object[] o:chooseList){
+                    ExamChooseCheck ec=new ExamChooseCheck();
+                    ec.setANSWER((String) o[0]);
+                    ec.setCHOOSEID((Integer) o[1]);
+                    redisUtil.hset(KEY, answerS+String.valueOf(ec.getCHOOSEID()),ec.getANSWER());
+                    if (redisUtil.hexists(KEY,chooseid)){
+                        if (answer.equals(redisUtil.hGet(KEY,chooseid))){
+                            sum+=2;
+                        }
                     }
                 }
+
+                /*List<ExamChooseCheck>examChooseCheckList=EntityUtils.castEntity( chooseList,ExamChooseCheck.class,new ExamChooseCheck());
+                for (ExamChooseCheck ec:examChooseCheckList){
+                    redisUtil.hset(KEY, answerS+String.valueOf(ec.getCHOOSEID()),ec.getANSWER());
+                }*/
+
 
             }
 
 
-
-
-            System.out.println(examChooseCheck.getAnswer());
-
         }
-        System.out.println(json);
-//        String json=jsonObject.toString();
-//        System.out.println(json);
-//        JSONObject jsonObject1=JSONObject.fromObject(json);
-//        String answerjson=jsonObject1.toString();
-//        System.out.println(answerjson);
-//        //chooseid ,answer
-//        //选择20道
-//        JSONObject jsons=JSONObject.fromObject(json);
 
-//        ExamChooseCheck examChooseCheck= (ExamChooseCheck) JSONObject.toBean(jsonObject,ExamChooseCheck.class);
-
-        //id 和答案
 
         Map<String,Object> msg1=new HashMap<>();
         msg1.put("msg",sum);

@@ -39,15 +39,16 @@ public class YUESOBASICINFOSolrImpl implements YUESOBASICINFOSolrservice {
             stringBuffer.append("WORKAREA:"+workarea);
         }
         if (!type.equals("null")){
-            stringBuffer.append("AND yusaoTYPE:"+type);
+            stringBuffer.append("AND TYPE:"+type);
         }
         if (!minwages.equals("null")&&maxwages.equals("null")){
-            stringBuffer.append("AND yusaoWAGES:[ "+minwages +"TO " +maxwages+"]");//工资
+            stringBuffer.append("AND WAGES:[ "+minwages +"TO " +maxwages+"]");//工资
         }
         if (!nativeplace.equals("null")){
             stringBuffer.append("AND　NATIVEPLACE:"+nativeplace);
 
         }
+
 
         solrQuery.setQuery(stringBuffer.toString());
         if (page<=0){

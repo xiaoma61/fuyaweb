@@ -3,15 +3,16 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/fuya.iml" filepath="$PROJECT_DIR$/fuya.iml" />
-      <module fileurl="file://$PROJECT_DIR$/fuya-base/fuya-base.iml" filepath="$PROJECT_DIR$/fuya-base/fuya-base.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fuya-Redis/fuya-Redis.iml" filepath="$PROJECT_DIR$/fuya-Redis/fuya-Redis.iml" />
       <module fileurl="file://$PROJECT_DIR$/fuya-base/fuya-base.iml" filepath="$PROJECT_DIR$/fuya-base/fuya-base.iml" />
       <module fileurl="file://$PROJECT_DIR$/fuya-dao/fuya-dao.iml" filepath="$PROJECT_DIR$/fuya-dao/fuya-dao.iml" />
       <module fileurl="file://$PROJECT_DIR$/fuya-service/fuya-service.iml" filepath="$PROJECT_DIR$/fuya-service/fuya-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/fuya-solr/fuya-solr.iml" filepath="$PROJECT_DIR$/fuya-solr/fuya-solr.iml" />
       <module fileurl="file://$PROJECT_DIR$/fuya-util/fuya-util.iml" filepath="$PROJECT_DIR$/fuya-util/fuya-util.iml" />
       <module fileurl="file://$PROJECT_DIR$/fuya-web/fuya-web.iml" filepath="$PROJECT_DIR$/fuya-web/fuya-web.iml" />
-      <module fileurl="file://$PROJECT_DIR$/fuya-Redis/fuyaRedis.iml" filepath="$PROJECT_DIR$/fuya-Redis/fuyaRedis.iml" />
       <module fileurl="file://$PROJECT_DIR$/fuya-activemq/fuyaactivemq.iml" filepath="$PROJECT_DIR$/fuya-activemq/fuyaactivemq.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fuya-Redis/src/main/main.iml" filepath="$PROJECT_DIR$/fuya-Redis/src/main/main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fuya-Redis/src/test/test.iml" filepath="$PROJECT_DIR$/fuya-Redis/src/test/test.iml" />
     </modules>
   </component>
 </project>

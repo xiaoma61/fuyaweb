@@ -6,6 +6,8 @@ import com.fuya.fuyaservice.USERService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class USERServiceImpl implements USERService {
     @Autowired
@@ -43,5 +45,10 @@ public class USERServiceImpl implements USERService {
     @Override
     public void deleteAllByUSERSID(int id) {
         usersRepository.deleteAllByUSERSID(id);
+    }
+
+    @Override
+    public List<USERS> findall() {
+        return usersRepository.findAll();
     }
 }

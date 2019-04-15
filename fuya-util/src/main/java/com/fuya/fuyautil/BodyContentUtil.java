@@ -18,6 +18,9 @@ public class BodyContentUtil {
             //System.out.println(element);
             stringBuffer.append(element.text().trim());
         }
+        if(text.length()<200){
+            return text;
+        }
         return text.substring(0,200);
 
     }

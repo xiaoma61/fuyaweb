@@ -68,12 +68,18 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>com.fuya</groupId>
-            <artifactId>fuya-Redis</artifactId>
-            <version>2.1.2.RELEASE</version>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20140107</version>
             <scope>compile</scope>
         </dependency>
-
+        <!-- <dependency>
+             <groupId>com.fuya</groupId>
+             <artifactId>fuya-Redis</artifactId>
+             <version>2.1.2.RELEASE</version>
+             <scope>compile</scope>
+         </dependency>
+ -->
 
     </dependencies>
 
