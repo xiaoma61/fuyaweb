@@ -1,8 +1,7 @@
 (function(){
 	"use strict";
-	var num=10;//一页数据数
-	var first=0;//第一条
-	var last=first+num;//最后一条
+	var num;//一页数据数
+
 	var current=1;//当前页数
 	var code;
 	var count;//页数
@@ -19,7 +18,7 @@
 	
 	function success1(){
 		$.ajax({
-			url:"../../data.json",    //请求的url地址
+			url:"../../b.json",    //请求的url地址
 			dataType:"json",   //返回格式为json
 			async:true,//请求是否异步，默认为异步，这也是ajax重要特性
 			data:{currentpage:current},    //参数值
@@ -35,15 +34,15 @@
 				$("#num_show").html('');
 				
 				/*声明必要变量*/
-				count=16;//页数	
-				
+				count=data.msg.totalPages;//页数	
+				num=data.msg.size;
 				/**/
-				$("#num_show").append("共"+data.data.length+"条"+"共"+count+"页");//显示数据数页数
+				$("#num_show").append("共"+data.msg.totalElements+"条"+"共"+count+"页");//显示数据数页数
 				
-				for(var i=first;i<last;i++)
+				for(var i=0;i<num;i++)
 				{
 					
-					var tr; tr='<td>'+data.data[i].CN+'</td>'+'<td>'+data.data[i].JN+'</td>'+'<td>'+data.data[i].name+'</td>'+'<td>'+data.data[i].type+'</td>'+'<td>'+data.data[i].employer+'</td>'+'<td>'+data.data[i].startTime+'</td>'+'<td>'+data.data[i].SD+'</td>'+'<td><a href="#" class="che" code="'+data.data[i].CN+'">'+"查看"+'</a></td>'+'<td><a href="#" class="rev" code="'+data.data[i].CN+'">'+"修改"+'</a></td>'+'<td><a href="#" class="del" code="'+data.data[i].CN+'">'+"删除"+'</a></td>';
+					var tr; tr='<td>'+data.data[i].JN+'</td>'+'<td>'+data.data[i].name+'</td>'+'<td>'+data.data[i].type+'</td>'+'<td>'+data.data[i].employer+'</td>'+'<td>'+data.data[i].startTime+'</td>'+'<td>'+data.data[i].SD+'</td>'+'<td><a href="#" class="che" code="'+data.data[i].CN+'">'+"查看"+'</a></td>'+'<td><a href="#" class="rev" code="'+data.data[i].CN+'">'+"修改"+'</a></td>'+'<td><a href="#" class="del" code="'+data.data[i].CN+'">'+"删除"+'</a></td>';
 					$("#tabletest").append('<tr class="testtd">'+tr+'</tr>');
 				}
 				
@@ -231,8 +230,7 @@
 			addpage();
 		}
 		current=selectPage;
-		first=(selectPage-1)*num;
-		last=first+num;
+
 		success1();
 	});
 	

@@ -192,6 +192,7 @@
 	text-overflow:ellipsis;
 	color: #313131;
 	line-height: 35px;
+	white-space: nowrap;
 }
 
 .content_example_more{

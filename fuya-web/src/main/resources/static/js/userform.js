@@ -1,7 +1,8 @@
 (function(){
 	"use strict";
-	var f='<div class="choose"><span>取消预定</span><span id="enter">进入支付</span><span id="go_chat">进入聊天</span></div>';
-	var s='<div class="choose"><span id="leave">退款</span><span id="go_chat">进入聊天</span></div>';
+	var y=3;
+	var f='<div class="choose"><span>取消预定</span><a href="tencent://message/?uin=122246060s&Site=http://vps.shuidazhe.com&Menu=yes" id="qq_chat" ><span id="go_chat">进入聊天</span></a><br>*聊天请先开启qq</div>';
+	var s='<div class="choose"><span id="leave">退款</span><a href="tencent://message/?uin=122246060s&Site=http://vps.shuidazhe.com&Menu=yes" id="qq_chat" ><span id="go_chat">进入聊天</span></a><br>*聊天请先开启qq</div>';
 	var e='<table><tr><td>总体评价：</td><td id="td1"><div class="_star"></div><div class="_star"></div><div class="_star"></div><div class="_star"></div><div class="_star"></div></td></tr><tr><td>服务态度：</td><td id="td2"><div class="_star"></div><div class="_star"></div><div class="_star"></div><div class="_star"></div><div class="_star"></div></td></tr><tr><td>总体评价：</td><td id="td3"><div class="_star"></div><div class="_star"></div><div class="_star"></div><div class="_star"></div><div class="_star"></div></td></tr></table><div class="evaluate"><textarea placeholder="请在此输入文字信息"></textarea></div><div class="release">发布</div>';
 	success();
 	function success(){
@@ -19,10 +20,29 @@
 				$(".picture").attr("style","background:url('../../img/y1.jpg') no-repeat center center; background-size:auto 100%"); 
 				$("#nam").html("刘淑芬");
 				$("#star").attr("style","width:"+5*7+"%");
-				$('.introduce_right').html(f);
+				
+				if(y===1)
+{				$('.introduce_right').html(f);
 				$('.schedule1').addClass("schedule4");
 				$('.schedule1 .label1').addClass("label2");
+				$('.table').css("display","none");}
+				if(y===2){
+				$('.introduce_right').html(s);
+				$('.schedule2 .label1').addClass("label2");
+				$('.schedule1 .label1').removeClass("label2");
+				$('.schedule2').addClass("schedule4");
+				$('.schedule1').removeClass("schedule4");
+				$('.table').css("display","block");
+				}
+				if(y===3){
+				$('.introduce_right').html(e);
+				$('.schedule3 .label1').addClass("label2");
+				$('.schedule2 .label1').removeClass("label2");
+				$('.schedule3').addClass("schedule4");
+				$('.schedule2').removeClass("schedule4");
+				$('.content').css("background-color","#fcfbf6");
 				$('.table').css("display","none");
+				}
 			},
 			complete:function(){
 				//请求完成的处理
@@ -42,6 +62,8 @@
 		$('.table').css("display","block");
 	});
 	
+	
+	
 	$(document).on('click','#leave',function(){
 		$('.introduce_right').html(e);
 		$('.schedule3 .label1').addClass("label2");
@@ -53,12 +75,9 @@
 	});
 	
 	$(document).on('click','#go_chat',function(){
-		$('.gochat').css("display","block");
+		$('#qq_chat').click();
 	});
 	
-	$(document).on('click','.close',function(){
-		$('.gochat').css("display","none");
-	});
 	
 	$(document).on('click','td:odd div',function(){
 		var id=$(this).parent().attr('id');

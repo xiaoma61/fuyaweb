@@ -56,7 +56,6 @@ public class AdminyuesaoController {
 
         int type=4;
         List<Object> objectList=yuesobasicinfoService.findByTYPE(type);
-
         List<AdminYuesaoinfo> adminYuesaoinfofoList=new ArrayList<>();
         for (int i=0;i<objectList.size();i++){
             Object[]objects=(Object[])objectList.get(i);
@@ -71,9 +70,7 @@ public class AdminyuesaoController {
             adminYuesaoinfo.setNums(String.valueOf(0));
             adminYuesaoinfofoList.add(adminYuesaoinfo);
         }
-
         PageInfo pageInfo= JpaPageHelperUtil.SetStartPage(adminYuesaoinfofoList,start+1,rows);
-  /*      PageInfo<AdminYuesaoinfo> pageInfo=new PageInfo<>(adminYuesaoinfofoList);*/
         Map<String,Object> msg=new HashMap<>();
         msg.put("msg",pageInfo);
         return JSONObject.fromObject(msg);
@@ -97,7 +94,10 @@ public class AdminyuesaoController {
             adminYuesaoinfo.setSENIORITY(objects[3].toString());
             adminYuesaoinfo.setEDUCATION(objects[4].toString());
             adminYuesaoinfo.setPHONE(objects[5].toString());
-            adminYuesaoinfo.setSCORE(objects[6].toString());
+            if (objects[6]!=null){
+                adminYuesaoinfo.setSCORE(objects[6].toString());
+            }
+
             //查找做了多少订单
             int sum=ordersService.findcountByTOID((Integer) objects[0]);
             adminYuesaoinfo.setNums(String.valueOf(sum));
@@ -105,8 +105,9 @@ public class AdminyuesaoController {
             adminYuesaoinfofoList.add(adminYuesaoinfo);
         }
 
-        PageHelper.startPage(start,rows);
-        PageInfo<AdminYuesaoinfo> pageInfo=new PageInfo<>(adminYuesaoinfofoList);
+   /*     PageHelper.startPage(start,rows);*/
+ /*       PageInfo<AdminYuesaoinfo> pageInfo=new PageInfo<>(adminYuesaoinfofoList);*/
+        PageInfo pageInfo= JpaPageHelperUtil.SetStartPage(adminYuesaoinfofoList,start+1,rows);
         Map<String,Object> msg=new HashMap<>();
         msg.put("msg",pageInfo);
         return JSONObject.fromObject(msg);
@@ -166,16 +167,6 @@ public class AdminyuesaoController {
 
 
           userService.deleteAllByUSERSID(id);
-//        userService.delete(id);
-//        proveinfoService.deleteByUSERSID(id);
-//        yuesobasicinfoService.deleteByUSERSID(id);
-//        yuesaootherproveService.deleteByUSERID(id);
-        //订单删除
-
-
-
-
-
         Map<String,Object> msg=new HashMap<>();
         msg.put("msg","success");
         return JSONObject.fromObject(msg);

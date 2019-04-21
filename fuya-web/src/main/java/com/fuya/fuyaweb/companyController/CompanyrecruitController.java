@@ -117,7 +117,6 @@ public class CompanyrecruitController {
     @ResponseBody
     public JSONObject recruitdelete(@RequestParam(name = "id")int id) throws IOException, SolrServerException {
 
-/*        recruitSolrService.DeleteByRECRUITID(id);*/
         //数据库删除
         recruitService.delete(id);
         Map<String,String> msg=new HashMap<>();

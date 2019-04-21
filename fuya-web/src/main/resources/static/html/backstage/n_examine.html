@@ -2,8 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<script type="text/javascript" src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
-<script src="../../js/laydate/laydate.js"></script>	
+<script type="text/javascript" src="https://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
 <link href="../../css/form.css" rel="stylesheet" type="text/css" />
 <script src="../../js/n_examine.js"></script>
 <title>无标题文档</title>
@@ -18,31 +17,126 @@
 		margin:0 5px;
 		float: left;
 	}
+	.check_middle{
+		height:550px;
+		margin:50px 0 0 0 ;
+	}
+	.check_middle_left{
+		width:43%;
+		float: left;
+	}
+	.check_middle_right{
+		width:54%;
+		display: inline-block;
+		margin-left: 20px;
+	}
+	.item{
+		width:100%;
+		height:30px;
+		margin:10px 0 20px 0 ;
+	}
+	.item_title{
+		width:28%;
+		height: 30px;
+		display: inline-block;
+		vertical-align:middle;
+		line-height: 30px;
+		text-align: left;
+		color: #f07053;
+	}
+	.item_content{
+		width:70%;
+		height: 30px;
+		border:2px solid #f07053;
+		display: inline-block;
+		margin: 0 0 0 0;
+		vertical-align:middle;
+		color: #f07053;
+		line-height: 30px;
+	}
+	.item_content2{
+		width:70%;
+		height: 30px;
+		display: inline-block;
+		margin: 0 0 0 0;
+		vertical-align:middle;
+		color: #f07053;
+		line-height: 30px;
+	}
+	.item_content2 ul{
+		margin:0;
+		padding: 0;
+		color: #f07053;
+	}
+	.item_content2 ul li{
+		list-style:none;
+		display: inline-block;
+		border:2px solid #f07053;
+		width: 30%;
+		height: 30px;
+		margin: 0 2% 0 0;
+		vertical-align:middle;
+
+	}
+	.em{
+		margin:0 8.5% 0 0 ;
+	}
+	.n_picture{
+		width: 150px;
+		height:200px;
+		margin: auto;
+		border: 2px solid #f07053;
+		overflow: hidden;
+	    display: flex;
+	    justify-content: center;
+	    align-items: center;  
+	}
+	.certify_content{
+		width:87%;
+		padding:15px;
+		height: 400px;
+		margin: 0 auto 0 auto;
+	}
+	.certify{
+		width: 204px;
+		float: left;
+		margin:1% 1.7% 1% 1.7%;
+	}
+	.certify_picture{
+		padding: 5.5%;
+		border: 2px solid #f07053;
+		position: relative;
+	}
+	.certify_title{
+		padding:4px;
+		width: 80px;
+		color: #f07053;
+		text-align: center;
+		margin: 10px auto 0 auto;
+	}
+	.check{
+		height: 800px;
+	}
 	</style>
-<script  type="text/javascript">
-setTimeout(laydate.render({elem: '#time'}),1000);
-</script>
+
 <body>
 			  <div class="form">
 			  	<div class="form_top">月嫂管理</div>
 				  <hr>
-				 <p><img src="../../img/shenhe-.png" height="18" alt=""/>已审核</p>
-				<div class="form_search"><div class="form_search_item">时间：<input type="text" id="time" ><input value="搜索" type="button" id="search_time"></div>
-				  						 <div class="form_search_item">姓名：<input type="text" id="name" ><input value="搜索" type="button" id="search_name"></div>
-				  </div>
+				 <p><img src="../../img/shenhe-.png"  height="18" alt=""/>已审核</p>
+
 			  </div>
 	<div style="width: 100%;height: 600px">
 	<table class="table table-bordered" id="tabletest">
     <tr>
-        <th>序号</th>
         <th>姓名</th>
         <th>类型</th>
         <th>服务年限</th>
-        <th>服务数量</th>
-        <th>文化</th>
-        <th>电话</th>
+        <th>联系电话</th>
         <th>分数</th>
-        <th colspan="3" width="120px">操作</th>
+        <th>文化</th>
+        <th>服务数量</th>
+        <th colspan="2" width="120px">操作</th>
     </tr>
 	
  </table></div>
@@ -50,20 +144,7 @@ setTimeout(laydate.render({elem: '#time'}),1000);
 <div class="check" id="see">
 	<div class="check_top"><img src="../../img/close.png" width="30" alt="" style="cursor: pointer" onclick = "document.getElementById('see').style.display='none'"/></div>
 	<div class="check_middle">
-	<table>
-		<th colspan="8">服务单</th>
-		<tr><td>合同号</td><td id="CN"></td><td>工号</td><td id="JN"></td><td>员工名称</td><td id="nam"></td><td>类型</td><td id="type"></td></tr>
-		<tr><td>签订时间</td><td id="ST"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-		</table>
-	<table>
-		<th colspan="8">服务内容</th>
-		<tr><td>预产期</td><td id="EDC"></td><td>服务开始</td><td id="ServiceBegin"></td><td>服务天数</td><td id="ServiceDays"></td><td>定金</td><td id="deposit"></td></tr>
-		<tr><td>服务价格</td><td id="price"></td><td>其他备注</td><td id="remarks"></td><td>完成状态</td><td id="state"></td><td>金额</td><td id="sum"></td></tr>
-		</table>
-	<table>
-		<th colspan="8">户主信息</th>
-		<tr><td>姓名</td><td id="employer"></td><td>所在地区</td><td id="area"></td><td>详细地址</td><td id="address"></td><td>手机号码</td><td id="number"></td></tr>
-		</table>
+
 	</div>
 	
 </div>

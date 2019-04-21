@@ -48,15 +48,11 @@ public class AdminarticleController {
     @ResponseBody
     public JSONObject add(@RequestBody JSONObject jsonParam){
         ARTICLE article = (ARTICLE) JSONObject.toBean(jsonParam,ARTICLE.class);
-
         Date date= TimeUtil.getsqldate(new java.util.Date());
         article.setTIME(date);
         article.setNUMS(0);
-
         article.setId(uuidUtil.getuuidUtil());
         articleService.save(article);
-
-
         Map<String,String>msg=new HashMap<>();
         msg.put("msg","success");
         return JSONObject.fromObject(msg);
@@ -131,8 +127,7 @@ public class AdminarticleController {
                                    @RequestParam(name = "start",defaultValue = "0")int start,
                                    @RequestParam(name = "rows",defaultValue = "10")int rows) throws ParseException, IOException, SolrServerException {
 
-       /* java.util.Date sTime=TimeUtil.stringtodate(startTime);
-        java.util.Date eTime=TimeUtil.stringtodate(endTime);*/
+
         SearchResult searchResult=articleSolrService.SearchbyTime(startTime,endTime,start,rows);
         searchResult.setResultCount(start);
         return JSONObject.fromObject(searchResult);

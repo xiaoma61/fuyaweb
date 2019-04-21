@@ -84,12 +84,30 @@ public class ShiroConfiguration {
         map.put("/**",  "authc");//其他资源全部拦截
         //取得权限
 
+        map.put("/html/u_personal/**","authc");
+        map.put("/html/u_personal.html","authc");
+        map.put("/html/u_personal/**","roles[users]");
+        map.put("/html/u_personal.html","roles[users]");
         map.put("/users/**","roles[users]");
         map.put("/fuyayuesaos/**","roles[yuesaos]");
+        map.put("/html/n_personal.html","roles[yuesaos]");
+        map.put("/html/n_personal/**","roles[yuesaos]");
+        map.put("/html/u_personal/**","authc");
+        map.put("/html/u_personal.html","authc");
+
         map.put("/companys/**","roles[companys]");
+
+        map.put("/html/c_personal.html","roles[companys]");
+        map.put("/html/c_personal/**","roles[companys]");
+        map.put("/html/c_personal/**","authc");
+        map.put("/html/c_personal.html","authc");
+
         map.put("/admin/**","roles[admin]");
+        map.put("/html/backstage/**","authc");
+        map.put("/html/backstag.html","authc");
 
-
+        map.put("/html/backstage/**","roles[admin]");
+        map.put("/html/backstag.html","roles[admin]");
         //登录
         shiroFilterFactoryBean.setLoginUrl("/Login");
         //首页

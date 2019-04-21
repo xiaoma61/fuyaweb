@@ -59,6 +59,7 @@ public class LoginController {
         catch(Exception e){
             //跳转失败
             System.out.println("密码或者用户名错误");
+
             model.addAttribute("Msg","密码或者用户名错误");
             return "redirect:Login";
         }
@@ -67,6 +68,15 @@ public class LoginController {
         HttpSession httpSession=request.getSession();
         int type= (int) httpSession.getAttribute("type");
         Cookie cookie=new Cookie("type",String.valueOf(type));
+        cookie.setPath("/");
+
+        cookie.setMaxAge(60*60*24*20);
+        response.addCookie(cookie);
+        Cookie cookie1=new Cookie("name",name);
+        cookie1.setPath("/");
+
+        cookie1.setMaxAge(60*60*24*20);
+        response.addCookie(cookie1);
         session.setAttribute("username",name);
 
         return "redirect:index";
@@ -78,6 +88,7 @@ public class LoginController {
         //清除session
         HttpSession session=request.getSession();
         session.removeAttribute("username");
+        session.removeAttribute("type");
         session.removeAttribute("id");
         Subject subject = SecurityUtils.getSubject();
         subject.logout();

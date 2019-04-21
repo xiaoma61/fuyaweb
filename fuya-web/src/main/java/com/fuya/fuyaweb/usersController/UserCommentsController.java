@@ -42,7 +42,6 @@ public class UserCommentsController {
         comments.setUSERID(id);
         comments.setCONTENT(content);
         commentsService.save(comments);
-
         Map<String,Object> msg=new HashMap<>();
         msg.put("msg","success");
         return JSONObject.fromObject(msg);

@@ -1,8 +1,6 @@
 (function (){
 　　"use strict";
-	var num=10;//一页数据数
-	var first=0;//第一条
-	var last=first+num;//最后一条
+	var num;//一页数据数
 	var current=1;//当前页数
 	var code;
 	var count;//页数
@@ -18,11 +16,12 @@
 	success();//初始数据
 	
 	function success(){
+		var s=current-1;
 		$.ajax({
-			url:"../../data.json",    //请求的url地址
+			url:"https://campus.gbdev.cn:8060/fuyaweb/admin/article/articles",    //请求的url地址
 			dataType:"json",   //返回格式为json
 			async:true,//请求是否异步，默认为异步，这也是ajax重要特性
-			data:{currentpage:current},    //参数值
+			data:{start:s},    //参数值
 			type:"GET",   //请求方式
 			beforeSend:function(){
 				//请求前的处理
@@ -36,14 +35,13 @@
 				
 				
 				/*声明必要变量*/
-				count=2;//页数	
-				
+				count=data.totalPage;//页数	
+				num=data.resultCount;
 				/**/
-				$("#num_show").append("共"+data.data.length+"条"+"共"+count+"页");//显示数据数页数
 
-				for(var i=first;i<last;i++)
+				for(var i=0;i<num;i++)
 				{
-					var tr; tr='<td>'+data.data[i].CN+'</td>'+'<td>'+data.data[i].JN+'</td>'+'<td>'+data.data[i].name+'</td>'+'<td>'+data.data[i].type+'</td>'+'<td>'+data.data[i].employer+'</td>'+'<td><a href="#" class="che" code="'+data.data[i].CN+'">'+"查看"+'</a></td>'+'<td><a href="#" class="rev" code="'+data.data[i].CN+'">'+"修改"+'</a></td>'+'<td><a href="#" class="del" code="'+data.data[i].CN+'">'+"删除"+'</a></td>';
+					var tr; tr='<td>'+data.objects[i].TYPE+'</td>'+'<td>'+data.objects[i].TITLE+'</td>'+'<td>'+data.objects[i].TIME+'</td>'+'<td><a href="#" class="che" code="'+data.objects[i].ARTICLEID+'">'+"查看"+'</a></td>'+'<td><a href="#" class="del" code="'+data.objects[i].ARTICLEID+'">'+"删除"+'</a></td>';
 					$("#tabletest").append('<tr class="testtd">'+tr+'</tr>');
 				}
 				
@@ -157,8 +155,6 @@
 			addpage();
 		}
 		current=selectPage;
-		first=(selectPage-1)*num;
-		last=first+num;
 		success();
 	});
 	
@@ -166,12 +162,12 @@
 	$(document).on('click', '.del',function() {	
 		code = $(this).attr("code");
 		$.ajax({
-			url:"../../data.json",
-			data:{c:code},
+			url:"https://campus.gbdev.cn:8060/fuyaweb/admin/article/delete",
+			data:{id:code},
 			type:"POST",
 			dataType:"json",
 			success: function(result){ 
-				if(result.status===1)
+				if(result.status==="success")
 				  {	
 					success();
 					alert("删除成功！");
@@ -189,216 +185,20 @@
 	$(document).on('click','.che',function(){
 		code=$(this).attr("code");
 		$.ajax({
-			url:"../../data.json",
-			data:{c:code},
+			url:"https://campus.gbdev.cn:8060/fuyaweb/admin/article/id",
+			data:{id:code},
 			type:"POST",
 			dataType:"json",
 			success: function(data){ 
 				$("#see").css("display","block");//显示查看div
 				$(".check_bottom").css("display","none");//隐藏保存取消按钮
 				$(".check_top").css("display","block");//显示关闭按钮
-				for(var i=0;i<data.data.length;i++){
-					if(data.data[i].CN===code){
-						$("#CN").html(data.data[i].CN);
-						$("#JN").html(data.data[i].JN);
-						$("#nam").html(data.data[i].name);
-						$("#type").html(data.data[i].type);
-						$("#ST").html(data.data[i].ST);
-						$("#EDC").html(data.data[i].CN);
-						$("#ServiceBegin").html(data.data[i].CN);
-						$("#ServiceDays").html(data.data[i].CN);
-						$("#deposit").html(data.data[i].deposit);
-						$("#price").html(data.data[i].CN);
-						$("#remarks").html(data.data[i].CN);
-						$("#state").html(data.data[i].CN);
-						$("#sum").html(data.data[i].CN);
-						$("#employer").html(data.data[i].employer);
-						$("#area").html(data.data[i].CN);
-						$("#address").html(data.data[i].CN);
-						$("#number").html(data.data[i].CN);
-					}
-				}
+				$('.check_middle').html('<table><th >'+data.TITLE+'</th><tr><td>'+data.CONTENT+'</td></tr></table>');
 			},
 			error:function(){}
 		});
 	});
-		
-	//修改
-	$(document).on('click','.rev',function(){
-		code=$(this).attr("code");
-		$("#see").css("display","block");//显示修改div
-		$(".check_bottom").css("display","block");//显示保存取消按钮
-		$(".check_top").css("display","none");//隐藏关闭按钮
-		for(var i=0;i<$('.check_middle table td').length;i++)
-		{	
-			if(i%2!==0&&$('.check_middle table td').eq(i-1).html()!=="")
-			{	
-				$('.check_middle table td').eq(i).html('');
-				$('.check_middle table td').eq(i).append('<input type="text" style="width:99%;height:100%" />');
-			}
-		}
-		$('.check_middle table td input').eq(0).focus(); 
-	});	
 	
-	
-	
-	
-	//取消
-	$(document).on('click','#cancel',function(){
-		$("#see").css("display","none");
-	});
-	
-	//保存
-	$(document).on('click','#save',function(){
-		var flag=0;
-		for(var i=0;i<=$('.check_middle table td input').length;i++){ 	
-			  if($('.check_middle table td input').eq(i).val()===""){
-					$('.check_middle table td input').eq(i).focus(); 
-					flag++;
-			  }
-		}
-		if(flag===0){
-		$.ajax({
-			url:"../../data.json",
-			data:{
-					co:code,
-					a:$("#CN input").val(),
-					b:$("#JN input").val(),
-					c:$("#nam input").val(),
-					d:$("#type input").val(),
-					e:$("#ST input").val(),
-					f:$("#EDC input").val(),
-					g:$("#ServiceBegin input").val(),
-					h:$("#ServiceDays input").val(),
-					i:$("#deposit input").val(),
-					j:$("#price input").val(),
-					k:$("#remarks input").val(),
-					l:$("#state input").val(),
-					m:$("#sum input").val(),
-					n:$("#employer input").val(),
-					o:$("#area input").val(),
-					p:$("#address input").val(),
-					q:$("#number input").val()
-			},
-			type:"POST",
-			dataType:"json",
-			success: function(result){
-				if(result.status===1)
-				  {
-					success();
-					alert("保存成功！");
-					$("#see").css("display","none");
-				  } 
-				  else
-				  {
-					alert("保存失败！"); 
-				  }			
-				},
-			error:function(){}
-		});
-		}
-	});
-	
-	//搜索时间
-	$(document).on('click','#search_time',function(){
-		var ti =$("#time").val();
-			$.ajax({
-				url:"https://campus.gbdev.cn:8060/fuyaweb/admin/article/searchbytime",
-				data:{startTime:ti},
-				type:"POST",
-				dataType:"json",
-				success: function(result){ 
-					if(result.status===1)
-					  {
-						current=1;
-						first=0;//第一条
-						last=first+num;//最后一条
-						success();
-						alert("搜索成功！");
-					  } 
-					  else
-					  {
-						alert("搜索失败！"); 
-					  }
-					},
-				error:function(){}
-			});	
-	});
-	
-	//搜索名字
-	$(document).on('click','#search_name',function(){
-		var na=$("#name").val();
-			$.ajax({
-				url:"../../data.json",
-				data:{n:na},
-				type:"POST",
-				dataType:"json",
-				success: function(result){ 
-				if(result.status===1)
-				  {
-					current=1;
-					first=0;//第一条
-					last=first+num;//最后一条
-					success();
-					alert("搜索成功！");
-				  } 
-				  else
-				  {
-					alert("搜索失败！"); 
-				  }
-				},
-				error:function(){}
-			});	
-	});
-	
-	//点击输入框
-	$(document).on('focus','#name',function(){	
-		if ($("#name").val()!=="") {
-			showhide();
-		}
-	});
-	
-	function showhide(){
-		$('.hide').css("display","block");
-		$('.hide').css("top",$('#name').offset().top+30);
-		$('.hide').css("left",$('#name').offset().left);
-	}
-	
-	function hide(){
-		$('.hide').css("display","none");
-	}
-	
-	//关闭搜索结果
-	$(document).on('blur','#name',function(){
-		setTimeout(hide,100);
-	});
-	
-	//输入框输入文字
-	$(document).bind('input propertychange',function(){
-		$.ajax({
-			url:"../../data.json",
-			data:{c:$("#name").val()},
-			type:"POST",
-			dataType:"json",
-			success: function(result){ 
-				var k=$("#name").val().length;
-				$('.hide ul').html("");//清空
-				for(var i=0; i<5;i++){					
-					var d;
-					d='<li>'+result.data[i].name+''+k+'</li>';
-					$('.hide ul').append(d);
-				}
-					showhide();
-				},
-			error:function(){}
-		});
-	});
-	
-	//点击搜索结果
-	$(document).on('click','.hide ul>li',function(){
-		$('#name').val($(this).html());
-		$("#search_name").click();
-	});
 	
 
 	

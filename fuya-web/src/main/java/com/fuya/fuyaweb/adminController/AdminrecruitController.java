@@ -51,13 +51,10 @@ public class AdminrecruitController {
             msg.put("msg","暂无信息");
 
         }else {
-           /* msg.put("msg",allPicturesPage);*/
+
             msg.put("msg",allPicturesPage);
         }
-
         return msg;
-
-
 
     }
 

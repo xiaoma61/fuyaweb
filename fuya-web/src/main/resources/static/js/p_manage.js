@@ -1,8 +1,7 @@
 (function (){
 　　"use strict";
-	var num=10;//一页数据数
-	var first=0;//第一条
-	var last=first+num;//最后一条
+	var num;//一页数据数
+
 	var current=1;//当前页数
 	var code;
 	var count;//页数
@@ -18,11 +17,12 @@
 	success();//初始数据
 	
 	function success(){
+		var s=current-1;
 		$.ajax({
-			url:"../../data.json",    //请求的url地址
+			url:"https://campus.gbdev.cn:8060/fuyaweb/admin/problemlist",    //请求的url地址
 			dataType:"json",   //返回格式为json
 			async:true,//请求是否异步，默认为异步，这也是ajax重要特性
-			data:{currentpage:current},    //参数值
+			data:{start:s},    //参数值
 			type:"GET",   //请求方式
 			beforeSend:function(){
 				//请求前的处理
@@ -36,16 +36,18 @@
 				
 				
 				/*声明必要变量*/
-				count=5;//页数	
-				
+				count=data.msg.totalPages;//页数	
+				num=data.msg.size;
 				/**/
-				$("#num_show").append("共"+data.data.length+"条"+"共"+count+"页");//显示数据数页数
+				$("#num_show").append("共"+data.msg.totalElements+"条"+"共"+count+"页");//显示数据数页数
 
-				for(var i=first;i<last;i++)
+				for(var i=0;i<num;i++)
 				{
-					var tr; tr='<td>'+data.data[i].CN+'</td>'+'<td>'+data.data[i].JN+'</td>'+'<td>'+data.data[i].name+'</td>'+'<td>'+data.data[i].type+'</td>'+'<td>'+data.data[i].employer+'</td>'+'<td><a href="#" class="che" code="'+data.data[i].CN+'">'+"查看"+'</a></td>'+'<td><a href="#" class="rev" code="'+data.data[i].CN+'">'+"修改"+'</a></td>'+'<td><a href="#" class="del" code="'+data.data[i].CN+'">'+"删除"+'</a></td>';
+					var tr; tr='<td>'+data.msg.content[i].PROBLEMID+'</td>'+'<td>'+data.msg.content[i].TITLE+'</td>'+'<td>'+data.msg.content[i].TIME+'</td>'+'<td>'+data.msg.content[i].CHOOSETYPE+'</td>'+'<td>'+data.msg.content[i].SUBJECTMATTER+'</td>'+'<td><a href="#" class="che" code="'+data.msg.content[i].PROBLEMID+'">'+"查看"+'</a></td>'+'<td><a href="#" class="rev" code1="'+data.msg.content[i].PROBLEMID+'" code2="'+data.msg.content[i].CHOOSEID+'">'+"修改"+'</a></td>'+'<td><a href="#" class="del"  code1="'+data.msg.content[i].PROBLEMID+'" code2="'+data.msg.content[i].CHOOSEID+'">'+"删除"+'</a></td>';
 					$("#tabletest").append('<tr class="testtd">'+tr+'</tr>');
 				}
+				
+				
 				
 				$("#page").html('');
 				/*初始化分页按钮*/
@@ -157,90 +159,31 @@
 			addpage();
 		}
 		current=selectPage;
-		first=(selectPage-1)*num;
-		last=first+num;
+
 		success();
 	});
 	
-	//删除
-	$(document).on('click', '.del',function() {	
-		code = $(this).attr("code");
-		$.ajax({
-			url:"../../data.json",
-			data:{c:code},
-			type:"POST",
-			dataType:"json",
-			success: function(result){ 
-				if(result.status===1)
-				  {	
-					success();
-					alert("删除成功！");
-				  } 
-				  else
-				  {
-					alert("删除失败！"); 
-				  }
-			},
-			error:function(){}
-		});
-	});
 	
 	//查看
 	$(document).on('click','.che',function(){
 		code=$(this).attr("code");
 		$.ajax({
-			url:"../../data.json",
-			data:{c:code},
+			url:"https://campus.gbdev.cn:8060/fuyaweb/admin/problem/id",
+			data:{id:code},
 			type:"POST",
 			dataType:"json",
-			success: function(data){ 
+			success: function(result){ 
 				$("#see").css("display","block");//显示查看div
 				$(".check_bottom").css("display","none");//隐藏保存取消按钮
 				$(".check_top").css("display","block");//显示关闭按钮
-				for(var i=0;i<data.data.length;i++){
-					if(data.data[i].CN===code){
-						$("#CN").html(data.data[i].CN);
-						$("#JN").html(data.data[i].JN);
-						$("#nam").html(data.data[i].name);
-						$("#type").html(data.data[i].type);
-						$("#ST").html(data.data[i].ST);
-						$("#EDC").html(data.data[i].CN);
-						$("#ServiceBegin").html(data.data[i].CN);
-						$("#ServiceDays").html(data.data[i].CN);
-						$("#deposit").html(data.data[i].deposit);
-						$("#price").html(data.data[i].CN);
-						$("#remarks").html(data.data[i].CN);
-						$("#state").html(data.data[i].CN);
-						$("#sum").html(data.data[i].CN);
-						$("#employer").html(data.data[i].employer);
-						$("#area").html(data.data[i].CN);
-						$("#address").html(data.data[i].CN);
-						$("#number").html(data.data[i].CN);
-					}
-				}
+				
+				$('.check_middle').html('<table id="qe" cellspacing="15"><tr><td>题目：</td><td class="i">'+result.msg.problem.TITLE+'</td></tr><tr><td>答案A：</td><td     class="i">'+result.msg.choose.ACHOOSE+'</td></tr><tr><td>答案B：</td><td  class="i">'+result.msg.choose.BCHOOSE+'</td></tr><tr><td>答案C：</td><td  class="i">'+result.msg.choose.CCHOOSE+'</td></tr><tr><td>答案D：</td><td  class="i">'+result.msg.choose.DCHOOSE+'</td></tr><tr><td>正确答案：</td><td  class="i">'+result.msg.choose.ANSWER+'</td></tr><tr><td>题目类型：</td><td  class="i">'+result.msg.problem.CHOOSETYPE+'</td></tr><tr><td>题材：</td><td class="i">'+result.msg.problem.SUBJECTMATTER+'</td></tr><tr><td>加入时间：</td><td class="i">'+result.msg.problem.TIME+'</td></tr></table>');
+
 			},
 			error:function(){}
 		});
 	});
 		
-	//修改
-	$(document).on('click','.rev',function(){
-		code=$(this).attr("code");
-		$("#see").css("display","block");//显示修改div
-		$(".check_bottom").css("display","block");//显示保存取消按钮
-		$(".check_top").css("display","none");//隐藏关闭按钮
-		for(var i=0;i<$('.check_middle table td').length;i++)
-		{	
-			if(i%2!==0&&$('.check_middle table td').eq(i-1).html()!=="")
-			{	
-				$('.check_middle table td').eq(i).html('');
-				$('.check_middle table td').eq(i).append('<input type="text" style="width:99%;height:100%" />');
-			}
-		}
-		$('.check_middle table td input').eq(0).focus(); 
-	});	
-	
-	
 	
 	
 	//取消
@@ -258,32 +201,17 @@
 			  }
 		}
 		if(flag===0){
+		var arr,choose,question;
+		choose={"ACHOOSE":$('.check_middle input[type="text"]').eq(1).val(),"BCHOOSE":$('.check_middle input[type="text"]').eq(2).val(),"CCHOOSE":$('.check_middle input[type="text"]').eq(3).val(),"DCHOOSE":$('.check_middle input[type="text"]').eq(4).val(),"ANSWER":$('.check_middle input[type="text"]').eq(5).val()};
+		question={"TITLE":$('.check_middle input[type="text"]').eq(0).val()};
+		arr= { "CHOOSE":choose,"PROBLEM":question};
 		$.ajax({
-			url:"../../data.json",
-			data:{
-					co:code,
-					a:$("#CN input").val(),
-					b:$("#JN input").val(),
-					c:$("#nam input").val(),
-					d:$("#type input").val(),
-					e:$("#ST input").val(),
-					f:$("#EDC input").val(),
-					g:$("#ServiceBegin input").val(),
-					h:$("#ServiceDays input").val(),
-					i:$("#deposit input").val(),
-					j:$("#price input").val(),
-					k:$("#remarks input").val(),
-					l:$("#state input").val(),
-					m:$("#sum input").val(),
-					n:$("#employer input").val(),
-					o:$("#area input").val(),
-					p:$("#address input").val(),
-					q:$("#number input").val()
-			},
+			url:"https://campus.gbdev.cn:8060/fuyaweb/admin/problem/add",
+			data:{params:arr},
 			type:"POST",
 			dataType:"json",
 			success: function(result){
-				if(result.status===1)
+				if(result.msg==="success")
 				  {
 					success();
 					alert("保存成功！");
@@ -299,107 +227,119 @@
 		}
 	});
 	
-	//搜索时间
-	$(document).on('click','#search_time',function(){
-		var ti =$("#time").val();
-			$.ajax({
-				url:"../../data.json",
-				data:{t:ti},
-				type:"POST",
-				dataType:"json",
-				success: function(result){ 
-				if(result.status===1)
-				  {
-					current=1;
-					first=0;//第一条
-					last=first+num;//最后一条
-					success();
-					alert("搜索成功！");
-				  } 
-				  else
-				  {
-					alert("搜索失败！"); 
-				  }
-					},
-				error:function(){}
-			});	
-	});
-	
 	//搜索名字
 	$(document).on('click','#search_name',function(){
 		var na=$("#name").val();
+		if(na!=="")
+		{			
 			$.ajax({
-				url:"../../data.json",
-				data:{n:na},
-				type:"POST",
-				dataType:"json",
-				success: function(result){ 
-				if(result.status===1)
-				  {
-					current=1;
-					first=0;//第一条
-					last=first+num;//最后一条
-					success();
-					alert("搜索成功！");
-				  } 
-				  else
-				  {
-					alert("搜索失败！"); 
-				  }
-				},
-				error:function(){}
-			});	
+						url:"https://campus.gbdev.cn:8060/fuyaweb/admin/problem/title",
+						data:{title:na},
+						type:"POST",
+						dataType:"json",
+						success: function(result){ 
+						$("#see").css("display","block");//显示查看div
+						$(".check_bottom").css("display","none");//隐藏保存取消按钮
+						$(".check_top").css("display","block");//显示关闭按钮
+
+						$('.check_middle').html('<table id="qe" cellspacing="15"><tr><td>题目：</td><td class="i">'+result.msg.list[0].TITLE+'</td></tr><tr><td>题目类型：</td><td  class="i">'+result.msg.list[0].CHOOSETYPE+'</td></tr><tr><td>题材：</td><td class="i">'+result.msg.list[0].SUBJECTMATTER+'</td></tr><tr><td>加入时间：</td><td class="i">'+result.msg.list[0].TIME+'</td></tr></table>');
+
+						},
+						error:function(){}
+					});
+		}	
 	});
 	
-	//点击输入框
-	$(document).on('focus','#name',function(){	
-		if ($("#name").val()!=="") {
-			showhide();
-		}
-	});
+	//添加
+	$(document).on('click','#add_question',function(){
+		code=$(this).attr("code");
+		$("#see").css("display","block");//显示修改div
+		$(".check_bottom").css("display","block");//显示保存取消按钮
+		$(".check_top").css("display","none");//隐藏关闭按钮
+		
+		$('.check_middle').html('<table id="qe" cellspacing="15"><tr><td>题目：</td><td><input type="text"/></td></tr><tr><td>答案A：</td><td><input type="text"/></td></tr><tr><td>答案B：</td><td><input type="text"/></td></tr><tr><td>答案C：</td><td><input type="text"/></td></tr><tr><td>答案D：</td><td><input type="text"/></td></tr><tr><td>正确答案：</td><td><input type="text"/></td></tr></table>');
+		$('.check_middle table td input').eq(0).focus(); 
+		
+	});	
 	
-	function showhide(){
-		$('.hide').css("display","block");
-		$('.hide').css("top",$('#name').offset().top+30);
-		$('.hide').css("left",$('#name').offset().left);
-	}
-	
-	function hide(){
-		$('.hide').css("display","none");
-	}
-	
-	//关闭搜索结果
-	$(document).on('blur','#name',function(){
-		setTimeout(hide,100);
-	});
-	
-	//输入框输入文字
-	$(document).bind('input propertychange',function(){
+	//删除
+	$(document).on('click', '.del',function() {	
+		var code1=$(this).attr("code1");
+		var code2=$(this).attr("code2");
 		$.ajax({
-			url:"../../data.json",
-			data:{c:$("#name").val()},
+			url:"https://campus.gbdev.cn:8060/fuyaweb/admin/problem/delete",
+			data:{problemid:code1,
+				 chooseid:code2},
 			type:"POST",
 			dataType:"json",
 			success: function(result){ 
-				var k=$("#name").val().length;
-				$('.hide ul').html("");//清空
-				for(var i=0; i<5;i++){					
-					var d;
-					d='<li>'+result.data[i].name+''+k+'</li>';
-					$('.hide ul').append(d);
-				}
-					showhide();
-				},
+				if(result.msg==="success")
+				  {	
+					success();
+					alert("删除成功！");
+				  } 
+				  else
+				  {
+					alert("删除失败！"); 
+				  }
+			},
 			error:function(){}
 		});
 	});
 	
-	//点击搜索结果
-	$(document).on('click','.hide ul>li',function(){
-		$('#name').val($(this).html());
-		$("#search_name").click();
-	});
-	
+	//修改
+	$(document).on('click','.rev',function(){
+		var arr=[];
+		var code1=$(this).attr("code1");
+		var code2=$(this).attr("code2");
+		$.ajax({
+			url:"https://campus.gbdev.cn:8060/fuyaweb/admin/problem/id",
+			data:{id:code1},
+			type:"POST",
+			dataType:"json",
+			success: function(result){
+				
+				$("#see").css("display","block");//显示修改div
+				$(".check_bottom").css("display","block");//显示保存取消按钮
+				$(".check_top").css("display","none");//隐藏关闭按钮
+				$('.check_middle').html('<table id="qe" cellspacing="15"><tr><td>题目：</td><td><input type="text" value="'+result.msg.problem.TITLE+'"/></td></tr><tr><td>答案A：</td><td><input type="text"  value="'+result.msg.choose.ACHOOSE+'"/></td></tr><tr><td>答案B：</td><td><input type="text"  value="'+result.msg.choose.BCHOOSE+'"/></td></tr><tr><td>答案C：</td><td><input type="text"  value="'+result.msg.choose.CCHOOSE+'"/></td></tr><tr><td>答案D：</td><td><input type="text"  value="'+result.msg.choose.DCHOOSE+'"/></td></tr><tr><td>正确答案：</td><td><input type="text"  value="'+result.msg.choose.ANSWER+'"/></td></tr><tr><td>题目类型：</td><td><input type="text"  value="'+result.msg.problem.CHOOSETYPE+'"/></td></tr><tr><td>题材：</td><td><input type="text"  value="'+result.msg.problem.SUBJECTMATTER+'"/></td></tr></table>');
+				
+				$('.check_middle table td input').eq(0).focus(); 
+				
+				for(var i=0;i<8;i++){
+					arr[i]=$('.check_middle input[type="text"]').eq(i).val();
+				}
 
+			},
+			error:function(){}
+		});
+		
+		
+		
+		$.ajax({
+			url:"https://campus.gbdev.cn:8060/fuyaweb/admin/problem/update",
+			data:{title:arr[0],
+				  choosetype:arr[6],
+				  subjectmater:arr[7],
+				  choosea:arr[1],
+				  chooseb:arr[2],
+				  choosec:arr[3],
+				  choosed:arr[4],
+				  ansewer:arr[5],
+				  problemid:code1,
+				  chooseid:code2
+			},
+			type:"POST",
+			dataType:"json",
+			success: function(){
+				current=1;
+				success();
+
+			},
+			error:function(){}
+		});
+		
+
+	});
 	
 })();

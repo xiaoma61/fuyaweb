@@ -1,8 +1,7 @@
 (function(){
 	"use strict";
-	var num=10;//一页数据数
-	var first=0;//第一条
-	var last=first+num;//最后一条
+	var num;//一页数据数
+
 	var current=1;//当前页数
 	var code;
 	var count;//页数
@@ -18,11 +17,12 @@
 	success1();//初始数据
 	
 	function success1(){
+		var s=current-1;
 		$.ajax({
-			url:"../../data.json",    //请求的url地址
+			url:"../../a.json",    //请求的url地址
 			dataType:"json",   //返回格式为json
 			async:true,//请求是否异步，默认为异步，这也是ajax重要特性
-			data:{currentpage:current},    //参数值
+			data:{start:s},    //参数值
 			type:"GET",   //请求方式
 			beforeSend:function(){
 				//请求前的处理
@@ -35,15 +35,16 @@
 				$("#num_show").html('');
 				
 				/*声明必要变量*/
-				count=6;//页数	
-				
+				count=data.msg.totalPages;//页数	
+
+				num=data.msg.size;
 				/**/
-				$("#num_show").append("共"+data.data.length+"条"+"共"+count+"页");//显示数据数页数
 				
-				for(var i=first;i<last;i++)
+				for(var i=0;i<num;i++)
 				{
 					
-					var tr; tr='<td>'+data.data[i].CN+'</td>'+'<td>'+data.data[i].JN+'</td>'+'<td>'+data.data[i].name+'</td>'+'<td>'+data.data[i].type+'</td>'+'<td>'+data.data[i].employer+'</td>'+'<td>'+data.data[i].startTime+'</td>'+'<td>'+data.data[i].SD+'</td>'+'<td>'+data.data[i].deposit+'</td>'+'<td>'+data.data[i].CG+'</td>'+'<td>'+data.data[i].ST+'</td>'+'<td><a href="#" class="che" code="'+data.data[i].CN+'">'+"查看"+'</a></td>'+'<td><a href="#" class="rev" code="'+data.data[i].CN+'">'+"修改"+'</a></td>'+'<td><a href="#" class="del" code="'+data.data[i].CN+'">'+"删除"+'</a></td>';
+					var tr; 
+					tr='<td>'+data.msg.content[i][5]+'</td>'+'<td>'+data.msg.content[i][1]+'</td>'+'<td>'+data.msg.content[i][0]+'</td>'+'<td>'+data.msg.content[i][2]+'</td>'+'<td>'+data.msg.content[i][6]+'</td>'+'<td>'+data.msg.content[i][3]+'</td>'+'<td><a href="#" class="che" code="'+data.msg.content[i][7]+'">'+"查看"+'</a></td>'+'<td><a href="#" class="rev" code="'+data.msg.content[i][7]+'">'+"修改"+'</a></td>'+'<td><a href="#" class="del" code="'+data.msg.content[i][7]+'">'+"删除"+'</a></td>';
 					$("#tabletest").append('<tr class="testtd">'+tr+'</tr>');
 				}
 				
@@ -249,8 +250,6 @@
 			addpage();
 		}
 		current=selectPage;
-		first=(selectPage-1)*num;
-		last=first+num;
 		success1();
 		alert("点击切页");
 	});
@@ -345,85 +344,6 @@
 	$(document).on('click','#cancel',function(){
 		$("#see").css("display","none");	
 	});
-	
-	
-	//搜索名字
-	$(document).on('click','#search_name',function(){
-		var na=$("#name").val();
-			$.ajax({
-				url:"../../data.json",
-				data:{n:na},
-				type:"POST",
-				dataType:"json",
-				success: function(result){ 
-				if(result.status===1)
-				  {
-					current=1;
-					first=0;//第一条
-					last=first+num;//最后一条
-					success1();
-					alert("搜索成功！");
-				  } 
-				  else
-				  {
-					alert("搜索失败！"); 
-				  }
-				},
-				error:function(){}
-			});	
-	});
-	
-	//点击输入框
-	$(document).on('focus','#name',function(){	
-		if ($("#name").val()!=="") {
-			showhide();
-		}
-	});
-	
-	function showhide(){
-		$('.hide').css("display","block");
-		$('.hide').css("top",$('#name').offset().top+30);
-		$('.hide').css("left",$('#name').offset().left);
-	}
-	
-	//输入框输入文字
-	$(document).bind('input propertychange' ,function(){
-		if($("#name").val()!==""){
-		$.ajax({
-			url:"../../data.json",
-			data:{c:$("#name").val()},
-			type:"POST",
-			dataType:"json",
-			success: function(result){ 
-				var k=$("#name").val().length;
-				$('.hide ul').html("");//清空
-				for(var i=0; i<5;i++){					
-					var d;
-					d='<li>'+result.data[i].name+''+k+'</li>';
-					$('.hide ul').append(d);
-				}
-					showhide();
-				},
-			error:function(){}
-		});
-		}
-	});
-	
-	//点击搜索结果
-	$(document).on('click','.hide ul>li',function(){
-		$('#name').val($(this).html());
-		$("#search_name").click();
-	});
-	
-	function hide(){
-		$('.hide').css("display","none");
-	}
-	
-	//关闭搜索结果
-	$(document).on('blur','#name',function(){
-		setTimeout(hide,100);
-	});
-	
 	
 	$(document).on('click', '.delete',function() {	
 	var code = $(this).attr("code");

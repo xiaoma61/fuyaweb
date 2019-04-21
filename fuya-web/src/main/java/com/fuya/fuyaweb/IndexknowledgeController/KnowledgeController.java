@@ -36,12 +36,12 @@ public class KnowledgeController {
     ARTICLESolrService articleSolrService;
     @Autowired
     ARTICLEService articleService;
-    @Autowired
+   /* @Autowired
     private Queue queue;
     @Autowired
     private Topic topic;
     @Autowired
-    private ProductService productService;
+    private ProductService productService;*/
 
     //显示主要页面
     @RequestMapping("/knowledge")
@@ -87,7 +87,7 @@ public class KnowledgeController {
         //更新数据库
         articleService.updatebyid(nums,id);
         //更新solr
-        productService.sendMessage(this.topic,"article-update:"+id);
+        /*productService.sendMessage(this.topic,"article-update:"+id);*/
 
         //和相关推荐
 

@@ -172,16 +172,20 @@ public class PayController {
     @RequiresRoles("users")
     @RequestMapping("/order/pay")
     @CrossOrigin
-    public void pay(HttpServletResponse response, HttpSession session, @RequestParam(name = "CONTRACTNUMBER")String CONTRACTNUMBER, @RequestParam(name = "fate")int fate) throws AlipayApiException, IOException {
+    @ResponseBody
+    public JSONObject pay(HttpServletResponse response, HttpSession session, @RequestParam(name = "CONTRACTNUMBER")String CONTRACTNUMBER, @RequestParam(name = "fate")int fate) throws AlipayApiException, IOException {
+
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Origin", "*");
         String result = Alipay.AlipayUtil(CONTRACTNUMBER,fate);
-        response.setContentType("text/html;charset=" + "UTF-8");
-        response.getWriter().write(result); // 直接将完整的表单html输出到页面
-        response.getWriter().flush();
-        response.getWriter().close();
+
+        return JSONObject.fromObject(result);
+
 
     }
 
     @RequestMapping("/order/synCallBack")
+    @ResponseBody()
     public JSONObject synCallBack(@RequestParam Map<String, String> params,HttpServletResponse response) {
         response.setHeader("Access-Control-Allow-Origin", "*");
         Map<String,Object> msg=new HashMap<>();

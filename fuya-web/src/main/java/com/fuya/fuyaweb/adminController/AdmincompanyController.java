@@ -102,15 +102,7 @@ public class AdmincompanyController {
     @RequestMapping("/admin/company/delete")
     @ResponseBody
     public JSONObject companydelete(@RequestParam(name = "id")int id){
-
-
-        //用户名删除
-        //信息删除
-        //
-        //月嫂删除
-        //订单删除
         userService.deleteAllByUSERSID(id);
-
         Map<String,Object> msg=new HashMap<>();
         msg.put("msg","success");
         return JSONObject.fromObject(msg);

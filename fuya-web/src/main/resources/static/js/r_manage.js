@@ -1,8 +1,7 @@
 (function (){
 　　"use strict";
-	var num=10;//一页数据数
-	var first=0;//第一条
-	var last=first+num;//最后一条
+	var num;//一页数据数
+
 	var current=1;//当前页数
 	var code;
 	var count;//页数
@@ -18,11 +17,12 @@
 	success1();//初始数据
 	
 	function success1(){
+		var s=current-1;
 		$.ajax({
-			url:"../../data.json",    //请求的url地址
+			url:" https://campus.gbdev.cn:8060/fuyaweb/admin/recruitlist",    //请求的url地址
 			dataType:"json",   //返回格式为json
 			async:true,//请求是否异步，默认为异步，这也是ajax重要特性
-			data:{currentpage:current},    //参数值
+			data:{start:s},    //参数值
 			type:"GET",   //请求方式
 			beforeSend:function(){
 				//请求前的处理
@@ -36,12 +36,12 @@
 				
 				
 				/*声明必要变量*/
-				count=2;//页数	
-				
+				count=data.msg.totalPages;//页数	
+				num=data.msg.size;
 
-				for(var i=first;i<last;i++)
+				for(var i=0;i<num;i++)
 				{
-					var tr; tr='<td>'+data.data[i].CN+'</td>'+'<td>'+data.data[i].JN+'</td>'+'<td>'+data.data[i].type+'</td>'+'<td>'+data.data[i].employer+'</td>'+'<td>'+data.data[i].startTime+'</td>'+'<td>'+data.data[i].SD+'</td>'+'<td>'+data.data[i].SD+'</td>'+'<td>'+data.data[i].SD+'</td>'+'<td><a href="#" class="che" code="'+data.data[i].CN+'">'+"查看"+'</a></td>'+'<td><a href="#" class="rev" code="'+data.data[i].CN+'">'+"修改"+'</a></td>'+'<td><a href="#" class="del" code="'+data.data[i].CN+'">'+"删除"+'</a></td>';
+					var tr; tr='<td>'+data.msg.content[i].position+'</td>'+'<td>'+data.msg.content[i].linkman+'</td>'+'<td>'+data.msg.content[i].time+'</td>'+'<td>'+data.msg.content[i].salary+'</td>'+'<td>'+data.msg.content[i].education+'</td>'+'<td>'+data.msg.content[i].phone+'</td>'+'<td>'+data.msg.content[i].nums+'</td>'+'<td><a href="#" class="che" code="'+data.msg.content[i].recruitid+'">'+"查看"+'</a></td>';
 					$("#tabletest").append('<tr class="testtd">'+tr+'</tr>');
 				}
 				
@@ -81,75 +81,6 @@
 		});		
 	}
 	
-	function success2(){
-		$.ajax({
-			url:"../../data.json",    //请求的url地址
-			dataType:"json",   //返回格式为json
-			async:true,//请求是否异步，默认为异步，这也是ajax重要特性
-			data:{currentpage:current},    //参数值
-			type:"GET",   //请求方式
-			beforeSend:function(){
-				//请求前的处理
-			},
-			success:function(data){
-				//请求成功时处理
-				
-				for(var j=0;j<8;j++){
-					$('.item_content').eq(j).html(data.data[j].JN);
-				}
-				for(var z=0;z<4;z++){
-					$('.item_content2 li').eq(z).html(data.data[z].JN);
-				}
-				$('.item_content3').eq(0).html(data.data[j].JN);
-				$(".picture").eq(0).html('<img src="../../img/certificate.jpg" height="200px" alt="" id="imgID"/>');
-				$(".nam").eq(0).html("公司名称"); 
-				$('#imgfun').html("");
-			},
-			complete:function(){
-				//请求完成的处理
-			},
-			error:function(){
-				//请求出错处理
-			}
-		});	
-
-	}
-
-	function success3(){
-		$.ajax({
-			url:"../../data.json",    //请求的url地址
-			dataType:"json",   //返回格式为json
-			async:true,//请求是否异步，默认为异步，这也是ajax重要特性
-			data:{currentpage:current},    //参数值
-			type:"GET",   //请求方式
-			beforeSend:function(){
-				//请求前的处理
-			},
-			success:function(data){
-				//请求成功时处理
-				
-				for(var j=0;j<8;j++){
-					$('.item_content').eq(j).html('<input type="text" style="width:90%;height:80%" value="'+data.data[j].JN+'" />');
-				}
-				$('.item_content input[type=text]').eq(0).focus();
-				for(var z=0;z<4;z++){
-					$('.item_content2 li').eq(z).html('<input type="text" style="width:90%;height:80%" value="'+data.data[z].JN+'" />');
-				}
-				$('.item_content3').eq(0).html('<textarea style="OVERFLOW:hidden;width:90%;height:85%" /">'+data.data[j].JN+'</textarea>');
-				$(".picture").eq(0).html('<img src="../../img/certificate.jpg" height="200px" alt="" id="imgID"/>');
-				$(".nam").eq(0).html("公司名称"); 
-				$('#imgfun').html('<div class="file-box"><label for="fil">上传图片</label><input type="file" name="fil" class="file-btn" id="fil" onchange="imgfun(fil,imgID)"></div>');
-				$(".nam").eq(0).html('<input type="text" style="width:90%;height:80%" value="'+data.data[z].JN+'" />');
-			},
-			complete:function(){
-				//请求完成的处理
-			},
-			error:function(){
-				//请求出错处理
-			}
-		});	
-
-	}
 	
 		/*定义改变按钮的方法*/
 		function addpage(){
@@ -223,13 +154,12 @@
 			addpage();
 		}
 		current=selectPage;
-		first=(selectPage-1)*num;
-		last=first+num;
+
 		success1();
 	});
 	
 	//删除
-	$(document).on('click', '.del',function() {	
+/*	$(document).on('click', '.del',function() {	
 		code = $(this).attr("code");
 		$.ajax({
 			url:"../../data.json",
@@ -249,33 +179,55 @@
 			},
 			error:function(){}
 		});
-	});
+	});*/
 	
 	//查看
 	$(document).on('click','.che',function(){
 		code=$(this).attr("code");
 		$.ajax({
-			url:"../../data.json",
-			data:{c:code},
+			url:"https://campus.gbdev.cn:8060/fuyaweb/admin/recruitlist/id",
+			data:{id:code},
 			type:"POST",
 			dataType:"json",
-			success: function(){ 
+			success: function(data){ 
 				$("#see").css("display","block");//显示查看div
 				$(".check_top").css("display","block");//显示关闭按钮
 				$(".check_bottom").css("display","none");
-				success2();
+				$('.check_middle').html('<div class="item"><span class="item_title">职位：</span><div class="item_content">'+data.msg.position+'</div></div><div class="item"><span class="item_title">地点：</span><div class="item_content">'+data.msg.workarea+'</div></div><div class="item"><span class="item_title">文化：</span><div class="item_content">'+data.msg.education+'</div></div><div class="item"><span class="item_title">职业亮点：</span><div class="item_content">'+data.msg.highlight+'</div></div><div class="item"><span class="item_title">联系人名称：</span><div class="item_content">'+data.msg.linkman+'</div></div><div class="item"><span class="item_title">联系人电话：</span><div class="item_content">'+data.msg.phone+'</div></div><div class="item"><span class="item_title">描述：</span><div class="item_content3">'+data.msg.rdescribe+'</div></div><div class="item"><span class="item_title">显示时间：</span><div class="item_content2"><ul><li>'+data.msg.starttime+'</li><em class="em"><hr></em><li>'+data.msg.endtime+'</li></ul></div></div>');
 			},
 			error:function(){}
 		});
 	});
 	
 	//修改
-	$(document).on('click','.rev',function(){
+/*	$(document).on('click','.rev',function(){
 		code=$(this).attr("code");
 		$("#see").css("display","block");
 		$(".check_top").css("display","none");
 		$(".check_bottom").css("display","block");
-		success3();
+		$.ajax({
+			url:"https://campus.gbdev.cn:8060/fuyaweb/admin/recruitlist/id",    //请求的url地址
+			dataType:"json",   //返回格式为json
+			async:true,//请求是否异步，默认为异步，这也是ajax重要特性
+			data:{id:code},    //参数值
+			type:"GET",   //请求方式
+			beforeSend:function(){
+				//请求前的处理
+			},
+			success:function(data){
+				//请求成功时处理
+				$('.check_middle').html('<div class="item"><span class="item_title">职位：</span><div class="item_content"><input type="text" style="width:90%;height:80%" value="'+data.msg.position+'" /></div></div><div class="item"><span class="item_title">地点：</span><div class="item_content"><input type="text" style="width:90%;height:80%" value="'+data.msg.workarea+'" /></div></div><div class="item"><span class="item_title">文化：</span><div class="item_content"><input type="text" style="width:90%;height:80%" value="'+data.msg.education+'" /></div></div><div class="item"><span class="item_title">职业亮点：</span><div class="item_content"><input type="text" style="width:90%;height:80%" value="'+data.msg.highlight+'" /></div></div><div class="item"><span class="item_title">联系人名称：</span><div class="item_content"><input type="text" style="width:90%;height:80%" value="'+data.msg.linkman+'" /></div></div><div class="item"><span class="item_title">联系人电话：</span><div class="item_content"><input type="text" style="width:90%;height:80%" value="'+data.msg.phone+'" /></div></div><div class="item"><span class="item_title">描述：</span><div class="item_content3"><textarea style="OVERFLOW:hidden;width:90%;height:85%" /">'+data.msg.rdescribe+'</textarea></div></div><div class="item"><span class="item_title">显示时间：</span><div class="item_content2"><ul><li><input type="text" style="width:90%;height:80%" value="'+data.msg.starttime+'" /></li><em class="em"><hr></em><li><input type="text" style="width:90%;height:80%" value="'+data.msg.endtime+'" /></li></ul></div></div>');
+			},
+			complete:function(){
+				//请求完成的处理
+			},
+			error:function(){
+				//请求出错处理
+			}
+		});	
+
+		
+		
 	});
 	
 	//保存
@@ -322,184 +274,6 @@
 	$(document).on('click','#cancel',function(){
 		$("#see").css("display","none");	
 	});
-	
-	//搜索时间
-	$(document).on('click','#search_time',function(){
-		var ti =$("#time").val();
-			$.ajax({
-				url:"../../data.json",
-				data:{t:ti},
-				type:"POST",
-				dataType:"json",
-				success: function(result){ 
-				if(result.status===1)
-				  {
-					current=1;
-					first=0;//第一条
-					last=first+num;//最后一条
-					success1();
-					alert("搜索成功！");
-				  } 
-				  else
-				  {
-					alert("搜索失败！"); 
-				  }
-					},
-				error:function(){}
-			});	
-	});
-	
-	//搜索公司
-	$(document).on('click','#search_company',function(){
-		var na=$("#company").val();
-			$.ajax({
-				url:"../../data.json",
-				data:{n:na},
-				type:"POST",
-				dataType:"json",
-				success: function(result){ 
-				if(result.status===1)
-				  {
-					current=1;
-					first=0;//第一条
-					last=first+num;//最后一条
-					success1();
-					alert("搜索成功！");
-				  } 
-				  else
-				  {
-					alert("搜索失败！"); 
-				  }
-				},
-				error:function(){}
-			});	
-	});
-	
-	//点击输入框
-	$(document).on('focus','#company',function(){	
-		if ($("#company").val()!=="") {
-			showhide1();
-		}
-	});
-	
-	function showhide1(){
-		$('.hide1').css("display","block");
-		$('.hide1').css("top",$('#company').offset().top+30);
-		$('.hide1').css("left",$('#company').offset().left);
-	}
-	
-	function hide1(){
-		$('.hide1').css("display","none");
-	}
-	
-	//关闭搜索结果
-	$(document).on('blur','#company',function(){
-		setTimeout(hide1,100);
-	});
-	
-	//点击搜索结果
-	$(document).on('click','.hide1 ul>li',function(){
-		$('#company').val($(this).html());
-		$("#search_company").click();
-	});
-	
-	//搜索职位
-	$(document).on('click','#search_job',function(){
-		var na=$("#job").val();
-			$.ajax({
-				url:"../../data.json",
-				data:{n:na},
-				type:"POST",
-				dataType:"json",
-				success: function(result){ 
-				if(result.status===1)
-				  {
-					current=1;
-					first=0;//第一条
-					last=first+num;//最后一条
-					success1();
-					alert("搜索成功！");
-				  } 
-				  else
-				  {
-					alert("搜索失败！"); 
-				  }
-				},
-				error:function(){}
-			});	
-	});
-	
-	//点击输入框
-	$(document).on('focus','#job',function(){	
-		if ($("#job").val()!=="") {
-			showhide2();
-		}
-	});
-	
-	function showhide2(){
-		$('.hide2').css("display","block");
-		$('.hide2').css("top",$('#job').offset().top+30);
-		$('.hide2').css("left",$('#job').offset().left);
-	}
-	
-	function hide2(){
-		$('.hide2').css("display","none");
-	}
-	
-	//关闭搜索结果
-	$(document).on('blur','#job',function(){
-		setTimeout(hide2,100);
-	});
-	
-	//输入框输入文字
-	$(document).bind('input propertychange',function(){
-		if($(":text:focus").attr("id")==="company")
-		{		
-			$.ajax({
-				url:"../../data.json",
-				data:{c:$("#company").val()},
-				type:"POST",
-				dataType:"json",
-				success: function(result){ 
-					var k=$("#company").val().length;
-					$('.hide1 ul').html("");//清空
-					for(var i=0; i<5;i++){					
-						var d;
-						d='<li>'+result.data[i].name+''+k+'</li>';
-						$('.hide1 ul').append(d);
-					}
-						showhide1();
-					},
-				error:function(){}
-			});
-		}
-		if($(":text:focus").attr("id")==="job")
-		{		
-			$.ajax({
-					url:"../../data.json",
-					data:{c:$("#job").val()},
-					type:"POST",
-					dataType:"json",
-					success: function(result){ 
-						var k=$("#job").val().length;
-						$('.hide2 ul').html("");//清空
-						for(var i=0; i<5;i++){					
-							var d;
-							d='<li>'+result.data[i].name+''+k+'</li>';
-							$('.hide2 ul').append(d);
-						}
-							showhide2();
-						},
-					error:function(){}
-				});
-		}
-	});
-	
-	//点击搜索结果
-	$(document).on('click','.hide2 ul>li',function(){
-		$('#job').val($(this).html());
-		$("#search_job").click();
-	});
+	*/
 
-	
 })();

@@ -1,8 +1,7 @@
 (function (){
 　　"use strict";
-	var num=10;//一页数据数
-	var first=0;//第一条
-	var last=first+num;//最后一条
+	var num;//一页数据数
+
 	var current=1;//当前页数
 	var code;
 	var count;//页数
@@ -18,11 +17,12 @@
 	success1();//初始数据
 	
 	function success1(){
+		var s=current-1;
 		$.ajax({
-			url:"../../data.json",    //请求的url地址
+			url:"https://campus.gbdev.cn:8060/fuyaweb/company/list",    //请求的url地址
 			dataType:"json",   //返回格式为json
 			async:true,//请求是否异步，默认为异步，这也是ajax重要特性
-			data:{currentpage:current},    //参数值
+			data:{start:s},    //参数值
 			type:"GET",   //请求方式
 			beforeSend:function(){
 				//请求前的处理
@@ -36,12 +36,12 @@
 				
 				
 				/*声明必要变量*/
-				count=20;//页数	
-				
+				count=data.msg.totalPages;//页数	
+				num=data.msg.size;
 
-				for(var i=first;i<last;i++)
+				for(var i=0;i<num;i++)
 				{
-					var tr; tr='<td>'+data.data[i].CN+'</td>'+'<td>'+data.data[i].JN+'</td>'+'<td>'+data.data[i].type+'</td>'+'<td>'+data.data[i].employer+'</td>'+'<td>'+data.data[i].startTime+'</td>'+'<td>'+data.data[i].SD+'</td>'+'<td><a href="#" class="che" code="'+data.data[i].CN+'">'+"查看"+'</a></td>'+'<td><a href="#" class="rev" code="'+data.data[i].CN+'">'+"通过"+'</a></td>'+'<td><a href="#" class="del" code="'+data.data[i].CN+'">'+"删除"+'</a></td>';
+					var tr; tr='<td>'+data.msg.content[i].COMPANYBASICINFOID+'</td>'+'<td>'+data.msg.content[i].CORPORATENAME+'</td>'+'<td>'+data.msg.content[i].ADDRESS+'</td>'+'<td>'+data.msg.content[i].NUMS+'</td>'+'<td>'+data.msg.content[i].LEVELS+'</td>'+'<td><a href="#" class="che" code="'+data.msg.content[i].USERID+'">'+"查看"+'</a></td>'+'<td><a href="#" class="del" code="'+data.msg.content[i].USERID+'">'+"删除"+'</a></td>';
 					$("#tabletest").append('<tr class="testtd">'+tr+'</tr>');
 				}
 				
@@ -81,35 +81,6 @@
 		});		
 	}
 	
-	function success2(){
-		$.ajax({
-			url:"../../data.json",    //请求的url地址
-			dataType:"json",   //返回格式为json
-			async:true,//请求是否异步，默认为异步，这也是ajax重要特性
-			data:{currentpage:current},    //参数值
-			type:"GET",   //请求方式
-			beforeSend:function(){
-				//请求前的处理
-			},
-			success:function(data){
-				//请求成功时处理
-				
-				for(var j=0;j<7;j++){
-					$('.item_content').eq(j).html(data.data[j].JN);
-				}
-				$(".picture").eq(0).attr("style","background:url('../../img/certificate.jpg') no-repeat center center; background-size:auto 100%"); 
-				$(".picture").eq(1).attr("style","background:url('../../img/certificate.jpg') no-repeat center center; background-size:auto 100%"); 
-	
-			},
-			complete:function(){
-				//请求完成的处理
-			},
-			error:function(){
-				//请求出错处理
-			}
-		});	
-
-	}
 
 		/*定义改变按钮的方法*/
 		function addpage(){
@@ -182,8 +153,6 @@
 			addpage();
 		}
 		current=selectPage;
-		first=(selectPage-1)*num;
-		last=first+num;
 		success1();
 	});
 	
@@ -191,12 +160,12 @@
 	$(document).on('click', '.del',function() {	
 		code = $(this).attr("code");
 		$.ajax({
-			url:"../../data.json",
-			data:{c:code},
+			url:"https://campus.gbdev.cn:8060/fuyaweb/admin/company/delete",
+			data:{id:code},
 			type:"POST",
 			dataType:"json",
 			success: function(result){ 
-				if(result.status===1)
+				if(result.msg==="success")
 				  {	
 					success1();
 					alert("删除成功！");
@@ -214,124 +183,28 @@
 	$(document).on('click','.che',function(){
 		code=$(this).attr("code");
 		$.ajax({
-			url:"../../data.json",
-			data:{c:code},
+			url:"https://campus.gbdev.cn:8060/fuyaweb/admin/company/id",
+			data:{id:code},
 			type:"POST",
 			dataType:"json",
-			success: function(){ 
+			success: function(data){ 
 				$("#see").css("display","block");//显示查看div
 				$(".check_top").css("display","block");//显示关闭按钮
-				success2();
+				
+				$('.item_content').eq(0).html(data.msg.companyinfo.CONTACTNAME);
+				$('.item_content').eq(1).html(data.msg.companyinfo.CONTACTPHONE);
+				$('.item_content').eq(2).html(data.msg.companyinfo.EMAIL);
+				$('.item_content').eq(3).html(data.msg.companyinfo.ADDRESS);
+				$('.item_content').eq(4).html(data.msg.companyinfo.LICENCENO);
+				$('.item_content').eq(5).html(data.msg.companyinfo.IDCARD);
+				
+				
+				$(".picture").eq(0).attr("style","background:url('"+data.msg.companyinfo.IDCARDFILE+"') no-repeat center center; background-size:auto 100%"); 
+				$(".picture").eq(1).attr("style","background:url('"+data.msg.companyinfo.LICENCE+"') no-repeat center center; background-size:auto 100%"); 
 			},
 			error:function(){}
 		});
 	});
 	
-	//通过
-	$(document).on('click','.rev',function(){
-		code=$(this).attr("code");
-		alert("通过");
-	});	
-	
-	//搜索时间
-	$(document).on('click','#search_time',function(){
-		var ti =$("#time").val();
-			$.ajax({
-				url:"../../data.json",
-				data:{t:ti},
-				type:"POST",
-				dataType:"json",
-				success: function(result){ 
-				if(result.status===1)
-				  {
-					current=1;
-					first=0;//第一条
-					last=first+num;//最后一条
-					success1();
-					alert("搜索成功！");
-				  } 
-				  else
-				  {
-					alert("搜索失败！"); 
-				  }
-					},
-				error:function(){}
-			});	
-	});
-	
-	//搜索名字
-	$(document).on('click','#search_name',function(){
-		var na=$("#name").val();
-			$.ajax({
-				url:"../../data.json",
-				data:{n:na},
-				type:"POST",
-				dataType:"json",
-				success: function(result){ 
-				if(result.status===1)
-				  {
-					current=1;
-					first=0;//第一条
-					last=first+num;//最后一条
-					success1();
-					alert("搜索成功！");
-				  } 
-				  else
-				  {
-					alert("搜索失败！"); 
-				  }
-				},
-				error:function(){}
-			});	
-	});
-	
-	//点击输入框
-	$(document).on('focus','#name',function(){	
-		if ($("#name").val()!=="") {
-			showhide();
-		}
-	});
-	
-	function showhide(){
-		$('.hide').css("display","block");
-		$('.hide').css("top",$('#name').offset().top+30);
-		$('.hide').css("left",$('#name').offset().left);
-	}
-	
-	function hide(){
-		$('.hide').css("display","none");
-	}
-	
-	//关闭搜索结果
-	$(document).on('blur','#name',function(){
-		setTimeout(hide,100);
-	});
-	
-	//输入框输入文字
-	$(document).bind('input propertychange',function(){
-		$.ajax({
-			url:"../../data.json",
-			data:{c:$("#name").val()},
-			type:"POST",
-			dataType:"json",
-			success: function(result){ 
-				var k=$("#name").val().length;
-				$('.hide ul').html("");//清空
-				for(var i=0; i<5;i++){					
-					var d;
-					d='<li>'+result.data[i].name+''+k+'</li>';
-					$('.hide ul').append(d);
-				}
-					showhide();
-				},
-			error:function(){}
-		});
-	});
-	
-	//点击搜索结果
-	$(document).on('click','.hide ul>li',function(){
-		$('#name').val($(this).html());
-		$("#search_name").click();
-	});
-	
+
 })();

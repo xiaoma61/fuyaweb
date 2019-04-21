@@ -71,8 +71,6 @@ public class IndexcompanyController {
         companymsgidinfo.setCOMPANYBASICINFOID((Integer) object[7]);
         companymsgidinfo.setUSERID((Integer) object[8]);
 
-
-
         Map<String,Object> msg=new HashMap<>();
         msg.put("msg", companymsgidinfo);
         return JSONObject.fromObject(msg);

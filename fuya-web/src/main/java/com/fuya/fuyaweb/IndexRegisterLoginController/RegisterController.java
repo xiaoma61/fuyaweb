@@ -36,12 +36,12 @@ public class RegisterController {
     PROVEINFOService proveinfoService;
     @Autowired
     COMPANYINFOService companyinfoService;
-    @Autowired
+   /* @Autowired
     private Queue queue;
     @Autowired
     private Topic topic;
     @Autowired
-    private ProductService productService;
+    private ProductService productService;*/
     @Autowired
     private RedisUtil redisUtil;
   /* @Autowired
@@ -71,7 +71,7 @@ public class RegisterController {
         users.setPHONE(phone);
         users.setTYPE(type);
         userService.save(users);
-        productService.sendMessage(this.topic,"users:"+ users.getUSERSID());
+      /*  productService.sendMessage(this.topic,"users:"+ users.getUSERSID());*/
         msg.put("msg","success");
         return JSONArray.fromObject(msg);
     }

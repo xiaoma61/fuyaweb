@@ -1,7 +1,7 @@
 (function (){
 　　"use strict";
 	window.onload=function(){  
-	$('.Header1').html('<div class="header"><div id="picture"><img src="../img/love.png" width="35%"  alt=""/></div><div id="SiteName"><table width="100%" ><tr><td align="center"><font size="6em" color="#E97C91">富雅</font></td><td align="center" rowspan="2"  style="border-left:#E97C91 solid 0.1em;"><font size="4em">全心服务，用心呵护。</font></td></tr><tr><td align="center"><font size="0.1em" color="#E97C91">家庭服务</font></td></tr></table></div><div id="number">全国统一服务热线：8888888888</div></div><div class="bar"><div class="bar_tr"><div class="bar_td">首页</div><div class="bar_td">富雅月嫂</div><div class="bar_td">月嫂机构</div><div class="bar_td">成为月嫂</div><div class="bar_td">人才招聘</div><div class="bar_td">母婴知识</div></div></div>');
+	$('.Header1').html('<div class="header"><div id="picture"><img src="../img/love.png" width="35%"  alt=""/></div><div id="SiteName"><table width="100%" ><tr><td align="center"><font size="6em" color="#E97C91">富雅</font></td><td align="center" rowspan="2"  style="border-left:#E97C91 solid 0.1em;"><font size="4em">全心服务，用心呵护。</font></td></tr><tr><td align="center"><font size="0.1em" color="#E97C91">家庭服务</font></td></tr></table></div><div id="number">全国统一服务热线：8888888888</div></div><div class="bar"><div class="bar_tr"><div class="bar_td">首页</div><div class="bar_td">富雅月嫂</div><div class="bar_td">月嫂机构</div><div class="bar_td">成为月嫂</div><div class="bar_td">人才招聘</div><div class="bar_td">母婴知识</div><div class="bar_td">退出</div></div></div>');
 	};
 	$(document).on('click','.bar_td',function(){
 
@@ -49,11 +49,11 @@
 
                         break;　
 						
-                  /*  case 6:
+                    case 6:
 
-                        window.location.href="login.html";
+                        window.location.href="https://campus.gbdev.cn:8060/fuyaweb/loginout";
 
-                        break;　*/
+                        break;　
 
                 }
 	});

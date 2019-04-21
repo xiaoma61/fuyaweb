@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<script type="text/javascript" src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
 <script src="../../js/jquery.min.js" type="text/javascript"></script>
 <script src="../../js/myinfor.js" type="text/ecmascript"></script>
 <title>无标题文档</title>
@@ -253,64 +253,10 @@
 		background-color: #f07053;
 	}
 </style>
-<script type="text/javascript">
-	function imgfun(i,d){
-	var fordate=new FormData();
-    var fils=$(i).get(0).files[0];
-	fordate.append('file',fils)
-    $.ajax({
-        url:'https://campus.gbdev.cn:8060/fuyaweb/fileUpload',
-		data:fordate,
-		type:"POST",
-		processData : false,
-		contentType : false,
-		cache: false,
-		success:function(result){//后台返回的路径
-			var objs;
-			if((typeof result=='object')&&result.constructor==Object){
-				objs=result;
-			}else{
-				objs=eval("(" +result+ ")");
-			}
-			$(d).attr("width","180px");
-			$(d).attr("src",objs.msg);
-			fordate1=objs.msg;
-		}
-	});
-	
-}
-	
-			function addimg(){
-				var fordate=new FormData();
-				var fils=$('#pict').get(0).files[0];
-				fordate.append('file',fils)
-				$.ajax({
-					url:'https://campus.gbdev.cn:8060/fuyaweb/fileUpload',
-					data:fordate,
-					type:"POST",
-					processData : false,
-					contentType : false,
-					cache: false,
-					success:function(result){//后台返回的路径
-						var objs;
-						if((typeof result=='object')&&result.constructor==Object){
-							objs=result;
-						}else{
-							objs=eval("(" +result+ ")");
-						}
-						$('#addimgID').attr("width","180px");
-						$('#addimgID').attr("src",objs.msg);
-						$('.add').css("display","block");
-						fordate2=objs.msg;
-					}
-				});
-				
 
-			};
-</script>
 <body>
 			  <div class="form">
-			  	<div class="form_top">个人信息</div><div id="change"><img src="../../img/edit.png" width="30px" alt="" style="cursor: pointer" id="edit"/></div>
+			  	<div class="form_top">个人信息</div>
 				  <hr style="width:1022px; height:4px; background: #f07053; border: none; float: left;">
 				<div class="form_top_table clearfloat"><table>
 					<tr><td rowspan="6"></td><td>姓名</td><td></td><td>年龄</td><td></td></tr>
@@ -329,7 +275,6 @@
 				  <div class="certify_top">技能描述</div>
 				  <hr style="width:1022px; height:4px; background: #f07053; border: none; float: left;">
 				  <div class="skill_content"> 
-				  	<span id="baby">宝宝护理</span><span id="mother">孕妇护理</span>
 					  <table>
 
 					  </table>

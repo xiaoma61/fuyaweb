@@ -67,17 +67,7 @@ public class CompanyInfoController {
         int id= (int) session.getAttribute("id");
         Map<String,Object> msg=new HashMap<>();
         System.out.println("id:"+id);
-       /* COMPANYBASICINFO companybasicinfo=companybasicinfoSolrService.search(id);
-        COMPANYINFO companyinfo=companyinfoSolrService.findCOMPANYINFObyuserid(id);
-
-        if (companybasicinfo==null){
-
-            msg.put("msg","error");
-            return JSONObject.fromObject(msg);
-        }*/
         CompanysInfosModle companysInfosModle=companybasicinfoService.findCompanysInfosModleByUSERID(id);
-       /* companysInfosModle.setCompanybasicinfo(companybasicinfo);
-        companysInfosModle.setCompanyinfo(companyinfo);*/
         msg.put("msg",companysInfosModle);
 
         return msg;
@@ -101,15 +91,6 @@ public class CompanyInfoController {
         HttpSession session=request.getSession();
         int id= (int) session.getAttribute("id");
         System.out.println("id:"+id);
-
-        /*COMPANYBASICINFO companybasicinfo=companybasicinfoSolrService.search(id);
-        COMPANYINFO companyinfo=companyinfoSolrService.findCOMPANYINFObyuserid(id);
-        int companybasicinfoid=companybasicinfo.getCOMPANYBASICINFOID();
-        int companyinfoid=companyinfo.getCOMPANYINFOID();*/
-
-        /*companybasicinfoSolrService.update(companybasicinfoid);
-        companyinfoSolrService.update(companyinfoid);*/
-
 
         companybasicinfoService.updateCOMPANYBASICINFObyid(area,corporatename,id);
         companyinfoService.updateCOMPANYINFObyid(address,contactname,contantphone,email,idcard,idcardfile,licene,liceneno,id);

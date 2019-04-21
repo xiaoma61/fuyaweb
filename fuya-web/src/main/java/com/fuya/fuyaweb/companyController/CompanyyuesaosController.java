@@ -25,6 +25,9 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -209,21 +212,13 @@ public class CompanyyuesaosController {
         HttpSession session=request.getSession();
         int id= (int) session.getAttribute("id");
         //查找月嫂列表
-        List<COMPANYYUESAO> companyyuesaoList=companyyuesaoService.findByRealCOMPANYID(id);
-        List<PROVEINFOANDBAISINFO>objectLists=new ArrayList<>();
-        for (COMPANYYUESAO companyyuesao : companyyuesaoList){
-            List<PROVEINFOANDBAISINFO>objectList=proveinfoService.findPROVEINFOByAndYUESAOBASICINFOByUSERSID(companyyuesao.getYUESAOID());
-            objectLists.addAll(objectList);
-
-        }
-
-        PageHelper.startPage(start,rows);
-        PageInfo<PROVEINFOANDBAISINFO>proveinfoandbaisinfoPageInfo=new PageInfo<>(objectLists);
+        Pageable page= PageRequest.of(start,rows);
+        Page<String> companyyuesaoList=companyyuesaoService.findByYUESAOCOMPANYID(id,page);
 
         Map<String,Object> msg=new HashMap<>();
-        msg.put("msg",objectLists);
-        return JSONObject.fromObject(proveinfoandbaisinfoPageInfo);
-//        return JSONArray.fromObject(proveinfoandbaisinfoPageInfo);
+        msg.put("msg",companyyuesaoList);
+        return JSONObject.fromObject(msg);
+
     }
     //修改
     //月嫂信息录入--增加

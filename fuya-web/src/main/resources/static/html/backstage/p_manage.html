@@ -2,20 +2,16 @@
 <html>
 <head>
 <meta charset="utf-8">
-<script type="text/javascript" src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
-<script src="../../js/laydate/laydate.js"></script>	
+<script type="text/javascript" src="https://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
 <link href="../../css/p_manage.css" rel="stylesheet" type="text/css" />
 <script src="../../js/p_manage.js"></script>
 <title>无标题文档</title>
 </head>
-<script  type="text/javascript"> 
-setTimeout(laydate.render({elem: '#time'}),1000);
-</script>
 <body>
 			  <div class="form">
 			  	<div class="form_top">试卷管理</div>
 				 <hr>
-				<div class="form_search"><div class="form_search_item">时间：<input type="text" id="time" ><input value="搜索" type="button" id="search_time"></div>
+				<div class="form_search">
 				  						 <div class="form_search_item">考试题目：<input type="text" id="name" ><input value="搜索" type="button" id="search_name"></div><input value="添加题目" type="button" id="add_question">
 				  </div>
 			  </div>
@@ -24,11 +20,11 @@ setTimeout(laydate.render({elem: '#time'}),1000);
 	<table class="table table-bordered" id="tabletest">
     <tr>
         <th>序号</th>
-        <th>考试题目</th>
+        <th >考试题目</th>
         <th>加入时间</th>
         <th>题目类型</th>
-        <th>所属试卷</th>
-        <th colspan="3" width="120px">操作</th>
+        <th>题材</th>
+        <th width="80px" colspan="3">操作</th>
     </tr>
 	
  </table></div>
@@ -36,17 +32,11 @@ setTimeout(laydate.render({elem: '#time'}),1000);
 <div class="check" id="see">
 	<div class="check_top"><img src="../../img/close.png" width="30" alt="" style="cursor: pointer" onclick = "document.getElementById('see').style.display='none'"/></div>
 	<div class="check_middle">
-	<table cellspacing="30">
-		<tr><td>考试题目</td><td colspan="4">如何对待产后抑郁？</td></tr>
-		<tr><td>题目类型</td><td><label class="test-label"><input type="radio" name="type" value="one" class="test-radio" checked disabled="true"/><span class="test-radioInput"></span>多选</label></td><td><label class="test-label"><input type="radio" name="type" value="more" class="test-radio" disabled="true"/><span class="test-radioInput"></span>单选</label></td><td></td><td></td></tr>
-		<tr><td>答案</td><td><label class="test-label"><input type="radio" name="type2" value="one" class="test-radio" checked disabled="true"/><span class="test-radioInput"></span>A</label></td><td><label class="test-label"><input type="radio" name="type2" value="more" class="test-radio" disabled="true"/><span class="test-radioInput"></span>B</label></td><td><label class="test-label"><input type="radio" name="type2" value="one3" class="test-radio"  disabled="true"/><span class="test-radioInput"></span>C</label></td><td><label class="test-label"><input type="radio" name="type2" value="one1" class="test-radio" disabled="true"/><span class="test-radioInput"></span>D</label></td></tr>
-		<tr><td>所属试卷</td><td><label class="test-label"><input type="radio" name="type1" value="one" class="test-radio" checked disabled="true"/><span class="test-radioInput"></span>月嫂</label></td><td><label class="test-label"><input type="radio" name="type1" value="more" class="test-radio" disabled="true"/><span class="test-radioInput"></span>育婴师</label></td><td></td><td></td></tr>
-		</table>
+
 
 	</div>
 	<div class="check_bottom"><input value="保存" type="button" id="save"><input value="取消" type="button" id="cancel"></div>
 </div>
-	<div class="hide"><ul></ul></div>
 </body>
 
 </html>

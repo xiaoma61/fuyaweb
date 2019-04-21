@@ -52,22 +52,7 @@ public class AdminExamController {
         problem.setSUBJECTMATTER("1");
         problemService.save(problem);
 
-  /*  *//* *//**//*   CHOOSE choose=new CHOOSE();
-        choose.setACHOOSE(choosea);
-        choose.setBCHOOSE(chooseb);
-        choose.setCCHOOSE(choosec);
-        choose.setDCHOOSE(choosed);
-        choose.setANSWER(answer);*//**//*
-        chooseService.save(choose);*//*
 
-        PROBLEM problem= (PROBLEM ) JSONObject.toBean(object,PROBLEM.class);
-     *//*   PROBLEM problem=new PROBLEM();*//*
-     *//*   problem.setCHOOSETYPE(choosetype);
-        problem.setSUBJECTMATTER(subjectmater);
-        problem.setTITLE(title);*//*
-        problem.setTIME(new Date());
-        problem.setCHOOSEID(choose.getCHOOSEID());
-        problemService.save(problem);*/
         Map<String,Object> msg=new HashMap<>();
         msg.put("msg","success");
         return JSONObject.fromObject(msg);

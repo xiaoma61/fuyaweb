@@ -14,10 +14,10 @@
 	var pageIcon=[];//创建icon数组
 	var pageN=[];//创建页数按钮数组
 	//pageIcon[]分别赋值
-	pageIcon[0]='<a href="#top"><span  class="pageIcon" selectPage="fir" ><img src="../img/bb.png" width="25" height="25" alt=""/></span></a>';//第一页
-	pageIcon[1]='<a href="#top"><span  class="pageIcon"  selectPage="pre"><img src="../img/b.png" width="25" height="25" alt=""/></span></a>';//前一页
-	pageIcon[2]='<a href="#top"><span  class="pageIcon"  selectPage="next"><img src="../img/a.png" width="25" height="25" alt=""/></span></a>';//下一页
-	pageIcon[3]='<a href="#top"><span  class="pageIcon"  selectPage="las"><img src="../img/aa.png" width="25" height="25" alt=""/></span></a>';//最后一页
+	pageIcon[0]='<a href="#top"><span  class="pageIcon" selectPage="fir" ><img src="/img/bb.png" width="25" height="25" alt=""/></span></a>';//第一页
+	pageIcon[1]='<a href="#top"><span  class="pageIcon"  selectPage="pre"><img src="/img/b.png" width="25" height="25" alt=""/></span></a>';//前一页
+	pageIcon[2]='<a href="#top"><span  class="pageIcon"  selectPage="next"><img src="/img/a.png" width="25" height="25" alt=""/></span></a>';//下一页
+	pageIcon[3]='<a href="#top"><span  class="pageIcon"  selectPage="las"><img src="/img/aa.png" width="25" height="25" alt=""/></span></a>';//最后一页
 		
 	success();//初始数据
 	
@@ -61,14 +61,14 @@
 					var ar,ty,cr;
 					tr='<div class="content_example"><div class="content_example_left">';
 					if(data.msg.content[i].PHOTO==="file:")
-					{ph='<img src="../img/y1.jpg" width="100%" alt=""/>';}
+					{ph='<img src="/img/y1.jpg" width="100%" alt=""/>';}
 					else{
                         ph='<img src="'+data.msg.content[i].PHOTO+'" width="100%" alt=""/>';
 						}
 					ne=data.msg.content[i].NAME+'<br>';
 					for(var a=0;a<data.msg.content[i].LEVELS;a++)
 					{
-						st +='<img src="../img/star-.png" width="7%"/>';
+						st +='<img src="/img/star-.png" width="7%"/>';
 					}
 					ar='</div><div class="content_example_right">年龄：'+data.msg.content[i].AGE+'<br>类型：';
 					if(data.msg.content[i].TYPE===1)

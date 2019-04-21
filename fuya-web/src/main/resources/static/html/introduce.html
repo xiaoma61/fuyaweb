@@ -7,7 +7,7 @@
 <link href="../css/change_div.css" rel="stylesheet" type="text/css" />
 <link href="../css/common.css" rel="stylesheet" type="text/css" />		
 <script type="text/javascript" src="../js/change_div.js"></script>
-<script type="text/javascript" src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
 <script src="../js/public/header.js"></script>
 <title>成为月嫂</title>
 </head>
@@ -19,9 +19,11 @@
 		  <a name="top"><div class="Header1"></div></a>
 <script type="text/javascript">
 $(function(){
-	var index=6;
+	var index=13;
+	
 	var url= window.location.href;
 	index = url.substring(url.lastIndexOf('=') + 1);
+	
 	$.ajax({
         url:'https://campus.gbdev.cn:8060/fuyaweb/fuyayuesaoindex/personalinfo',
 		dataType:"json",   //返回格式为json
@@ -83,6 +85,7 @@ $(function(){
 		data:{id:index},    //参数值
 		type:"GET",   //请求方式
         success:function(data){
+			
 			$("#comment").html('');
 			$("#page").html('');
 			var num=5;
@@ -160,50 +163,15 @@ $(function(){
                 $("#comment").append(d);
             }
 			}
-		
-			
-			$(document).on('click', 'span',function() {	
-			var selectPage=$(this).attr('selectPage');
-			$(".page").removeClass('pageselect');
-			if(selectPage=="fir"||(selectPage=="pre"&&current==1))selectPage=1;
-			if(selectPage=="las"||(selectPage=="next"&&current==count))selectPage=count;
-			if(selectPage=="pre"&&current!=1)selectPage=parseInt(current)-1;
-			if(selectPage=="next"&&current!=count)selectPage=parseInt(current)+1;
-			if(count<=5)
-				$('.page').eq(selectPage-1).addClass('pageselect');
-			if(count>5)addpage(selectPage);
-			current=selectPage;
-			first=(selectPage-1)*num;
-			last=first+num;
-			$("#comment").html('');
-			addcommentdata(data);	
-			});
-			
-			$(document).on('click', '.del',function() {	
-			var code = $(this).attr("code");
-			$.ajax({
-				url:"../../data.json",
-				data:{c:code},
-				type:"POST",
-				dataType:"json",
-				success: function(data){ 
-				if(data.status==1)
-				  {
-					success(data,10);
-				  } 
-				  else
-				  {
-					alert("删除失败！"); 
-				  }
-					},
-				error:function(){}
-			})
-			})
-		
-		
+
         },
 		error:function(){}
     })
+	
+	$(document).on('click','.book',function(){
+		window.open('submit.html?id='+index);
+		
+	})
 })
 
 

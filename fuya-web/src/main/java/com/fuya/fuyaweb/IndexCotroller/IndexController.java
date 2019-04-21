@@ -21,7 +21,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -116,8 +118,8 @@ public class IndexController {
                    }
 
 
-                   map.put("ID",yuesobasicinfo.getYUESOBASICINFOID());//评论
-
+                   map.put("ID",yuesobasicinfo.getUSERSID());//
+                   map.put("PHOTO",yuesobasicinfo.getPHOTO());
                    map.put("NAME",yuesobasicinfo.getNAME());// 名称
                    map.put("NATIVEPLACE",yuesobasicinfo.getNATIVEPLACE());//地点
                    map.put("WAGES",yuesobasicinfo.getWAGES());//工资
@@ -159,8 +161,6 @@ public class IndexController {
                 map.put("ID",article.getARTICLEID());
                 map.put("TITLE",article.getTITLE());
                 String content=BodyContentUtil.GetContent(article.getCONTENT());
-
-
                 map.put("CONTENT",content);
                 //获取图片
                 String Image= BodyImageUtil.GetIMage(article.getCONTENT());
@@ -176,8 +176,14 @@ public class IndexController {
     }
 
     @RequestMapping("/index")
-    public String index(){
+    public String index(HttpServletRequest request){
+        HttpSession session=request.getSession();
+        if (session.getAttribute("username")!=null){
+            return "../static/html/indexHasLogin.html";
+        }else {
+            return "../static/html/index.html";
+        }
 
-        return "../static/html/index.html";
+
     }
 }

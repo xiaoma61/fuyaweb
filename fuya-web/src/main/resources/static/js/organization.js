@@ -49,7 +49,7 @@
 			url:"https://campus.gbdev.cn:8060/fuyaweb/company/yuesaolist",    //请求的url地址
 			dataType:"json",   //返回格式为json
 			async:true,//请求是否异步，默认为异步，这也是ajax重要特性
-			data:{userid:57,
+			data:{userid:index1,
 				  start:s
 				 },    //参数值
 			type:"GET",   //请求方式
@@ -76,13 +76,13 @@
 					var ty;
 					if(data.msg.content[i][1]===1){ty="月嫂";}
 					if(data.msg.content[i][1]===2){ty="育婴师";}
-					tr='<div class="content_example"><div class="content_example_left"><img src="../img/y1.jpg" width="100%" alt=""/>'+data.msg.content[i][5]+'<br>';
+					tr='<div class="content_example"><div class="content_example_left"><img src="'+data.msg.content[i][4]+'" width="100%" alt=""/>'+data.msg.content[i][5]+'<br>';
 
 					for(var a=0;a<data.msg.content[i][6];a++)
 					{
 						st +='<img src="../img/star-.png" width="7%"/>';
 					}
-					ar='</div><div class="content_example_right">年龄：'+data.msg.content[i][0]+'<br>类型：'+ty+'<br>籍贯：'+data.msg.content[i][2]+'<br>工资：'+data.msg.content[i][3]+'/天</div><div class="content_example_more"><a href="#" class="check"><u>查看更多</u></a></div></div>';
+					ar='</div><div class="content_example_right">年龄：'+data.msg.content[i][0]+'<br>类型：'+ty+'<br>籍贯：'+data.msg.content[i][2]+'<br>工资：'+data.msg.content[i][3]+'/天</div><div class="content_example_more"><a href="#" class="check" code="'+data.msg.content[i][7]+'"><u>查看更多</u></a></div></div>';
 					$("#main").append(tr+st+ar);
 				}
 
@@ -197,28 +197,7 @@
 	
 	$(document).on('click','.check',function(){
 		code = $(this).attr("code");
-		$.ajax({
-			url:"../data.json",    //请求的url地址
-			dataType:"json",   //返回格式为json
-			async:true,//请求是否异步，默认为异步，这也是ajax重要特性
-			data:{currentpage:code},    //参数值
-			type:"GET",   //请求方式
-			beforeSend:function(){
-				//请求前的处理
-			},
-			success:function(){
-				//请求成功时处理
-				window.location.href='introduce.html';
-	
-	
-			},
-			complete:function(){
-				//请求完成的处理
-			},
-			error:function(){
-				//请求出错处理
-			}
-		});	
+		window.open('introduce.html?id='+code);
 	});
 
 	$(document).on('click','.type li',function(){

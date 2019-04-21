@@ -49,8 +49,6 @@ public class YuesaoPersonalController {
         msg.put("msg",objectList);
         return JSONObject.fromObject(msg);
     }
-
-
     //技巧
     @RequiresRoles("yuesaos")
     @RequestMapping("/fuyayuesaos/skillinfo")
@@ -106,11 +104,7 @@ public class YuesaoPersonalController {
             HttpServletResponse response) throws IOException, SolrServerException {
         response.setHeader("Access-Control-Allow-Origin", "*");
 
-//        HttpSession session=request.getSession();
-//        int id= (int) session.getAttribute("id");
-        //数据库更新
-        //月嫂信息更新
-        //证明信息更新
+
         proveinfoService.update(yuesaosyndrome,healthcertificates,report,servicepiceture,userid);
         yuesobasicinfoService.update(idcard,email,workarea,phone,education,name,widght,age,height,nativeplace,photo,seniority,wages,userid);
 
@@ -120,7 +114,7 @@ public class YuesaoPersonalController {
         msg.put("msg","success");
         return JSONArray.fromObject(msg);
     }
-    //证明
+    //证明1
     @RequiresRoles("yuesaos")
     @RequestMapping("/fuyayuesaos/proveinfo")
     @ResponseBody
@@ -134,7 +128,7 @@ public class YuesaoPersonalController {
         msg.put("msg",yuesaootherproveList);
         return JSONObject.fromObject(msg);
     }
-//证明提交
+//证明提交1
 @RequiresRoles("yuesaos")
 @RequestMapping("/fuyayuesaos/proveinfo/add")
 @ResponseBody

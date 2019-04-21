@@ -1,8 +1,7 @@
 (function (){
 　　"use strict";
-	var num=10;//一页数据数
-	var first=0;//第一条
-	var last=first+num;//最后一条
+	var num;//一页数据数
+
 	var current=1;//当前页数
 	var code;
 	var count;//页数
@@ -18,11 +17,12 @@
 	success();//初始数据
 	
 	function success(){
+		var s=current-1;
 		$.ajax({
-			url:"../../data.json",    //请求的url地址
+			url:"https://campus.gbdev.cn:8060/fuyaweb/admin/checkyuesaolist",    //请求的url地址
 			dataType:"json",   //返回格式为json
 			async:true,//请求是否异步，默认为异步，这也是ajax重要特性
-			data:{currentpage:current},    //参数值
+			data:{start:s},    //参数值
 			type:"GET",   //请求方式
 			beforeSend:function(){
 				//请求前的处理
@@ -36,12 +36,12 @@
 				
 				
 				/*声明必要变量*/
-				count=27;//页数	
-				
+				count=data.msg.pageSize;//页数	
+				num=data.msg.total;
 
-				for(var i=first;i<last;i++)
+				for(var i=0;i<num;i++)
 				{
-					var tr; tr='</td>'+'<td>'+data.data[i].JN+'</td>'+'<td>'+data.data[i].type+'</td>'+'<td>'+data.data[i].employer+'</td>'+'<td>'+data.data[i].startTime+'</td>'+'<td>'+data.data[i].SD+'</td>'+'<td>'+data.data[i].deposit+'</td>'+'<td>'+data.data[i].CG+'</td>'+'<td>'+data.data[i].ST+'</td>'+'<td><a href="#" class="che" code="'+data.data[i].CN+'">'+"查看"+'</a></td>'+'<td><a href="#" class="rev" code="'+data.data[i].CN+'">'+"通过"+'</a></td>'+'<td><a href="#" class="del" code="'+data.data[i].CN+'">'+"删除"+'</a></td>';
+					var tr; tr='<td>'+data.msg.list[i].NAME+'</td>'+'<td>'+data.msg.list[i].TYPE+'</td>'+'<td>'+data.msg.list[i].SENIORITY+'</td>'+'<td>'+data.msg.list[i].PHONE+'</td>'+'<td>'+data.msg.list[i].SCORE+'</td>'+'<td>'+data.msg.list[i].EDUCATION+'</td>'+'<td>'+data.msg.list[i].nums+'</td>'+'<td><a href="#" class="che" code="'+data.msg.list[i].USERSID+'">'+"查看"+'</a></td>'+'<td><a href="#" class="del" code="'+data.msg.list[i].USERSID+'">'+"删除"+'</a></td>';
 					$("#tabletest").append('<tr class="testtd">'+tr+'</tr>');
 				}
 				
@@ -155,8 +155,7 @@
 			addpage();
 		}
 		current=selectPage;
-		first=(selectPage-1)*num;
-		last=first+num;
+
 		success();
 	});
 	
@@ -164,12 +163,12 @@
 	$(document).on('click', '.del',function() {	
 		code = $(this).attr("code");
 		$.ajax({
-			url:"../../data.json",
-			data:{c:code},
+			url:"https://campus.gbdev.cn:8060/fuyaweb/admin/checkyuesaolist/delete",
+			data:{id:code},
 			type:"POST",
 			dataType:"json",
 			success: function(result){ 
-				if(result.status===1)
+				if(result.status==="success")
 				  {	
 					success();
 					alert("删除成功！");
@@ -187,144 +186,18 @@
 	$(document).on('click','.che',function(){
 		code=$(this).attr("code");
 		$.ajax({
-			url:"../../data.json",
-			data:{c:code},
+			url:"https://campus.gbdev.cn:8060/fuyaweb/admin/checkyuesaolist/id",
+			data:{id:code},
 			type:"POST",
 			dataType:"json",
 			success: function(data){ 
 				$("#see").css("display","block");//显示查看div
 				$(".check_top").css("display","block");//显示关闭按钮
-				for(var i=0;i<data.data.length;i++){
-					if(data.data[i].CN===code){
-						$("#CN").html(data.data[i].CN);
-						$("#JN").html(data.data[i].JN);
-						$("#nam").html(data.data[i].name);
-						$("#type").html(data.data[i].type);
-						$("#ST").html(data.data[i].ST);
-						$("#EDC").html(data.data[i].CN);
-						$("#ServiceBegin").html(data.data[i].CN);
-						$("#ServiceDays").html(data.data[i].CN);
-						$("#deposit").html(data.data[i].deposit);
-						$("#price").html(data.data[i].CN);
-						$("#remarks").html(data.data[i].CN);
-						$("#state").html(data.data[i].CN);
-						$("#sum").html(data.data[i].CN);
-						$("#employer").html(data.data[i].employer);
-						$("#area").html(data.data[i].CN);
-						$("#address").html(data.data[i].CN);
-						$("#number").html(data.data[i].CN);
-					}
-				}
+				$('.check_middle').html('<div class="check_middle_left"><div class="item"><span class="item_title">姓名：</span><div class="item_content">'+data.msg[0].yuesobasicinfo.NAME+'</div></div><div class="item"><span class="item_title">电话号码：</span><div class="item_content">'+data.msg[0].yuesobasicinfo.PHONE+'</div></div><div class="item"><span class="item_title">身份证：</span><div class="item_content">'+data.msg[0].yuesobasicinfo.IDCARD+'</div></div><div class="item"><span class="item_title">年龄：</span><div class="item_content">'+data.msg[0].yuesobasicinfo.AGE+'</div></div><div class="item"><span class="item_title">文化：</span><div class="item_content">'+data.msg[0].yuesobasicinfo.EDUCATION+'</div></div><div class="item"><span class="item_title">籍贯：</span><div class="item_content">'+data.msg[0].yuesobasicinfo.NATIVEPLACE+'</div></div><div class="item"><span class="item_title">邮箱：</span><div class="item_content">'+data.msg[0].yuesobasicinfo.EMAIL+'</div></div><div class="item"><span class="item_title">身高体重：</span><div class="item_content2"><ul><li>'+data.msg[0].yuesobasicinfo.HEIGHT+'</li><em class="em">  </em><li>'+data.msg[0].yuesobasicinfo.WEIGHT+'</li><em>  </em></ul></div></div><div class="item"><span class="item_title">服务年限：</span><div class="item_content">'+data.msg[0].yuesobasicinfo.SENIORITY+'</div></div><div class="item"><span class="item_title">类型：</span><div class="item_content">'+data.msg[0].yuesobasicinfo.TYPE+'</div></div></div><div class="check_middle_right"><div class="n_picture"><img src="'+data.msg[0].yuesobasicinfo.PHOTO+'" height="200px" alt="" id="imgID"/></div><div id="imgfun"></div><div class="certify_content"><div class="certify"><div class="certify_picture"><img src="'+data.msg[0].proveinfo.SERVICEPICTURE+'" width="180px"  alt=""/></div><div class="certify_title">服务照片</div></div><div class="certify"><div class="certify_picture"><img src="'+data.msg[0].proveinfo.REPORT+'" width="180px"  alt=""/></div><div class="certify_title">反馈照片</div></div><div class="certify"><div class="certify_picture"><img src="'+data.msg[0].proveinfo.YUESAOSYNDROME+'" width="180px"  alt=""/></div><div class="certify_title">月嫂证明</div></div><div class="certify"><div class="certify_picture"><img src="'+data.msg[0].proveinfo.HEALTHCERTIFICATES+'" width="180px"  alt=""/></div><div class="certify_title">健康证明</div></div></div></div>');
 			},
 			error:function(){}
 		});
 	});
-	
-	//通过
-	$(document).on('click','.rev',function(){
-		code=$(this).attr("code");
-		alert("通过");
-	});	
-	
-	//搜索时间
-	$(document).on('click','#search_time',function(){
-		var ti =$("#time").val();
-			$.ajax({
-				url:"../../data.json",
-				data:{t:ti},
-				type:"POST",
-				dataType:"json",
-				success: function(result){ 
-				if(result.status===1)
-				  {
-					current=1;
-					first=0;//第一条
-					last=first+num;//最后一条
-					success();
-					alert("搜索成功！");
-				  } 
-				  else
-				  {
-					alert("搜索失败！"); 
-				  }
-					},
-				error:function(){}
-			});	
-	});
-	
-	//搜索名字
-	$(document).on('click','#search_name',function(){
-		var na=$("#name").val();
-			$.ajax({
-				url:"../../data.json",
-				data:{n:na},
-				type:"POST",
-				dataType:"json",
-				success: function(result){ 
-				if(result.status===1)
-				  {
-					current=1;
-					first=0;//第一条
-					last=first+num;//最后一条
-					success();
-					alert("搜索成功！");
-				  } 
-				  else
-				  {
-					alert("搜索失败！"); 
-				  }
-				},
-				error:function(){}
-			});	
-	});
-	
-	//点击输入框
-	$(document).on('focus','#name',function(){	
-		if ($("#name").val()!=="") {
-			showhide();
-		}
-	});
-	
-	function showhide(){
-		$('.hide').css("display","block");
-		$('.hide').css("top",$('#name').offset().top+30);
-		$('.hide').css("left",$('#name').offset().left);
-	}
-	
-	function hide(){
-		$('.hide').css("display","none");
-	}
-	
-	//关闭搜索结果
-	$(document).on('blur','#name',function(){
-		setTimeout(hide,100);
-	});
-	
-	//输入框输入文字
-	$(document).bind('input propertychange',function(){
-		$.ajax({
-			url:"../../data.json",
-			data:{c:$("#name").val()},
-			type:"POST",
-			dataType:"json",
-			success: function(result){ 
-				var k=$("#name").val().length;
-				$('.hide ul').html("");//清空
-				for(var i=0; i<5;i++){					
-					var d;
-					d='<li>'+result.data[i].name+''+k+'</li>';
-					$('.hide ul').append(d);
-				}
-					showhide();
-				},
-			error:function(){}
-		});
-	});
-	
-	//点击搜索结果
-	$(document).on('click','.hide ul>li',function(){
-		$('#name').val($(this).html());
-		$("#search_name").click();
-	});
+
 	
 })();
