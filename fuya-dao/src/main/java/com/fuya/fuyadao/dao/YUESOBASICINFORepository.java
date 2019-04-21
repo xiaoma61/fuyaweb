@@ -39,8 +39,8 @@ public interface YUESOBASICINFORepository extends JpaRepository<YUESOBASICINFO,I
     @Query("select u.USERSID, y.NAME,y.TYPE,y.SENIORITY,y.EDUCATION,y.PHONE,p.SCORE from USERS u ,YUESOBASICINFO y,PROVEINFO p where u.TYPE=?1 and u.USERSID=y.USERSID and  p.USERSID=u.USERSID")
     List<Object>findByTYPE(int type);
 
-    @Query("select y.NAME from YUESOBASICINFO y,COMPANYYUESAO c where  c.COMPANYID=:id and c.YUESAOID=y.USERSID and y.NAME like concat('%',:name,'%')")
-    List<String>findByNAMELike(@Param("id") int id, @Param("name") String name);
+    @Query("select y.NAME from YUESOBASICINFO y,COMPANYYUESAO c where  c.COMPANYID=?1 and c.YUESAOID=y.USERSID and y.NAME like %?2% ")
+    List<String>findByNAMELike(int id,  String name);
 
     @Query("select y.EMAIL from YUESOBASICINFO y where y.USERSID=?1")
     String findEMILbyUERSID(int id);

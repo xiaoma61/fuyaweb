@@ -30,6 +30,15 @@ public class COMPANYINFO {
     private String LICENCE;
     @Field
     private String EMAIL;
+    private String id;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getLICENCE() {
         return LICENCE;

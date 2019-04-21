@@ -3,6 +3,7 @@ package com.fuya.fuyaservice;
 import com.fuya.fuyadao.entity.PROVEINFO;
 import com.fuya.fuyadao.model.PROVEINFOANDBAISINFO;
 
+import java.awt.print.Pageable;
 import java.util.List;
 
 public interface PROVEINFOService {
@@ -12,6 +13,7 @@ public interface PROVEINFOService {
     void deleteByUSERSID(int id);
     List<PROVEINFOANDBAISINFO> findPROVEINFOByAndYUESAOBASICINFOByUSERSID(int id);
     void update(String YUESAOSYNDROME, String HEALTHCERTIFICATES, String REPORT, String SERVICEPICTURE, int PROVEINFOID);
+
 
 
 

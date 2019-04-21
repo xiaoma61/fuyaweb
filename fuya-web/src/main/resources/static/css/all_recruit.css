@@ -1,0 +1,252 @@
+.main{
+	width:80%;
+	padding:3% 0 3% 0;
+	font-size: 20px;
+	overflow: hidden;
+	margin: 2% 0 2% 0;
+}
+.top{
+	padding: 8px 32px;
+	background-color: #f07053;
+	margin: 2% 0 0 0;
+	display: inline-block;
+	color: #fff;
+	float: left;
+}
+.content_left{
+	width:60%;
+	padding:0 2% 4% 2%;
+	float: left;
+	margin: -3% 3% -4% 0;
+	background-color: #fcfbf6;
+}
+.content_right_top{
+	width:90%;
+	padding:3% 0 2% 0;
+	background-color: #fcfbf6;
+	float: left;
+	margin: 0 3% 2% 0;
+	color: #ed9fad;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1); 
+}
+.content_right_bottom{
+	width:50%;
+	padding:5% 25% 2% 15%;
+	background-color:#fcfbf6;
+	float: left;
+	margin: 5% auto 0 0;
+	color: #ed9fad;
+	text-align: left;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1); 
+}
+.register{
+	width:60%;
+	color: aliceblue;
+	background-color: #E97C91;
+	margin: 2% 0 0 0;
+	padding: 2% 0.8%;
+	cursor: pointer;
+	font-size: 16px;
+}
+.register:hover{
+	background-color: #faa0b1;
+}
+.statistics{
+	width:80%;
+	margin: 3% 0 0 0;
+	padding: 2% 0.8%;
+	font-size: 16px;
+	color: #E97C91;
+}
+.number{
+	background-color: #E97C91;
+	color: aliceblue;
+	padding: 0.5% 2%;
+	margin: 0 2%;
+}
+._tag{
+	border: 1px solid #ccc;
+	padding: 0 5px;
+	margin: 0 20px 0 0;
+	font-size: 10px;
+	display:inline-block;
+	height: 25px;
+	line-height: 25px;
+}
+.content_top{
+	width:100%;
+	background-color: #fefefc;
+	padding:2% 0 3% 0;
+	font-size: 16px;
+	overflow: hidden;
+	margin: 0 0 2% 0;
+	border-top: 4px solid #f07053;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1); 
+}
+.place{
+	float: left;
+	width:100%;
+	border-bottom: 2px dashed #ccc;
+	margin: 0 0 30px 0;
+}
+#place{
+	width:95%;
+}
+#choose td{
+	text-align: left;
+}
+#hot{
+	background-color: #f5f5f5;
+	margin: 0 0 30px 0;
+}
+#hot td{
+	width: 80px;
+	height: 30px;
+	text-align: center;
+	line-height: 30px;
+	font-size: 14px;
+	color: #494949;
+}
+#hot td:hover{
+	background-color: #f07053;
+	color: #fff;
+	cursor: pointer;
+}
+#hot .clicked{
+	background-color: #f07053;
+	color: #fff;
+	border-radius: 3px;
+}
+.salary{
+	float: left;
+	width:100%;
+}
+.salary table{
+	width:95%;
+}
+.salary li{
+	float: left;
+	width:80px;
+	margin: 0 5px 0 11px;
+	color: #494949;
+	font-size: 14px;
+	text-align: center;
+	height: 30px;
+	line-height: 30px;
+}
+.salary li:hover{
+	background-color: #f07053;
+	color: #fff;
+	cursor: pointer;
+}
+.salary .clicked{
+	background-color: #f07053;
+	color: #fff;
+}
+.item{
+	width: 100%;
+	background-color: #fefefc;
+	height: 150px;
+	margin: 0 0 50px 0;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1); 
+}
+.page{
+		width:25px;
+		height:25px;
+		border-radius: 25px;
+		color: #7B7B7B;
+		padding: 0 0;
+		cursor: pointer;
+		margin-right:5px;
+		font-size: 14px;
+		display: inline-block;
+		line-height: 25px;
+		background-color:#EBEBEB;
+		vertical-align:top;
+	}
+.pageIcon{
+		color: #7B7B7B;
+		padding: 0  ;
+		cursor: pointer;
+		margin-right:5px;
+		font-size: 14px;
+		display: inline-block;
+		border-radius: 25px;
+		width:25px;
+		height:25px;
+		line-height: 25px;
+		background-color:#EBEBEB;
+		vertical-align:top;
+	}
+.pageselect{
+		background-color: #f07053;
+		color: #fff;
+	}
+.pagearea{
+		width: 450px;
+		height:50px;
+		padding: 0 0 0 50% ;
+		vertical-align:top;
+		margin: 0 66% 0 -250px;
+	}
+#show{
+	width: 100%;
+}
+
+.item table{
+	width: 96%;
+	text-align: left;
+	height: 150px;
+	margin: 50px 3% 10px 1%;
+}
+.item th{
+	font-size: 16px;
+	font-weight: 500;
+	padding:  0 0 0 2%;
+}
+.item td{
+	font-size: 12px;
+	font-weight: 100;
+	padding:  0 0 0 2%;
+}
+
+._salary{
+	padding:  0 0 0 0;
+	border: none;
+	color: #FF0004;
+	font-size: 16px;
+	float: left;
+}
+.item li{
+	float: left;
+	text-align: left;
+	padding:  0 5% 0 5%;
+	border-right: 1px solid #ccc;
+}
+.check{
+	width: 80px;
+	height: 25px;
+	background-color: #f07053;
+	text-align: center;
+	color: #fff;
+	float: right;
+	font-size: 14px;
+	line-height: 25px;
+	cursor: pointer;
+	border-radius: 3px;
+}
+.t{
+	width: 80%;
+}
+.content_right{
+	width:30%;
+	float: right;
+}
+.search{
+	background-color: #f07053;
+	color: #fff;
+	padding: 5px 20px;
+	border-radius: 3px;
+	font-size: 14px;
+	cursor: pointer;
+}

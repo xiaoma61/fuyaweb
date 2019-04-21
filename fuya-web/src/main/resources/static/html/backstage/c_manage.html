@@ -1,0 +1,140 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script type="text/javascript" src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+<link href="../../css/form.css" rel="stylesheet" type="text/css" />
+<script src="../../js/c_manage.js"></script>
+<title>无标题文档</title>
+</head>
+<style>
+	.form_search_item{
+		width: 400px;
+		height: 40px;
+		padding: 0;
+		line-height: 40px;
+		margin:0 0 0 200px;
+	}
+	.form p{
+		height: 10px;
+		font-size: 15px;
+	}
+	.form p img{
+		display:block;
+		margin:0 5px;
+		float: left;
+	}
+	.check_middle{
+		height:550px;
+		margin:50px 0 0 0 ;
+	}
+	.check_middle_left{
+		width:55%;
+		float: left;
+	}
+	.check_middle_right{
+		width:40%;
+		display: inline-block;
+		margin-left: 40px;
+	}
+	.item{
+		width:100%;
+		height:30px;
+		margin:10px 0 20px 0 ;
+	}
+	.item_title{
+		width:28%;
+		height: 30px;
+		display: inline-block;
+		vertical-align:middle;
+		line-height: 30px;
+		text-align: left;
+		color: #f07053;
+	}
+	.item_content{
+		width:70%;
+		height: 30px;
+		border:2px solid #f07053;
+		display: inline-block;
+		margin: 0 0 0 0;
+		vertical-align:middle;
+		color: #f07053;
+		line-height: 30px;
+	}
+	.item_content2{
+		width:70%;
+		height: 30px;
+		display: inline-block;
+		margin: 0 0 0 0;
+		vertical-align:middle;
+		color: #f07053;
+		line-height: 30px;
+	}
+	.n_picture{
+		width: 300px;
+		height:300px;
+		margin: auto;
+		text-align: center;
+		padding: 0;
+		margin: 3% 4% 2% 2% ;
+		float: left;
+		margin: 0 20px 0  0;
+	}
+	.picture{
+		width:300px;
+		padding: 0 0 75% 0;
+		margin:0 auto;
+		overflow: hidden;
+		background-size: auto 100%; 
+		border: 2px solid #f07053;
+	}
+	.nam{
+		width:70%;
+		margin:3% 0 0 15%;
+		color:#d81e06;
+		font-size: 16px;
+	}
+	</style>
+<body>
+			  <div class="form">
+			  	<div class="form_top">公司管理</div>
+				  <hr>
+				 <p><img src="../../img/shenhe-.png" height="18" alt=""/>未审核</p>
+				<div class="form_search">
+				  						 <div class="form_search_item">公司名称：<input type="text" id="name" ><input value="搜索" type="button" id="search_name"></div>
+				  </div>
+			  </div>
+	<div style="width: 100%;height: 600px">
+	<table class="table table-bordered" id="tabletest">
+    <tr>
+        <th>序号</th>
+        <th>姓名</th>
+        <th>公司名称</th>
+        <th>营业执照注册码</th>
+        <th>注册时间</th>
+        <th>身份证号</th>
+        <th colspan="3" width="120px">操作</th>
+    </tr>
+	
+ </table></div>
+		<div class="pagearea"><div id="page" style="top:0;left:0"></div></div>
+<div class="check" id="see">
+	<div class="check_top"><img src="../../img/close.png" width="30" alt="" style="cursor: pointer" onclick = "document.getElementById('see').style.display='none'"/></div>
+	<div class="check_middle">
+		<div class="check_middle_left">
+			<div class="item"><span class="item_title">联系人姓名：</span><div class="item_content"></div></div>
+			<div class="item"><span class="item_title">联系人电话：</span><div class="item_content"></div></div>
+			<div class="item"><span class="item_title">联系人电子邮箱：</span><div class="item_content"></div></div>
+			<div class="item"><span class="item_title">公司名称：</span><div class="item_content"></div></div>
+			<div class="item"><span class="item_title">营业执照注册码：</span><div class="item_content"></div></div>
+			<div class="item"><span class="item_title">身份证号：</span><div class="item_content"></div></div>
+			<div class="item"><span class="item_title">公司地址：</span><div class="item_content"></div></div>
+		</div>
+		<div class="check_middle_right"><div class="n_picture"><div class="picture"></div><div class="nam">身份证</div></div><div class="n_picture"><div class="picture"></div><div class="nam">营业执照</div></div></div>
+	</div>
+	
+</div>
+	<div class="hide"><ul></ul></div>
+</body>
+
+</html>

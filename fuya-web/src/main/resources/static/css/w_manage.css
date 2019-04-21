@@ -1,0 +1,194 @@
+	a {  
+		text-decoration: none; 
+		color: #f07053;
+		}
+	a:hover{
+		text-decoration:underline;
+		}
+	.form_top{
+		width:10%;
+		padding:1% 2%;
+		background-color: #f07053;
+		text-align: center;
+		color: #fff;
+		margin-top: 20px;
+	}
+	.form_search{
+		color: #f07053;
+		padding: 2% 0 2% 15% ;
+		font-size: 18px;
+		height: 25px;
+	}
+	.form_search_item{
+		width: 400px;
+		height: 40px;
+		float: left;
+		padding: 0;
+		line-height: 40px;
+		margin:0 0 0 0;
+	}
+	.table-bordered{
+		width: 100%;
+		align-content: center;
+		border-collapse:collapse;
+		text-align: center;
+		}
+	.table-bordered th{
+		color: #fff;
+		background-color: #f7bcaf;
+		font-size: 16px;
+		padding: 1% 0.5%;
+		width: 16%;
+		}
+	.table-bordered td{
+		border-bottom:#ccc 1px solid;	
+		text-align: center;
+		color: #f07053;
+		padding:1% 0.5%;
+		}
+	p{
+		color: #f07053;
+		font-size: 14px;
+		text-align: left;
+		}
+.page{
+		width:25px;
+		height:25px;
+		border-radius: 25px;
+		color: #7B7B7B;
+		padding: 0 0;
+		cursor: pointer;
+		margin-right:5px;
+		font-size: 14px;
+		display: inline-block;
+		line-height: 25px;
+		background-color:#EBEBEB;
+		vertical-align:top;
+	}
+.pageIcon{
+		color: #7B7B7B;
+		padding: 0  ;
+		cursor: pointer;
+		margin-right:5px;
+		font-size: 14px;
+		display: inline-block;
+		border-radius: 25px;
+		width:25px;
+		height:25px;
+		line-height: 25px;
+		background-color:#EBEBEB;
+		vertical-align:top;
+	}
+.pageselect{
+		background-color: #f07053;
+		color: #fff;
+	}
+.pagearea{
+		width: 450px;
+		height:50px;
+		padding: 0 0 0 50% ;
+		vertical-align:top;
+		margin: 0 66% 0 -250px;
+		text-align: center;
+	}
+	.form_search input[type=text]{
+		margin: 0 -0.8% 0 2% ;
+		border: 2px solid #f07053;
+		color: #f07053;
+		height: 50%;
+		width:150px;
+		}
+	.form_search input[type=button]{
+		cursor: pointer;
+		background-color: #f07053;
+		color: #fff;
+		height: 65%;
+		width:50px;
+		outline:none; 
+		font-size: 12px;
+		margin:0 0 0 0 ;
+		border: 0;
+		}
+	.check{
+		position: absolute;
+		width: 88.5%;
+		height: 720px;
+		display: none;
+		background-color: #fff;
+	    z-index:1002; 
+		top: 20px;
+		padding: 5%;
+		overflow: hidden;
+		box-shadow:0 0 10px #909090;
+	}
+	.check_top{
+		text-align: right;
+		width: 100%;
+	}
+	.check_middle{
+		width:100%;
+		text-align: center;
+	}
+	.check_middle table{
+		width: 95%;
+		border-collapse:collapse;
+		margin: 80px auto 50px auto ;
+	}
+	.check_middle th{
+		background-color: #f07053;
+		color: #fff;
+		border: none;
+		border:1px solid #f07053;
+		padding: 0.5%;
+	}
+	.check_middle td{
+		width: 10%;
+		border:1px solid #ccc;
+	}
+	.check_middle td:nth-child(2n){color: #f07053;}
+	.check_middle td input[type=text]{
+		border: none;
+	}
+	.check_bottom{
+		width:100%;
+		text-align: center;
+		height: 100px;
+	}
+.check_bottom input[type=button]{
+		cursor: pointer;
+		background-color: #f07053;
+		color: #fff;
+		height: 50px;
+		width:100px;
+		outline:none; 
+		font-size: 20px;
+		margin:50px 50px 0 50px ;
+		border: 0;
+}
+.hide{
+		width:200px;
+		background-color: #fff;
+		position: absolute;
+		display: none;
+		box-shadow:0 0 10px #909090;
+}
+.hide ul{
+	margin: 0;
+	padding:  0 0 0 10px;
+}
+.hide li{
+	border-bottom: 1px dashed #ccc;
+	height:40px;
+	color: #f07053;
+	line-height: 40px;
+	cursor: pointer;
+	list-style: none;
+}
+	.form hr{
+		margin: 0 0 10px 0 ;
+	    width:100%; 
+		height:4px; 
+		background: #f07053; 
+		border: none; 
+		float: left;
+	}

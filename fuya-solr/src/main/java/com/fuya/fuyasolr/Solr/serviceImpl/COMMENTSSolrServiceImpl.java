@@ -24,7 +24,7 @@ public class COMMENTSSolrServiceImpl implements COMMENTSSolrService {
     @Override
     public List<COMMENTS> searchbyuserid(int id) throws IOException, SolrServerException {
         SolrQuery solrQuery=new SolrQuery();
-        solrQuery.set("USERID",id);
+        solrQuery.set("USERID: ",id);
         List<COMMENTS>commentsList=commentsSearchdao.search(solrQuery);
 
         return commentsList;
@@ -33,7 +33,7 @@ public class COMMENTSSolrServiceImpl implements COMMENTSSolrService {
     @Override
     public List<COMMENTS> searchbyorderid(int id) throws IOException, SolrServerException {
         SolrQuery solrQuery=new SolrQuery();
-        solrQuery.set("ORDERID",id);
+        solrQuery.set("ORDERID: ",id);
         List<COMMENTS>commentsList=commentsSearchdao.search(solrQuery);
 
         return commentsList;

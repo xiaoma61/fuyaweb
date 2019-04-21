@@ -4,6 +4,7 @@ import com.fuya.ActiveMQ.service.ProductService;
 import com.fuya.fuyadao.entity.COMPANYBASICINFO;
 import com.fuya.fuyadao.entity.COMPANYINFO;
 import com.fuya.fuyadao.entity.YUESAOOTHERPROVE;
+import com.fuya.fuyadao.entity.YUESOBASICINFO;
 import com.fuya.fuyadao.model.CompanysInfosModle;
 import com.fuya.fuyaservice.COMPANYBASICINFOService;
 import com.fuya.fuyaservice.COMPANYINFOService;
@@ -13,11 +14,16 @@ import com.fuya.fuyasolr.Solr.service.COMPANYBASICINFOSolrService;
 import com.fuya.fuyasolr.Solr.service.COMPANYINFOSolrService;
 import com.fuya.fuyasolr.Solr.service.YUESAOOTHERPROVESolrService;
 import com.fuya.fuyautil.TotalPages;
+import com.fuya.fuyautil.uuidUtil;
 import net.sf.json.JSONObject;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -31,6 +37,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Controller
+@CrossOrigin
 public class CompanyInfoController {
     @Autowired
     COMPANYBASICINFOSolrService companybasicinfoSolrService;
@@ -55,21 +62,25 @@ public class CompanyInfoController {
     @RequiresRoles("company")
     @RequestMapping("/companys/Infos")
     @ResponseBody
-    public JSONObject companysInfos(HttpServletRequest request) throws IOException, SolrServerException {
+    public Map<String,Object> companysInfos(HttpServletRequest request) throws IOException, SolrServerException {
         HttpSession session=request.getSession();
         int id= (int) session.getAttribute("id");
+        Map<String,Object> msg=new HashMap<>();
         System.out.println("id:"+id);
-        COMPANYBASICINFO companybasicinfo=companybasicinfoSolrService.search(id);
+       /* COMPANYBASICINFO companybasicinfo=companybasicinfoSolrService.search(id);
         COMPANYINFO companyinfo=companyinfoSolrService.findCOMPANYINFObyuserid(id);
+
         if (companybasicinfo==null){
-            Map<String,Object> msg=new HashMap<>();
+
             msg.put("msg","error");
             return JSONObject.fromObject(msg);
-        }
-        CompanysInfosModle companysInfosModle=new CompanysInfosModle();
-        companysInfosModle.setCompanybasicinfo(companybasicinfo);
-        companysInfosModle.setCompanyinfo(companyinfo);
-        return JSONObject.fromObject(companysInfosModle);
+        }*/
+        CompanysInfosModle companysInfosModle=companybasicinfoService.findCompanysInfosModleByUSERID(id);
+       /* companysInfosModle.setCompanybasicinfo(companybasicinfo);
+        companysInfosModle.setCompanyinfo(companyinfo);*/
+        msg.put("msg",companysInfosModle);
+
+        return msg;
 
     }
 
@@ -84,24 +95,24 @@ public class CompanyInfoController {
                                           @RequestParam(name = "address",defaultValue = "1314")String address,//公司地址
                                           @RequestParam(name = "area",defaultValue = "服务地区")String area,//服务地区
                                           @RequestParam(name = "idcardfile",defaultValue = "1314")String idcardfile,
-//                                          @RequestParam(name = "id",defaultValue = "1314")int id,
+                                          @RequestParam(name = "companyinfoid",defaultValue = "1314")int companyinfoid,
                                           HttpServletRequest request) throws IOException, SolrServerException {
 
         HttpSession session=request.getSession();
         int id= (int) session.getAttribute("id");
         System.out.println("id:"+id);
 
-        COMPANYBASICINFO companybasicinfo=companybasicinfoSolrService.search(id);
+        /*COMPANYBASICINFO companybasicinfo=companybasicinfoSolrService.search(id);
         COMPANYINFO companyinfo=companyinfoSolrService.findCOMPANYINFObyuserid(id);
         int companybasicinfoid=companybasicinfo.getCOMPANYBASICINFOID();
-        int companyinfoid=companyinfo.getCOMPANYINFOID();
+        int companyinfoid=companyinfo.getCOMPANYINFOID();*/
 
-        companybasicinfoSolrService.update(companybasicinfoid);
-        companyinfoSolrService.update(companyinfoid);
+        /*companybasicinfoSolrService.update(companybasicinfoid);
+        companyinfoSolrService.update(companyinfoid);*/
 
 
-        companybasicinfoService.updateCOMPANYBASICINFObyid(area,corporatename,companybasicinfoid);
-        companyinfoService.updateCOMPANYINFObyid(address,contactname,contantphone,email,idcard,idcardfile,licene,liceneno,companyinfoid);
+        companybasicinfoService.updateCOMPANYBASICINFObyid(area,corporatename,id);
+        companyinfoService.updateCOMPANYINFObyid(address,contactname,contantphone,email,idcard,idcardfile,licene,liceneno,id);
 
         //solr修改
 
@@ -119,28 +130,27 @@ public class CompanyInfoController {
     public JSONObject provesupdate(@RequestParam(name="title",defaultValue = "证明") String title,@RequestParam(name="file",defaultValue = "位置") String file,HttpServletRequest request){
         HttpSession session=request.getSession();
         int id= (int) session.getAttribute("id");
+
         YUESAOOTHERPROVE yuesaootherprove=new YUESAOOTHERPROVE();
         yuesaootherprove.setTITLE(title);
         yuesaootherprove.setFILEAREA(file);
         yuesaootherprove.setUSERID(id);
+        yuesaootherprove.setId(uuidUtil.getuuidUtil());
         yuesaootherproveService.save(yuesaootherprove);
-        productService.sendMessage(this.topic,"yuesaootherprove:"+yuesaootherprove.getYUESAOOTHERPROVEID());
         Map<String,Object> msg=new HashMap<>();
-        msg.put("msg","success");
+        msg.put("msg",yuesaootherprove);
         return JSONObject.fromObject(msg);
 
     }
 
     //证明删除
-    //添加证明
     @RequiresRoles("company")
     @RequestMapping("/companys/proves/delete")
     @ResponseBody
-    public JSONObject provesdelete(@RequestParam(name="provesid") String provesid,HttpServletRequest request) throws IOException, SolrServerException {
+    public JSONObject provesdelete(@RequestParam(name="YUESAOOTHERPROVEID") int YUESAOOTHERPROVEID,HttpServletRequest request) throws IOException, SolrServerException {
         HttpSession session=request.getSession();
         int id= (int) session.getAttribute("id");
-
-        yuesaootherproveSolrService.delete(Integer.parseInt(provesid));
+        yuesaootherproveService.deleteByYUESAOOTHERPROVEID(YUESAOOTHERPROVEID);
         Map<String,Object> msg=new HashMap<>();
         msg.put("msg","success");
         return JSONObject.fromObject(msg);
@@ -153,11 +163,9 @@ public class CompanyInfoController {
     public JSONObject proves(HttpServletRequest request,@RequestParam(name = "start",defaultValue = "0")int start,@RequestParam(name = "rows",defaultValue = "10")int rows) throws IOException, SolrServerException {
         HttpSession session=request.getSession();
         int id= (int) session.getAttribute("id");
-        SearchResult searchResult=yuesaootherproveSolrService.searchbyuserid(id,start,rows);
-        int total=TotalPages.GetIMage(searchResult.getObjects().size(),rows);
-        searchResult.setTotalPage(total);
-
-        return JSONObject.fromObject( searchResult);
+        Pageable pageable = PageRequest.of(start, rows);
+        Page<YUESAOOTHERPROVE> page =yuesaootherproveService.findByUSERID(id,pageable);
+        return JSONObject.fromObject(page);
 
     }
 

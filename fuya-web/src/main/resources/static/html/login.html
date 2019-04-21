@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="../css/login.css" rel="stylesheet" type="text/css" />
+<link href="../css/common.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+<script src="../js/public/header.js"></script>
+<title>登陆</title>
+</head>
+
+<body bgcolor="#fcfbf6">
+<center>
+	  <div class="wrapper"  style=" background: #fcfbf6 ">
+		<div class="Header1"></div>
+		  
+<script type="text/javascript">
+	setTimeout(function(){$('.bar_td').eq(6).css('background-color','#f87c60');},100);
+	   function check(){ 
+	   		var flag=0;
+            var myform = document.getElementById("loginForm"); 
+	   		var aSpan=document.getElementsByTagName("span");
+	   for(var i=0;i<aSpan.length;i++){
+		   aSpan[i].innerHTML= "";
+	   }
+            for(var i=0;i<myform.length;i++){  //循环form表单
+				  //aSpan[i].innerHTML= "";
+                  if(myform.elements[i].value==""){
+					    aSpan[i].innerHTML= "*不能为空";
+                        myform.elements[i].focus(); 
+					  	flag++;
+                  }
+            }if(flag!=0)return;
+            myform.submit();
+      }
+
+</script>
+<div class="main">
+
+<form action="https://campus.gbdev.cn:8060/fuyaweb/CheckLogin" method="get" id="loginForm" enctype="multipart/form-data" role="form">
+<table align="center" width="70%"  style="font-size: 20px">
+<tr><td><img src="../img/user.png" width="10%" alt=""/></td></tr>
+
+<tr height="40px"><td align="center"><hr style="width:450px; height:2px; background: #FFFFFF; border: none;"></td></tr>
+	
+<tr height="60px" valign="bottom"><td><input id="inputAttr1" class="inputAttr"  placeholder="请输入用户名" type="text" name="name" style="height:35px;width: 80%">
+ </td></tr><tr valign="top" height="40px" align="left" width="440px"><td><span style="font-size: 15px;"></span></td></tr>
+
+<tr height="40px" valign="bottom"><td ><input id="inputAttr2" class="inputAttr" placeholder="请输入密码" type="password" name="password" style=" height:35px; width:  80%"/></td></tr><tr valign="top" height="40px"  align="left"><td><span style="font-size: 15px;"></span></td></tr>
+	</table>
+	
+	<input class="finish" type="button" value="登陆" onclick="check()" style="outline:none; border: 0;font-size: 20px">
+	<div class="forget">
+		<div class="forget_tr">
+			<div class="forget_td1"><a href="#">忘记密码?</a></div>
+			<div class="forget_td2">还没有账号？</div>
+			<div class="forget_td3"><a href="./register.html">立刻注册</a></div>
+		</div>
+	</div>
+			  </form>
+</div>
+			<div class="Footer"></div>
+	</div>
+</center>	
+	
+</body>
+	<script src="../js/common.js" type="text/javascript"></script>
+</html>

@@ -1,4 +1,6 @@
 spring:
+  profiles:
+    active: test
   datasource:
     url: jdbc:mysql://campus.gbdev.cn:3306/fuyaweb?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
     username: mydb
@@ -25,7 +27,7 @@ spring:
       exclude: WEB-INF/**
   redis:
     expireSeconds: 120
-    clusterNodes: 192.168.80.128:6661,192.168.80.128:6662,192.168.80.128:6663,192.168.80.128:6664,192.168.80.128:6665,192.168.80.128:6666
+    clusterNodes:  192.168.80.128:6661, 192.168.80.128:6662, 192.168.80.128:6663, 192.168.80.128:6664, 192.168.80.128:6665, 192.168.80.128:6666
     jedis:
       pool:
         max-active: 300

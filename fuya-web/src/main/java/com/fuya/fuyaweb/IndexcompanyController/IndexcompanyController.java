@@ -1,28 +1,34 @@
 package com.fuya.fuyaweb.IndexcompanyController;
 
 import com.fuya.Redis.Util.RedisUtil;
-import com.fuya.fuyadao.entity.COMPANYYUESAO;
-import com.fuya.fuyadao.entity.Companylistcompanyinfo;
-import com.fuya.fuyadao.entity.Companymsgidinfo;
-import com.fuya.fuyadao.entity.YUESOBASICINFO;
+
+import com.fuya.fuyadao.entity.*;
 import com.fuya.fuyadao.model.Yuesaolistyuesaomodel;
 import com.fuya.fuyaservice.COMPANYBASICINFOService;
 import com.fuya.fuyaservice.COMPANYYUESAOService;
 import com.fuya.fuyaservice.YUESOBASICINFOService;
+import com.fuya.fuyautil.EntityUtils;
 import com.fuya.fuyautil.JpaPageHelperUtil;
 import com.fuya.fuyautil.TypeUtil;
 import com.github.pagehelper.PageInfo;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.*;
+import java.util.function.Function;
 
 @Controller
+@CrossOrigin
 public class IndexcompanyController {
     //公司列表
     @Autowired
@@ -34,39 +40,22 @@ public class IndexcompanyController {
     @Autowired
     YUESOBASICINFOService yuesobasicinfoService;
 
-    @RequestMapping("/companylist")
+    @RequestMapping("/company/list")
     @ResponseBody
-    public JSONObject companylist(@RequestParam(name = "start",defaultValue = "0")int start, @RequestParam(name = "rows",defaultValue = "10")int rows){
+    public JSONObject companylist(@RequestParam(name = "start",defaultValue = "0")int start, @RequestParam(name = "rows",defaultValue = "10")int rows, HttpServletResponse response){
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        Page<COMPANYBASICINFO>companybasicinfos=companybasicinfoService.findALL(start,rows);
 
-            List<Companylistcompanyinfo>companylistcompanyinfoList=new ArrayList<>();
-            List<Object>objectList=companybasicinfoService.find();
-            for (int i=0;i<objectList.size();i++){
-                Object[]objects=(Object[])objectList.get(i);
-                Companylistcompanyinfo companylistcompanyinfo=new Companylistcompanyinfo();
-                companylistcompanyinfo.setCOMPANYBASICINFOID((Integer) objects[0]);
-                companylistcompanyinfo.setCORPORATENAME(objects[1].toString());
-                companylistcompanyinfo.setADDRESS(objects[2].toString());
-                companylistcompanyinfo.setNUMS((Integer) objects[3]);
-                companylistcompanyinfo.setLEVELS((Integer) objects[4]);
-                companylistcompanyinfo.setINTRODUCE(objects[5].toString());
-                companylistcompanyinfo.setUSERSID((Integer) objects[6]);
-                companylistcompanyinfo.setLICENCE(objects[7].toString());
-                companylistcompanyinfoList.add(companylistcompanyinfo);
-            }
-        List<PageInfo>problemAnswerPageInfo= JpaPageHelperUtil.SetStartPage(companylistcompanyinfoList,start+1,rows);
-//                redisUtil.zadd(name,i,);
-//            }
-//
-//        }
-//        Page<COMPANYBASICINFO> List=companybasicinfoService.findALL(start,rows);
+
         Map<String,Object> msg=new HashMap<>();
-        msg.put("msg", problemAnswerPageInfo);
+        msg.put("msg", companybasicinfos);
         return JSONObject.fromObject(msg);
     }
     //公司信息
     @RequestMapping("/company/msg/id")
     @ResponseBody
-    public JSONObject companymagid(@RequestParam(name = "id",defaultValue = "0")int id){
+    public JSONObject companymagid(@RequestParam(name = "id",defaultValue = "0")int id,HttpServletResponse response){
+        response.setHeader("Access-Control-Allow-Origin", "*");
 
         Companymsgidinfo companymsgidinfo=new Companymsgidinfo();
 
@@ -92,31 +81,17 @@ public class IndexcompanyController {
     //公司员工列表
     @RequestMapping("/company/yuesaolist")
     @ResponseBody
-    public JSONObject companyyuesao(@RequestParam(name = "userid",defaultValue = "0")int userid,@RequestParam(name = "start",defaultValue = "0")int start, @RequestParam(name = "rows",defaultValue = "10")int rows){
+    public Map<String, Object> companyyuesao(@RequestParam(name = "userid",defaultValue = "0")int userid,
+                                             @RequestParam(name = "start",defaultValue = "0")int start, @RequestParam(name = "rows",defaultValue = "10")int rows,
+                                             HttpServletResponse response){
+        response.setHeader("Access-Control-Allow-Origin", "*");
 
-        List<COMPANYYUESAO> companyyuesaoList=companyyuesaoService.findByRealCOMPANYID(userid);
-        List<Yuesaolistyuesaomodel>objectLists=new ArrayList<>();
-        for (COMPANYYUESAO companyyuesao : companyyuesaoList){
-            Object[] object= (Object[]) yuesobasicinfoService.findObjectByUSERSID(companyyuesao.getYUESAOID());
-            Yuesaolistyuesaomodel yuesaolistyuesaomodel=new Yuesaolistyuesaomodel();
-            yuesaolistyuesaomodel.setAGE(object[0].toString());
-            yuesaolistyuesaomodel.setTYPE(object[1].toString());
-            yuesaolistyuesaomodel.setNATIVEPLACE(object[2].toString());
-            yuesaolistyuesaomodel.setWAGES(object[3].toString());
-            yuesaolistyuesaomodel.setPHOTO(object[4].toString());
-            yuesaolistyuesaomodel.setNAME(object[5].toString());
-            yuesaolistyuesaomodel.setLEVELS((Integer) object[6]);
-            yuesaolistyuesaomodel.setUSERSID((Integer) object[7]);
-            objectLists.add(yuesaolistyuesaomodel);
-
-        }
-        List<PageInfo>problemAnswerPageInfo= JpaPageHelperUtil.SetStartPage(objectLists,start+1,rows);
-//
-//
+        Pageable page= PageRequest.of(start,rows);
+        Page<String> companyyuesaoList=companyyuesaoService.findByYUESAOCOMPANYID(userid,page);
 
         Map<String,Object> msg=new HashMap<>();
-        msg.put("msg", problemAnswerPageInfo);
-        return JSONObject.fromObject(msg);
+        msg.put("msg", companyyuesaoList);
+        return msg;
     }
     //搜索月嫂
     @RequestMapping("/company/yuesaolist/search")//名字
@@ -130,10 +105,12 @@ public class IndexcompanyController {
                                    @RequestParam(name = " minage" ,defaultValue = "40")String  minage,
                                   @RequestParam(name = " maxage" ,defaultValue = "null")String  maxage,
                                    @RequestParam(name = "start",defaultValue = "0") int start,
-                                   @RequestParam(name = "rows",defaultValue = "10") int rows,@RequestParam(name = "userid",defaultValue = "0")int userid){
+                                   @RequestParam(name = "rows",defaultValue = "10") int rows,@RequestParam(name = "userid",defaultValue = "0")int userid
+    ,HttpServletResponse response){
+        response.setHeader("Access-Control-Allow-Origin", "*");
 
-        Page<YUESOBASICINFO>yuesobasicinfos=yuesobasicinfoService.query(name, workarea,  minwages, maxwages,type, nativeplace, minage, maxage, start, rows);
-        List<Yuesaolistyuesaomodel>yuesobasicinfoList=new ArrayList<>();
+    Page<YUESOBASICINFO>yuesobasicinfos=yuesobasicinfoService.query(name, workarea,  minwages, maxwages,type, nativeplace, minage, maxage, start, rows,userid);
+           List<Yuesaolistyuesaomodel>yuesobasicinfoList=new ArrayList<>();
         List<COMPANYYUESAO> companyyuesaoList=companyyuesaoService.findByRealCOMPANYID(userid);
         for (YUESOBASICINFO yuesobasicinfo: yuesobasicinfos.getContent()){
 
@@ -144,7 +121,7 @@ public class IndexcompanyController {
                     yuesaolistyuesaomodel.setAGE(String.valueOf(yuesobasicinfo.getAGE()));
                     yuesaolistyuesaomodel.setTYPE(TypeUtil.getTypeUtil(yuesobasicinfo.getTYPE()));
                     yuesaolistyuesaomodel.setNATIVEPLACE(yuesobasicinfo.getNATIVEPLACE());
-                    yuesaolistyuesaomodel.setWAGES(String.valueOf(yuesobasicinfo.getWAGES()));
+                    yuesaolistyuesaomodel.setWAGES(yuesobasicinfo.getWAGES());
                     yuesaolistyuesaomodel.setPHOTO(yuesobasicinfo.getPHOTO());
                     yuesaolistyuesaomodel.setNAME(yuesobasicinfo.getNAME());
                     yuesaolistyuesaomodel.setLEVELS(yuesobasicinfo.getLEVELS());
@@ -158,17 +135,10 @@ public class IndexcompanyController {
 
         }
 
-        List<PageInfo>problemAnswerPageInfo= JpaPageHelperUtil.SetStartPage(yuesobasicinfoList,start+1,rows);
-        problemAnswerPageInfo.get(0).setTotal(yuesobasicinfos.getTotalElements());
-        problemAnswerPageInfo.get(0).setPageSize(yuesobasicinfos.getTotalPages());
-        problemAnswerPageInfo.get(0).setIsFirstPage(yuesobasicinfos.isFirst());
-        problemAnswerPageInfo.get(0).setIsLastPage(yuesobasicinfos.isLast());
+        PageInfo problemAnswerPageInfo= JpaPageHelperUtil.SetStartPage(yuesobasicinfoList,start+1,rows);
 
-        problemAnswerPageInfo.get(0).setStartRow(yuesobasicinfos.getNumber());
-        problemAnswerPageInfo.get(0).setEndRow(yuesobasicinfos.getNumberOfElements());
-//        problemAnswerPageInfo.get(0).set(yuesobasicinfos.getNumberOfElements());
         Map<String,Object> msg=new HashMap<>();
-        msg.put("msg", problemAnswerPageInfo);
+      /*  msg.put("msg", problemAnswerPageInfo);*/
         return JSONObject.fromObject(msg);
 
     }
@@ -185,8 +155,9 @@ public class IndexcompanyController {
                                @RequestParam(name = " minage" ,defaultValue = "null")String  minage,
                                @RequestParam(name = " maxage" ,defaultValue = "null")String  maxage,
                                @RequestParam(name = "start",defaultValue = "0") int start,
-                               @RequestParam(name = "rows",defaultValue = "10") int rows,@RequestParam(name = "userid",defaultValue = "0")int userid){
-        Page<YUESOBASICINFO>yuesobasicinfos=yuesobasicinfoService.query(name, workarea, minwages, maxwages,type , nativeplace, minage, maxage, start, rows);
+                               @RequestParam(name = "rows",defaultValue = "10") int rows,@RequestParam(name = "userid",defaultValue = "0")int userid,HttpServletResponse response){
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        Page<YUESOBASICINFO>yuesobasicinfos=yuesobasicinfoService.query(name, workarea, minwages, maxwages,type , nativeplace, minage, maxage, start, rows,userid);
         List<YUESOBASICINFO>yuesobasicinfoList=yuesobasicinfos.getContent();
         List<COMPANYYUESAO> companyyuesaoList=companyyuesaoService.findByRealCOMPANYID(userid);
         HashSet<String>hashSet=new HashSet<>();

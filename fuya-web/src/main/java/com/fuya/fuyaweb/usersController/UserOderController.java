@@ -1,5 +1,6 @@
 package com.fuya.fuyaweb.usersController;
 
+import com.fuya.Configuration.DateJsonValueProcessor;
 import com.fuya.fuyadao.model.OrderYuesaoCommentServiceEmployee;
 import com.fuya.fuyaservice.COMMENTSService;
 import com.fuya.fuyaservice.ORDERSService;
@@ -7,9 +8,11 @@ import com.fuya.fuyaservice.SERVICECONTENTService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import net.sf.json.JSONObject;
+import net.sf.json.JsonConfig;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -21,6 +24,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
+@CrossOrigin
 public class UserOderController {
 
 
@@ -35,6 +39,7 @@ public class UserOderController {
     @RequiresRoles("users")
     @RequestMapping("/users/OrdersRecent/")
     @ResponseBody
+    @CrossOrigin
     JSONObject UsersOrdersRecent( HttpServletRequest request,@RequestParam(name = "start",defaultValue = "0")int start,@RequestParam(name = "rows",defaultValue = "10")int rows){
         HttpSession session=request.getSession();
         int id= (int) session.getAttribute("id");
@@ -43,9 +48,13 @@ public class UserOderController {
         List<OrderYuesaoCommentServiceEmployee>orderYuesaoCommentServiceEmployeeList=ordersService.findOrderYuesaoCommentServiceEmployeeByFROMID(id,status);
         PageHelper.startPage(start,rows);
         PageInfo<OrderYuesaoCommentServiceEmployee>pageInfo=new PageInfo<>(orderYuesaoCommentServiceEmployeeList);
+
+
         Map<String,Object> msg=new HashMap<>();
+        JsonConfig jsonConfig = new JsonConfig();
+        jsonConfig.registerJsonValueProcessor(java.util.Date.class, new DateJsonValueProcessor("yyyy-MM-dd HH:mm:ss"));
         msg.put("msg",pageInfo);
-        return JSONObject.fromObject(msg);
+        return JSONObject.fromObject(msg,jsonConfig);
     }
     //历史状态
     @RequiresRoles("users")
@@ -60,7 +69,9 @@ public class UserOderController {
         PageInfo<OrderYuesaoCommentServiceEmployee>pageInfo=new PageInfo<>(orderYuesaoCommentServiceEmployeeList);
         Map<String,Object> msg=new HashMap<>();
         msg.put("msg",pageInfo);
-        return JSONObject.fromObject(msg);
+        JsonConfig jsonConfig = new JsonConfig();
+        jsonConfig.registerJsonValueProcessor(java.util.Date.class, new DateJsonValueProcessor("yyyy-MM-dd HH:mm:ss"));
+        return JSONObject.fromObject(msg,jsonConfig);
     }
 
 
@@ -73,7 +84,9 @@ public class UserOderController {
         OrderYuesaoCommentServiceEmployee orderYuesaoCommentServiceEmployee=ordersService.findOrderYuesaoCommentServiceEmployeeByOderID(id);
         Map<String,Object> msg=new HashMap<>();
         msg.put("msg",orderYuesaoCommentServiceEmployee);
-        return JSONObject.fromObject(msg);
+        JsonConfig jsonConfig = new JsonConfig();
+        jsonConfig.registerJsonValueProcessor(java.util.Date.class, new DateJsonValueProcessor("yyyy-MM-dd HH:mm:ss"));
+        return JSONObject.fromObject(msg,jsonConfig);
     }
     //退款
     //订单支付状态
@@ -86,7 +99,9 @@ public class UserOderController {
         servicecontentService.updateHANDSELSTATUSbySERVICECONTENTID(status,id);
         Map<String,Object> msg=new HashMap<>();
         msg.put("msg","success");
-        return JSONObject.fromObject(msg);
+        JsonConfig jsonConfig = new JsonConfig();
+        jsonConfig.registerJsonValueProcessor(java.util.Date.class, new DateJsonValueProcessor("yyyy-MM-dd HH:mm:ss"));
+        return JSONObject.fromObject(msg,jsonConfig);
     }
     //退款
     //订单支付状态
@@ -100,7 +115,9 @@ public class UserOderController {
         servicecontentService.updatebySERVICECONTENTID(status,id);
         Map<String,Object> msg=new HashMap<>();
         msg.put("msg","success");
-        return JSONObject.fromObject(msg);
+        JsonConfig jsonConfig = new JsonConfig();
+        jsonConfig.registerJsonValueProcessor(java.util.Date.class, new DateJsonValueProcessor("yyyy-MM-dd HH:mm:ss"));
+        return JSONObject.fromObject(msg,jsonConfig);
     }
    //支付全款
    @RequiresRoles("users")
@@ -112,7 +129,9 @@ public class UserOderController {
        servicecontentService.updatebySERVICECONTENTID(status,id);
        Map<String,Object> msg=new HashMap<>();
        msg.put("msg","success");
-       return JSONObject.fromObject(msg);
+       JsonConfig jsonConfig = new JsonConfig();
+       jsonConfig.registerJsonValueProcessor(java.util.Date.class, new DateJsonValueProcessor("yyyy-MM-dd HH:mm:ss"));
+       return JSONObject.fromObject(msg,jsonConfig);
    }
 
 

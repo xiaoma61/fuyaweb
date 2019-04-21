@@ -28,8 +28,6 @@ public class consumer1 {
     RedisUtil redisUtil;
 
 
-
-
     @JmsListener(destination = "zh-topic")
     public void receiveQueue(String text) {
         System.out.println(text+"");

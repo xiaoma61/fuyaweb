@@ -1,0 +1,199 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href=" /css/index.css" rel="stylesheet" type="text/css" />
+<link href=" /css/common.css" rel="stylesheet" type="text/css" />
+<script src=" /js/rotation.js" type="text/javascript"></script>
+<link href=" /css/rotation.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src=" /js/json2.js"></script>
+<title>富雅月嫂</title>
+</head>
+
+<body  bgcolor="#fcfbf6">
+	<center>
+	  <div class="wrapper">
+<div class="header">
+				<div id="picture"><img src=" /img/love.png" width="35%" alt=""/></div>
+				<div id="SiteName">
+			    <table width="100%" >
+					<tr><td align="center"><font size="6em" color="#E97C91">富雅</font></td><td align="center" rowspan="2"  style="border-left:#E97C91 solid 0.1em;"><font size="4em">全心服务，用心呵护。</font></td></tr>
+					<tr><td align="center"><font size="0.1em" color="#E97C91">家庭服务</font></td></tr>
+				  </table>
+			    </div>
+				<div id="number">全国统一服务热线：8888888888</div>
+</div>
+
+<div class="bar">
+			  <div class="bar_tr">
+			  	<div class="bar_td">首页</div>
+				<div class="bar_td" onclick="javascript:location.href='/html/fyys.html' ">富雅月嫂</div>
+				<div class="bar_td" onclick="javascript:location.href='/html/all_organization.html' ">月嫂机构</div>
+				<div class="bar_td" onclick="javascript:location.href='/html/join.html' ">成为月嫂</div>
+				<div class="bar_td" onclick="javascript:location.href='/html/all_recruit.html' ">人才招聘</div>
+				<div class="bar_td" onclick="javascript:location.href='/html/all_knowlage.html' ">母婴知识</div>
+				<div class="bar_td" onclick="javascript:location.href='/html/login.html' ">登陆</div>
+			  </div>
+</div>
+		  
+    <div id="container">
+        <div id="list" style="left: -1200px;">
+            <img src=" /img/a1.jpg" alt="1" />
+            <img src=" /img/a1.jpg" alt="1" />
+            <img src=" /img/a2.jpg" alt="2" />
+            <img src=" /img/a3.jpg" alt="3" />
+            <img src=" /img/a4.jpg" alt="4" />
+            <img src=" /img/a5.jpg" alt="5" />
+            <img src=" /img/a5.jpg" alt="5" />
+        </div>
+      <div id="buttons">
+            <span index="1" class="on"></span>
+            <span index="2"></span>
+            <span index="3"></span>
+            <span index="4"></span>
+            <span index="5"></span>
+        </div>
+        <a href="javascript:;" id="prev" class="arrow"><img src=" /img/prev.png" width="100%" alt=""/></a>
+        <a href="javascript:;" id="next" class="arrow"><img src=" /img/next.png" width="100%" alt=""/></a>
+    </div>
+		  
+
+<script type="text/javascript">
+
+	var w=window.screen.availWidth;
+	$('.wrapper').css('width',w-17+"px");
+    $.ajax({
+        url:'https://campus.gbdev.cn:8060/fuyaweb/index/msg',
+        type:'get',
+        dataType:'json',
+        success:function(data){
+			var obj = JSON.parse(data.yuesobasicinfoListmapJson);
+			var objs = JSON.parse(data.companybasicinfo);
+			var ob = JSON.parse(data.articleListmapJson);
+			for(var i=0;i<4;i++)
+            {
+                var organization; 
+				var o; 
+				var s=""; 
+				organization='<div class="content_example"><div class="content_example_left"><img src=" /img/j1.jpg" width="100%" alt=""/>'+objs[i].CORPORATENAME+'<br>';
+				for(var j=0;j<objs[i].LEVELS;j++)
+				{s+='<img src=" /img/star-.png" width="7%" />';};
+				o='</div><div class="content_example_right" >地址:'+objs[i].ADDRESS+'<br>服务数量：1000<br>简介：'+objs[i].INTRODUCE+'</div><div class="content_example_more1" code="'+objs[i].ID+'"><a href="#"><u>查看更多</u></a></div></div>';
+                $("#hot_organization").append(organization+s+o);
+				var st = $('.content_example_right').eq(i).html(); 
+
+				var nurse;
+				var n; 
+				var u=""; 
+				nurse='<div class="content_example"><div class="content_example_left"><img src=" /img/y1.jpg" width="100%" alt=""/>'+obj[i].NAME+'<br>';
+				for(var j=0;j<obj[i].LEVELS;j++)
+				{u+='<img src=" /img/star-.png" width="7%" />';};
+				n='</div><div class="content_example_right">年龄:'+obj[i].AGE+'<br>类型：月嫂<br>籍贯：'+obj[i].NATIVEPLACE+'<br>评价：'+obj[i].CONTENT+'<br>服务地址：'+obj[i].WORKAREA+'</div><div class="content_example_more2"  code="'+obj[i].ID+'"><a href="#"><u>查看更多</u></a></div></div>';
+				$("#hot_nurse").append(nurse+u+n);
+				var s = $('.content_example_right').eq(2*i).html(); 
+
+            }
+			for(var i=0;i<6;i++)
+            {
+                var news; 
+				var e;
+				var w;
+				news='<div class="content_example_news"><div class="content_news_picture">';
+				if(ob[i].IMAGE===null)
+				{e='<img src=" /img/news.jpg" width="200px" alt=""/>';}
+				else{e=ob[i].IMAGE;}
+				w='</div><div class="content_news" ><div class="content_news_title"><b>'+ob[i].TITLE+'</b></div><div style="cursor: pointer" class="a"  code="'+ob[i].ID+'">'+ob[i].CONTENT+'</div></div></div>';
+                $("#hot_news").append(news+e+w);
+				var str = $('.content_news').eq(i).html(); 
+				overflowhidden("content_news",4,str,i,1);
+            }
+        }
+    })
+	var overflowhidden = function(id, rows, str,j,f){
+		var text = document.getElementsByClassName(id)[j];
+		var lineHeight = 40;   //获取到line-height样式设置的值 必须要有
+		var at = rows*parseInt(lineHeight);      //计算包含文本的div应该有的高度
+		var tempstr = str;                       //获取到所有文本
+		text.innerHTML = tempstr;                //将所有文本写入html中
+		var len = tempstr.length;
+		var i = 0;
+		if(text.offsetHeight <= at){             //如果所有文本在写入html后文本没有溢出，那不需要做溢出处理
+			/*text.innerHTML = tempstr;*/
+		}
+		else {                                   //否则 一个一个字符添加写入 不断判断写入后是否溢出
+			var temp = "";
+			text.innerHTML = temp;
+			while(text.offsetHeight <= at){
+				temp = tempstr.substring(0, i+1);
+				i++;
+				text.innerHTML = temp;
+			}
+			var slen = temp.length;
+			tempstr = temp.substring(0, slen-1);
+			len = tempstr.length;
+			if(f==0)
+			text.innerHTML = tempstr.substring(0, len-7) +"... ";     //替换string后面三个字符 
+			if(f==1)
+			text.innerHTML = tempstr.substring(0, len-7) +"... "+"<span style='color:#787878;cursor: pointer' class='check1' code="+i+">查看全文 >></span>";     //替换string后面三个字符 
+			text.height = at +"px";                                  //修改文本高度 为了让CSS样式overflow：hidden生效
+		}
+
+	};
+	$(".bar_td").eq(0).css('background-color','#f87c60');
+	
+$(document).on('click','.content_example_more1',function(){
+	var code = $(this).attr("code");
+	window.open('html/organization.html?id='+code+'');
+})
+	
+$(document).on('click','.content_example_more2',function(){
+	var code = $(this).attr("code");
+	window.open('html/introduce.html?id='+code+'');
+})
+$(document).on('click','.a',function(){
+	var code = $(this).attr("code");
+	window.open('html/knowlage.html?id='+code+'');
+})	
+</script>
+
+		  <div class="main">
+			 <div class="content" id="hot_organization">
+				 <div class="content_top">
+					 <div class="content_picture"><img src=" /img/mother.png" width="100%" alt=""/></div>
+					 <div class="content_title">金牌育婴机构 ></div>
+				 </div>
+			 </div>
+			 <div class="content" id="hot_nurse">
+				 <div class="content_top">
+					 <div class="content_picture"><img src=" /img/baby.png" width="100%" alt=""/></div>
+					 <div class="content_title">富雅金牌月嫂 ></div>
+				 </div>
+			 </div>
+			 <div class="content" id="hot_news" style="padding-bottom: 5%">
+				 <div class="content_top">
+					 <div class="content_picture"><img src=" /img/book.png" width="100%" alt=""/></div>
+					 <div class="content_title">母婴资讯 ></div>
+				 </div>
+				 
+			 </div>
+
+		  </div>
+		  <div class="footer">
+			  <table cellspacing="5">
+				  <tr><td width="40%">
+			  富雅家庭服务有限公司</td>           
+					  <td>服务热线：8888888888
+					  </td></tr>
+				  <tr>
+				  <td colspan="2">富雅总部地址：广州越秀区广州大道中5号富雅大厦5层</td>
+				  </tr>
+				  <tr>
+				  <td colspan="2">天河直营店地址：广州天河区广州大道中5号富雅大厦5层</td>
+				  </tr>
+			  </table></div>
+		  </div>
+	</center>
+</body>
+</html>

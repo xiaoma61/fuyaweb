@@ -58,5 +58,10 @@ public class ORDERSServiceImpl implements ORDERSService {
         return ordersRepository.findcountByTOID(toid);
     }
 
+    @Override
+    public List<Object> findCommentsByTOID(int toid) {
+        return ordersRepository.findCommentsByTOID(toid);
+    }
+
 
 }

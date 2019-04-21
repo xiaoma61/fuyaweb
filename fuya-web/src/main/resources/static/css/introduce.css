@@ -1,0 +1,243 @@
+.main{
+	width:80%;
+	background-color: #fff;
+	padding:0 0 9% 0;
+	font-size: 16px;
+	overflow: hidden;
+	vertical-align: middle;
+}
+.introduce{
+	width: 80%;
+	padding: 0 0 37% 0;
+	margin: 0 0 5% 0 ;
+}
+.introduce_left{
+	float: left;
+	width:30%;
+	text-align: center;
+	padding: 0 0 3% 0;
+    display:table-cell;
+	margin: 3%;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+}
+.introduce_right{
+	float: left;
+	width:50%;
+	text-align: center;
+	padding: 0 0 0 0;
+	color:#d81e06;
+	margin: 3% 3% 3% 10%;
+}
+.picture{
+	float: left;
+	width:70%;
+	padding: 0 0 80% 0;
+	margin:10% 0 0 15%;
+	overflow: hidden;
+	background-size: auto 200%; 
+}
+#name{
+	float: left;
+	width:70%;
+	margin:13% 0 0 15%;
+	color:#d81e06;
+	font-size: 24px;
+	
+}
+.level{
+	float: left;
+	width:100%;
+	color:#d81e06;
+	font-size: 24px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+#star{
+	float: left;
+	width:25%;
+	color:#d81e06;
+	font-size: 24px;
+	background: url(../img/star-.png) repeat-x  left center ;
+	background-size: auto 50%; 
+	padding: 0 0 10% 0;
+}
+.information{
+	width:23.5%;
+	color: aliceblue;
+	background-color: #d81e06;
+	margin: 4% 0 0 0;
+	padding: 2% 0.8%;
+}
+.information_content{
+	width:100%;
+	color: #000;
+	margin: 0 0 0 0;
+	padding: 0;
+    border-top: 5px solid #d81e06;
+}
+.information_content td{
+	width: 15%;
+	padding: 2% 0.5%;
+	border-bottom: 1px dashed #ccc;
+}
+.td1{
+	background-color: #FFE3E4;
+}
+.book{
+	width:23.5%;
+	color: aliceblue;
+	background-color: #d81e06;
+	margin: 7% 0 0 0;
+	padding: 1.5% 0.8%;
+	border-radius: 50px;
+	float: left;
+	cursor: pointer;
+}
+.collect{
+	width:23.5%;
+	color: aliceblue;
+	background-color: #d81e06;
+	margin: 7% 0 0 50%;
+	padding: 1.5% 0.8%;
+	border-radius: 50px;
+	cursor: pointer;
+}
+.book:hover{
+	background-color: #f07053;
+}
+.collect:hover{
+	background-color: #f07053;
+}
+.title{
+	width: 80%;
+	padding:0 0 0 0 ;
+	margin:0 0 5% 0;
+	background-color: #FFE3E4;
+	border-bottom: 5px solid #d81e06;
+	overflow: hidden;
+}
+.title1{
+	float: left;
+	width:10%;
+	padding: 1% 1%;
+	cursor: pointer;
+}
+.title2{
+	background-color: #d81e06;
+	color: aliceblue;
+}
+.skill{
+	width: 80%;
+	padding:0 0 2% 0 ;
+	margin:0 0 2% 0;
+	text-align: left;
+	border-bottom: 2px dashed #ccc;
+}
+.skill_content{
+	width: 80%;
+	padding:0 0 1% 0 ;
+	margin:0 0 5% 0;
+	text-align: left;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+#certificate{
+
+}
+.certificate{
+	width:25%;
+	padding: 2% ;
+	margin: 0 0 0 13.5% ;
+	float: left;	
+}
+.certificate_picture{
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+	width:90%;
+	padding: 2% ;
+	margin: 0 0 0 0 ;
+}
+.certificate_type{
+	width:30%;
+	color: aliceblue;
+	background-color: #d81e06;
+	margin: 5% 0 0 0;
+	padding: 2% 2%;
+}
+.assessment{
+	width: 80%;
+	padding: 0 0 0 0 ;
+	border-bottom: 2px dashed #ccc;
+	margin:0 0 1% 0 ;
+}
+.customer{
+	width: 100%;
+	padding: 0 0 1% 0 ;
+	text-align: left;
+	font-size: 12px;
+	color: #4D4949;
+}
+.assessment_content{
+	width: 100%;
+	height: auto;
+	padding: 0 0 1% 0 ;
+	text-align: left;
+	font-size: 15px;
+	word-wrap: break-word; 
+	word-break: normal;
+}
+.assessment_picture{
+	width: 100%;
+	padding: 0 0 1% 0 ;
+	text-align: left;
+	overflow: hidden;
+}
+.assessment_picture1{
+	padding: 0 0 0 0 ;
+	float: left;
+	margin:0 1% 0 0 ;
+}
+#comment{
+	background-color: #fff;
+}
+.page{
+		width:25px;
+		height:25px;
+		border-radius: 25px;
+		color: #7B7B7B;
+		padding: 0 0;
+		cursor: pointer;
+		margin-right:5px;
+		font-size: 14px;
+		display: inline-block;
+		line-height: 25px;
+		background-color:#EBEBEB;
+		vertical-align:top;
+	}
+.pageIcon{
+		color: #7B7B7B;
+		padding: 0  ;
+		cursor: pointer;
+		margin-right:5px;
+		font-size: 14px;
+		display: inline-block;
+		border-radius: 25px;
+		width:25px;
+		height:25px;
+		line-height: 25px;
+		background-color:#EBEBEB;
+		vertical-align:top;
+	}
+.pageselect{
+		background-color: #f07053;
+		color: #fff;
+	}
+.pagearea{
+		width: 450px;
+		height:50px;
+		padding: 0 0 0 50% ;
+		vertical-align:top;
+		margin: 0 66% 0 -250px;
+		text-align: center;
+	}

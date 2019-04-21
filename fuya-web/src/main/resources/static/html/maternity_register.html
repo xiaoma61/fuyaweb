@@ -1,0 +1,339 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+<meta http-equiv="Access-Control-Allow-Origin" content=".cn">
+<link href="../css/register.css" rel="stylesheet" type="text/css" />
+<link href="../css/change_div.css" rel="stylesheet" type="text/css" />
+<link href="../css/common.css" rel="stylesheet" type="text/css" />
+<script src="../js/change_div.js"></script>
+<script type="text/javascript" src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/public/header.js"></script>
+	
+<title>成为月嫂</title>
+</head>
+
+<body  bgcolor="#fcfbf6">
+<center>
+	  <div class="wrapper"  style=" background: #fcfbf6 ">
+		<a name="top"><div class="Header1"></div></a>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/ft-carousel.min.js"></script>
+<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript">
+	var arr=[];
+	for(var i=0;i<20;i++)
+		{
+			arr[i]= { "chooseid":"","answer":""};
+		}
+
+	$.ajax({
+        url:'https://campus.gbdev.cn:8060/fuyaweb/Register/problem?type=1',
+        type:'get',
+         dataType:'JSON',  
+        success:function(data){
+		var obj = data.msg;
+			$('.bar_td').eq(6).css('background-color','#f87c60');
+			for(var i=0;i<20;i++){
+				var d;
+				var ii=i+1;
+				arr[i].chooseid=obj[i].CHOOSEID;
+				d='<table class="question"><tr><td>'+ii+'、单选题【2分】</td></tr><tr><td>'+obj[i].TITLE+'</td></tr><tr><td style="font-weight:100;"><label class="test-label"><input type="radio" name="'+obj[i].PROBLEMID+'" value="'+obj[i].ACHOOSE+'" class="test-radio" checked/><span class="test-radioInput"></span>'+obj[i].ACHOOSE+'</label></td></tr><tr><td style="font-weight:100;"><label class="test-label"><input type="radio"name="'+obj[i].PROBLEMID+'"value="'+obj[i].BCHOOSE+'" class="test-radio"/><span class="test-radioInput"></span>'+obj[i].BCHOOSE+'</label></td></tr><tr><td style="font-weight:100;"><label class="test-label"><input type="radio"name="'+obj[i].PROBLEMID+'" value="'+obj[i].CCHOOSE+'" class="test-radio"/><span class="test-radioInput"></span>'+obj[i].CCHOOSE+'</label></td></tr><tr><td style="font-weight:100;"><label class="test-label"><input type="radio"name="'+obj[i].PROBLEMID+'" value="'+obj[i].DCHOOSE+'" class="test-radio"/><span class="test-radioInput"></span>'+obj[i].DCHOOSE+'</label></td></tr></table>';
+				$("#question").append(d);
+			}		
+        },
+		error:function(){}
+    })
+	
+	var step1=false;
+	var step2=false;
+	var step3=false;
+	var step4=false;
+	var step5=false;
+	var fordate1;
+	var fordate2;
+	var fordate3;
+	var fordate4;
+	var fordate5;
+	
+function imgfun(i,d,n){
+	var fordate=new FormData();
+    var fils=$(i).get(0).files[0];
+    fordate.append('file',fils);
+	 $.ajax({
+        url:'https://campus.gbdev.cn:8060/fuyaweb/fileUpload',
+		data:fordate,
+		type:"POST",
+		processData : false,
+		contentType : false,
+		cache: false,
+		success:function(result){//后台返回的路径
+			var objs;
+			if((typeof result=='object')&&result.constructor==Object){
+				objs=result;
+			}else{
+				objs=eval("(" +result+ ")");
+			}
+			
+			if(n==1){
+			$(d).attr("width","180px");
+			$(d).attr("height","200px");
+			}
+			else{
+			$(d).attr("width","300px");
+			$(d).attr("height","200px");		
+			}
+			$(d).attr("src",objs.msg);
+		},
+		 error:function(){
+			 alert("文件太大");
+		 }
+	});
+	if(n==1)
+	{
+		step1=true;
+		fordate1=objs.msg;
+	}
+	if(n==2)
+	{
+		step2=true;
+		fordate2=objs.msg;
+	}
+	if(n==3)
+	{
+		step3=true;
+		fordate3=objs.msg;
+	}
+	if(n==4)
+	{
+		step4=true;
+		fordate4=objs.msg;
+	}
+	if(n==5)
+	{
+		step5=true;
+		fordate5=objs.msg;
+	}
+}
+	
+
+	   function check1(){ 
+		var myform = document.getElementById("m_register"); 
+		   var aSpan=document.getElementsByTagName("span");	
+				var flag=0;
+		   for(var i=0;i<11;i++){
+			   aSpan[i].innerHTML= "";
+		   }
+				for(var i=0;i<11;i++){  //循环form表单
+					  if(myform.elements[i].value==""&&i!=7){
+						  if(i==8||i==9)aSpan[8].innerHTML= "*不能为空";
+						  if(i==10)aSpan[9].innerHTML= "*不能为空";
+						  else aSpan[i].innerHTML= "*不能为空";
+						  myform.elements[i].focus(); 
+						  flag++;
+					  }
+				}if(step1==false){
+					aSpan[7].innerHTML="*照片还没有上传";
+					flag++;}
+			   if(flag!=0)return;
+				change1();
+      }
+	
+	function check2(){ 
+	   var myform = document.getElementById("m_register"); 
+	   var aSpan=document.getElementsByTagName("span");	
+	   		var flag=0;
+	   for(var i=10;i<17;i++){
+		   aSpan[i].innerHTML= "";
+	   }
+            for(var i=15;i<17;i++){  //循环form表单
+                  if(myform.elements[i].value==""){
+					    aSpan[i-1].innerHTML= "*不能为空";
+                        myform.elements[i].focus(); 
+					  	flag++;
+                  }
+            }
+			 if(step2==false){
+				 aSpan[10].innerHTML="*月嫂证还没有上传";
+				 flag++;}
+			 if(step3==false){
+				 aSpan[11].innerHTML="*健康证还没有上传";
+				 flag++;}
+			 if(step4==false){
+				 aSpan[12].innerHTML="*服务图片还没有上传";
+				 flag++;}
+			 if(step5==false){
+				 aSpan[13].innerHTML="*体检报告还没有上传";
+				 flag++;}
+		
+			 if(flag!=0)return;
+            change3();
+      }
+
+	function check3(){
+		for(var i=0;i<20;i++){
+			arr[i].answer=$('.question input:radio:checked').eq(i).val();
+		}
+	$.ajax({
+        url:'https://campus.gbdev.cn:8060/fuyaweb/Register/check',
+        type:'POST',
+		data:{params:arr},
+        dataType:'JSON',  
+		traditional: true,//这里设置为true
+        success:function(data){
+			var score=data.msg;
+			var myform = document.getElementById("m_register"); 
+			myform.append("photo",fordate1); 
+			myform.append("yuesaosyndrome",fordate2); 
+			myform.append("healthcertificates",fordate3); 
+			myform.append("report",fordate4); 
+			myform.append("servicepiceture",fordate5); 
+			myform.append("score",score);
+			myform.submit();
+        },
+		error:function(){}
+    })
+
+
+	}
+</script>
+<form action="https://campus.gbdev.cn:8060/fuyaweb/Register/yuesao" method="post" id="m_register" enctype="multipart/form-data">		  
+  <div class="main">
+	
+	
+	<div class="change_div" id="b1" >
+		<div class="change_div_content">
+	<div class="schedule">	
+	<div class="schedule1" style="color: #E97C91;"><div>基本信息</div><div class="label1" style="background-color: #E97C91;">1</div></div>
+	<div class="schedule2" ><div>相关证明</div><div class="label1">2</div></div>
+	<div class="schedule3" ><div>在线考试</div><div class="label1">3</div></div>
+			</div>
+
+<table style="font-size: 20px" width="33%">
+<tr height="40px" ><td width="30%">姓名：</td><td><input type="text" name="name" style="background:transparent; height:40px; border:2px solid #faa0b1; width: 350px" /></td></tr>
+<tr height="27px" valign="top"><td></td><td><span></span></td></tr>
+
+<tr height="40px" ><td>电话号码：</td><td><input type="text" name="phone" style="background:transparent; height:40px; border:2px solid #faa0b1; width: 350px" oninput = "value=value.replace(/[^\d]/g,'')" maxlength="11"/></td></tr>
+<tr height="27px" valign="top"><td></td><td><span></span></td></tr>
+
+<tr height="40px" ><td>身份证：</td><td><input type="text" name="idcard" style="background:transparent; height:40px; border:2px solid #faa0b1; width: 350px" maxlength="18"/></td></tr>
+<tr height="27px" valign="top"><td></td><td><span></span></td></tr>
+
+<tr height="40px" ><td>年龄：</td><td><input type="text" name="age" style="background:transparent; height:40px; border:2px solid #faa0b1; width: 350px" oninput="value=value.replace(/[^\d]/g,'')"/></td></tr>
+<tr height="27px" valign="top"><td></td><td><span></span></td></tr>
+	
+<tr height="40px" ><td>文化：</td><td><input type="text" name="education" style="background:transparent; height:40px; border:2px solid #faa0b1; width: 350px" /></td></tr>
+<tr height="27px" valign="top"><td></td><td><span></span></td></tr>
+	
+<tr height="40px" ><td>籍贯：</td><td><input type="text" name="nativeplace" style="background:transparent; height:40px; border:2px solid #faa0b1; width: 350px" /></td></tr>
+<tr height="27px" valign="top"><td></td><td><span></span></td></tr>
+	
+<tr height="40px" ><td>邮箱：</td><td><input type="text" name="email" style="background:transparent; height:40px; border:2px solid #faa0b1; width: 350px" /></td></tr>
+<tr height="27px" valign="top"><td></td><td><span></span></td></tr>
+	
+<tr height="40px" valign="middle"><td>照片：</td><td><div class="file-box" ><label for="fil1">上传图片</label><input type="file" id="fil1" class="file-btn" name="photo"  onchange="imgfun(fil1,imgAD1,1)"></div></td></tr>
+<tr height="20px" valign="top"><td></td><td><span></span></td></tr>
+	
+<tr height="240px" valign="top"><td colspan="2"><div class="kuang1"><img alt=""  id="imgAD1" width="180px" height="200px"> </div></td></tr>
+	
+<tr height="40px"><td>身高体重：</td><td width="40px"><input type="text" name="height" style="background:transparent; height:40px;border:2px solid #faa0b1; width: 120px" oninput="value=value.replace(/[^\d]/g,'')">  cm   &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" name="widght" style="background:transparent; height:40px;border:2px solid #faa0b1; width: 120px" oninput="value=value.replace(/[^\d]/g,'')">  kg</td></tr>
+<tr height="27px" valign="top"><td></td><td><span></span></td></tr>
+	
+<tr height="40px" ><td>服务地址：</td><td><input type="text" name="workarea" style="background:transparent; height:40px; border:2px solid #faa0b1; width: 350px" /></td></tr>
+<tr height="27px" valign="top"><td></td><td><span></span></td></tr>
+	
+	</table>
+
+	<a href="#top"><div class="finish" onClick="check1()" >		
+		下一步
+	</div></a>
+		</div>
+			<div class="Footer"></div>
+		  </div>
+		  
+	
+	<div class="change_div" id="b2" style="display: none">
+		<div class="change_div_content">
+	<div class="schedule">	
+	<div class="schedule1"><div>基本信息</div><div class="label1" >1</div></div>
+	<div class="schedule2" style="color: #E97C91;"><div>相关证明</div><div class="label1" style="background-color: #E97C91;">2</div></div>
+	<div class="schedule3" ><div>在线考试</div><div class="label1">3</div></div>
+			</div>
+
+<table style="font-size: 20px" width="33%">
+<tr height="40px" valign="middle"><td>月嫂证：</td><td><div class="file-box" ><label for="fil2">上传图片</label><input type="file" id="fil2" class="file-btn" name="yuesaosyndrome" onchange="imgfun(fil2,imgAD2,2)"></div></td></tr>
+<tr height="27px" valign="top"><td></td><td><span></span></td></tr>
+	
+<tr height="250px"  valign="top"><td colspan="2"><div class="kuang"><img alt=""  id="imgAD2" width="300px" height="200px"> </div></td></tr>
+
+<tr height="40px" valign="middle"><td>健康证：</td><td><div class="file-box" ><label for="fil3">上传图片</label><input type="file" id="fil3" class="file-btn" name="healthcertificates" onchange="imgfun(fil3,imgAD3,3)"></div></td></tr>
+<tr height="27px" valign="top"><td></td><td><span></span></td></tr>
+
+<tr height="250px" valign="top"><td colspan="2"><div class="kuang"><img alt=""  id="imgAD3" width="300px" height="200px"> </div></td></tr>
+
+<tr height="40px" valign="middle"><td>服务图片：</td><td><div class="file-box" ><label for="fil4">上传图片</label><input type="file" id="fil4" class="file-btn" name="report" onchange="imgfun(fil4,imgAD4,4)"></div></td></tr>
+<tr height="27px" valign="top"><td></td><td><span></span></td></tr>
+	
+<tr height="250px" valign="top"><td colspan="2"><div class="kuang"><img alt=""  id="imgAD4" width="300px" height="200px"> </div></td></tr>
+	
+
+<tr height="40px" valign="middle"><td>体检报告：</td><td><div class="file-box" ><label for="fil5">上传图片</label><input type="file" id="fil5" class="file-btn" name="servicepiceture" onchange="imgfun(fil5,imgAD5,5)"></div></td></tr>
+<tr height="27px" valign="top"><td></td><td><span></span></td></tr>
+	
+<tr height="250px" valign="top"><td colspan="2"><div class="kuang"><img alt=""  id="imgAD5" width="300px" height="200px"> </div></td></tr>
+	
+<tr height="40px"><td  width="30%">工资要求：</td><td width="90%"><input type="text" name="wages" style="background:transparent; height:40px; border:2px solid #faa0b1; width: 350px" /></td></tr>
+<tr height="27px" valign="top"><td></td><td><span></span></td></tr>
+
+<tr height="40px"><td>服务年限：</td><td width="90%"><input type="text" name="seniority" style="background:transparent; height:40px; border:2px solid #faa0b1; width: 350px" /></td></tr>
+<tr height="27px" valign="top"><td></td><td><span></span></td></tr>
+	
+<tr height="40px" valign="bottom"><td>类型：</td><td>
+	<label class="test-label"><input type="radio" name="yuesaotype" value="月嫂" class="test-radio" checked/><span class="test-radioInput"></span>月嫂</label>
+	<label class="test-label"><input type="radio" name="yuesaotype" value="育婴师" class="test-radio"/><span class="test-radioInput"></span>育婴师</label></td><td><span></span></td></tr>
+	</table>
+			
+
+
+<a href="#top" style="color: aliceblue"><div class="finish1" onClick="change2()">	
+	上一步</div></a>
+<a href="#top" style="color: aliceblue"><div class="finish1" onClick="check2()">	
+	下一步</div></a>
+
+
+		  </div>	
+			<div class="Footer"></div>	
+</div>
+	
+	
+	
+	<div class="change_div" id="b3"   style="display: none">
+		<div class="change_div_content">
+	<div class="schedule">	
+	<div class="schedule1"><div>基本信息</div><div class="label1" >1</div></div>
+	<div class="schedule2" ><div>相关证明</div><div class="label1">2</div></div>
+	<div class="schedule3" style="color: #E97C91;"><div>在线考试</div><div class="label1" style="background-color: #E97C91;">3</div></div>
+			</div>
+		<div id="question"></div>	
+<a href="#top" style="color: aliceblue"><div class="finish1" onClick="change1()">	
+	上一步</div></a>
+		<input class="finish1" type="button" value="完成注册" onclick="check3()" style="outline:none;border: 0;font-size: 20px;font-weight: 800">
+
+		  </div>	
+			<div class="Footer"></div>
+</div>
+	
+	
+	
+		  </div></form>
+
+	  
+	</div>
+</center>	
+	
+</body>
+	<script src="../js/common.js" type="text/javascript"></script>
+</html>
+

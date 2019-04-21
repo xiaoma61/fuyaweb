@@ -1,0 +1,207 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="../css/register.css" rel="stylesheet" type="text/css" />
+<link href="../css/change_div.css" rel="stylesheet" type="text/css" />
+<link href="../css/common.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+<script src="../js/change_div.js"></script>
+<script src="../js/public/header.js"></script>
+<title>企业注册</title>
+</head>
+
+<body  bgcolor="#fcfbf6">
+<center>
+	  <div class="wrapper"  style=" background: #fcfbf6 ">
+		  <a name="top"><div class="Header1"></div></a>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/ft-carousel.min.js"></script>
+<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript">
+	setTimeout(function(){$('.bar_td').eq(6).css('background-color','#f87c60');},100);
+	var step1=false;
+	var step2=false;
+	var fordate1;
+	var fordate2;
+	function imgfun(i,d,n){
+	var fordate=new FormData();
+    var fils=$(i).get(0).files[0];
+	fordate.append("file",fils);
+	 $.ajax({
+        url:'https://campus.gbdev.cn:8060/fuyaweb/fileUpload',
+		data:fordate,
+		type:"POST",
+		processData : false,
+		contentType : false,
+		cache: false,
+		success:function(result){//后台返回的路径
+			var objs;
+			if((typeof result=='object')&&result.constructor==Object){
+				objs=result;
+			}else{
+				objs=eval("(" +result+ ")");
+			}
+			alert(objs.msg);
+			$(d).attr("width","300px");
+			$(d).attr("height","200px");
+			$(d).attr("src",objs.msg);
+		}
+	});
+	if(n==1)
+{	step1=true;
+ 	fordate1=objs.msg;
+}
+	if(n==2)
+{	step2=true;
+ 	fordate2=objs.msg;
+}
+}
+	
+
+	   function check1(){ 
+	var myform = document.getElementById("c_register"); 
+	   var aSpan=document.getElementsByTagName("span");	
+	   		var flag=0;
+	   for(var i=0;i<4;i++){
+		   aSpan[i].innerHTML= "";
+	   }
+            for(var i=0;i<4;i++){  //循环form表单
+                  if(myform.elements[i].value==""){
+					    aSpan[i].innerHTML= "*不能为空";
+                        myform.elements[i].focus(); 
+					  	flag++;
+                  }
+            }if(flag!=0)return;
+	      	 if((myform.elements[2]!=""&&myform.elements[3].value!="")&&myform.elements[2].value!=myform.elements[3].value){
+					aSpan[3].innerHTML= "*两次密码输入不一致";
+					return;
+				}
+            change1();
+      }
+	
+		   function check2(){ 
+	   var myform = document.getElementById("c_register"); 
+	   var aSpan=document.getElementsByTagName("span");	
+	   		var flag=0;
+	   for(var i=4;i<13;i++){
+		   aSpan[i].innerHTML= "";
+	   }
+            for(var i=4;i<11;i++){  //循环form表单
+                  if(myform.elements[i].value==""){
+					    aSpan[i].innerHTML= "*不能为空";
+                        myform.elements[i].focus(); 
+					  	flag++;
+                  }
+            }
+			 if(step1==false){
+				 aSpan[11].innerHTML="*身份证电子版还没有上传";
+				 flag++;}
+			 if(step2==false){
+				 aSpan[12].innerHTML="*营业执照电子版还没有上传";
+				 flag++;}
+			 if(flag!=0)return;
+			myform.append("idcardfile",fordate1);
+			myform.append("licenefile",fordate2);
+            myform.submit();
+      }
+</script>
+		  
+<form action="https://campus.gbdev.cn:8060/fuyaweb/Register/company" method="post" id="c_register" enctype="multipart/form-data" >		  
+<div class="main" >
+	
+		<div class="change_div" id="b1">
+		<div class="change_div_content">
+			
+			
+	<div class="schedule">	
+	<div class="schedule1" style="color:#E97C91; "><div>填写账号信息</div><div class="label1" style="background-color: #E97C91;">1</div></div>
+	<div class="schedule3" ><div>商家信息认证</div><div class="label1">2</div></div>
+	</div>
+			
+<table style="font-size: 20px" width="33%">
+<tr height="40px"><td width="30%">用户名：</td><td><input type="text" name="name" style="background:transparent; height:40px;border:2px solid #faa0b1; width: 350px" id="nam"/></td></tr>
+<tr height="27px" valign="top"><td></td><td><span></span></td></tr>
+	
+<tr height="40px"><td>电话号码：</td><td ><input type="text" name="phone" style="background:transparent; height:40px; border:2px solid #faa0b1;width: 350px" id="num"/></td></tr>
+<tr height="27px" valign="top"><td></td><td><span></span></td></tr>
+
+<tr height="40px"><td>密码：</td><td><input type="password" name="password" style="background:transparent; height:40px;border:2px solid #faa0b1;width: 350px" id="pas"/></td></tr>
+<tr height="27px" valign="top"><td></td><td><span></span></td></tr>
+
+<tr height="40px"><td>确认密码：</td><td><input type="password" name="yourcheck" style="background:transparent; height:40px;border:2px solid #faa0b1;width: 350px" id="pas2"/></td></tr>
+<tr height="27px" valign="top"><td></td><td><span></span></td></tr>
+	
+	</table>
+
+	<a href="#top"><div class="finish"  onclick="check1()">		
+		下一步
+	</div></a>
+		</div>
+			<div class="Footer"></div>	
+		  </div>
+		  
+	<div class="change_div" id="b2" style="display: none">
+		<div class="change_div_content">
+
+			
+	<div class="schedule">	
+	<div class="schedule1"><div>填写账号信息</div><div class="label1">1</div></div>
+	<div class="schedule3" style="color:#E97C91; " ><div>商家信息认证</div><div class="label1" style="background-color: #E97C91;">2</div></div>
+	</div>
+			
+<table style="font-size: 20px" width="42%">
+<tr height="40px" ><td width="30%">联系人姓名：</td><td><input type="text" name="contactname" style="background:transparent; height:40px;border:2px solid #faa0b1; width: 350px"/></td></tr>
+<tr height="27px" valign="top"><td></td><td><span></span></td></tr>
+
+<tr height="40px" ><td>联系人电话：</td><td><input type="text" name="contantphone" style="background:transparent; height:40px;border:2px solid #faa0b1; width: 350px"/></td></tr>
+<tr height="27px" valign="top"><td></td><td><span></span></td></tr>
+	
+<tr height="40px" ><td>联系人电子邮箱：</td><td><input type="text" name="email" style="background:transparent; height:40px;border:2px solid #faa0b1; width: 350px" /></td></tr>
+<tr height="27px" valign="top"><td></td><td><span></span></td></tr>
+
+<tr height="40px" ><td>公司名称：</td><td><input type="text" name="corporatename" style="background:transparent; height:40px;border:2px solid #faa0b1; width: 350px"/></td></tr>
+<tr height="27px" valign="top"><td></td><td><span></span></td></tr>
+	
+<tr height="40px" ><td>营业执照注册码：</td><td><input type="text" name="liceneno" style="background:transparent; height:40px;border:2px solid #faa0b1; width: 350px" /></td></tr>
+<tr height="27px" valign="top"><td></td><td><span></span></td></tr>
+
+<tr height="40px" ><td>身份证号：</td><td><input type="text" name="idcard" style="background:transparent; height:40px;border:2px solid #faa0b1; width: 350px" /></td></tr>
+<tr height="27px" valign="top"><td></td><td><span></span></td></tr>
+
+<tr height="40px" ><td>公司地址：</td><td><input type="text" name="address" style="background:transparent; height:40px;border:2px solid #faa0b1; width: 350px"/></td></tr>
+<tr height="27px" valign="top"><td></td><td><span></span></td></tr>
+
+<tr height="40px" valign="middle"><td>身份证电子版：</td><td> <div class="file-box" ><label for="fil1">上传图片</label><input type="file" id="fil1" class="file-btn" name="idcardfile" onchange="imgfun(fil1,imgAD1,1)"></div></td></tr>
+<tr height="27px" valign="top"><td></td><td><span></span></td></tr>
+	
+<tr height="250px" valign="top"><td colspan="2"><div class="kuang"><img alt=""  id="imgAD1" width="300px" height="200px"> </div></td></tr>
+
+<tr height="40px" valign="middle"><td>营业执照电子版：</td><td><div class="file-box"><label for="fil2">上传图片</label><input type="file" id="fil2" class="file-btn" name="licene" onchange="imgfun(fil2,imgAD2,2)"></div></td></tr>
+<tr height="27px" valign="top"><td></td><td><span></span></td></tr>
+	
+<tr height="250px" valign="top"><td colspan="2"><div class="kuang"><img alt=""  id="imgAD2" width="300px" height="200px"> </div></td></tr>
+	
+
+
+	</table>
+<a href="#top" style="color: aliceblue"><div class="finish1" onClick="change2()">	
+	上一步</div></a>
+		<input class="finish1" type="button" value="完成注册" onclick="check2()" style="outline:none;border: 0;font-size: 20px;font-weight: 800">
+
+</div>
+			<div class="Footer"></div>
+
+		  </div>	
+
+</div>
+		  </form>
+
+	  
+	</div>
+</center>	
+	
+</body>
+<script src="../js/common.js" type="text/javascript" ></script>
+</html>

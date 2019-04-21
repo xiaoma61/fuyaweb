@@ -32,7 +32,7 @@ public class ARTICLESolrServiceImpl implements ARTICLESolrService {
         solrQuery.setStart(start);
         solrQuery.setRows(rows);
         solrQuery.setSort("NUMS", SolrQuery.ORDER.desc);
-        SearchResult searchResult=articleSearchdao.Search(solrQuery,1);
+        SearchResult searchResult=articleSearchdao.Search(solrQuery,type);
 
         return searchResult;
     }

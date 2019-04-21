@@ -5,12 +5,16 @@ import com.fuya.fuyadao.model.CompanysInfosModle;
 import com.fuya.fuyaservice.COMPANYBASICINFOService;
 import com.fuya.fuyaservice.COMPANYINFOService;
 import com.fuya.fuyaservice.USERService;
+import com.fuya.fuyautil.JpaPageHelperUtil;
+
+
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import net.sf.json.JSONObject;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -18,7 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.*;
 
 @Controller
-
+@CrossOrigin
 public class AdmincompanyController {
     @Autowired
     COMPANYINFOService companyinfoService;
@@ -47,8 +51,9 @@ public class AdmincompanyController {
         }
 
 
-        PageHelper.startPage(start,rows);
-        PageInfo<CompanyInfo>pageInfo=new PageInfo<>(companyInfoList);
+
+        PageInfo pageInfo=JpaPageHelperUtil.SetStartPage(companyInfoList,start+1,rows);
+       /* PageInfo<CompanyInfo>pageInfo=new PageInfo<>(companyInfoList);*/
         Map<String,Object> msg=new HashMap<>();
         msg.put("msg",pageInfo);
         return JSONObject.fromObject(msg);
@@ -63,8 +68,8 @@ public class AdmincompanyController {
 
 
         List<CompanysInfosModle>companysInfosModleList=companybasicinfoService.findCOMPANYBASICINFOByCORPORATENAMELike(name);
-        PageHelper.startPage(start,rows);
-        PageInfo<CompanysInfosModle>pageInfo=new PageInfo<>(companysInfosModleList);
+        PageInfo pageInfo=JpaPageHelperUtil.SetStartPage(companysInfosModleList,start+1,rows);
+
         Map<String,Object> msg=new HashMap<>();
         msg.put("msg",pageInfo);
         return JSONObject.fromObject(msg);

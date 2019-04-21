@@ -4,6 +4,7 @@ import com.fuya.fuyadao.entity.USERS;
 import com.fuya.fuyadao.model.AdminYuesaoinfo;
 import com.fuya.fuyadao.model.PROVEINFOANDBAISINFO;
 import com.fuya.fuyaservice.*;
+import com.fuya.fuyautil.JpaPageHelperUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import net.sf.json.JSONObject;
@@ -14,6 +15,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -25,6 +27,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
+@CrossOrigin
 public class AdminyuesaoController {
     @Autowired
     private YUESOBASICINFOService yuesobasicinfoService;
@@ -69,8 +72,8 @@ public class AdminyuesaoController {
             adminYuesaoinfofoList.add(adminYuesaoinfo);
         }
 
-        PageHelper.startPage(start,rows);
-        PageInfo<AdminYuesaoinfo> pageInfo=new PageInfo<>(adminYuesaoinfofoList);
+        PageInfo pageInfo= JpaPageHelperUtil.SetStartPage(adminYuesaoinfofoList,start+1,rows);
+  /*      PageInfo<AdminYuesaoinfo> pageInfo=new PageInfo<>(adminYuesaoinfofoList);*/
         Map<String,Object> msg=new HashMap<>();
         msg.put("msg",pageInfo);
         return JSONObject.fromObject(msg);
@@ -81,7 +84,7 @@ public class AdminyuesaoController {
     @ResponseBody
     public JSONObject checkyuesao(@RequestParam(name = "start",defaultValue = "0")int start, @RequestParam(name = "rows",defaultValue = "10")int rows){
 
-        int type=2;
+        int type=3;
         List<Object> objectList=yuesobasicinfoService.findByTYPE(type);
 
         List<AdminYuesaoinfo> adminYuesaoinfofoList=new ArrayList<>();
@@ -114,14 +117,10 @@ public class AdminyuesaoController {
     @ResponseBody
     public JSONObject uncheckyuesaopass(@RequestParam(name = "id",defaultValue = "0")int id) throws IOException, SolrServerException {
 
-        int type=3;
+        int type=4;
         //更新
         USERS users=userService.findByID(id);
         userService.updatebyuserid(type,id);
-     /*   usersSolrservice.delete(id);
-        usersSolrservice.addUSER(id);*/
-        //查找邮箱
-//        yuesobasicinfoService.findByUSERSID(id);
 
         String email=yuesobasicinfoService.findEMILbyUERSID(id);
 

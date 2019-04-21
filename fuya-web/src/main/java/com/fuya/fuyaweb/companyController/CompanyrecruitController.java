@@ -12,7 +12,11 @@ import net.sf.json.JSONObject;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -28,18 +32,19 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Controller
+@CrossOrigin
 public class CompanyrecruitController {
     @Autowired
     RECRUITService recruitService;
-    @Autowired
+ /*   @Autowired
     private Queue queue;
     @Autowired
     private Topic topic;
     @Autowired
-    private ProductService productService;
+    private ProductService productService;*/
 
-    @Autowired
-    private RECRUITSolrService recruitSolrService;
+    /*@Autowired
+    private RECRUITSolrService recruitSolrService;*/
     //添加招聘信息
     @RequiresRoles("company")
     @RequestMapping("/companys/recruit/add")
@@ -50,7 +55,7 @@ public class CompanyrecruitController {
                           @RequestParam(name = "workbackgound",defaultValue = "很好的公司")String workbackgound,
                           @RequestParam(name = "starttime",defaultValue = "2018-01-09")String starttime,
                           @RequestParam(name = "endtime",defaultValue = "2018-01-12")String endtime, @RequestParam(name = "position",defaultValue = "程序员")String position,
-                          @RequestParam(name = "salary",defaultValue = "工资")String salary, @RequestParam(name = "education",defaultValue = "教育水平")String education,
+                          @RequestParam(name = "salary",defaultValue = "1000")String salary, @RequestParam(name = "education",defaultValue = "教育水平")String education,
                           @RequestParam(name = "workarea",defaultValue = "北京")String workarea, HttpServletRequest request) throws ParseException {
         HttpSession session=request.getSession();
         int id= (int) session.getAttribute("id");
@@ -61,7 +66,7 @@ public class CompanyrecruitController {
         recruit.setHIGHLIGHT(hightlight);
         recruit.setLINKMAN(linkman);
         recruit.setPHONE(phone);
-        recruit.setDESCRIBE(describe);
+        recruit.setRDESCRIBE(describe);
         recruit.setWORKBACKGROUND(workbackgound);
         recruit.setTIME(TimeUtil.getsqldate(new Date()));
         recruit.setSTARTTIME(TimeUtil.stringtodate(starttime));
@@ -71,7 +76,7 @@ public class CompanyrecruitController {
         recruit.setEDUCATION(education);
         recruit.setWORKAREA(workarea);
         recruitService.save(recruit);
-        productService.sendMessage(this.topic,"recruit-add:"+recruit.getRECRUITID());
+      /*  productService.sendMessage(this.topic,"recruit-add:"+recruit.getRECRUITID());*/
 
         Map<String,String> msg=new HashMap<>();
         msg.put("msg","success");
@@ -81,13 +86,17 @@ public class CompanyrecruitController {
     @RequiresRoles("company")
     @RequestMapping("/companys/recruits")
     @ResponseBody
-    public JSONObject recruitlist(@RequestParam(name = "start",defaultValue = "0")int start,@RequestParam(name = "rows",defaultValue = "10")int rows
+    public  Map<String, Object> recruitlist(@RequestParam(name = "start",defaultValue = "0")int start,@RequestParam(name = "rows",defaultValue = "10")int rows
             , HttpServletRequest request) throws IOException, SolrServerException {
         HttpSession session=request.getSession();
         int id= (int) session.getAttribute("id");
-        SearchResult searchResult= recruitSolrService.SearchRECRUITByUserid(id,start,rows);
-        searchResult.setTotalPage(TotalPages.GetIMage(searchResult.getObjects().size(),rows));
-        return JSONObject.fromObject(searchResult);
+        Pageable pageable = new PageRequest (start, rows);
+        Page<RECRUIT>page= recruitService.findByUSERID(id,pageable);
+        Map<String,Object> msg=new HashMap<>();
+        msg.put("msg",page);
+       /* SearchResult searchResult= recruitSolrService.SearchRECRUITByUserid(id,start,rows);
+        searchResult.setTotalPage(TotalPages.GetIMage(searchResult.getObjects().size(),rows));*/
+        return msg;
 
 
     }
@@ -95,12 +104,12 @@ public class CompanyrecruitController {
     @RequiresRoles("company")
     @RequestMapping("/companys/recruit/id")
     @ResponseBody
-    public JSONObject recruitlist(@RequestParam(name = "id")int id) throws IOException, SolrServerException {
-        SearchResult searchResult= recruitSolrService.SearchRECRUITByid(id);
-        RECRUITmodel recruiTmodel= (RECRUITmodel) searchResult.getObjects().get(0);
+    public Map<String, Object> recruitlist(@RequestParam(name = "id")int id) throws IOException, SolrServerException {
+
+        RECRUIT page= recruitService.findByID(id);
         Map<String,Object> msg=new HashMap<>();
-        msg.put("msg",recruiTmodel);
-        return JSONObject.fromObject(msg);
+        msg.put("msg",page);
+        return msg;
     }
     //删除
     @RequiresRoles("company")
@@ -108,7 +117,7 @@ public class CompanyrecruitController {
     @ResponseBody
     public JSONObject recruitdelete(@RequestParam(name = "id")int id) throws IOException, SolrServerException {
 
-        recruitSolrService.DeleteByRECRUITID(id);
+/*        recruitSolrService.DeleteByRECRUITID(id);*/
         //数据库删除
         recruitService.delete(id);
         Map<String,String> msg=new HashMap<>();
@@ -137,7 +146,7 @@ public class CompanyrecruitController {
         //数据库删除
         recruitService.updateRECRUITbyid(nums,describe,education,TimeUtil.stringtodate(endtime),workbackgound,hightlight,linkman,phone,position,salary,TimeUtil.stringtodate(starttime),
                 TimeUtil.getsqldate(new Date()),workarea,id);
-        recruitSolrService.UpdateByRECRUITID(id);
+   /*     recruitSolrService.UpdateByRECRUITID(id);*/
         Map<String,String> msg=new HashMap<>();
         msg.put("msg","success");
         return JSONObject.fromObject(msg);

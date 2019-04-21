@@ -1,0 +1,86 @@
+body,h1,h2,h3,h4,h5,h6,p,ol,ul{
+margin: 0;
+}
+a {  text-decoration: none; }
+em{
+font-style:normal;
+}
+ul,
+ol,
+li,
+div {
+	margin: 0;
+	padding: 0;
+}
+
+ul,
+ol {
+	list-style: none;
+}
+
+*{  
+     margin: 0;  
+     padding: 0;
+	 font-family:"Microsoft YaHei",微软雅黑,"MicrosoftJhengHei",华文细黑,STHeiti,MingLiu;
+   }  
+html,body{  
+	 height:100%;
+	 width: 100%;
+   } 
+ .wrapper {
+	 position:relative;
+	 font:  'Microsoft Yahei';
+	 background-color: #fff;
+   }
+.header{
+	background-color:#fcfbf6;
+	padding:0 0 5.2% 0;
+	width: 100%;
+}
+#picture{
+	width:10%;
+	float: left;
+	text-align:right;
+	margin:0.5% 0 0 5%;
+}
+#SiteName{
+	text-align:left;
+	width:20%;
+	float: left;
+	margin:0.5% 0 0 0;
+}
+#number{
+	float: right;
+	width: 25%;
+	margin:2% 5% 0 0;
+	font-size: 16px;
+}
+.bar{
+	background-color:#f07053;
+	width: 80%;
+	padding:0 10% 0 10%;
+	display: table;
+	font-size: 16px;
+	text-align: center;
+}
+.bar_tr{
+	display: table-row;
+}
+.bar_td{
+	display: table-cell;
+	color: #fff;
+	width:8%;
+	padding: 0.5% 0;
+	cursor: pointer;
+}
+.bar_td:hover{
+	background-color: #f87c60;
+}
+.footer{
+	background-color:#f07053;
+	padding:1% 0 1% 0;
+	width: 100%;
+	color: aliceblue;
+	font-size: 16px;
+	font-weight:100;
+}

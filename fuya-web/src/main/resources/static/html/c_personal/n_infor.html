@@ -1,0 +1,706 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="../../js/jquery.min.js" type="text/javascript"></script>
+<link href="../../css/form.css" rel="stylesheet" type="text/css" />
+<script src="../../js/n_infor.js" type="text/javascript"></script>
+<title>无标题文档</title>
+</head>
+<style>
+	.form_search_item{
+		width: 400px;
+		height: 40px;
+		padding: 0;
+		line-height: 40px;
+		margin:0 0 0 200px;
+	}
+	.check_middle{
+		height:550px;
+		margin:50px 0 0 0 ;
+	}
+	.check_middle_left{
+		width:43%;
+		float: left;
+	}
+	.check_middle_right{
+		width:54%;
+		display: inline-block;
+		margin-left: 20px;
+	}
+	.item{
+		width:100%;
+		height:30px;
+		margin:10px 0 20px 0 ;
+	}
+	.item_title{
+		width:28%;
+		height: 30px;
+		display: inline-block;
+		vertical-align:middle;
+		line-height: 30px;
+		text-align: left;
+		color: #f07053;
+	}
+	.item_content{
+		width:70%;
+		height: 30px;
+		border:2px solid #f07053;
+		display: inline-block;
+		margin: 0 0 0 0;
+		vertical-align:middle;
+		color: #f07053;
+		line-height: 30px;
+	}
+	.item_content2{
+		width:70%;
+		height: 30px;
+		display: inline-block;
+		margin: 0 0 0 0;
+		vertical-align:middle;
+		color: #f07053;
+		line-height: 30px;
+	}
+	.item_content2 ul{
+		margin:0;
+		padding: 0;
+		color: #f07053;
+	}
+	.item_content2 ul li{
+		list-style:none;
+		display: inline-block;
+		border:2px solid #f07053;
+		width: 30%;
+		height: 30px;
+		margin: 0 2% 0 0;
+		vertical-align:middle;
+
+	}
+	.em{
+		margin:0 8.5% 0 0 ;
+	}
+	.n_picture{
+		width: 150px;
+		height:200px;
+		margin: auto;
+		border: 2px solid #f07053;
+		overflow: hidden;
+	    display: flex;
+	    justify-content: center;
+	    align-items: center;  
+	}
+	.certify_content{
+		width:87%;
+		padding:15px;
+		border: 2px solid #f07053;
+		overflow-y: auto;
+		height: 200px;
+		margin: 50px auto 0 auto;
+	}
+	.certify{
+		width: 204px;
+		float: left;
+		margin:1% 1.7% 1% 1.7%;
+	}
+	.certify_picture{
+		padding: 5.5%;
+		border: 2px solid #f07053;
+		position: relative;
+	}
+	.certify_title{
+		padding:4px;
+		width: 80px;
+		color: #f07053;
+		text-align: center;
+		margin: 10px auto 0 auto;
+	}
+	.certify_add{
+		padding: 76px 0 80px 62px ;
+		border: 2px solid #f07053;
+		cursor: pointer;
+		background:url(../../img/add.png)   no-repeat  center;
+		background-size:80px;
+		overflow: hidden;
+		position: relative;
+	}
+	.delete{
+		display: none;
+		position: absolute;
+		width: 100%;
+		background: rgba(240,112,83,0.4) url(../../img/delete.png) no-repeat center;
+		background-size: 20%;
+		top: 0;
+		left:0;
+		padding: 0 0 80% 0 ;
+	}
+	.certify_picture:hover .delete{
+		display: block;
+	}
+	td input[type=text]{
+		border: none;
+	}
+	.file-box{	
+		display: inline-block;
+		position: relative;
+		padding: 1% 2%;
+		overflow: hidden;
+		color:#fff;
+		background-color: #f07053;
+		border-radius: 3px;
+		font-weight:500;
+		margin: 0 0 -30px 0;
+	}
+	.file-btn{
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		outline: none;
+		background-color: transparent;
+		filter:alpha(opacity=0);
+		-moz-opacity:0;
+		-khtml-opacity: 0;
+		opacity: 0;
+		cursor: pointer;
+	}
+	.add{
+		position: absolute;
+		width: 85%;
+		height: 700px;
+		display: none;
+		background-color: #fff;
+	    z-index:1002; 
+		top: 20px;
+		padding: 5%;
+		overflow: hidden;
+		box-shadow:0 0 10px #909090;
+	}
+	.add_picture{
+		padding: 20px;
+		width: 500px;
+		margin:0 auto 0 auto;
+	}
+	.add_title{
+		padding:4px;
+		width: 200px;
+		color: #fff;
+		text-align: center;
+		margin: 20px auto 70px auto;
+		height: 50px;
+		border: 4px solid #f07053;
+	}
+	.add-btn{
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		outline: none;
+		background-color: transparent;
+		filter:alpha(opacity=0);
+		-moz-opacity:0;
+		-khtml-opacity: 0;
+		opacity: 0;
+		cursor: pointer;
+	}
+	.add_title input[type=text]{
+		border: none;
+		font-size: 20px;
+		color: #f07053;
+	}
+	.add span{
+		margin:0 50px 0 50px;
+		background-color: #f07053;
+		color: #fff;
+		padding: 10px 20px;
+		cursor: pointer;
+	}
+	.item_content input[type=text]{
+		border: none;
+		color: #f07053;
+	}
+	.item_content2 input[type=text]{
+		border: none;
+		color: #f07053;
+	}
+	#add{
+		
+	}
+	#add a{
+		margin-right: 10px;
+		cursor: pointer;
+	}
+	</style>
+<script  type="text/javascript">
+/*
+    $.ajax({
+        url:'../../data.json',
+        type:'get',
+        dataType:'json',
+        success:function(data){
+            //方法中传入的参数data为后台获取的数据
+			success(data,10);
+        }
+    })
+	
+
+	
+	function success(data,n){
+			$("#tabletest .testtd").html('');
+			$("#page").html('');
+			$("p").html('');
+			var num=n;
+			var first=0;
+			var last=first+num;
+			var current=1;
+			var count=Math.ceil(data.data.length/num);
+			$("p").append("共"+data.data.length+"条"+"共"+count+"页");
+			
+			if(count!=1){
+			var pageIcon=[];
+			var pageN=[];
+			pageIcon[0]='<span  class="pageIcon" selectPage="fir"><<</span>';
+			pageIcon[1]='<span  class="pageIcon"  selectPage="pre"><</span>';
+			pageIcon[2]='<span  class="pageIcon"  selectPage="next">></span>';
+			pageIcon[3]='<span  class="pageIcon"  selectPage="las">>></span>';
+			for(var j=1;j<=count;j++){	
+				pageN[j-1]='<span class="page" selectPage="'+j+'">'+j+'</span>';
+			 }
+			$('#page').append(pageIcon[0]);
+			$('#page').append(pageIcon[1]);
+			if(count<3){
+			for(var j=1;j<=count;j++)
+				$('#page').append(pageN[j-1]);
+			}
+			else{
+			for(var j=1;j<=3;j++)
+				$('#page').append(pageN[j-1]); 
+			}
+			$('#page').append(pageIcon[2]);
+			$('#page').append(pageIcon[3]);
+			$('.page').eq(0).addClass('pageselect');
+			}
+			addformdata(data);
+			
+			function addpage(c){
+			$("#page").html('');
+			$('#page').append(pageIcon[0]);
+			$('#page').append(pageIcon[1]);
+			var be=parseInt(c)-1;
+			var af=parseInt(c)+1;
+			if(c==1){
+			for(var j=1;j<=3;j++){	
+			$('#page').append(pageN[j-1]);}
+			$('.page').eq(0).addClass('pageselect');
+			}
+			else if(c==count){
+			for(var j=count-2;j<=count;j++){	
+			$('#page').append(pageN[j-1]);}
+			$('.page').eq(2).addClass('pageselect');
+			}
+			else if(c!=1&&c!=count){
+			for(var j=be;j<=af;j++){	
+			$('#page').append(pageN[j-1]);}
+			$('.page').eq(1).addClass('pageselect');
+			}
+			$('#page').append(pageIcon[2]);
+			$('#page').append(pageIcon[3]);
+			}
+
+			function addformdata(data){
+			for(var i=first;i<last;i++)
+            {
+                var tr; tr='<td>'+data.data[i].CN+'</td>'+'<td>'+data.data[i].JN+'</td>'+'<td>'+data.data[i].name+'</td>'+'<td>'+data.data[i].type+'</td>'+'<td>'+data.data[i].employer+'</td>'+'<td>'+data.data[i].startTime+'</td>'+'<td>'+data.data[i].SD+'</td>'+'<td>'+data.data[i].deposit+'</td>'+'<td>'+data.data[i].CG+'</td>'+'<td>'+data.data[i].ST+'</td>'+'<td><a href="#" class="che" code="'+data.data[i].CN+'">'+"查看"+'</a></td>'+'<td><a href="#" class="rev" code="'+data.data[i].CN+'">'+"修改"+'</a></td>'+'<td><a href="#" class="del" code="'+data.data[i].CN+'">'+"删除"+'</a></td>';
+                $("#tabletest").append('<tr class="testtd">'+tr+'</tr>');
+            }
+			}
+		
+			
+			$(document).on('click', 'span',function() {	
+			var selectPage=$(this).attr('selectPage');
+			$(".page").removeClass('pageselect');
+			if(selectPage=="fir"||(selectPage=="pre"&&current==1))selectPage=1;
+			if(selectPage=="las"||(selectPage=="next"&&current==count))selectPage=count;
+			if(selectPage=="pre"&&current!=1)selectPage=parseInt(current)-1;
+			if(selectPage=="next"&&current!=count)selectPage=parseInt(current)+1;
+			if(count<=3)
+				$('.page').eq(selectPage-1).addClass('pageselect');
+			if(count>3)addpage(selectPage);
+			current=selectPage;
+			first=(selectPage-1)*num;
+			last=first+num;
+			$("#tabletest .testtd").html('');
+			addformdata(data);	
+			});
+			
+			$(document).on('click', '.del',function() {	
+			var code = $(this).attr("code");
+			$.ajax({
+				url:"../../data.json",
+				data:{c:code},
+				type:"POST",
+				dataType:"json",
+				success: function(data){ 
+				if(data.status==1)
+				  {
+					success(data,10);
+				  } 
+				  else
+				  {
+					alert("删除失败！"); 
+				  }
+					},
+				error:function(){}
+			})
+			})
+		
+	
+	}
+	
+		$(document).on('click','#cancel',function(){
+			$("#see").css("display","none");
+			
+		});
+		$(document).on('click','#save',function(){
+			$.ajax({
+				url:"../../data.json",
+				data:{c:c},
+				type:"POST",
+				dataType:"json",
+				success: function(data){
+						success(data,10);
+						alert("保存成功！");
+						$("#see").css("display","none");
+					},
+				error:function(){}
+			})
+		});
+	
+	
+	$(document).on('click','#search_name',function(){			
+		var na=$("#name").val();
+			$.ajax({
+				url:"../../data.json",
+				data:{n:na},
+				type:"POST",
+				dataType:"json",
+				success: function(data){ 
+				if(data.status==1)
+				  {
+					success(data,10);
+				  } 
+				  else
+				  {
+					alert("搜索失败！"); 
+				  }
+					},
+				error:function(){}
+			})
+	});
+		$(document).on('focus','#name',function(){	
+			if ($("#name").val()!="") {
+				$('.hide').css("display","block");
+				$('.hide').css("top",$('#name').offset().top+30);
+				$('.hide').css("left",$('#name').offset().left);
+			}
+		})
+		$(document).bind('input propertychange','#name', function() {
+			$.ajax({
+				url:"../../data.json",
+				data:{c:$("#name").val()},
+				type:"POST",
+				dataType:"json",
+				success: function(data){ 
+					$('.hide ul').html("");
+					for(var i=0; i<5;i++){					
+						var d;
+						d='<li>李蕴蕴'+i+'</li>';
+						$('.hide ul').append(d);
+					}
+						$('.hide').css("display","block");
+						$('.hide').css("top",$('#name').offset().top+30);
+						$('.hide').css("left",$('#name').offset().left);
+					},
+				error:function(){}
+			})
+		});
+	
+		$(document).on('click','.hide ul>li',function(){
+			$('#name').val($(this).html());
+			$("#search_name").click();
+			
+		});
+	$(document).on('click',function(){
+		$('.hide').css("display","none");
+
+	});
+	$(document).on('click','#name',function(event){
+	event.stopPropagation();
+
+	}); 
+	
+			$(document).on('click', '.delete',function() {	
+			var code = $(this).attr("code");
+			$.ajax({
+				url:"../../data.json",
+				data:{c:code},
+				type:"POST",
+				dataType:"json",
+				success: function(data){ 
+				if(data.status==1)
+				  {
+					success2(data);
+					alert("删除成功！");  
+				  } 
+				  else
+				  {
+					alert("删除失败！"); 
+				  }
+					},
+				error:function(){}
+			})
+			});
+	
+				function success2(data){
+					$('.certify_content').html("");
+					for(var i=0;i<3;i++){
+						var d;
+						d='<div class="certify"><div class="certify_picture"><img src="../../img/certificate.jpg" width="180px"  alt=""/><a href="#" class="delete" code="'+data.data[i].CN+'"></a></div><div class="certify_title">健康证明</div></div>';
+						$('.certify_content').append(d);
+					}
+						$('.certify_content').append('<div class="certify" id="add1"><div class="certify_add"><input type="file" name="pict" class="add-btn" id="pict"  onchange="addimg()"></div></div><div style="clear:both"></div>');
+			}
+	
+		$(document).on('click','#cancel2',function(){
+			$(".add").css("display","none");
+			$('.add_title input').eq(0).val("");
+			success(data,10);
+		})
+	
+		$(document).on('click','#confirm',function(){
+			var flag=0;
+ 			if($('.add_title input').eq(0).val()==""){
+                        $('.add_title input').eq(0).focus(); 
+					  	flag++;
+                  }
+			if(flag==0)	{
+			var fordate=new FormData();
+			var fils=$('#pict').get(0).files[0];
+			fordate.append("pic",fils);
+			fordate.append("a",$('.add_title input').eq(0).val());
+			$.ajax({
+				url:"../../data.json",
+				data:fordate,
+				type:"POST",
+				dataType:"json",
+				processData : false,
+				contentType : false,
+				cache: false,
+				success: function(data){
+						alert("保存成功!");
+						success2(data);
+						$('.add').css("display","none");
+						$('.add_title input').eq(0).val("");
+						success(data,10);
+					},
+				error:function(){}
+			})
+			}
+		})
+	
+			function addimg(){
+				var fordate=new FormData();
+				var fils=$('#pict').get(0).files[0];
+				var srcc=window.URL.createObjectURL(fils);
+				$.ajax({
+					url:'../../data.json',
+					type:'get',
+					dataType:'json',
+					data: {c:srcc}, 
+					success:function(result){//后台返回的路径
+						var objs;
+						if((typeof result=='object')&&result.constructor==Object){
+							objs=result;
+						}else{
+							objs=eval("(" +result+ ")");
+						}
+						$('#addimgID').attr("width","180px");
+						$('#addimgID').attr("src",objs.paths);
+						$('.add').css("display","block");
+					}
+				});
+				
+
+			};
+
+  			$(document).on('click','.che',function(){
+			var code=$(this).attr("code");
+			$.ajax({
+				url:"../../data.json",
+				data:{c:code},
+				type:"POST",
+				dataType:"json",
+				success: function(data){ 
+					$("#see").css("display","block");
+					$(".check_top").css("display","block");
+					$(".check_bottom").css("display","none");
+					success2(data);
+					$("#add1").css("display","none");
+					$(".delete").css("display","none");
+					success(data,10);
+					},
+				error:function(){}
+			})
+			})
+		
+		$(document).on('click','.rev',function(){
+			var code=$(this).attr("code");
+			$.ajax({
+				url:"../../data.json",
+				data:{c:code},
+				type:"POST",
+				dataType:"json",
+				success: function(data){ 
+					$("#see").css("display","block");
+					$(".check_top").css("display","none");
+					$(".check_bottom").css("display","block");
+					$("#add1").css("display","block");
+					success2(data);
+					success(data,10);
+					},
+				error:function(){}
+			})
+		})	
+*/
+function body_onload()
+{
+    if(0 == getcookie('param_cookie')){
+        setcookie("param_cookie",1,10);
+        window.location.reload(true); 
+    }
+}
+
+	
+	function imgfun(i,d){
+	var fordate=new FormData();
+    var fils=$(i).get(0).files[0];
+	var srcc=window.URL.createObjectURL(fils); 
+    $.ajax({
+        url:'../../data1.json',
+        type:'get',
+        dataType:'json',
+		data: {c:srcc}, 
+		success:function(result){//后台返回的路径
+			var objs;
+			if((typeof result=='object')&&result.constructor==Object){
+				objs=result;
+			}else{
+				objs=eval("(" +result+ ")");
+			}
+			$(d).attr("height","200px");
+			$(d).attr("src",objs.paths);
+			alert("上传成功！")
+		}
+	});
+	
+}
+				function addimg(){
+				var fordate=new FormData();
+				var fils=$('#pict').get(0).files[0];
+				var srcc=window.URL.createObjectURL(fils);
+				$.ajax({
+					url:'../../data.json',
+					type:'get',
+					dataType:'json',
+					data: {c:srcc}, 
+					success:function(result){//后台返回的路径
+						var objs;
+						if((typeof result=='object')&&result.constructor==Object){
+							objs=result;
+						}else{
+							objs=eval("(" +result+ ")");
+						}
+						$('#addimgID').attr("width","180px");
+						$('#addimgID').attr("src",objs.paths);
+						$('.add').css("display","block");
+					}
+				});
+				
+
+			};
+	
+	function addexcel(){
+		var fordate=new FormData();
+		var fils=$("#excel").get(0).files[0];
+		fordate.append("pic",fils);
+		$.ajax({
+			url:"../../data.json",
+			data:fordate,
+			type:"POST",
+			dataType:"json",
+			processData : false,
+			contentType : false,
+			cache: false,
+			success: function(){
+					alert("上传成功!");
+				
+				},
+			error:function(){}
+		});
+		
+	}
+</script>
+<body  onLoad="body_onload()">
+			  <div class="form">
+			  	<div class="form_top">月嫂信息</div>
+				 <hr>
+				<div class="form_search"><div class="form_search_item">员工名称：<input type="text" id="name"><input value="搜索" type="button" id="search_name"></div>
+				  </div>
+			  </div>
+	<p id="num_show"></p>
+	<p id="add"><a>添加</a>  <a>导入excel</a></p>
+	<div style="width: 100%;height: 600px">
+	<table class="table table-bordered" id="tabletest">
+    <tr>
+        <th>工号</th>
+        <th>员工名称</th>
+        <th>类型</th>
+        <th>身高体重</th>
+        <th>服务年限</th>
+        <th>服务数量</th>
+        <th>学历</th>
+        <th>电话</th>
+        <th>评分</th>
+        <th>工资</th>
+        <th colspan="3" width="120px">操作</th>
+    </tr>
+	
+ </table></div>
+		<div class="pagearea"><div id="page" style="top:0;left:0"></div></div>
+<div class="check" id="see">
+	<div class="check_top"><img src="../../img/close.png" width="30" alt="" style="cursor: pointer" onclick = "document.getElementById('see').style.display='none'"/></div>
+	<div class="check_middle">
+		<div class="check_middle_left">
+			<div class="item"><span class="item_title">姓名：</span><div class="item_content"></div></div>
+			<div class="item"><span class="item_title">电话号码：</span><div class="item_content"></div></div>
+			<div class="item"><span class="item_title">身份证：</span><div class="item_content"></div></div>
+			<div class="item"><span class="item_title">年龄：</span><div class="item_content"></div></div>
+			<div class="item"><span class="item_title">文化：</span><div class="item_content"></div></div>
+			<div class="item"><span class="item_title">籍贯：</span><div class="item_content"></div></div>
+			<div class="item"><span class="item_title">邮箱：</span><div class="item_content"></div></div>
+			<div class="item"><span class="item_title">身高体重：</span><div class="item_content2"><ul><li></li><em class="em">cm</em><li></li><em>kg</em></ul></div></div>
+			<div class="item"><span class="item_title">服务年限：</span><div class="item_content"></div></div>
+			<div class="item"><span class="item_title">类型：</span><div class="item_content"></div></div>
+		</div>
+		<div class="check_middle_right"><div class="n_picture"></div><div id="imgfun"></div><div class="certify_content"> </div></div>
+		
+	</div>
+	<div class="check_bottom"><input value="保存" type="button" id="save"><input value="取消" type="button" id="cancel"></div>
+</div>
+	<div class="hide"><ul></ul></div>
+	<center><div class="add" ><div class="add_picture"><img  width="500px" alt="" id="addimgID"/></div><div class="add_title"><input type="text" style="width:99%;height:98%"  /></div><span id="confirm">确定</span><span id="cancel2">取消</span></div></center>
+	<input type="file" id="excel" name="excel" style="display:none;" onchange="addexcel()"/>
+</body>
+
+</html>

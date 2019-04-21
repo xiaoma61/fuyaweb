@@ -7,17 +7,17 @@ import com.fuya.fuyaservice.PROVEINFOService;
 import com.fuya.fuyaservice.SKILLService;
 import com.fuya.fuyaservice.YUESAOOTHERPROVEService;
 import com.fuya.fuyaservice.YUESOBASICINFOService;
+import com.fuya.fuyautil.uuidUtil;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.HashMap;
@@ -25,6 +25,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
+@CrossOrigin
 public class YuesaoPersonalController {
     @Autowired
     YUESOBASICINFOService yuesobasicinfoService;
@@ -38,7 +39,8 @@ public class YuesaoPersonalController {
     @RequiresRoles("yuesaos")
     @RequestMapping("/fuyayuesaos/personalinfo")
     @ResponseBody
-    public JSONObject personallist(HttpServletRequest request){
+    public JSONObject personallist(HttpServletRequest request,HttpServletResponse response){
+        response.setHeader("Access-Control-Allow-Origin", "*");
         HttpSession session=request.getSession();
         int id= (int) session.getAttribute("id");
         //查找
@@ -47,13 +49,14 @@ public class YuesaoPersonalController {
         msg.put("msg",objectList);
         return JSONObject.fromObject(msg);
     }
-    //修改
+
 
     //技巧
     @RequiresRoles("yuesaos")
     @RequestMapping("/fuyayuesaos/skillinfo")
     @ResponseBody
-    public JSONObject skillinfo(HttpServletRequest request){
+    public JSONObject skillinfo(HttpServletRequest request,HttpServletResponse response){
+        response.setHeader("Access-Control-Allow-Origin", "*");
         HttpSession session=request.getSession();
         int id= (int) session.getAttribute("id");
         List<SKILL> skillList=skillService.findByUSERID(id,1);
@@ -65,9 +68,10 @@ public class YuesaoPersonalController {
     }
     //技巧提交
     @RequiresRoles("yuesaos")
-    @RequestMapping("/fuyayuesaos/skillinfo/add")
+    @RequestMapping(value = "/fuyayuesaos/skillinfo/add",method = RequestMethod.POST)
     @ResponseBody
-    public JSONObject skillinfoadd(HttpServletRequest request,@RequestParam(name = "skill")String skill,@RequestParam(name = "type")int type){
+    public JSONObject skillinfoadd(HttpServletRequest request,@RequestParam(name = "skill")String skill,@RequestParam(name = "type")int type,HttpServletResponse response){
+        response.setHeader("Access-Control-Allow-Origin", "*");
         HttpSession session=request.getSession();
         int id= (int) session.getAttribute("id");
         SKILL skill1=new SKILL();
@@ -98,7 +102,9 @@ public class YuesaoPersonalController {
             @RequestParam(name = "healthcertificates",defaultValue = "healthcertificates") String healthcertificates,
             @RequestParam(name = "report",defaultValue = "report") String report,
             @RequestParam(name = "score",defaultValue = "12") String score,
-            @RequestParam(name = "servicepiceture",defaultValue = "头像") String servicepiceture, @RequestParam(name = "id",defaultValue = "20")int userid, HttpServletRequest request) throws IOException, SolrServerException {
+            @RequestParam(name = "servicepiceture",defaultValue = "头像") String servicepiceture, @RequestParam(name = "id",defaultValue = "20")int userid, HttpServletRequest request,
+            HttpServletResponse response) throws IOException, SolrServerException {
+        response.setHeader("Access-Control-Allow-Origin", "*");
 
 //        HttpSession session=request.getSession();
 //        int id= (int) session.getAttribute("id");
@@ -118,7 +124,8 @@ public class YuesaoPersonalController {
     @RequiresRoles("yuesaos")
     @RequestMapping("/fuyayuesaos/proveinfo")
     @ResponseBody
-    public JSONObject proveinfo(HttpServletRequest request){
+    public JSONObject proveinfo(HttpServletRequest request,HttpServletResponse response){
+        response.setHeader("Access-Control-Allow-Origin", "*");
         HttpSession session=request.getSession();
         int id= (int) session.getAttribute("id");
 
@@ -131,13 +138,18 @@ public class YuesaoPersonalController {
 @RequiresRoles("yuesaos")
 @RequestMapping("/fuyayuesaos/proveinfo/add")
 @ResponseBody
-public JSONObject proveinfoadd(HttpServletRequest request,@RequestParam(name = "file")String file,@RequestParam(name = "title")String title){
-    HttpSession session=request.getSession();
+public JSONObject proveinfoadd(@RequestBody JSONObject jsonObject, HttpServletRequest request, HttpServletResponse response/* ,@RequestParam(name = "file")String file,@RequestParam(name = "title")String title*/){
+    response.setHeader("Access-Control-Allow-Origin", "*");
+        HttpSession session=request.getSession();
     int id= (int) session.getAttribute("id");
+
     YUESAOOTHERPROVE yuesaootherprove=new YUESAOOTHERPROVE();
+
+    yuesaootherprove = (YUESAOOTHERPROVE) JSONObject.toBean(jsonObject,YUESAOOTHERPROVE.class);
     yuesaootherprove.setUSERID(id);
-    yuesaootherprove.setFILEAREA(file);
-    yuesaootherprove.setTITLE(title);
+    yuesaootherprove.setId(uuidUtil.getuuidUtil());
+    /*yuesaootherprove.setFILEAREA(file);
+    yuesaootherprove.setTITLE(title);*/
     yuesaootherproveService.save(yuesaootherprove);
     Map<String,Object> msg=new HashMap<>();
     msg.put("msg","success");

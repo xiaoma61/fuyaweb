@@ -1,0 +1,12 @@
+.change_div{
+	width:100%;
+	position: absolute;
+	margin:0 0 0 -10%;
+	background-color: #fcfbf6;
+}
+.change_div_content{
+	width:80%;
+	background-color: #fefefc;
+	padding:0 0 12% 0;
+	background-color: #fff;
+}

@@ -1,6 +1,10 @@
 package com.fuya.fuyadao.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 public class Yuesaolistyuesaomodel {
+
     private int YUESOBASICINFOID;
     private int USERSID;
     private String NAME;
@@ -8,8 +12,23 @@ public class Yuesaolistyuesaomodel {
     private String AGE;
     private String TYPE;
     private String NATIVEPLACE;
-    private String WAGES;
+    private int WAGES;
     private String PHOTO;
+
+    public Yuesaolistyuesaomodel() {
+    }
+
+    public Yuesaolistyuesaomodel(int YUESOBASICINFOID, int USERSID, String NAME, int LEVELS, String AGE, String TYPE, String NATIVEPLACE, int WAGES, String PHOTO) {
+        this.YUESOBASICINFOID = YUESOBASICINFOID;
+        this.USERSID = USERSID;
+        this.NAME = NAME;
+        this.LEVELS = LEVELS;
+        this.AGE = AGE;
+        this.TYPE = TYPE;
+        this.NATIVEPLACE = NATIVEPLACE;
+        this.WAGES = WAGES;
+        this.PHOTO = PHOTO;
+    }
 
     public String getPHOTO() {
         return PHOTO;
@@ -75,11 +94,11 @@ public class Yuesaolistyuesaomodel {
         this.NATIVEPLACE = NATIVEPLACE;
     }
 
-    public String getWAGES() {
+    public int getWAGES() {
         return WAGES;
     }
 
-    public void setWAGES(String WAGES) {
+    public void setWAGES(int WAGES) {
         this.WAGES = WAGES;
     }
 }

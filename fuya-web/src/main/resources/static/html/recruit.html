@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="../css/recruit.css" rel="stylesheet" type="text/css" />
+<link href="../css/common.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+<script src="../js/public/header.js"></script>
+<title>招聘信息</title>
+</head>
+<script  type="text/javascript">
+$(function(){
+    $.ajax({
+        url:'../data.json',
+        type:'get',
+        dataType:'json',
+        success:function(data){
+			$('.bar_td').eq(4).css('background-color','#f87c60');
+			var s="1235";
+			for(var i=0;i<s.length;i++){
+				var d;
+				d='<label class="number">'+s[i]+'</label>'
+				$("#num").append(d);
+			}
+			$('.join_title th').eq(0).html("web&java开发工程师（驻点汇丰）");
+			$('.join_title th').eq(1).html("15001-20000元/月");
+			$('.join_title td').eq(0).html("福瑞博德软件开发（无锡）有限公司珠海办事处");
+			$('.join_title td').eq(1).html("<ul><li>广州-天河区</li><li>1-3年</li><li>本科</li><li style='border: none'>招2人</li></ul>");
+			$('.introduce').eq(0).append('<span class="_tag">五险一金</span><span class="_tag">加班补助</span><span class="_tag">带薪年假</span><span class="_tag">员工旅游</span><span class="_tag">节日福利</span>');
+			$('.introduce').eq(1).append('<ul><li>职位描述：</li><li>1、大学本科学历</li><li>2、使用原理：在浮动元素下面添加一个空标签，在这个标签中设置clear：both；原理：在浮动元素下面添加一个空标签，在这个标签中设置clear：both；原理：在浮动元素下面添加一个空标签，在这个标签中设置clear：both；</li><li>3、大学本科学历</li></ul>');
+			$('.introduce').eq(2).append('<ul><li>联系人：吴小莉</li><li>联系电话：13111111111</li><li>邮箱：111111111@qq.com</li></ul>');
+        },
+		error:function(){}
+    })
+})
+	</script>
+<body  bgcolor="#fcfbf6">
+<center>
+	  <div class="wrapper"  style=" background: #fcfbf6 ">
+		<div class="Header1"></div>
+		  <div class="main">
+			<div class="content_left">
+			  <div class="join_title">
+				<table>
+				  <tr><th></th><th style="color: #FF0004"></th></tr>
+				  <tr><td></td><td></td></tr>
+				  </table>
+				</div>
+				<div class="join_content">
+					<div class="introduce">
+						<div class="tag"><div class="title">职位亮点<hr></div><hr></div>
+
+					</div>
+					<div class="introduce">
+						<div class="tag"><div class="title">职位信息<hr></div><hr></div>
+
+					</div>
+					<div class="introduce">
+						<div class="tag"><div class="title">联系信息<hr></div><hr></div>
+
+					</div>
+				</div>
+			  </div>
+			<div class="content_right_top"><img src="../img/matron.jpg" width="80%" alt=""/>
+			 <a href="maternity_register.html"> <div class="register">快速注册</div></a>
+			  <div class="statistics">已有   
+					<label id="num"></label>
+				  人注册</div>
+			  </div> 
+			<div class="content_right_bottom"><img src="../img/phone.png" width="12%" alt=""/><label style="float: right">13143330820</label></div>
+	    </div>
+			<div class="Footer"></div>
+	</div>
+</center>	
+	
+</body>
+	<script src="../js/common.js" type="text/javascript"></script>
+</html>

@@ -8,6 +8,7 @@ import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.jms.Queue;
 import javax.jms.Topic;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.HashMap;
@@ -25,6 +27,7 @@ import java.util.Map;
  * 完成
  */
 @Controller
+@CrossOrigin
 public class CollectionController {
  /*   @Autowired
     COLLECTIONSSolrService solrService;*/
@@ -51,9 +54,10 @@ public class CollectionController {
     @RequiresRoles("users")
     @RequestMapping("/fuyayusao/collection")
     @ResponseBody
+    @CrossOrigin
     public Map<String,String> collectiondelete(@RequestParam(name = "toid") int toid,
-                                         @RequestParam(name = "type")int type, HttpServletRequest request)  {
-
+                                               @RequestParam(name = "type")int type, HttpServletRequest request, HttpServletResponse response)  {
+        response.setHeader("Access-Control-Allow-Origin", "*");
         HttpSession httpSession=request.getSession();
         int fromid= (int) httpSession.getAttribute("id");
 

@@ -1,0 +1,276 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="../css/introduce.css" rel="stylesheet" type="text/css" />
+<link href="../css/change_div.css" rel="stylesheet" type="text/css" />
+<link href="../css/common.css" rel="stylesheet" type="text/css" />		
+<script type="text/javascript" src="../js/change_div.js"></script>
+<script type="text/javascript" src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+<script src="../js/public/header.js"></script>
+<title>成为月嫂</title>
+</head>
+
+<body  bgcolor="#fcfbf6">
+
+<center>
+  <div class="wrapper"  style=" background: #fcfbf6 ">
+		  <a name="top"><div class="Header1"></div></a>
+<script type="text/javascript">
+$(function(){
+	var index=6;
+	var url= window.location.href;
+	index = url.substring(url.lastIndexOf('=') + 1);
+	$.ajax({
+        url:'https://campus.gbdev.cn:8060/fuyaweb/fuyayuesaoindex/personalinfo',
+		dataType:"json",   //返回格式为json
+		async:true,//请求是否异步，默认为异步，这也是ajax重要特性
+		data:{id:index},    //参数值
+		type:"GET",   //请求方式
+        success:function(data){
+
+				$('.bar_td').eq(1).css('background-color','#f87c60');
+				if(data.msg[0].yuesobasicinfo.PHOTO==="file:")
+				{$(".picture").attr("style","background:url('../img/y1.jpg') no-repeat center center; background-size:auto 100%"); }
+				else
+				{$(".picture").attr("style","background:url('"+data.msg[0].yuesobasicinfo.PHOTO+"') no-repeat center center; background-size:auto 100%"); }
+				$("#name").html(data.msg[0].yuesobasicinfo.NAME);
+				$("#star").attr("style","width:"+(data.msg[0].yuesobasicinfo.LEVELS)*5+"%");
+				var da; 
+				da='<table class="information_content"><tr><td class="td1">姓名</td><td>'+data.msg[0].yuesobasicinfo.NAME+'</td><td class="td1">年龄</td><td>'+data.msg[0].yuesobasicinfo.AGE+'</td></tr><tr><td class="td1">籍贯</td><td>'+data.msg[0].yuesobasicinfo.NATIVEPLACE+'</td><td class="td1">服务年限</td><td>'+data.msg[0].yuesobasicinfo.SENIORITY+'</td></tr><tr><td class="td1">学历</td><td>'+data.msg[0].yuesobasicinfo.EDUCATION+'</td><td class="td1">电话</td><td>'+data.msg[0].yuesobasicinfo.PHONE+'</td></tr><tr><td class="td1">身高体重</td><td>'+data.msg[0].yuesobasicinfo.HEIGHT+'/'+data.msg[0].yuesobasicinfo.WEIGHT+'</td><td class="td1">邮箱</td><td>'+data.msg[0].yuesobasicinfo.EMAIL+'</td></tr><tr><td class="td1">身份证</td><td>'+data.msg[0].yuesobasicinfo.IDCARD+'</td><td class="td1">工资</td><td>'+data.msg[0].yuesobasicinfo.WAGES+'</td></tr><tr><td class="td1">服务地址</td><td colspan="3">'+data.msg[0].yuesobasicinfo.WORKAREA+'</td></tr></table>';
+                $("#information_content").append(da);
+
+                var d1; 
+				d1='<div class="certificate"><div class="certificate_picture"><img src="'+data.msg[0].proveinfo.HEALTHCERTIFICATES+'" width="100%" alt=""/></div><div class="certificate_type">健康证明</div></div>';
+                $("#certificate").append(d1);
+                var d2; 
+				d2='<div class="certificate"><div class="certificate_picture"><img src="'+data.msg[0].proveinfo.YUESAOSYNDROME+'" width="100%" alt=""/></div><div class="certificate_type">月嫂证明</div></div>';
+                $("#certificate").append(d2);
+                var d3; 
+				d3='<div class="certificate"><div class="certificate_picture"><img src="'+data.msg[0].proveinfo.REPORT+'" width="100%" alt=""/></div><div class="certificate_type">服务照片</div></div>';
+                $("#certificate").append(d3);
+                var d4; 
+				d4='<div class="certificate"><div class="certificate_picture"><img src="'+data.msg[0].proveinfo.SERVICEPICTURE+'" width="100%" alt=""/></div><div class="certificate_type">服务照片</div></div>';
+                $("#certificate").append(d4);
+
+        },
+		error:function(){}
+    })
+	$.ajax({
+        url:'https://campus.gbdev.cn:8060/fuyaweb/fuyayuesaoindex/skillinfo',
+		dataType:"json",   //返回格式为json
+		async:true,//请求是否异步，默认为异步，这也是ajax重要特性
+		data:{id:index},    //参数值
+		type:"GET",   //请求方式
+        success:function(data){
+							$("#skills").append('<div class="skill">服务项目：</div>');
+				for(var i=0;i<data.msg.length;i++)
+
+{                var d; 
+				d='<div class="skill_content"><pre>'+(i+1)+'、'+data.msg[i].SKILL+'</pre></div>';
+                $("#skills").append(d);}
+
+
+
+        },
+		error:function(){}
+    })
+	$.ajax({
+        url:'https://campus.gbdev.cn:8060/fuyaweb/fuyayuesaoindex/comments',
+		dataType:"json",   //返回格式为json
+		async:true,//请求是否异步，默认为异步，这也是ajax重要特性
+		data:{id:index},    //参数值
+		type:"GET",   //请求方式
+        success:function(data){
+			$("#comment").html('');
+			$("#page").html('');
+			var num=5;
+			var first=0;
+			var last=first+num;
+			var current=1;
+			var count=Math.ceil(data.msg[0].length/num);
+			
+			if(count!=1){
+			var pageIcon=[];
+			var pageN=[];
+	pageIcon[0]='<a href="#top"><span  class="pageIcon" selectPage="fir" ><img src="../img/bb.png" width="25" height="25" alt=""/></span></a>';//第一页
+	pageIcon[1]='<a href="#top"><span  class="pageIcon"  selectPage="pre"><img src="../img/b.png" width="25" height="25" alt=""/></span></a>';//前一页
+	pageIcon[2]='<a href="#top"><span  class="pageIcon"  selectPage="next"><img src="../img/a.png" width="25" height="25" alt=""/></span></a>';//下一页
+	pageIcon[3]='<a href="#top"><span  class="pageIcon"  selectPage="las"><img src="../img/aa.png" width="25" height="25" alt=""/></span></a>';//最后一页
+			for(var j=1;j<=count;j++){	
+				pageN[j-1]='<span class="page" selectPage="'+j+'">'+j+'</span>';
+			 }
+			$('#page').append(pageIcon[0]);
+			$('#page').append(pageIcon[1]);
+			if(count<5){
+			for(var j=1;j<=count;j++)
+				$('#page').append(pageN[j-1]);
+			}
+			else{
+			for(var j=1;j<=5;j++)
+				$('#page').append(pageN[j-1]); 
+			}
+			$('#page').append(pageIcon[2]);
+			$('#page').append(pageIcon[3]);
+			$('.page').eq(0).addClass('pageselect');
+			}
+			addcommentdata(data);
+			
+			function addpage(c){
+			$("#page").html('');
+			$('#page').append(pageIcon[0]);
+			$('#page').append(pageIcon[1]);
+			var be=parseInt(c)-2;
+			var af=parseInt(c)+2;
+			if(c==1){
+			for(var j=1;j<=5;j++){	
+			$('#page').append(pageN[j-1]);}
+			$('.page').eq(0).addClass('pageselect');
+			}
+			if(c==2){
+			for(var j=1;j<=5;j++){	
+			$('#page').append(pageN[j-1]);}
+			$('.page').eq(1).addClass('pageselect');
+			}
+			if(c==count-1){
+			for(var j=count-4;j<=count;j++){	
+			$('#page').append(pageN[j-1]);}
+			$('.page').eq(3).addClass('pageselect');
+			}
+			else if(c==count){
+			for(var j=count-4;j<=count;j++){	
+			$('#page').append(pageN[j-1]);}
+			$('.page').eq(4).addClass('pageselect');
+			}
+			else if(c!=1&&c!=count&&c!=2&&c!=count-1){
+			for(var j=be;j<=af;j++){	
+			$('#page').append(pageN[j-1]);}
+			$('.page').eq(2).addClass('pageselect');
+			}
+			$('#page').append(pageIcon[2]);
+			$('#page').append(pageIcon[3]);
+			}
+
+			function addcommentdata(data){
+			for(var i=0;i<2;i++)
+            {
+                var d; 
+				d='<div class="assessment"><div class="customer">客户：'+data.msg[i][2]+' 服务时间：'+data.msg[i][3].year+'-'+data.msg[i][3].month+'-'+data.msg[i][3].date+'</div><div class="assessment_content">'+data.msg[i][1]+'</div><div class="assessment_picture"><div class="assessment_picture1"></div></div><div class="customer">合同号：'+data.msg[i][0]+' <span style="float:right"></span></div></div>';
+                $("#comment").append(d);
+            }
+			}
+		
+			
+			$(document).on('click', 'span',function() {	
+			var selectPage=$(this).attr('selectPage');
+			$(".page").removeClass('pageselect');
+			if(selectPage=="fir"||(selectPage=="pre"&&current==1))selectPage=1;
+			if(selectPage=="las"||(selectPage=="next"&&current==count))selectPage=count;
+			if(selectPage=="pre"&&current!=1)selectPage=parseInt(current)-1;
+			if(selectPage=="next"&&current!=count)selectPage=parseInt(current)+1;
+			if(count<=5)
+				$('.page').eq(selectPage-1).addClass('pageselect');
+			if(count>5)addpage(selectPage);
+			current=selectPage;
+			first=(selectPage-1)*num;
+			last=first+num;
+			$("#comment").html('');
+			addcommentdata(data);	
+			});
+			
+			$(document).on('click', '.del',function() {	
+			var code = $(this).attr("code");
+			$.ajax({
+				url:"../../data.json",
+				data:{c:code},
+				type:"POST",
+				dataType:"json",
+				success: function(data){ 
+				if(data.status==1)
+				  {
+					success(data,10);
+				  } 
+				  else
+				  {
+					alert("删除失败！"); 
+				  }
+					},
+				error:function(){}
+			})
+			})
+		
+		
+        },
+		error:function(){}
+    })
+})
+
+
+</script>
+		  
+		  
+<div class="main" >
+	<div class="introduce">
+	<div class="introduce_left"><div class="picture"></div><div id="name"></div><div class="level"><div id="star"></div></div></div>
+	<div class="introduce_right"><div class="information">基本信息</div><div id="information_content"></div>
+		<div class="book">预约月嫂</div>
+		</div>
+	</div>
+
+	<div class="change_div" id="b1">
+		<div class="change_div_content">
+		<div class="title">
+		<div class="title1 title2" onClick="change2()">用户评价</div>
+		<div class="title1" onClick="change1()">服务技能</div>
+		<div class="title1"  onClick="change3()" >相关证明</div>
+	    </div>
+		<div id="comment"></div>
+		<div class="pagearea"><div id="page" style="top:0;left:0"></div></div>
+		</div>
+			<div class="Footer"></div>	
+	</div>
+		  
+	
+	<div class="change_div" id="b2" style="display: none">
+		<div class="change_div_content">
+		<div class="title">
+		<div class="title1" onClick="change2()">用户评价</div>
+		<div class="title1 title2" onClick="change1()">服务技能</div>
+		<div class="title1"  onClick="change3()" >相关证明</div>
+	    </div>
+		<div id="skills"></div>
+
+
+		  </div>	
+				<div class="Footer"></div>
+    </div>
+	
+	
+	
+	<div class="change_div" id="b3" style="display: none">
+		<div class="change_div_content">
+		<div class="title">
+		<div class="title1 " onClick="change2()">用户评价</div>
+		<div class="title1" onClick="change1()">服务技能</div>
+		<div class="title1 title2"  onClick="change3()" >相关证明</div>
+	    </div>
+		<div id="certificate">
+		
+		</div><div style="clear:both"></div>
+	    </div>	
+				<div class="Footer"></div>
+    </div>
+	
+	
+	
+		  </div>
+
+	  
+	</div>
+</center>	
+	
+</body>
+	
+<script src="../js/common.js" type="text/javascript"></script>
+</html>

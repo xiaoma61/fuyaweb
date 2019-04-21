@@ -48,7 +48,7 @@ public class YUESOBASICINFOSearchdao {
             YUESOBASICINFO yuesobasicinfo=new YUESOBASICINFO();
             yuesobasicinfo.setYUESOBASICINFOID((Integer) solrDocument.getFieldValue("YUESOBASICINFOID"));
             yuesobasicinfo.setAGE((int) solrDocument.getFieldValue("AGE"));
-            yuesobasicinfo.setCOMPANYID((String) solrDocument.getFieldValue("LEVELS"));
+
             yuesobasicinfo.setEDUCATION((String) solrDocument.getFieldValue("WAGES"));
             yuesobasicinfo.setEMAIL((String) solrDocument.getFieldValue("EMAIL"));
             yuesobasicinfo.setHEIGHT((String) solrDocument.getFieldValue("HEIGHT"));
@@ -61,7 +61,7 @@ public class YUESOBASICINFOSearchdao {
             yuesobasicinfo.setLEVELS((Integer) solrDocument.getFieldValue("LEVELS"));
             yuesobasicinfo.setWAGES((int) solrDocument.getFieldValue("WAGES"));
             yuesobasicinfo.setEDUCATION((String) solrDocument.getFieldValue("EDUCATION"));
-            yuesobasicinfo.setCOMPANYID((String) solrDocument.getFieldValue("COMPANYID"));
+
             yuesobasicinfo.setPHONE((String) solrDocument.getFieldValue("PHONE"));
             yuesobasicinfo.setWORKAREA((String) solrDocument.getFieldValue("yuasaoWORKAREA"));
 
@@ -104,7 +104,7 @@ public class YUESOBASICINFOSearchdao {
 
             yuesobasicinfo.setYUESOBASICINFOID((Integer) solrDocument.get("ID"));
             yuesobasicinfo.setAGE((int) solrDocument.get("AGE"));
-            yuesobasicinfo.setCOMPANYID((String) solrDocument.get("LEVELS"));
+
             yuesobasicinfo.setEDUCATION((String) solrDocument.get("WAGES"));
             yuesobasicinfo.setEMAIL((String) solrDocument.get("EMAIL"));
             yuesobasicinfo.setHEIGHT((String) solrDocument.get("HEIGHT"));
@@ -117,7 +117,7 @@ public class YUESOBASICINFOSearchdao {
             yuesobasicinfo.setLEVELS((Integer) solrDocument.get("LEVELS"));
             yuesobasicinfo.setWAGES((int) solrDocument.get("WAGES"));
             yuesobasicinfo.setEDUCATION((String) solrDocument.get("EDUCATION"));
-            yuesobasicinfo.setCOMPANYID((String) solrDocument.get("COMPANYID"));
+
             yuesobasicinfo.setPHONE((String) solrDocument.get("PHONE"));
             yuesobasicinfo.setWORKAREA((String) solrDocument.get("yuasaoWORKAREA"));
             yuesobasicinfo.setNAME((String) solrDocument.get("NAME"));

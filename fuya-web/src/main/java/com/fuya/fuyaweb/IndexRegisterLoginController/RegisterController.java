@@ -4,23 +4,28 @@ import com.fuya.ActiveMQ.service.ProductService;
 import com.fuya.Redis.Util.RedisUtil;
 import com.fuya.fuyadao.entity.*;
 import com.fuya.fuyaservice.*;
+import com.fuya.fuyautil.ImageUtil;
 import com.fuya.fuyautil.StringNameUtil;
 import com.fuya.fuyautil.uuidUtil;
 import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.jms.Queue;
 import javax.jms.Topic;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 @Controller
+@CrossOrigin
 public class RegisterController {
 
     @Autowired
@@ -49,7 +54,11 @@ public class RegisterController {
     //普通用户注册
     @RequestMapping("/Register/users")
     @ResponseBody()
-    JSONArray Register(String name, String password, String phone, @RequestParam(name="type" ,defaultValue = "1")int type) throws IOException, SolrServerException {
+    @CrossOrigin
+    JSONArray Register(String name, String password, String phone, @RequestParam(name="type" ,defaultValue = "1")int type, HttpServletResponse response) throws IOException, SolrServerException {
+
+            response.setHeader("Access-Control-Allow-Origin", "*");
+
    /*     List<USERS>usersList=usersSolrservice.searchbyusername(name);*/
         Map<String,Object> msg=new HashMap<>();
         /*if (usersList.size()>0){
@@ -66,9 +75,16 @@ public class RegisterController {
         msg.put("msg","success");
         return JSONArray.fromObject(msg);
     }
+    @RequestMapping("/Register/MaternityMatron")
+    public  String MaternityMatron(){
+        return "/html/maternity_register.html";
+
+    }
+
     //月嫂用户注册3
     @RequestMapping("/Register/yuesao")
     @ResponseBody()
+    @CrossOrigin
     JSONArray yuesaoRegister(@RequestParam(name = "name",defaultValue = "肖彩珠") String name,@RequestParam(name = "phone",defaultValue = "1314333") String phone,
                           @RequestParam(name = "idcard",defaultValue = "44440000")String idcard,@RequestParam(name = "age",defaultValue = "45") int age,
                           @RequestParam(name = "education",defaultValue = "高中") String education ,@RequestParam(name = "nativeplace",defaultValue = "北京") String nativeplace,
@@ -81,8 +97,8 @@ public class RegisterController {
                           @RequestParam(name = "healthcertificates",defaultValue = "healthcertificates") String healthcertificates,
                           @RequestParam(name = "report",defaultValue = "report") String report,
                           @RequestParam(name = "score",defaultValue = "12") String score,
-                          @RequestParam(name = "servicepiceture",defaultValue = "头像") String servicepiceture) throws IOException, SolrServerException {
-
+                          @RequestParam(name = "servicepiceture",defaultValue = "头像") String servicepiceture, HttpServletResponse response) throws IOException, SolrServerException {
+        response.setHeader("Access-Control-Allow-Origin", "*");
 
    /*     List<USERS> usersList=usersSolrservice.searchbyusername(name);*/
         Map<String,Object> msg=new HashMap<>();
@@ -165,6 +181,7 @@ public class RegisterController {
     //企业用户注册2
     @RequestMapping("/Register/company")
     @ResponseBody()
+    @CrossOrigin
     public JSONArray companyRegister(@RequestParam(name="name",defaultValue = "优先有限公司") String name, @RequestParam(name = "phone",defaultValue = "1314333") String phone,
                                      @RequestParam(name = "password",defaultValue = "1314") String password,
                                      @RequestParam(name = "corporatename",defaultValue = "corporatename")String corporatename, @RequestParam(name = " email",defaultValue = " email")String email,
@@ -172,9 +189,9 @@ public class RegisterController {
                                      @RequestParam(name = "contactname",defaultValue = "contactname") String contactname, @RequestParam(name = "contantphone",defaultValue = "131422")String contantphone,
                                      @RequestParam(name = "liceneno",defaultValue = "1314")String liceneno, @RequestParam(name = "idcard",defaultValue = "1314")String idcard,
                                      @RequestParam(name = "address",defaultValue = "1314")String address, @RequestParam(name = "idcardfile",defaultValue = "1314")String idcardfile
-                                    ) throws IOException, SolrServerException {
+            , HttpServletResponse response) throws IOException, SolrServerException {
 
-
+        response.setHeader("Access-Control-Allow-Origin", "*");
         int type=2;
 /*        List<USERS>usersList=usersSolrservice.searchbyusername(name);*/
         Map<String,Object> msg=new HashMap<>();
@@ -195,9 +212,12 @@ public class RegisterController {
         companybasicinfo.setNUMS(0);
         companybasicinfo.setLEVELS(0);
         companybasicinfo.setINTRODUCE("暂无介绍");
+        companybasicinfo.setId(uuidUtil.getuuidUtil());
         companybasicinfoService.save(companybasicinfo);
 
+
         COMPANYINFO companyinfo=new COMPANYINFO();
+        companybasicinfo.setId(uuidUtil.getuuidUtil());
         companyinfo.setADDRESS(address);
         companyinfo.setCONTACTNAME(contactname);
         companyinfo.setUSERSID(users.getUSERSID());
@@ -219,18 +239,54 @@ public class RegisterController {
     }
 
     //实现用户名查找
+
+    /**
+     * error：为存在重复的名称
+     * success：为不存在
+     * @param keyword
+     * @return
+     */
     @RequestMapping("/Register/findusername")
     @ResponseBody
-    public JSONArray findusername(@RequestParam(name = "keyword")String keyword){
-
-
-
+    @CrossOrigin
+    public JSONObject findusername(@RequestParam(name = "keyword")String keyword, HttpServletResponse response){
+        response.setHeader("Access-Control-Allow-Origin", "*");
         Map<String,Object> msg=new HashMap<>();
+        if (userService.findUSERSByNAME(keyword)==null){
+            msg.put("msg","success");
+        }else {
+            msg.put("msg","error");
+        }
 
-         msg.put("msg","error");
-        return  JSONArray.fromObject(msg);
+        return  JSONObject.fromObject(msg);
 
     }
+
+    /**
+     * 文件上传
+     * @param file
+     * @return
+     * @throws IOException
+     */
+
+    @RequestMapping(value = "/fileUpload",method = RequestMethod.POST)
+    @ResponseBody
+    @CrossOrigin
+    public JSONObject fileUpload(@RequestParam(value = "file") MultipartFile file ,HttpServletResponse response) throws IOException {
+
+            response.setHeader("Access-Control-Allow-Origin", "*");
+        Map<String,Object> msg=new HashMap<>();
+        if (file==null){
+            msg.put("msg","文件不能为空");
+
+        }else {
+            msg.put("msg","https://campus.gbdev.cn:8060/fuyaweb"+ ImageUtil.getImage(file));
+        }
+
+        return JSONObject.fromObject(msg);
+
+    }
+
 
 
 

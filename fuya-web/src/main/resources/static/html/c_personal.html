@@ -1,0 +1,135 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="../css/personal.css" rel="stylesheet" type="text/css" />
+<link href="../css/common.css" rel="stylesheet" type="text/css" />
+<script src="../js/bar_left.js" type="text/javascript"></script>
+<script type="text/javascript" src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+<script src="../js/public/header.js"></script>
+<title>个人中心</title>
+</head>
+
+<body  bgcolor="#fcfbf6">
+<center>
+	  <div class="wrapper"  style=" background: #fcfbf6 ">
+		<a id="top"></a>
+        <div class="Header1"></div>
+
+
+
+		  <div class="main">
+			<ul class="bar_left">
+			  <div class="bar_left_kuang"></div>
+				<a href="#top"><li class="bar_left_item" id="form" data-id="form">订单管理</li>
+				<li class="bar_left_item" data-id="infor" id="infor">公司信息</li>
+			  <li class="bar_left_item" data-id="nurse" id="nurse">月嫂管理<span class="more" onclick="$use(c1,90,icon)" id="icon"></span></li>
+				 <div id="c1" style="display:none;overflow: hidden;height: 80px">
+				<li class="bar_left_item" data-id="n_infor" id="n_infor">月嫂信息</li>
+				<li class="bar_left_item" data-id="n_recruit" id="n_recruit">招聘管理</li></div></a>
+		    </ul>
+			  <iframe frameBorder="0"  scrolling="no"  id="content"></iframe>
+		  </div>
+		  <div class="Footer"></div>
+
+	</div>
+</center>	
+
+</body>
+	   <script   type="text/javascript">
+		   
+		   var id;
+		   
+            $(".bar_left").on("click", "li", function() {
+
+                var sId = $(this).data("id"); 
+
+                window.location.hash = sId; //设置锚点
+				
+
+                loadInner(sId);
+
+            });
+            function loadInner(sId) {
+
+                var sId = window.location.hash;
+
+                var pathn, i;
+
+                switch(sId) {
+
+                    case "#form":
+
+                        pathn = "c_personal/form.html";
+						
+                        i = 0;
+
+                        break;　　　　　　　
+
+                    case "#infor":
+
+                        pathn = "c_personal/infor.html";
+
+                        i = 1;
+
+                        break;
+	
+                    case "#nurse":
+
+                        pathn = "c_personal/n_infor.html";
+
+                        i = 2;
+
+                        break;
+
+                    case "#n_infor":
+
+                        pathn = "c_personal/n_infor.html";
+
+                        i = 2;
+
+                        break;
+
+                    case "#n_recruit":
+
+                        pathn = "c_personal/n_recruit.html";
+
+                        i = 4;
+
+                        break;　　　　　　
+
+                    default:
+
+                        pathn = "c_personal/form.html";
+						
+						$('.bar_td').eq(6).css('background-color','#f87c60');
+
+                        i = 0;
+
+                        break;
+
+                }
+
+				$('#content').attr('src',pathn);//加载相对应的内容
+				
+				$(".bar_left_item").eq(i).css('background-color', '#f07053');
+				
+				for(var j=0;j<$(".bar_left_item").length;j++)
+					{
+						if(j!=i)$(".bar_left_item").eq(j).css('background-color', '#f7bcaf');
+					}
+				if(i==2)$(".bar_left_item").eq(3).css('background-color', '#f07053');
+				if(i==4)$(".bar_left_item").eq(2).css('background-color', '#f07053');
+
+            }
+
+            var sId = window.location.hash;
+
+            setTimeout(function(){loadInner(sId)},100);
+
+
+
+    </script>
+	<script src="../js/common.js" type="text/javascript"></script>
+</html>

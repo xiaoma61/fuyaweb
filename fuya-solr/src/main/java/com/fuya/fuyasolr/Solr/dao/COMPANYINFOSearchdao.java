@@ -46,10 +46,9 @@ public class COMPANYINFOSearchdao {
             SolrDocumentList solrDocumentList= solrResponse.getResults();
             for (SolrDocument solrDocument :solrDocumentList){
 
-            long COMPANYINFOID= (long) solrDocument.getFieldValue("COMPANYINFOID");
-            companyinfo.setCOMPANYINFOID(Math.toIntExact(COMPANYINFOID));
-            long USERSID= (long) solrDocument.getFieldValue("USERSID");
-            companyinfo.setUSERSID(Math.toIntExact(USERSID));
+            String COMPANYINFOID= (String) solrDocument.getFieldValue("COMPANYINFOID");
+
+            companyinfo.setUSERSID((Integer) solrDocument.getFieldValue("USERSID"));
             companyinfo.setCONTACTNAME((String) solrDocument.getFieldValue("CONTACTNAME"));//公司联系人
             companyinfo.setCONTACTPHONE((String) solrDocument.getFieldValue("CONTACTPHONE"));//联系人电话
             companyinfo.setLICENCENO((String) solrDocument.getFieldValue("LICENCENO"));//注册码
@@ -58,6 +57,7 @@ public class COMPANYINFOSearchdao {
             companyinfo.setADDRESS((String) solrDocument.getFieldValue("ADDRESS"));//公司地址
             companyinfo.setLICENCE((String) solrDocument.getFieldValue("LICENCE"));//营业执照
             companyinfo.setEMAIL((String) solrDocument.getFieldValue("EMAIL"));//邮箱
+                companyinfo.setId((String) solrDocument.getFieldValue("id"));
 
                 return companyinfo;
 
@@ -73,8 +73,6 @@ public class COMPANYINFOSearchdao {
             id= (String) solrInputDocument.get("id");
         }
         return id;
-
-
     }
     public void delete(String id) throws IOException, SolrServerException {
         solrClient.deleteById(id);

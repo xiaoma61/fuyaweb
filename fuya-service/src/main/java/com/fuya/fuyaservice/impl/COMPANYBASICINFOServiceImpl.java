@@ -71,5 +71,10 @@ public class COMPANYBASICINFOServiceImpl implements COMPANYBASICINFOService {
         return companybasicinfoRepository.findidMsg(id);
     }
 
+    @Override
+    public CompanysInfosModle findCompanysInfosModleByUSERID(int id) {
+        return companybasicinfoRepository.findCompanysInfosModleByUSERID(id);
+    }
+
 
 }

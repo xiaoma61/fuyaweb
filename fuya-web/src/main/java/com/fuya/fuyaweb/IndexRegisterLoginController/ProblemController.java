@@ -10,16 +10,15 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @Controller
+@CrossOrigin
 public class ProblemController {
     @Autowired
     PROBLEMService problemService;
@@ -29,10 +28,10 @@ public class ProblemController {
     RedisUtil redisUtil;
     private static  final String KEY="examMsgkey";
     //拿到考题
-    @RequestMapping("/exam")
+    @RequestMapping("/Register/problem")
     @ResponseBody
-    public JSONObject exam(@RequestParam(name = "type")String type){
-
+    public JSONObject exam(@RequestParam(name = "type")String type, HttpServletResponse response){
+        response.setHeader("Access-Control-Allow-Origin", "*");
         //选择20道
         List<Object[]>problemList=problemService.findByNum(20);
         List<PROBLEMmodel>probleMmodelList=EntityUtils.castEntity(problemList ,PROBLEMmodel.class,new PROBLEMmodel());
@@ -43,10 +42,10 @@ public class ProblemController {
     }
 //    //对答案返回分数
 //@RequestBody String jsonParam
-    @RequestMapping("/exam/check")
+    @RequestMapping("/Register/check")
     @ResponseBody
-    public JSONObject examcheck(@RequestBody String jsonParam){
-
+    public JSONObject examcheck(@RequestBody String jsonParam,HttpServletResponse response){
+        response.setHeader("Access-Control-Allow-Origin", "*");
         int sum=0;
         JSONArray msgjson = JSONArray.fromObject(jsonParam);
 

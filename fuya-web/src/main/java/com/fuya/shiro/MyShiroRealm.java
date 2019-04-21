@@ -45,7 +45,11 @@ public class MyShiroRealm extends AuthorizingRealm {
         System.out.println("name: "+name);
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         HttpSession session=request.getSession();
-        int type= (int) session.getAttribute("type");
+        int type= 0;
+        if ( session.getAttribute("type")!=null){
+             type= (int) session.getAttribute("type");
+        }
+
 
         if (name.equals("")||name==null){
             return null;

@@ -1,0 +1,210 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="../css/personal.css" rel="stylesheet" type="text/css" />
+<link href="../css/common.css" rel="stylesheet" type="text/css" />
+<script src="../js/bar_left.js" type="text/javascript"></script>
+<script type="text/javascript" src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+<script src="../js/public/header.js"></script>
+<title>个人中心</title>
+</head>
+
+<body  bgcolor="#fcfbf6">
+<center>
+	  <div class="wrapper"  style=" background: #fcfbf6 ">
+		<a id="top"></a>
+        <div class="Header1"></div>
+
+
+
+		  <div class="main">
+			<ul class="bar_left">
+			  <div class="bar_left_kuang"></div>
+				<div style="height: 50px;">555</div>
+				<a href="#top"><li class="bar_left_item" id="n_manage" data-id="n_manage">月嫂管理<span class="more" onclick="$use(c1,40,icon1)" id="icon1"></span></li>
+					<div id="c1" style="display:none;overflow: hidden;height: 80px">
+				<li class="bar_left_item" data-id="n_examine" id="n_examine">已审核</li>
+					</div>
+					
+				<li class="bar_left_item" data-id="c_manage" id="c_manage">公司管理<span class="more" onclick="$use(c2,40,icon2)" id="icon2"></span></li>
+					<div id="c2" style="display:none;overflow: hidden;height: 80px">
+				<li class="bar_left_item" data-id="c_examine" id="c_examine">已审核</li>
+					</div>
+					
+				<li class="bar_left_item" data-id="w_manage" id="w_manage">文章管理<span class="more" onclick="$use(c3,40,icon3)" id="icon3"></span></li>
+					<div id="c3" style="display:none;overflow: hidden;height: 80px">
+				<li class="bar_left_item" data-id="w_examine" id="w_examine">添加文章</li>
+					</div>
+					
+				<li class="bar_left_item" data-id="p_manage" id="p_manage">试卷管理</li>
+				
+				<li class="bar_left_item" data-id="r_manage" id="r_manage">招聘管理</li>
+				 </a>
+		    </ul>
+			  <iframe frameBorder="0"  scrolling="no"  id="content"></iframe>
+		  </div>
+		  <div class="Footer"></div>
+
+	</div>
+</center>	
+
+</body>
+	   <script   type="text/javascript">
+		   
+		   var id;
+		   
+            $(".bar_left").on("click", "li", function() {
+
+                var sId = $(this).data("id"); 
+
+                window.location.hash = sId; //设置锚点
+				
+
+                loadInner(sId);
+
+            });
+            function loadInner(sId) {
+
+                var sId = window.location.hash;
+
+                var pathn, i;
+
+                switch(sId) {
+
+                    case "#n_manage":
+
+                        pathn = "backstage/n_manage.html";
+											
+						$('#content').css('height','950px');
+						
+						$('.bar_left').css('height','1150px');
+
+                        i = 0;
+
+                        break;　　　　　　　
+
+                    case "#n_examine":
+
+                        pathn = "backstage/n_examine.html";
+						
+						$('#content').css('height','950px');
+						
+						$('.bar_left').css('height','1150px');
+
+                        i = 1;
+
+                        break;
+	
+                    case "#c_manage":
+
+                        pathn = "backstage/c_manage.html";
+						
+						$('#content').css('height','950px');
+						
+						$('.bar_left').css('height','1150px');
+
+                        i = 2;
+
+                        break;
+						
+                    case "#c_examine":
+
+                        pathn = "backstage/c_examine.html";
+						
+						$('#content').css('height','950px');
+						
+						$('.bar_left').css('height','1150px');
+
+                        i = 3;
+
+                        break;
+						
+                    case "#w_manage":
+
+                        pathn = "backstage/w_manage.html";
+						
+						$('#content').css('height','950px');
+						
+						$('.bar_left').css('height','1150px');
+
+                        i = 4;
+
+                        break;
+						
+                    case "#w_examine":
+
+                        pathn = "backstage/w_examine.html";
+						
+						$('#content').css('height','740px');
+						
+						$('.bar_left').css('height','940px');
+
+                        i = 5;
+
+                        break;
+
+                    case "#p_manage":
+
+                        pathn = "backstage/p_manage.html";
+						
+						$('#content').css('height','950px');
+						
+						$('.bar_left').css('height','1150px');
+
+                        i = 6;
+
+                        break;
+						
+						
+                    case "#r_manage":
+
+                        pathn = "backstage/r_manage.html";
+						
+						$('#content').css('height','950px');
+						
+						$('.bar_left').css('height','1150px');
+
+                        i = 7;
+
+                        break;
+
+                    default:
+
+                        pathn = "backstage/n_manage.html";
+						
+						$('#content').css('height','950px');
+						
+						$('.bar_left').css('height','1150px');
+						
+						$('.bar_td').eq(6).css('background-color','#f87c60');
+
+                        i = 0;
+
+                        break;
+
+                }
+
+				$('#content').attr('src',pathn);//加载相对应的内容
+				
+				$(".bar_left_item").eq(i).css('background-color', '#f07053');
+				
+				for(var j=0;j<$(".bar_left_item").length;j++)
+					{
+						if(j!=i)$(".bar_left_item").eq(j).css('background-color', '#f7bcaf');
+					}
+				if(i==1)$(".bar_left_item").eq(0).css('background-color', '#f07053');
+				if(i==3)$(".bar_left_item").eq(2).css('background-color', '#f07053');
+				if(i==5)$(".bar_left_item").eq(4).css('background-color', '#f07053');
+            }
+
+            var sId = window.location.hash;
+
+            setTimeout(function(){loadInner(sId)},100);
+
+
+
+    </script>
+	<script src="../js/common.js" type="text/javascript"></script>
+</html>

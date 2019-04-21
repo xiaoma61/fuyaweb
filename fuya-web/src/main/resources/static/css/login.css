@@ -1,0 +1,82 @@
+.main{
+	width:35%;
+	background-color: #ed9fad;
+	padding:5% 0 6% 0;
+	font-size: 20px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	vertical-align: middle;
+	margin: 4% 0 6% 0;
+	border-radius: 20px;
+	box-shadow: 0 0 20px rgba(0,0,0,0.2);
+}
+a { color: #d81e06; }
+a:hover {color: #fff} 
+.finish{
+	width:68%;
+	color: aliceblue;
+	background-color: #fb496b;
+	margin: 3% 0 0 0;
+	padding: 1% 0.8%;
+	border-radius: 10px;
+	cursor: pointer;
+	outline：none;
+}
+.finish:hover{
+	background-color: #fe718c;
+}
+table {
+	text-align: center;
+}
+.inputAttr{
+	-web-kit-appearance:none;
+    -moz-appearance: none;
+	border:solid 2px #fff;
+	border-radius:4px;
+	padding-left:7%;
+}
+#inputAttr1{
+	background:url(../img/name.png) no-repeat 5px center;
+	background-size:4%;
+	background-color: #fff;
+}
+#inputAttr2{
+
+	background:url(../img/password.png) no-repeat 5px center;
+	background-size:4%;
+	background-color: #fff;
+}
+.forget{
+	width:68%;
+	color: #000;
+	margin: 0 0 0 0;
+	padding: 1% 0.8%;
+	display: table;
+	text-align: left;
+}
+.forget_tr{
+	display: table-row;
+	width: 100%;
+}
+.forget_td1{
+	display: table-cell;
+	width:20%;
+}
+.forget_td1 a{
+	color: #000;
+}
+.forget_td1 a:hover {
+	color: #fff
+} 
+.forget_td2{
+	display: table-cell;
+	width:60%;
+	text-align: right;
+}
+.forget_td3{
+	display: table-cell;
+	width:20%;
+	text-align: right;
+	color: #d81e06;
+}

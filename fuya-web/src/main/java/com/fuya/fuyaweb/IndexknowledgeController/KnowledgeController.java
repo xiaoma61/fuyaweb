@@ -12,12 +12,14 @@ import net.sf.json.JSONObject;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.jms.Queue;
 import javax.jms.Topic;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.HashMap;
@@ -28,6 +30,7 @@ import java.util.Map;
  * 完成
  */
 @Controller
+@CrossOrigin
 public class KnowledgeController {
     @Autowired
     ARTICLESolrService articleSolrService;
@@ -42,19 +45,12 @@ public class KnowledgeController {
 
     //显示主要页面
     @RequestMapping("/knowledge")
-
     @ResponseBody
-    public JSONObject knowledge(@RequestParam(name="type",defaultValue = "1")int type,@RequestParam(name = "start",defaultValue = "0")int start,@RequestParam(name = "rows",defaultValue = "10")int rows) throws IOException, SolrServerException {
-
+    public JSONObject knowledge(@RequestParam(name="type",defaultValue = "1")int type, @RequestParam(name = "start",defaultValue = "0")int start,
+                                @RequestParam(name = "rows",defaultValue = "10")int rows, HttpServletResponse response) throws IOException, SolrServerException {
+        response.setHeader("Access-Control-Allow-Origin", "*");
        SearchResult searchResult= articleSolrService.Searchbytype(type,start,rows);
-       if (searchResult!=null){
-           int totalpages=0;
-           if (searchResult.getObjects().size()%rows!=0){
-               totalpages=(searchResult.getObjects().size()/rows)+1;
-           }else {
-               totalpages=(searchResult.getObjects().size()/rows);
-           }
-           searchResult.setTotalPage(totalpages);
+       if (searchResult!=null&&searchResult.getObjects().size()>0){
            //和相关推荐
            ARTICLEmodel article= (ARTICLEmodel) searchResult.getObjects().get(0);
            SearchResult articlesearchResult=articleSolrService.SearchbyLikeName(article.getTITLE(),start,rows);
@@ -82,7 +78,8 @@ public class KnowledgeController {
     //查看文章
     @RequestMapping("/knowledge/id")
     @ResponseBody
-    public JSONObject knowledgebyid(@RequestParam(name = "id")int id) throws IOException, SolrServerException {
+    public JSONObject knowledgebyid(@RequestParam(name = "id")int id,HttpServletResponse response) throws IOException, SolrServerException {
+        response.setHeader("Access-Control-Allow-Origin", "*");
         SearchResult searchResult=articleSolrService.Searchbyid(id);
         List<ARTICLEmodel> articleList=searchResult.getObjects();
         ARTICLEmodel article=articleList.get(0);
@@ -108,7 +105,8 @@ public class KnowledgeController {
     @RequestMapping("/knowledge/searchtitle")
     @ResponseBody
     public JSONObject knowledgebyTitle(@RequestParam(name = "Title")String title,@RequestParam(name = "start",defaultValue = "0")int start,
-                                @RequestParam(name="rows",defaultValue = "5")int rows) throws IOException, SolrServerException {
+                                @RequestParam(name="rows",defaultValue = "5")int rows,HttpServletResponse response) throws IOException, SolrServerException {
+        response.setHeader("Access-Control-Allow-Origin", "*");
         SearchResult searchResult=articleSolrService.SearchbyLikeName(title,start,rows);
         Map<String,Object> msg=new HashMap<>();
         if (SearchKeyword.searchkeyword(searchResult)==null){
@@ -126,7 +124,8 @@ public class KnowledgeController {
     @RequestMapping("/knowledge/searchbytitle")
     @ResponseBody
     public JSONObject knowledgeSearchbyTitle(@RequestParam(name = "Title")String title,@RequestParam(name = "start",defaultValue = "0")int start,
-                                      @RequestParam(name="rows",defaultValue = "10")int rows) throws IOException, SolrServerException {
+                                      @RequestParam(name="rows",defaultValue = "10")int rows,HttpServletResponse response) throws IOException, SolrServerException {
+        response.setHeader("Access-Control-Allow-Origin", "*");
         SearchResult searchResult=articleSolrService.SearchbyLikeName(title,start,rows);
         return JSONObject.fromObject(searchResult);
     }

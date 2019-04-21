@@ -21,10 +21,10 @@ public class AlipayConfig {
     public static String public_key = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA1TgY2SK2XKaw/0BTDVDD81M5qPAS94ylMVjAfR9Mc7DqSBzkHOfhTcMvbpKjLH/OLolpsbXMf1y2AV067tyPUoWN1ymJ9EcwYsUVLpILYJl8LqzEMY+A/i/QiGI7Cy8HNm/IH5bQqLs6abyoXzqEcETUrkaw5XLnVm2ApIgnFjonoxqKnaMzVPNJNXRk8q9NGCUVJxt/G0SQoD1sC0VeLU58hKkB5jX4azyXY3AXMuWtDHDYxh9rChPg806MyQpmajrEQg+VMddmbcpdCeTTLtTkCC2XovZytkBzfFRN581VUDpkSLWO+HZFJcwEeffQxq79ZmMBn+rIsuiAGuylXQIDAQAB";
 
     // 服务器异步通知页面路径  需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
-    public static String notify_url = "https://campus.gbdev.cn:8060/fuyaweb/";
+    public static String notify_url = "https://campus.gbdev.cn:8060/fuyaweb/order/synCallBack";
 
     // 页面跳转同步通知页面路径 需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
-    public static String return_url = "https://campus.gbdev.cn:8060/fuyaweb/";
+    public static String return_url = "https://campus.gbdev.cn:8060/fuyaweb/order/synCallBack";
     // 签名方式
     public static String signtype = "RSA2";
     // 字符编码格式

@@ -18,7 +18,7 @@ public interface PROVEINFORepository extends JpaRepository<PROVEINFO,Long> {
     @Modifying
     @Query("delete from PROVEINFO  p where p.USERSID=?1")
     void deleteByUSERSID(int id);
-    @Query(value = "select new com.fuya.fuyadao.model.PROVEINFOANDBAISINFO(y,p) from PROVEINFO  p ,YUESOBASICINFO y  where p.USERSID=y.USERSID and p.USERSID=?1 ")
+    @Query(value = "select new com.fuya.fuyadao.model.PROVEINFOANDBAISINFO(y,p) from YUESOBASICINFO y left  join  PROVEINFO  p  on p.USERSID=y.USERSID where y.USERSID=?1 ")
     List<PROVEINFOANDBAISINFO> findPROVEINFOByAndYUESAOBASICINFOByUSERSID(int id);
     @Transactional
     @Modifying

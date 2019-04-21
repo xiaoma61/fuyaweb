@@ -93,17 +93,17 @@ public class COMPANYBASICINFOSearchdao {
         SolrDocumentList solrDocumentList= solrResponse.getResults();
         for (SolrDocument solrInputDocument :solrDocumentList){
 
-            long COMPANYBASICINFOID= (long) solrInputDocument.getFieldValue("COMPANYBASICINFOID");
-            companybasicinfo.setCOMPANYBASICINFOID(Math.toIntExact(COMPANYBASICINFOID));
-            long USERSID= (long) solrInputDocument.getFieldValue("USERID");
-            companybasicinfo.setUSERID(Math.toIntExact(USERSID));
+            String COMPANYBASICINFOID= (String) solrInputDocument.getFieldValue("COMPANYBASICINFOID");
+            companybasicinfo.setCOMPANYBASICINFOID(Integer.parseInt(COMPANYBASICINFOID));
+            String USERSID= (String) solrInputDocument.getFieldValue("USERID");
+            companybasicinfo.setUSERID(Integer.parseInt(USERSID));
             companybasicinfo.setCORPORATENAME((String) solrInputDocument.getFieldValue("CORPORATENAME"));
             companybasicinfo.setADDRESS((String) solrInputDocument.getFieldValue("ADDRESS"));
             companybasicinfo.setINTRODUCE((String) solrInputDocument.getFieldValue("INTRODUCE"));
-            long LEVELS= (long) solrInputDocument.getFieldValue("LEVELS");
-            companybasicinfo.setLEVELS(Math.toIntExact(LEVELS));
-            String nums= (String) solrInputDocument.getFieldValue("NUMS");
-            companybasicinfo.setNUMS(Integer.parseInt(nums));
+            String LEVELS= (String) solrInputDocument.getFieldValue("LEVELS");
+            companybasicinfo.setLEVELS(Integer.parseInt(LEVELS));
+          /*  String nums= (String) solrInputDocument.getFieldValue("NUMS");*/
+            companybasicinfo.setNUMS((Integer) solrInputDocument.getFieldValue("NUMS"));
             return companybasicinfo;
         }
         return null;

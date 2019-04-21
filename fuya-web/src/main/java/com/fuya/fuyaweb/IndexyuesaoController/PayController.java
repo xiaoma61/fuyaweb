@@ -23,6 +23,7 @@ import net.sf.json.JSONObject;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -40,6 +41,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Controller
+@CrossOrigin
 public class PayController {
 
 
@@ -86,6 +88,7 @@ public class PayController {
     @RequiresRoles("users")
     @RequestMapping("/fuyayusao/order/add")
     @ResponseBody
+    @CrossOrigin
     public JSONObject addorder(HttpServletRequest request,
                                @RequestParam(name = "toid")int toid,
                                @RequestParam(name = "childbirth",defaultValue = "2019-11-10")String childbirth, @RequestParam(name = "starttime",defaultValue = "2020-10-10")String starttime,
@@ -97,13 +100,13 @@ public class PayController {
                                @RequestParam(name = "address",defaultValue = "广东广州越秀区黄花岗教师公寓2号")String address,
                                @RequestParam(name = "phone",defaultValue = "131444051089")String phone,@RequestParam(name = "type",defaultValue = "1")int type,
                                @RequestParam(name = "idcard",defaultValue = "44051019990820082X")String idcard,
+                               @RequestParam(name = "CONTRACTNUMBER",defaultValue = "440510")String CONTRACTNUMBER,
                                HttpServletResponse response
 
                                ) throws ParseException, AlipayApiException, IOException {
+        response.setHeader("Access-Control-Allow-Origin", "*");
         HttpSession session=request.getSession();
         int id= (int) session.getAttribute("id");
-
-
 
         //生成订单号码
         Date date=new Date();
@@ -111,9 +114,9 @@ public class PayController {
         orders.setFROMID(id);
         orders.setTOID(toid);
 
-        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyyMMddHHmmss");
-        String dateS=simpleDateFormat.format(new Date());
-        orders.setCONTRACTNUMBER(uuidUtil.getuuidUtil());
+      /*  SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyyMMddHHmmss");
+        String dateS=simpleDateFormat.format(new Date());*/
+        orders.setCONTRACTNUMBER(CONTRACTNUMBER);
         ordersService.save(orders);
 
 
@@ -167,25 +170,28 @@ public class PayController {
         return JSONObject.fromObject(msg);*/
     }
     @RequiresRoles("users")
-    @RequestMapping("/fuyayusao/order/pay")
-
-    public void pay(HttpServletResponse response, HttpSession session, @RequestParam(name = "orderid")int orderid, @RequestParam(name = "fate")int fate) throws AlipayApiException, IOException {
-        String result = Alipay.AlipayUtil(1,fate);
+    @RequestMapping("/order/pay")
+    @CrossOrigin
+    public void pay(HttpServletResponse response, HttpSession session, @RequestParam(name = "CONTRACTNUMBER")String CONTRACTNUMBER, @RequestParam(name = "fate")int fate) throws AlipayApiException, IOException {
+        String result = Alipay.AlipayUtil(CONTRACTNUMBER,fate);
         response.setContentType("text/html;charset=" + "UTF-8");
         response.getWriter().write(result); // 直接将完整的表单html输出到页面
         response.getWriter().flush();
         response.getWriter().close();
 
     }
-    public JSONObject synCallBack(@RequestParam Map<String, String> params) {
+
+    @RequestMapping("/order/synCallBack")
+    public JSONObject synCallBack(@RequestParam Map<String, String> params,HttpServletResponse response) {
+        response.setHeader("Access-Control-Allow-Origin", "*");
         Map<String,Object> msg=new HashMap<>();
 
         // 2.验签操作,参考支付宝Demo的return_url.jsp
         try {
-            boolean signVerified = AlipaySignature.rsaCheckV1(params, AlipayConfig.alipay_public_key, AlipayConfig.charset,
-                    AlipayConfig.sign_type); // 调用SDK验证签名
+            boolean signVerified = AlipaySignature.rsaCheckV1(params, AlipayConfig.public_key, AlipayConfig.charset,
+                    AlipayConfig.signtype); // 调用SDK验证签名
 
-            // ——请在这里编写您的程序（以下代码仅作参考）——
+
             if (!signVerified) {
                 msg.put("msg","error");
                 return JSONObject.fromObject(msg);
@@ -209,28 +215,35 @@ public class PayController {
         return JSONObject.fromObject(msg);
     }
 
-        @RequiresRoles("users")
-    @RequestMapping("/fuyayusao/order/refund")
-    @ResponseBody
-    public JSON refund(HttpServletResponse response, HttpSession session, @RequestParam(name = "orderid")int orderid, @RequestParam(name = "fate")int fate) throws AlipayApiException {
-        AlipayClient alipayClient = new DefaultAlipayClient(AlipayConfig.gatewayUrl, AlipayConfig.app_id, AlipayConfig.merchant_private_key, "json", AlipayConfig.charset, AlipayConfig.alipay_public_key, AlipayConfig.sign_type);
-        //设置请求参数
-        AlipayTradeRefundRequest alipayRequest = new AlipayTradeRefundRequest();
-        AlipayTradePagePayRequest aliPayRequest = new AlipayTradePagePayRequest();
-        aliPayRequest.setReturnUrl(AlipayConfig.return_url);
-        aliPayRequest.setNotifyUrl(AlipayConfig.notify_url);
-        String total_amount= String.valueOf(fate);
-        String out_trade_no = String.valueOf(orderid);
-        String subject="月嫂:"+orderid;
-        aliPayRequest.setBizContent("{\"out_trade_no\":\"" + orderid + "\","
-                + "\"total_amount\":\"" + total_amount + "\","
-                + "\"subject\":\"" + subject + "\","
-                + "\"product_code\":\"FAST_INSTANT_TRADE_PAY\"}");
-        String result = alipayClient.pageExecute(aliPayRequest).getBody();
 
-        Map<String,Object> msg=new HashMap<>();
+    @RequiresRoles("users")
+    @RequestMapping("order/refund")
+    @ResponseBody
+    @CrossOrigin
+    public void refund(HttpServletResponse response, HttpSession session, @RequestParam(name = "CONTRACTNUMBER")String CONTRACTNUMBER, @RequestParam(name = "fate")int fate) throws AlipayApiException, IOException {
+
+            response.setHeader("Access-Control-Allow-Origin", "*");
+        AlipayClient alipayClient = new DefaultAlipayClient(AlipayConfig.url, AlipayConfig.app_id, AlipayConfig.private_key, "json", AlipayConfig.charset, AlipayConfig.public_key, AlipayConfig.signtype);
+        //设置请求参数
+
+        AlipayTradeRefundRequest alipayRequest = new AlipayTradeRefundRequest();
+
+        String total_amount= String.valueOf(fate);
+        String out_trade_no = CONTRACTNUMBER;
+        String subject="支付测试";
+        alipayRequest.setBizContent("{\"out_trade_no\":\"" + CONTRACTNUMBER + "\","
+                + "\"refund_amount\":\"" + total_amount + "\"}"
+               );
+        String result = alipayClient.pageExecute(alipayRequest).getBody();
+
+        response.setContentType("text/html;charset=" + "UTF-8");
+        response.getWriter().write(result); // 直接将完整的表单html输出到页面
+        response.getWriter().flush();
+        response.getWriter().close();
+
+     /*   Map<String,Object> msg=new HashMap<>();
         msg.put("msg",result);
-        return JSONObject.fromObject(msg);
+        return JSONObject.fromObject(msg);*/
 
     }
 

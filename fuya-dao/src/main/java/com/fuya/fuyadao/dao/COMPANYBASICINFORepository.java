@@ -31,4 +31,11 @@ public interface COMPANYBASICINFORepository extends JpaRepository<COMPANYBASICIN
     List<Object>find();
     @Query("select p.CONTACTNAME, p.CONTACTPHONE,p.ADDRESS,c.NUMS,c.CORPORATENAME,c.LEVELS, p.LICENCE,c.COMPANYBASICINFOID,c.USERID from COMPANYBASICINFO c,COMPANYINFO p where c.USERID=p.USERSID and  c.COMPANYBASICINFOID=?1")
     Object findidMsg(int id);
+
+    @Query(" select new com.fuya.fuyadao.model.CompanysInfosModle(c1,c2) from  COMPANYBASICINFO c1 , COMPANYINFO c2 where c1.USERID=c2.USERSID and c1.USERID=?1 ")
+    CompanysInfosModle findCompanysInfosModleByUSERID(int id);
+
+
+
+
 }

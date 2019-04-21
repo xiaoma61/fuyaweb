@@ -33,7 +33,7 @@ public class RECRUIT {
     @Field
     private String PHONE;
     @Field
-    private String DESCRIBE;
+    private String RDESCRIBE;
     @Field
     private String WORKBACKGROUND;
     @Field
@@ -129,12 +129,12 @@ public class RECRUIT {
         this.PHONE = PHONE;
     }
 
-    public String getDESCRIBE() {
-        return DESCRIBE;
+    public String getRDESCRIBE() {
+        return RDESCRIBE;
     }
 
-    public void setDESCRIBE(String DESCRIBE) {
-        this.DESCRIBE = DESCRIBE;
+    public void setRDESCRIBE(String DESCRIBE) {
+        this.RDESCRIBE = DESCRIBE;
     }
 
     public String getWORKBACKGROUND() {

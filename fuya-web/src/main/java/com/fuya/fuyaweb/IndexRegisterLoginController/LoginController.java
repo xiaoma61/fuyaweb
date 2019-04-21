@@ -6,12 +6,16 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @Controller
+@CrossOrigin
 public class LoginController {
     /**
      * 跳转登录页面
@@ -19,8 +23,7 @@ public class LoginController {
      */
     @RequestMapping("/Login")
     public  String Login(){
-
-        return "login";
+        return "../static/html/login.html";
     }
     @RequestMapping("/403")
     public  String error(){
@@ -38,7 +41,10 @@ public class LoginController {
      */
 
     @RequestMapping("/CheckLogin")
-    public  String CheckLogin(String name , String password, Model model, HttpServletRequest request){
+
+    public  String CheckLogin(String name , String password, Model model, HttpServletRequest request, HttpServletResponse response){
+
+        response.setHeader("Access-Control-Allow-Origin", "*");
         HttpSession session=request.getSession();
         //获取subject
         Subject subject= SecurityUtils.getSubject();
@@ -58,9 +64,12 @@ public class LoginController {
         }
         //将用户名
 
+        HttpSession httpSession=request.getSession();
+        int type= (int) httpSession.getAttribute("type");
+        Cookie cookie=new Cookie("type",String.valueOf(type));
         session.setAttribute("username",name);
 
-        return "index";
+        return "redirect:index";
 
     }
     //登出
@@ -72,7 +81,7 @@ public class LoginController {
         session.removeAttribute("id");
         Subject subject = SecurityUtils.getSubject();
         subject.logout();
-        return "index";
+        return "../static/html/index.html";
     }
 
 

@@ -16,10 +16,12 @@ import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -27,6 +29,7 @@ import java.util.Map;
 
 
 @Controller
+@CrossOrigin
 public class IndexController {
 
     private String companykey="COMPANYBASICINFO";
@@ -48,9 +51,11 @@ public class IndexController {
 
     @Autowired
     RedisUtil redisUtil;
-    @RequestMapping("/index")
+
+    @RequestMapping("/index/msg")
     @ResponseBody
-    public JSONObject index(Model model){
+    public JSONObject index(Model model, HttpServletResponse response){
+        response.setHeader("Access-Control-Allow-Origin", "*");
         //redis实现查找前6个
         //前6个企业
         Map<String,Object> msg=new HashMap<>();
@@ -85,10 +90,7 @@ public class IndexController {
             msg.put("companybasicinfo", companybasicinfo);
             redisUtil.set(companykey,companybasicinfo );
 
-
         }
-
-
         //前6个月嫂
         if (redisUtil.hasKey(yuesaokey)){
             System.out.println("adssssssss1");
@@ -106,11 +108,16 @@ public class IndexController {
                //封装连接---跳转到月嫂的页面
                int id=yuesobasicinfo.getUSERSID();
                List<COMMENTS> commentsList=commentsService.findByUSERID(id);
+               Map<String,Object>map=new HashMap<>();
                if (commentsList!=null){
-                   COMMENTS comments=commentsList.get(0);
-                   Map<String,Object>map=new HashMap<>();
+                   if (commentsList!=null&&commentsList.size()>0){
+                       COMMENTS comments=commentsList.get(0);
+                       map.put("CONTENT",comments.getCONTENT());//评论
+                   }
+
+
                    map.put("ID",yuesobasicinfo.getYUESOBASICINFOID());//评论
-                   map.put("CONTENT",comments.getCONTENT());//评论
+
                    map.put("NAME",yuesobasicinfo.getNAME());// 名称
                    map.put("NATIVEPLACE",yuesobasicinfo.getNATIVEPLACE());//地点
                    map.put("WAGES",yuesobasicinfo.getWAGES());//工资
@@ -165,10 +172,12 @@ public class IndexController {
             redisUtil.set(articlekey,articleListmapJson);
             msg.put("articleListmapJson", articleListmapJson);
         }
-
-
-
-
         return JSONObject.fromObject(msg);
+    }
+
+    @RequestMapping("/index")
+    public String index(){
+
+        return "../static/html/index.html";
     }
 }

@@ -1,8 +1,7 @@
 package com.fuya.fuyaservice.impl;
 
 import com.fuya.fuyadao.dao.YUESOBASICINFORepository;
-import com.fuya.fuyadao.entity.RECRUIT;
-import com.fuya.fuyadao.entity.YUESOBASICINFO;
+import com.fuya.fuyadao.entity.*;
 import com.fuya.fuyaservice.YUESOBASICINFOService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -84,14 +83,19 @@ public class YUESOBASICINFOImpl implements YUESOBASICINFOService {
     public Object findObjectByUSERSID(int userid) {
         return yuesobasicinfoRepository.findObjectByUSERSID(userid);
     }
+
+
+
     @Transactional
     @Override
-    public Page<YUESOBASICINFO> query(String name, String workarea, String minwages, String maxwages, int type, String nativeplace, String minage, String maxage, int start, int rows) {
+    public Page<YUESOBASICINFO> query(String name, String workarea, String minwages, String maxwages, int type, String nativeplace, String minage, String maxage, int start, int rows,int usertype) {
 
 
       return   yuesobasicinfoRepository.findAll(new Specification<YUESOBASICINFO>(){
             @Override
             public Predicate toPredicate(Root<YUESOBASICINFO> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
+
+
                 Path<String> namepath=root.get("NAME");
                 Path<String> workareapath=root.get("WORKAREA");
                 Path<String> typepath=root.get("TYPE");
@@ -103,6 +107,13 @@ public class YUESOBASICINFOImpl implements YUESOBASICINFOService {
 
                     list.add(criteriaBuilder.like(namepath,"%"+name+"%"));
                 }
+
+
+                    Join<YUESOBASICINFO, USERS>map=root.join("yu", JoinType.LEFT);
+                    list.add(criteriaBuilder.equal(map.get("TYPE"),usertype));
+                /*    list.add(criteriaBuilder.equal(map.get("USERSID"),root.get("USERSID")));*/
+
+
                 if (!workarea.equals("null")){
                     list.add(criteriaBuilder.equal(workareapath,workarea));
 
@@ -118,14 +129,14 @@ public class YUESOBASICINFOImpl implements YUESOBASICINFOService {
                     if (!minwages.equals("null")){
                         //大于最大的
                         int min= Integer.parseInt(minwages);
-                        list.add( criteriaBuilder.lt(root.get("WAGES"), min));
+                        list.add( criteriaBuilder.ge(root.get("WAGES"), min));
                     }
 
                 }
                 if (minwages.equals("null")){
                     if (!maxwages.equals("null")){
                         int max= Integer.parseInt(maxwages);
-                        list.add( criteriaBuilder.ge(root.get("WAGES"), max));
+                        list.add( criteriaBuilder.lt(root.get("WAGES"), max));
                     }
 
                 }
@@ -143,14 +154,14 @@ public class YUESOBASICINFOImpl implements YUESOBASICINFOService {
                     //大于最大的
                     if (!maxage.equals("null")){
                         int max= Integer.parseInt(maxage);
-                        list.add( criteriaBuilder.ge(root.get("AGE"), max));
+                        list.add( criteriaBuilder.lt(root.get("AGE"), max));
                     }
                 }
                 if (maxage.equals("null")){
                     //小于最小的
                     if (!minage.equals("null")){
                         int min= Integer.parseInt(minage);
-                        list.add( criteriaBuilder.lt(root.get("AGE"), min));
+                        list.add( criteriaBuilder.ge(root.get("AGE"), min));
                     }
                 }
 

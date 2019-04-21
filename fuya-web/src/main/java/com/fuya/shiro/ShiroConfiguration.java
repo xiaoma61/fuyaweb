@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 
@@ -48,18 +49,32 @@ public class ShiroConfiguration {
 
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(securityManager);
-        Map<String,String> map = new HashMap<String, String>();
+        LinkedHashMap<String,String> map = new LinkedHashMap<String, String>();
         //登出
 
-        map.put("/index", "anon");
+        map.put("/index/**", "anon");
+        map.put("/Image/**", "anon");
         map.put("/recruit/**", "anon");
-        map.put("/static/js/**", "anon");
-        map.put("/static/css/**", "anon");
-        map.put("/static/fonts/**", "anon");
+        map.put("/js/**", "anon");
+        map.put("/img/**", "anon");
+        map.put("/css/**", "anon");
+        map.put("/fonts/**", "anon");
+        map.put("/html/**", "anon");
         map.put("/login/**", "anon");
         map.put("/knowledge/**", "anon");
         map.put("/CheckLogin", "anon");
+        map.put("/company/**", "anon");
+        map.put("/fileUpload", "anon");
+        map.put("/fyys.html", "anon");
+        map.put("/all_organization.html", "anon");
+        map.put("/join.html", "anon");
+        map.put("/all_recruit.html", "anon");
+        map.put("/all_knowlage.html", "anon");
+        map.put("/order/synCallBack","anon");
+        map.put("/login.html", "anon");
         map.put("/logout","logout");
+
+
         map.put("/fuyayuesaoindex/**", "anon");
 
         //对所有用户认证authc ,不必认证anon
@@ -73,6 +88,7 @@ public class ShiroConfiguration {
         map.put("/fuyayuesaos/**","roles[yuesaos]");
         map.put("/companys/**","roles[companys]");
         map.put("/admin/**","roles[admin]");
+
 
         //登录
         shiroFilterFactoryBean.setLoginUrl("/Login");

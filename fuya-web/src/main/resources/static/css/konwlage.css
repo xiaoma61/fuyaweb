@@ -1,0 +1,117 @@
+.main{
+	width:80%;
+	padding:0 0 3% 0;
+	font-size: 20px;
+	overflow: hidden;
+	margin: 0 0 2% 0;
+}
+.content_left{
+	width:65%;
+	padding:0 2% 4% 0.5%;
+	float: left;
+	margin: 0.2% 0.5% -4% 0;
+	background-color: #fcfbf6;
+}
+.content_right_top{
+	width:31%;
+	padding:0 0 1.5% 0;
+	background-color: #fefefc;
+	float: right;
+	margin: 0.2% 0.5% 2% 0;
+	color: #ed9fad;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1); 
+}
+.content_top{
+	width:80%;
+	padding:0 0 0 0;
+	font-size: 16px;
+	overflow: hidden;
+	margin: 4% 0 0.5% 0;
+	border-bottom: 4px solid #f07053;
+}
+#show{
+	width: 100%;
+	background-color: #fefefc;
+	box-shadow: 0 0 20px rgba(0,0,0,0.1); 
+	padding: 40px 0 40px 0;
+}
+.title{
+	width: 100%;
+	font-size: 25px;
+	color: #000;
+	margin: 0 0 30px 0;
+}
+.substance{
+	width: 90%;
+	margin: 0 auto;
+	white-space: normal;
+	font-size: 16px;
+	line-height: 30px;
+	text-align: left;
+}
+.substance pre{
+	white-space: pre-wrap; 
+	white-space: -moz-pre-wrap; 
+	white-space: -pre-wrap; 	
+	white-space: -o-pre-wrap; 	
+	word-wrap: break-word; 
+}
+.recommend{
+	width: 95%;
+	float: left;
+	padding: 0 0 0 0;
+	line-height: 40px;
+	margin:5% 0 0 2.5%;
+}
+.recommend li:first-child{
+	border-bottom: 2px solid #f07053;
+	text-align: left;
+	padding: 0 0 0 10px;
+	color: #000;
+	font-size: 16px;
+	line-height: 16px;
+	font-weight: 600;
+	height: 24px;
+}
+.recommend li{
+	text-align: left;
+	padding: 0 0 0 10px;
+	font-size: 15px;
+	line-height: 40px;
+	height: 30px;
+	text-overflow:ellipsis; 
+    white-space: nowrap;
+	overflow: hidden;
+}
+.tag{
+	width: 15px;
+	height: 15px;
+	background-color: #F0892E;
+	display: inline-block;
+	color: #fff;
+	line-height: 15px;
+	text-align: center;
+	margin: 0 20px 0 10px;
+	font-size: 12px;
+}
+._tag{
+	width: 15px;
+	height: 15px;
+	background-color: #DDDDDD;
+	display: inline-block;
+	color: #787878;
+	line-height: 15px;
+	text-align: center;
+	margin: 0 20px 0 10px;
+	font-size: 12px;
+}
+a{
+	color:#4D4D4D;
+}
+a:hover{
+    color: #000;
+}
+#time{
+	font-size: 14px;
+	color: #636363;
+}

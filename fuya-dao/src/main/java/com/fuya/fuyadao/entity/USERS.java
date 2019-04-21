@@ -3,6 +3,9 @@ package com.fuya.fuyadao.entity;
 import org.apache.solr.client.solrj.beans.Field;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Table(name="USERS")
 @Entity
@@ -23,6 +26,8 @@ public class USERS {
     private String PASSWORD;
     @Field
     private int TYPE;
+
+
 
 
     public int getUSERSID() {

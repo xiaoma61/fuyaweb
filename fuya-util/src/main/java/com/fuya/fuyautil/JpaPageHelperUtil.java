@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JpaPageHelperUtil {
-    public static List<PageInfo> SetStartPage(List<?> list, int pageNow, int Size){
+    public static PageInfo SetStartPage(List<?> list, int pageNow, int Size){
         boolean isFristPage=false;
         boolean isLastPage=false;
         boolean haveNexPage=false;
@@ -14,6 +14,9 @@ public class JpaPageHelperUtil {
         int pageSize=0;
         int fromIndex=(pageNow-1)*Size;
         int toIndex=pageNow*Size;
+        if (fromIndex>list.size()){
+            return null;
+        }
         if(fromIndex==0) {
             isFristPage=true;
         }else if (!isFristPage) {
@@ -35,13 +38,20 @@ public class JpaPageHelperUtil {
         pageInfo.setStartRow(pageNow);
         pageInfo.setPageSize(pageSize);
         pageInfo.setTotal(Size);
+        if (pageNow>1){
+            pageInfo.setPrePage(pageNow-1);
+        }
+        pageInfo.setEndRow(toIndex);
+        if (pageNow+1<=pageSize){
+            pageInfo.setNextPage(pageNow+1);
+        }
         pageInfo.setIsFirstPage(isFristPage);
         pageInfo.setIsLastPage(isLastPage);
         pageInfo.setHasNextPage(haveNexPage);
         pageInfo.setHasPreviousPage(havePerPage);
         pageInfo.setList(list.subList(fromIndex, toIndex));
         pageInfos.add(pageInfo);
-        return pageInfos;
+        return pageInfo;
     }
 
 }

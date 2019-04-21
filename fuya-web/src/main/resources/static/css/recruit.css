@@ -1,0 +1,131 @@
+.main{
+	width:80%;
+	background-color: #fefefc;
+	padding:3% 0 3% 0;
+	font-size: 20px;
+	overflow: hidden;
+	margin: 2% 0 2% 0;
+}
+.content_left{
+	width:52%;
+	padding:0 3% 10% 3%;
+	float: left;
+	margin: 0 3% 0 3%;
+}
+.content_right_top{
+	width:31%;
+	padding:3% 0 2% 0;
+	background-color: #fcfbf6;
+	float: left;
+	margin: 0 3% 2% 0;
+	color: #ed9fad;
+}
+.content_right_bottom{
+	width:17%;
+	padding:1% 10% 1% 4%;
+	background-color:#fcfbf6;
+	float: left;
+	margin: 0 3% 0 0;
+	color: #ed9fad;
+	text-align: left;
+}
+.register{
+	width:60%;
+	color: aliceblue;
+	background-color: #E97C91;
+	margin: 2% 0 0 0;
+	padding: 2% 0.8%;
+	cursor: pointer;
+	font-size: 16px;
+}
+.register:hover{
+	background-color: #faa0b1;
+}
+.statistics{
+	width:80%;
+	margin: 3% 0 0 0;
+	padding: 2% 0.8%;
+	font-size: 16px;
+	color: #E97C91;
+}
+.number{
+	background-color: #E97C91;
+	color: aliceblue;
+	padding: 0.5% 2%;
+	margin: 0 2%;
+}
+.join_title{
+	margin: 0 0 0 0;
+	font-size: 30px;
+	padding: 0 0 10px 0 ;
+	
+}
+.join_title table{
+	width: 100%;
+	text-align: left;
+	height: 100px;
+}
+.join_title th{
+	font-size: 25px;
+	font-weight: 500;
+	padding:  0 0 0 2%;
+}
+.join_title td{
+	font-size: 12px;
+	font-weight: 100;
+	padding:  0 0 0 2%;
+}
+.join_title li{
+	float: left;
+	text-align: left;
+	padding:  0 5% 0 5%;
+	border-right: 1px solid #ccc;
+}
+.join_content{
+	margin: 4% 0 0 0 ;
+	text-align: left;
+	line-height: 20px;
+	color: #000;
+}
+.introduce{
+	line-height: 35px;
+	font-size: 16px;
+	margin: 0 0 50px 0;
+}
+.title{
+	float: left;
+	padding: 0 0 0 10px;
+}
+.introduce hr{
+	width: 87%;
+	float: right;
+	margin: 20px 0 0  0;
+	border: 0;
+	border-bottom: 2px dashed #ccc;
+}
+.title hr{
+	width: 35%;
+	float: left;
+	margin: 0 0 0  0;
+	border: 0;
+	border-bottom: 4px solid #f07053;
+}
+.tag{
+	height: 40px;
+	margin: 0 0 20px 0;
+}
+._tag{
+	border: 1px solid #ccc;
+	padding: 0 5px;
+	margin: 0 0 0 20px;
+	font-size: 10px;
+	display:inline-block;
+	height: 25px;
+	line-height: 25px;
+}
+.introduce ul{
+	margin: 0 0 0 20px;
+}
+.introduce li{
+	font-size: 13px;
+}

@@ -12,6 +12,7 @@ import com.fuya.fuyaservice.PROVEINFOService;
 import com.fuya.fuyaservice.USERService;
 import com.fuya.fuyaservice.YUESOBASICINFOService;
 import com.fuya.fuyautil.StringNameUtil;
+import com.fuya.fuyautil.uuidUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import net.sf.json.JSONObject;
@@ -25,6 +26,7 @@ import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -39,13 +41,14 @@ import java.io.InputStream;
 import java.util.*;
 
 @Controller
+@CrossOrigin
 public class CompanyyuesaosController {
-    @Autowired
+    /*@Autowired
     private Queue queue;
     @Autowired
     private Topic topic;
     @Autowired
-    private ProductService productService;
+    private ProductService productService;*/
     /*@Autowired
     private USERSSolrservice usersSolrservice;*/
     @Autowired
@@ -56,8 +59,6 @@ public class CompanyyuesaosController {
     PROVEINFOService proveinfoService;
     @Autowired
     COMPANYYUESAOService companyyuesaoService;
-
-
 
 
     //月嫂信息录入--增加
@@ -77,7 +78,8 @@ public class CompanyyuesaosController {
                                @RequestParam(name = "healthcertificates",defaultValue = "healthcertificates") String healthcertificates,
                                @RequestParam(name = "report",defaultValue = "report") String report,
                                @RequestParam(name = "score",defaultValue = "12") String score,
-                               @RequestParam(name = "servicepiceture",defaultValue = "头像") String servicepiceture, HttpServletRequest request) throws IOException, SolrServerException {
+                               @RequestParam(name = "servicepiceture",defaultValue = "头像") String servicepiceture,
+                                HttpServletRequest request) throws IOException, SolrServerException {
 
         HttpSession session=request.getSession();
         int id= (int) session.getAttribute("id");
@@ -106,7 +108,7 @@ public class CompanyyuesaosController {
 
 
 
-       productService.sendMessage(this.topic,"users:"+ users.getUSERSID());
+  /*     productService.sendMessage(this.topic,"users:"+ users.getUSERSID());*/
         //其他信息录入
         YUESOBASICINFO yuesobasicinfo=new YUESOBASICINFO();
         yuesobasicinfo.setPHONE(phone);
@@ -127,6 +129,7 @@ public class CompanyyuesaosController {
         yuesobasicinfo.setAGE(age);
         yuesobasicinfo.setUSERSID(users.getUSERSID());
         yuesobasicinfo.setWORKAREA(workarea);
+        yuesobasicinfo.setId(uuidUtil.getuuidUtil());
         yuesobasicinfoService.save(yuesobasicinfo);
 //        productService.sendMessage(this.topic,"yuesobasicinfo:"+ yuesobasicinfo.getYUESOBASICINFOID());
 
@@ -326,12 +329,21 @@ public class CompanyyuesaosController {
                 return JSONObject.fromObject(msg);
 
             }
-            String name = row.getCell(0).getStringCellValue();
-            users.setNAME(name);
+            if (row.getCell(0)!=null){
+                String name = row.getCell(0).getStringCellValue();
+                yuesobasicinfo.setNAME(name);
+                String nums= StringNameUtil.getRandomString(6);
+                users.setNAME(name+nums);
+            }else {
+                msg.put("msg","导入失败(第"+(r+1)+"行,电话号码请设为文本格式)");
+               return JSONObject.fromObject(msg);
+            }
+
             if(row.getCell(1)!=null){
                 row.getCell(1).setCellType(Cell.CELL_TYPE_STRING);
                 String phone = row.getCell(1).getStringCellValue();
                 users.setPHONE(phone);
+                yuesobasicinfo.setPHOTO(phone);
             }
             String idcard = null;
             if(row.getCell(2)!=null){
@@ -369,13 +381,13 @@ public class CompanyyuesaosController {
 
             }
 
+            if(row.getCell(7)!=null) {
 
 
+                String photo = row.getCell(7).getStringCellValue();
+                yuesobasicinfo.setPHOTO(photo);
 
-            String photo = row.getCell(7).getStringCellValue();
-            yuesobasicinfo.setPHOTO(photo);
-
-
+            }
 
             if(row.getCell(8)!=null){
                 row.getCell(8).setCellType(Cell.CELL_TYPE_STRING);
@@ -413,11 +425,19 @@ public class CompanyyuesaosController {
                 yuesobasicinfo.setSENIORITY(seniority);
 
             }
+            if(row.getCell(12)!=null){
+                row.getCell(12).setCellType(Cell.CELL_TYPE_STRING);
+                int yuesaotype = Integer.parseInt(row.getCell(12).getStringCellValue());
+                yuesobasicinfo.setTYPE(yuesaotype);
 
+            }
 
+            if(row.getCell(13)!=null){
+                String workarea = row.getCell(13).getStringCellValue();
+                yuesobasicinfo.setWORKAREA(workarea);
 
-            int yuesaotype = Integer.parseInt(row.getCell(12).getStringCellValue());
-            yuesobasicinfo.setTYPE(yuesaotype);
+            }
+
 
 
 //            if( row.getCell(13).getCellType() !=1){
@@ -425,59 +445,57 @@ public class CompanyyuesaosController {
 //                return JSONObject.fromObject(msg);
 //
 //            }
-            String workarea = row.getCell(13).getStringCellValue();
-            yuesobasicinfo.setWORKAREA(workarea);
 
 
-//            if( row.getCell(14).getCellType() !=1){
-//                msg.put("msg","导入失败(第"+(r+1)+"行,电话号码请设为文本格式)");
-//                return JSONObject.fromObject(msg);
-//
-//            }
-            String yuesaosyndrome = row.getCell(14).getStringCellValue();
-            proveinfo.setYUESAOSYNDROME(yuesaosyndrome);
 
-//            if( row.getCell(15).getCellType() !=1){
-//                msg.put("msg","导入失败(第"+(r+1)+"行,电话号码请设为文本格式)");
-//                return JSONObject.fromObject(msg);
-//
-//            }
-            String healthcertificates = row.getCell(15).getStringCellValue();
-            proveinfo.setHEALTHCERTIFICATES(healthcertificates);
+            if( row.getCell(14)!=null){
+                String yuesaosyndrome = row.getCell(14).getStringCellValue();
+                proveinfo.setYUESAOSYNDROME(yuesaosyndrome);
 
 
-//            if( row.getCell(16).getCellType() !=1){
-//                msg.put("msg","导入失败(第"+(r+1)+"行,电话号码请设为文本格式)");
-//                return JSONObject.fromObject(msg);
-//
-//            }
-            String report = row.getCell(17).getStringCellValue();
-            proveinfo.setREPORT(report);
+            }
 
-//            if( row.getCell(17).getCellType() !=1){
-//                msg.put("msg","导入失败(第"+(r+1)+"行,电话号码请设为文本格式)");
-//                return JSONObject.fromObject(msg);
-//
-//            }
-            String servicepiceture = row.getCell(17).getStringCellValue();
-            proveinfo.setSERVICEPICTURE(servicepiceture);
+            if( row.getCell(15) !=null){
+                String healthcertificates = row.getCell(15).getStringCellValue();
+                proveinfo.setHEALTHCERTIFICATES(healthcertificates);
+
+            }
+
+
+
+            if( row.getCell(16) !=null){
+                String report = row.getCell(17).getStringCellValue();
+                proveinfo.setREPORT(report);
+
+
+            }
+            if( row.getCell(17) !=null){
+                String servicepiceture = row.getCell(17).getStringCellValue();
+                proveinfo.setSERVICEPICTURE(servicepiceture);
+
+
+            }
 
 
             String password=idcard.substring(0,6);//身份证后6位
             String nums= StringNameUtil.getRandomString(6);
 
-            companyyuesao.setYUESAOID(users.getUSERSID());
-            companyyuesao.setCOMPANYID(id);
+
 
             userService.save(users);
             proveinfo.setUSERSID(users.getUSERSID());
+            users.setPASSWORD(password);
+            users.setTYPE(7);
+
             proveinfoService.save(proveinfo);
             yuesobasicinfo.setUSERSID(users.getUSERSID());
+            yuesobasicinfo.setId(uuidUtil.getuuidUtil());
             yuesobasicinfoService.save(yuesobasicinfo);
-            productService.sendMessage(this.topic,"users:"+ users.getUSERSID());
 
+            companyyuesao.setYUESAOID(users.getUSERSID());
+            companyyuesao.setCOMPANYID(id);
 
-
+            companyyuesaoService.save(companyyuesao);
 
 
         }

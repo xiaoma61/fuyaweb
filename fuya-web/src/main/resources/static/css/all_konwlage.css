@@ -1,0 +1,248 @@
+.main{
+	width:80%;
+	padding:0 0 3% 0;
+	font-size: 20px;
+	overflow: hidden;
+	margin: 0 0 2% 0;
+}
+.top{
+	padding: 0 20px;
+	background-color: #faa0b1;
+	margin: 0 0 0 0;
+	color: #fff;
+	height: 35px;
+	display: inline-block;
+	line-height: 35px;
+	float: left;
+}
+.content_top  .clicked{
+	background-color: #E97C91;
+}
+.top:hover{
+	background-color: #E97C91;
+	cursor: pointer;
+}
+
+.content_left{
+	width:65%;
+	padding:0 2% 4% 0.5%;
+	float: left;
+	margin: -3% 0.5% -4% 0;
+	background-color: #fcfbf6;
+}
+.content_right_top{
+	width:31%;
+	padding:0 0 1.5% 0;
+	background-color: #fefefc;
+	float: right;
+	margin: 0.2% 0.5% 2% 0;
+	color: #ed9fad;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1); 
+}
+.content_top{
+	width:80%;
+	padding:0 0 0 0;
+	font-size: 16px;
+	overflow: hidden;
+	margin: 4% 0 0.5% 0;
+	border-bottom: 4px solid #f07053;
+}
+.page{
+		width:25px;
+		height:25px;
+		border-radius: 25px;
+		color: #7B7B7B;
+		padding: 0 0;
+		cursor: pointer;
+		margin-right:5px;
+		font-size: 14px;
+		display: inline-block;
+		line-height: 25px;
+		background-color:#EBEBEB;
+		vertical-align:top;
+	}
+.pageIcon{
+		color: #7B7B7B;
+		padding: 0  ;
+		cursor: pointer;
+		margin-right:5px;
+		font-size: 14px;
+		display: inline-block;
+		border-radius: 25px;
+		width:25px;
+		height:25px;
+		line-height: 25px;
+		background-color:#EBEBEB;
+		vertical-align:top;
+	}
+.pageselect{
+		background-color: #f07053;
+		color: #fff;
+	}
+.pagearea{
+		width: 450px;
+		height:50px;
+		padding: 0 0 0 50% ;
+		vertical-align:top;
+		margin: 0 66% 0 -250px;
+	}
+#show{
+	width: 100%;
+}
+.item{
+	width: 100%;
+	background-color: #fefefc;
+	height: 150px;
+	margin: 0 0 50px 0;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1); 
+}
+.item table{
+	width: 95%;
+	text-align: left;
+	height: 120px;
+	margin: 50px 3% 10px 1%;
+	table-layout:fixed;
+}
+.item th{
+	font-size: 18px;
+	padding:  1% 0 0 2%;
+	color: #E97C91;
+	font-weight: 600;
+	text-overflow:ellipsis; 
+    white-space: nowrap;
+	overflow: hidden;
+	height: 30px;
+}
+.item td{
+	font-size: 12px;
+	font-weight: 100;
+	padding:  0 0 0 2%;
+	line-height: 30px;
+	height: 35px;
+}
+
+.item li{
+	float: left;
+	text-align: left;
+	padding:  0 2% 0 0;
+}
+.check{
+	width: 80px;
+	height: 25px;
+	background-color: #f07053;
+	text-align: center;
+	color: #fff;
+	float: right;
+	font-size: 14px;
+	line-height: 25px;
+	cursor: pointer;
+}
+.overflowhidden:hover {
+    transform: scale(1.005); 
+}
+.form_search_item{
+	width: 95%;
+	height: 30px;
+	float: left;
+	padding: 0 0 0 0;
+	line-height: 40px;
+	margin:4% 2.5%;
+	border: 2px solid #f07053;
+}
+.form_search_item input[type=text]{
+	margin: 0 0 0 0 ;
+	border: none;
+	color: #f07053;
+	height: 26px;
+	width:84%;
+	float: left;
+	padding: 2px 0 0 5px;
+	}
+.form_search_item input[type=button]{
+	cursor: pointer;
+	background-color: #f07053;
+	color: #fff;
+	height: 100%;
+	width:14%;
+	outline:none; 
+	font-size: 16px;
+	margin:0 0 0 0 ;
+	border: 0;
+	float: right;
+	line-height: 30px;
+	}
+.hide{
+	width:385px;
+	background-color: #fff;
+	position: absolute;
+	display: none;
+	box-shadow:0 0 10px #909090;
+}
+.hide ul{
+	margin: 0;
+	padding:  0 0 0 10px;
+}
+.hide li{
+	border-bottom: 1px dashed #ccc;
+	height:40px;
+	color: #f07053;
+	line-height: 40px;
+	cursor: pointer;
+	list-style: none;
+	text-align: left;
+}
+.recommend{
+	width: 95%;
+	float: left;
+	padding: 0 0 0 0;
+	line-height: 40px;
+	margin:5% 0 0 2.5%;
+}
+.recommend li:first-child{
+	border-bottom: 2px solid #f07053;
+	text-align: left;
+	padding: 0 0 0 10px;
+	color: #000;
+	font-size: 16px;
+	line-height: 16px;
+	font-weight: 600;
+	height: 24px;
+}
+.recommend li{
+	text-align: left;
+	padding: 0 0 0 10px;
+	font-size: 15px;
+	line-height: 40px;
+	height: 30px;
+	text-overflow:ellipsis; 
+    white-space: nowrap;
+	overflow: hidden;
+}
+.tag{
+	width: 15px;
+	height: 15px;
+	background-color: #F0892E;
+	display: inline-block;
+	color: #fff;
+	line-height: 15px;
+	text-align: center;
+	margin: 0 20px 0 10px;
+	font-size: 12px;
+}
+._tag{
+	width: 15px;
+	height: 15px;
+	background-color: #DDDDDD;
+	display: inline-block;
+	color: #787878;
+	line-height: 15px;
+	text-align: center;
+	margin: 0 20px 0 10px;
+	font-size: 12px;
+}
+a{
+	color:#4D4D4D;
+}
+a:hover{
+    color: #000;
+}

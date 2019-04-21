@@ -3,16 +3,23 @@ package com.fuya.fuyadao.entity;
 import org.apache.solr.client.solrj.beans.Field;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name="YUESOBASICINFO")
-public class YUESOBASICINFO {
+public class YUESOBASICINFO implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Field
     private int YUESOBASICINFOID;
     @Field
+
+    @Column(name="USERSID")
     private int USERSID;
     @Field
     private String NAME;
@@ -36,8 +43,7 @@ public class YUESOBASICINFO {
     private String WEIGHT;
     @Field
     private String SENIORITY;
-    @Field
-    private String COMPANYID;
+
 
     @Field("YUESOBASICINFOLEVELS")
     private int LEVELS;
@@ -47,6 +53,21 @@ public class YUESOBASICINFO {
     private int TYPE;
     @Field
     private String WORKAREA;
+
+
+
+
+
+    @OneToMany
+    @JoinColumn(name = "USERSID", referencedColumnName = "USERSID", insertable = false, updatable = false)
+    private Collection<USERS> yu = new ArrayList<USERS>();
+
+
+
+
+
+
+
 
     private String id;
 
@@ -172,13 +193,7 @@ public class YUESOBASICINFO {
         this.SENIORITY = SENIORITY;
     }
 
-    public String getCOMPANYID() {
-        return COMPANYID;
-    }
 
-    public void setCOMPANYID(String COMPANYID) {
-        this.COMPANYID = COMPANYID;
-    }
 
     public int getLEVELS() {
         return LEVELS;

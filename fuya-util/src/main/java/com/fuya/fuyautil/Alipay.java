@@ -15,7 +15,7 @@ public class Alipay {
 
 
 
-    public static String AlipayUtil(int id,int fate) throws AlipayApiException {
+    public static String AlipayUtil(String id,int fate) throws AlipayApiException {
 
         String app_id = AlipayConfig.app_id;
         String private_key = AlipayConfig.private_key;
@@ -37,7 +37,7 @@ public class Alipay {
 
         String productCode = "FAST_INSTANT_TRADE_PAY";
 
-        model.setOutTradeNo(UUID.randomUUID().toString());
+        model.setOutTradeNo(id);
         model.setSubject("支付测试");
         model.setTotalAmount(String.valueOf(fate));
         model.setBody("支付测试，共10元");

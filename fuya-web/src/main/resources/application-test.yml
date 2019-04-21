@@ -1,0 +1,58 @@
+spring:
+  profiles:
+    active: dev
+  datasource:
+    url: jdbc:mysql://campus.gbdev.cn:3306/fuyaweb?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    username: mydb
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+  data:
+    solr:
+      host: https://campus.gbdev.cn:8060/solr/fuya_core
+  jpa:
+    hibernate:
+      ddl-auto: none
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML
+    encoding: UTF-8
+    servlet:
+      content-type: text/html
+    cache: false
+  devtools:
+    restart:
+      enabled: true
+     # additional-paths: src/main/java
+      exclude: WEB-INF/**
+  redis:
+    expireSeconds: 120
+    clusterNodes:  localhost:6661, localhost:6662, localhost:6663, localhost:6664, localhost:6665, localhost:6666
+    jedis:
+      pool:
+        max-active: 300
+        min-idle: 100
+
+    database: 0
+    commandTimeout: 1000
+
+  activemq:
+    broker-url: tcp://localhost:61616
+    pool:
+      enabled: false
+    in-memory: true
+    password: admin
+    user: admin
+  jms:
+    pub-sub-domain: true
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+
+
+
+
+
+

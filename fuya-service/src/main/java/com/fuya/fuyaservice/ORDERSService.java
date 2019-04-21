@@ -16,4 +16,6 @@ public interface ORDERSService {
     List<OrderYuesaoCommentServiceEmployee>findOrderYuesaoCommentServiceEmployeeByFROMID(int fromid, int status);
    OrderYuesaoCommentServiceEmployee findOrderYuesaoCommentServiceEmployeeByOderID(int id);
     int findcountByTOID(int toid);
+    List<Object> findCommentsByTOID(int toid);
+
 }

@@ -1,5 +1,6 @@
 package com.fuya.fuyadao.dao;
 
+import com.fuya.fuyadao.entity.COMMENTS;
 import com.fuya.fuyadao.entity.ORDERS;
 import com.fuya.fuyadao.model.ODERSEMPCommentMSG;
 import com.fuya.fuyadao.model.ODERSEMPMSG;
@@ -32,6 +33,11 @@ public interface ORDERSRepository extends JpaRepository<ORDERS,Integer> {
 
     @Query("select count (o) from ORDERS o where o.TOID=?1")
     int findcountByTOID(int toid);
+
+
+    @Query(nativeQuery =true,value = "select o.ORDERSID,c.CONTENT, e.NAME, s.starttime from  ORDERS o left join  COMMENTS c on o.ORDERSID=c.ORDERID ,employerinformation e, servicecontent s where o.TOID=?1 and e.ODERID=o.ORDERSID group by o.ORDERSID limit 10")
+    List<Object> findCommentsByTOID(int toid);
+
     //更新
 
 

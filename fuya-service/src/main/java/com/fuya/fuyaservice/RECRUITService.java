@@ -15,4 +15,5 @@ public interface RECRUITService {
                              String PHONE, String POSITION, String SALARY, Date STARTTIME, Date TIME, String WORKAREA, int id);
     List<Object> find();
     Page<RECRUIT>findAll(Pageable pageable);
+    Page<RECRUIT> findByUSERID(int USERID, Pageable pageable);
 }

@@ -7,17 +7,20 @@ import net.sf.json.JSONObject;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @Controller
+@CrossOrigin
 public class YuesaoOderController {
 
 
@@ -28,7 +31,8 @@ public class YuesaoOderController {
     @RequiresRoles("yuesaos")
     @RequestMapping("/fuyayuesaos/recentOrder")
     @ResponseBody
-    public JSONObject recentOrder(HttpServletRequest request, @RequestParam(name = "start",defaultValue = "0")int start,@RequestParam(name = "rows",defaultValue = "10")int rows){
+    public JSONObject recentOrder(HttpServletRequest request, @RequestParam(name = "start",defaultValue = "0")int start, @RequestParam(name = "rows",defaultValue = "10")int rows, HttpServletResponse response){
+        response.setHeader("Access-Control-Allow-Origin", "*");
         HttpSession session=request.getSession();
         int id= (int) session.getAttribute("id");
         int sumstatus=1;//未完成
@@ -42,10 +46,11 @@ public class YuesaoOderController {
     @RequiresRoles("yuesaos")
     @RequestMapping("/fuyayuesaos/historyOrder")
     @ResponseBody
-    public JSONObject historyOrder(HttpServletRequest request,@RequestParam(name = "start",defaultValue = "0")int start,@RequestParam(name = "rows",defaultValue = "10")int rows){
+    public JSONObject historyOrder(HttpServletRequest request,@RequestParam(name = "start",defaultValue = "0")int start,@RequestParam(name = "rows",defaultValue = "10")int rows,HttpServletResponse response){
+        response.setHeader("Access-Control-Allow-Origin", "*");
         HttpSession session=request.getSession();
         int id= (int) session.getAttribute("id");
-        int sumstatus=2;//未完成
+        int sumstatus=2;//完成
        List<ODERSEMPCommentMSG>odersempCommentMSGList=ordersService.findODERSEMPCommentMSGByTOID(id,sumstatus);
         Map<String,Object> msg=new HashMap<>();
         msg.put("msg",odersempCommentMSGList);

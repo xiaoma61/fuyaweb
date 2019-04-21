@@ -1,0 +1,115 @@
+/* CSS Document */
+
+a:link {color: #fff} 
+a:visited {color: #fff} 
+a:hover {color: #fff}
+a:active {color: #fff} 
+.main{
+	width:80%;
+	background-color: #fff;
+	font-size: 16px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	color: #fff;
+	vertical-align: middle;
+	font-weight:400;
+	font-family: "Microsoft YaHei", Verdana, Arial, Helvetica, AppleGothic, sans-serif;
+}
+.bar_left{
+	width:15%;
+	background-color:#f7bcaf; 
+	float: left;
+	height: 1100px;
+}
+.bar_left_kuang{
+	width:85%;
+	height:110px;
+	border: 2px solid #fff;
+	margin:10% 0 5% 0 ;
+	background: url(../img/u.png) center no-repeat;
+	background-size:auto 100%;
+}
+.bar_left_item{
+	width:30%;
+	padding: 5% 35%;
+	text-align: left;
+	cursor: pointer;
+	height: 20px;
+	background-color:#f7bcaf ;
+	vertical-align:middle;
+}
+#form{
+	background:  url(../img/dingdan.png) no-repeat 20%;
+	background-size:10%;
+}
+#infor{
+	background:  url(../img/gongsi.png) no-repeat 20%;
+	background-size:10%;
+}
+#nurse{
+	background:  url(../img/yuesao.png) no-repeat 20%;
+	background-size:10%;
+}
+#mychat{
+	background:  url(../img/chat.png) no-repeat 20%;
+	background-size:10%;
+}
+#myform{
+	background:  url(../img/dingdan.png) no-repeat 20%;
+	background-size:10%;
+}
+#myinfor{
+	background:  url(../img/yuesao.png) no-repeat 20%;
+	background-size:10%;
+}
+#collection{
+	background:  url(../img/collect.png) no-repeat 20%;
+	background-size:9%;
+}
+#n_manage{
+	background:  url(../img/yuesao.png) no-repeat 20%;
+	background-size:9%;
+}
+#c_manage{
+	background:  url(../img/gongsi.png) no-repeat 20%;
+	background-size:9%;
+}
+#w_manage{
+	background:  url(../img/wenzhangguanli.png) no-repeat 20%;
+	background-size:7%;
+}
+#p_manage{
+	background:  url(../img/dingdan.png) no-repeat 20%;
+	background-size:9%;
+}
+#r_manage{
+	background:  url(../img/zhaopin.png) no-repeat 20%;
+	background-size:9%;
+}
+.more{
+	background:  url(../img/more.png) no-repeat center;
+	width:30px;
+	height:13px;
+	display:inline-block;
+	background-size:55%;
+	margin-left: 14%;
+}
+.less{
+	background:  url(../img/less.png) no-repeat center;
+	width:30px;
+	height:13px;
+	display:inline-block;
+	background-size:55%;
+	margin-left: 14%;
+}
+select{
+	
+}
+
+#content{
+	width:73%;
+	margin:4% 0;
+	text-align: left;
+	height: 900px;
+}

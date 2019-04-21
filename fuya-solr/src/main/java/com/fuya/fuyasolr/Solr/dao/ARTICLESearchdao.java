@@ -33,7 +33,22 @@ public class ARTICLESearchdao {
         solrClient.commit();
     }*/
     //查找
-
+    public  long getSolrIndexCount(int type){
+        long num = 0;
+        try {
+            SolrQuery params = new SolrQuery();
+            params.set("q", "TYPE: "+type);
+            QueryResponse	rsp = solrClient.query(params);
+            SolrDocumentList docs = rsp.getResults();
+            num = docs.getNumFound();
+            System.out.println(num);
+        } catch (SolrServerException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return num;
+    }
     /**
      *
      * @param query
@@ -43,8 +58,15 @@ public class ARTICLESearchdao {
      * @throws SolrServerException
      */
     public SearchResult Search(SolrQuery query,int i) throws IOException, SolrServerException {
+
         List<ARTICLEmodel> articleList=new ArrayList<ARTICLEmodel>();
         QueryResponse solrResponse=solrClient.query(query);
+        int totalpages=0;
+
+
+        SearchResult searchResult=new SearchResult();
+        Long num=getSolrIndexCount(i)%10==0?getSolrIndexCount(i)/10:getSolrIndexCount(i)/10+1;
+        searchResult.setTotalPage(Math.toIntExact(num));
         SolrDocumentList solrDocumentList= solrResponse.getResults();
 //        List<ARTICLE> articleList=solrResponse.getBeans(ARTICLE.class);
 
@@ -77,8 +99,8 @@ public class ARTICLESearchdao {
         }
 
         if (articleList.size()>0){
-            System.out.println(articleList.get(0).getTITLE());
-            SearchResult searchResult=new SearchResult();
+
+
             searchResult.setObjects(articleList);
 
             searchResult.setResultCount(articleList.size());

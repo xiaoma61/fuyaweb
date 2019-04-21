@@ -3,6 +3,7 @@ package com.fuya.fuyaservice;
 import com.fuya.fuyadao.entity.COMPANYBASICINFO;
 import com.fuya.fuyadao.model.CompanysInfosModle;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
@@ -18,4 +19,7 @@ public interface COMPANYBASICINFOService {
     Page<COMPANYBASICINFO> findALL(int start, int rows);
     List<Object>find();
     Object findidMsg(int id);
+    CompanysInfosModle findCompanysInfosModleByUSERID(int id);
+
+
 }
